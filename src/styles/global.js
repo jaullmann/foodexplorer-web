@@ -41,6 +41,6 @@ export default createGlobalStyle`
     }
 
     button:hover, a:hover {
-        filter: brightness(0.7);
+        filter: brightness(0.8);
     }
 `
