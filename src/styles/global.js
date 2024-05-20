@@ -6,6 +6,7 @@ export default createGlobalStyle`
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    border: 0.5px solid yellow;
     }
 
     :root {
@@ -36,6 +37,11 @@ export default createGlobalStyle`
     }
 
     button, a {
+        background-color: initial; /* or 'transparent' */
+        border: none;
+        outline: none;
+        box-shadow: none;
+
         cursor: pointer;
         transition: filter 0.2s;
     }

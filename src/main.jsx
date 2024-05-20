@@ -6,6 +6,8 @@ import theme from './styles/theme';
 
 import { Button } from './components/Button';
 import { Ingredient } from './components/Ingredient';
+import { DishCounter } from './components/DishCounter';
+import { CartButton } from './components/CartButton';
 
 
 ReactDOM.createRoot(document.getElementById('root')).render(
@@ -14,6 +16,8 @@ ReactDOM.createRoot(document.getElementById('root')).render(
       <GlobalStyles />
       <Button title="Novo prato"/>
       <Ingredient name='pão integral'/>
+      <DishCounter amount={4} />
+      <CartButton totalDishes={3}/>
     </ThemeProvider>    
   </React.StrictMode>,
 )
