@@ -8,7 +8,10 @@ export function CartButton({ totalDishes, loading = false, onClick }){
       disabled={loading}
       onClick={onClick}
     >
-      <img src={Receipt} alt="Carrinho de compras"/>
+      <img 
+        src={Receipt} 
+        alt="Carrinho de compras"
+      />
       <h3>Meu pedido ({ totalDishes })</h3>
 
     </Container>
