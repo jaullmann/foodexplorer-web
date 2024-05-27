@@ -1,7 +1,7 @@
 import { Container } from "./styles";
 import Receipt from "../../assets/app_icons/receipt.svg"
 
-export function CartButton({ totalDishes, loading = false, onClick }){
+export function OrdersButton({ totalOrders, loading = false, onClick }){
   return (
     <Container
       type="button"
@@ -10,10 +10,9 @@ export function CartButton({ totalDishes, loading = false, onClick }){
     >
       <img 
         src={Receipt} 
-        alt="Carrinho de compras"
+        alt="Pedidos"
       />
-      <h3>Pedidos ({ totalDishes })</h3>
-
+      <h3>Pedidos ({ totalOrders })</h3>
     </Container>
   )
 }

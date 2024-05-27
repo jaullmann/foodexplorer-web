@@ -1,7 +1,7 @@
 import { Container } from "./styles";
 import HexagonIcon from "../../assets/app_icons/hexagon_icon.svg";
 
-export function MainLogo() {
+export function MainLogo({ admin=false }) {
   return (
     <Container>
       <img 
@@ -9,7 +9,8 @@ export function MainLogo() {
         alt='Símbolo de food explorer'
       />
       <div>
-        <h1>food explorer</h1>        
+        <h1>food explorer</h1>
+        <h3 className={ admin ? 'admin' : 'user' }>admin</h3>     
       </div>      
     </Container>
   )

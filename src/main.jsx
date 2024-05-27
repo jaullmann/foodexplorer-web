@@ -4,24 +4,20 @@ import { ThemeProvider } from 'styled-components';
 import GlobalStyles from './styles/global';
 import theme from './styles/theme';
 
-import { Button } from './components/Button';
-import { Ingredient } from './components/Ingredient';
-import { DishCounter } from './components/DishCounter';
 import { CartButton } from './components/CartButton';
-import { MainLogo } from './components/MainLogo';
-import { MainLogoAdmin } from './components/MainLogoAdmin';
+import { OrdersButton } from './components/OrdersButton';
+import { Header } from './components/Header';
+import { Footer } from './components/Footer';
 
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <ThemeProvider theme={theme}>
-      <GlobalStyles />
-      <Button title="Novo prato"/>
-      <Ingredient name='pão integral'/>
-      <DishCounter amount={4} />
-      <CartButton totalDishes={3}/>
-      <MainLogo />
-      <MainLogoAdmin />
+      <GlobalStyles />      
+      <CartButton totalDishes={3}/>      
+      <OrdersButton totalOrders={2}/>      
+      <Header admin={true}/>      
+      <Footer />
     </ThemeProvider>    
   </React.StrictMode>,
 )

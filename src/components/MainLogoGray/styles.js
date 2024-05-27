@@ -2,8 +2,8 @@ import styled from "styled-components";
 import { DEVICE_BREAKPOINTS } from "../../styles/deviceBreakpoints";
 
 export const Container = styled.div`
-  display: flex;  
-
+  display: flex;
+  
   justify-content: center;
   align-items: center;
   gap: 0.63rem;
@@ -30,7 +30,7 @@ export const Container = styled.div`
 
   > div h1 {
     ${({ theme }) => theme.FONTS.ROBOTO_BOLD}
-    color: ${({ theme }) => theme.COLORS.LIGHT_100};
+    color: ${({ theme }) => theme.COLORS.LIGHT_700};
     font-size: 1.5rem;
     width: 9.3rem;
 
@@ -38,24 +38,6 @@ export const Container = styled.div`
       font-size: 1.32rem;
     }
     
-  } 
-
-  > div h3 {
-    position: absolute;
-    bottom: -0.8rem;
-
-    @media (max-width: ${DEVICE_BREAKPOINTS.MD}) {
-      bottom: 0.4rem;    
-      right: -2.6rem;
-    }
-
-    ${({ theme }) => theme.FONTS.ROBOTO_REGULAR}
-    color: ${({ theme }) => theme.COLORS.TINTS_CAKE_200};
-    font-size: 0.75rem;        
-  }
-
-  .user {
-    display: none;
-  }
+  }   
 
 `
