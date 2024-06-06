@@ -6,7 +6,7 @@ export default createGlobalStyle`
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    border: 0.5px solid yellow;
+    border: 0.5px dotted yellow;
     }
 
     :root {

@@ -1,12 +1,12 @@
 import { Container } from "./styles";
 import { DishCounter } from "../DishCounter";
 import { Button } from "../Button";
-import Heart from "../../assets/app_icons/heart.svg";
-import Pencil from "../../assets/app_icons/pencil.svg";
+import { FiHeart } from "react-icons/fi";
+import { PiPencilSimple } from "react-icons/pi";
 
 
 export function DishCard({ title, imageFile, description, price, favorite = false,
-   loading = false, admin=false, onClick }) {
+   loading = false, admin = false, onClick }) {
 
     function formatCurrency(number) {
       const formattedNumber = number.toFixed(2);
@@ -15,9 +15,9 @@ export function DishCard({ title, imageFile, description, price, favorite = fals
     }
 
     return(
-        <Container>
-          {!admin && <img src={Heart} alt="Favoritar prato"/>}
-          {admin && <img src={Pencil} alt="Editar prato"/>} 
+        <Container $favorite={favorite}>
+          {!admin && <FiHeart id="fav-button"/>}
+          {admin && <PiPencilSimple />} 
           <img 
             src={imageFile} 
             alt="Visualizar detalhes do prato" 
@@ -26,14 +26,16 @@ export function DishCard({ title, imageFile, description, price, favorite = fals
           <h1 onClick={onClick}>{loading ? "Carregando" : title + " >"}</h1> 
           <h3 onClick={onClick}>{loading ? "Carregando" : description}</h3>
           <h2>{loading ? "R$ --,--" : formatCurrency(price)}</h2>
-          <div>
-            <DishCounter />
-            <Button 
-              title={"incluir"}
-              loading={loading}    
-              onClick={null}          
-            />
-          </div>                 
+          {!admin &&
+            <div>
+              <DishCounter />
+              <Button 
+                title={"incluir"}
+                loading={loading}    
+                onClick={null}          
+              />
+            </div>     
+          }            
         </Container>
     )
 }

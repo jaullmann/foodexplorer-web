@@ -19,11 +19,12 @@ ReactDOM.createRoot(document.getElementById('root')).render(
       <OrdersButton totalOrders={2}/>      
       <Header admin={true}/>
       <DishCard 
-        title={"Prato do foodexplorer"}
+        title={"Nome do prato"}
         imageFile={"/src/assets/samples/dish_image_large.png"}
-        description={"Descrição genérica de prato para página inicial do foodexplorer."}
-        price={25.90}
-      />   
+        description={"Descrição genérica de prato para página inicial do foodexplorer página inicial do foodexplorer."}
+        price={25.90} 
+        admin={false}
+      />        
       <Footer />
     </ThemeProvider>    
   </React.StrictMode>,

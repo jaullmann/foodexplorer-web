@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { DEVICE_BREAKPOINTS } from "../../styles/deviceBreakpoints";
 
 export const Container = styled.div`
   display: flex;
@@ -22,6 +23,11 @@ export const Container = styled.div`
     text-align: center;  
     font-size: 1.25rem;
     ${({ theme }) => theme.FONTS.ROBOTO_BOLD}
+  }
+
+  @media (max-width: ${DEVICE_BREAKPOINTS.MD}) {
+    font-size: 1rem;
+    ${({ theme }) => theme.FONTS.ROBOTO_REGULAR}
   }
 `
 
