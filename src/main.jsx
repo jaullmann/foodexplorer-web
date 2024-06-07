@@ -7,24 +7,24 @@ import theme from './styles/theme';
 import { CartButton } from './components/CartButton';
 import { OrdersButton } from './components/OrdersButton';
 import { Header } from './components/Header';
-import { DishCard } from './components/DishCard';
+import { CardsSection } from './components/CardsSection';
 import { Footer } from './components/Footer';
+import { register } from 'swiper/element/bundle';
+
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
+import 'swiper/css/scrollbar';
+
+register();
 
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <ThemeProvider theme={theme}>
-      <GlobalStyles />      
-      <CartButton totalDishes={3}/>      
-      <OrdersButton totalOrders={2}/>      
-      <Header admin={true}/>
-      <DishCard 
-        title={"Nome do prato"}
-        imageFile={"/src/assets/samples/dish_image_large.png"}
-        description={"Descrição genérica de prato para página inicial do foodexplorer página inicial do foodexplorer."}
-        price={25.90} 
-        admin={false}
-      />        
+      <GlobalStyles />            
+      <Header admin={false}/>
+      <CardsSection sectionName={"Refeições"}/>   
       <Footer />
     </ThemeProvider>    
   </React.StrictMode>,

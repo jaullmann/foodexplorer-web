@@ -9,19 +9,20 @@ export const Container = styled.div`
   gap: .9375rem;
 
   padding: 1.5rem;
-  width: 19rem;
-  min-height: 28.875rem;
+  max-width: 19rem;
+  min-height: 28.875rem;  
   background-color: transparent;
   position: relative;
   
   > svg {
     width: 1.5rem;
-    height: 1.5rem;
-    cursor: pointer;    
+    height: 1.5rem;     
     position: absolute;
     right: 1.125rem;
     top: 1rem;   
     color: ${({ theme }) => theme.COLORS.LIGHT_300};       
+
+    cursor: pointer;   
   }
 
   #fav-button {
@@ -41,19 +42,24 @@ export const Container = styled.div`
 
   > h1 {
     ${({ theme }) => theme.FONTS.POPPINS_BOLD}; 
-    font-size: 1.5rem;
-    color: ${({ theme }) => theme.COLORS.LIGHT_300};     
-  }  
+    font-size: 1.5rem;    
+    color: ${({ theme }) => theme.COLORS.LIGHT_300};
 
-  > h3 {
     overflow: hidden;
     display: -webkit-box;
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
+  }  
 
+  > h3 {
     ${({ theme }) => theme.FONTS.ROBOTO_REGULAR}; 
     font-size: .875rem;
     color: ${({ theme }) => theme.COLORS.LIGHT_400};     
+
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
   }
 
   > h2 {

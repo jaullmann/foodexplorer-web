@@ -19,6 +19,7 @@ export const Container = styled.div`
 `
 
 export const Input = styled.input`
+  all: unset;
   width: 100%;  
 
   ${({ theme}) => theme.FONTS.ROBOTO_REGULAR};
