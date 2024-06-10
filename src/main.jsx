@@ -4,8 +4,6 @@ import { ThemeProvider } from 'styled-components';
 import GlobalStyles from './styles/global';
 import theme from './styles/theme';
 
-import { CartButton } from './components/CartButton';
-import { OrdersButton } from './components/OrdersButton';
 import { Header } from './components/Header';
 import { CardsSection } from './components/CardsSection';
 import { Footer } from './components/Footer';

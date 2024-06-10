@@ -3,9 +3,9 @@ import { Container, Input } from "./styles";
 
 export function SearchInput(){
   return (
-    <Container>
+    <Container id="search">
       <FiSearch/>
-      <Input 
+      <Input         
         autoFocus
         value={null}
         onChange={null}

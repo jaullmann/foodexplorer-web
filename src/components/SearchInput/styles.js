@@ -9,18 +9,19 @@ export const Container = styled.div`
 
   height: 3rem;
   width: 40%;
-  padding: 0.75rem 1.5rem;
+  /* padding: 0.75rem 1.5rem; */
   border-radius: 0.3rem;  
 
   font-size: 1.5rem;
   
   color: ${({ theme }) => theme.COLORS.LIGHT_400};
-  background-color: ${({ theme}) => theme.COLORS.DARK_900};
+  background-color: ${({ theme}) => theme.COLORS.DARK_900};  
+
 `
 
 export const Input = styled.input`
   all: unset;
-  width: 100%;  
+  width: 55%;  
 
   ${({ theme}) => theme.FONTS.ROBOTO_REGULAR};
   font-size: 1rem;
@@ -31,12 +32,25 @@ export const Input = styled.input`
 
   overflow: hidden;
     text-overflow: ellipsis;
-  
+
+  transition: 0.2s ease-in-out;
+    
   &::placeholder {
-    color: ${({ theme }) => theme.COLORS.LIGHT_500};     
+    color: ${({ theme }) => theme.COLORS.LIGHT_500}; 
+    overflow: hidden;
+    text-overflow: ellipsis;   
+    transition: 0.2s ease-in-out; 
   }
 
-  &:hover {
-    filter: brightness(1.2);    
-  }
+  &:focus {
+    width: 85%;
+    text-align: center;
+    transition: 0.3s ease-in-out;
+    &::placeholder {
+      color: transparent; 
+      transition: 0.2s ease-in-out;
+    }
+    
+  } 
+
 `

@@ -9,25 +9,35 @@ export const Section = styled.section`
   max-width: 70rem;
   position: relative;
 
-  #gradient-left{
-    background: ${({ theme }) => theme.COLORS.GRADIENTS_200};
+  #gradient-left, #gradient-right {
     width: 17.375rem;
     height: 32rem;
     position: absolute;
     top: 4.7rem;
-    z-index: 2;
+    padding: 1.1875rem; 
     pointer-events: none;
+    display: flex;
+    align-items: center;
+
+    > svg {
+      height: 2.5rem;
+      width: 2.5rem;
+      fill: ${({ theme }) => theme.COLORS.LIGHT_300};        
+      cursor: pointer;
+    }
+  }
+
+  #gradient-left{     
+    justify-content: left;
+    background: ${({ theme }) => theme.COLORS.GRADIENTS_200};
+    z-index: 2;    
   }
 
   #gradient-right{
+    justify-content: right;
     background: ${({ theme }) => theme.COLORS.GRADIENTS_100};
-    width: 17.375rem;
-    height: 32rem;
-    position: absolute;
-    top: 4.7rem;
     right: 0;
-    z-index: 2;
-    pointer-events: none;
+    z-index: 2;    
   }
 
   h1 {
@@ -39,9 +49,10 @@ export const Section = styled.section`
   }
 
   .swiper-button-prev, .swiper-button-next {
-    color: ${({ theme }) => theme.COLORS.LIGHT_100};
+    color: transparent;
     width: 2.5rem;
-    height: 2.5rem;    
+    height: 2.5rem;
+    top: 16.7rem;  
   }
 
 `

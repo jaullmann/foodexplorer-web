@@ -36,8 +36,7 @@ export const Container = styled.div`
   }
   
   > h1, h2, h3 {
-    text-align: center;
-    cursor: pointer;
+    text-align: center;    
   }
 
   > h1 {
@@ -49,6 +48,8 @@ export const Container = styled.div`
     display: -webkit-box;
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
+
+    margin-bottom: -.001rem;
   }  
 
   > h3 {

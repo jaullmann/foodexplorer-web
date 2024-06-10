@@ -1,4 +1,5 @@
 import React from "react";
+import { PiCaretRight, PiCaretLeft } from "react-icons/pi";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Section } from "./styles";
 import { DishCard } from "../DishCard";
@@ -40,13 +41,23 @@ export function CardsSection({ dishesData = null, sectionName, admin = false }) 
   return (
     <Section >    
       <h1>{sectionName}</h1>
-      <div id='gradient-left'/>
-      <div id='gradient-right'/>
+      <div id='gradient-left'>
+        <PiCaretLeft />
+      </div>
+      <div id='gradient-right'>
+        <PiCaretRight />
+      </div>
       <div id='slider'>        
         <Swiper
           slidesPerView={4}
-          spaceBetween={25}
-          navigation          
+          spaceBetween={16}
+          navigation
+          loop={true}
+          mousewheel={true}
+          // autoplay={{
+          //   delay: 1000,
+          //   disableOnInteraction: true,
+          // }}
         >
           {
             cardsData.map((card) => (
