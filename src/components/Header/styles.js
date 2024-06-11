@@ -1,10 +1,17 @@
 import styled from "styled-components";
 import { DEVICE_BREAKPOINTS } from "../../styles/deviceBreakpoints";
 
-export const Section = styled.div`
+export const Section = styled.div`    
+    margin: auto;
+    padding: 0 4rem;
+    width: 100%;
+
+    position: relative;
+    background-color: ${({ theme }) => theme.COLORS.DARK_600};   
     
     > .desktop {
         margin: auto;
+        max-width: 85.5rem;
         height: 6.5rem;
 
         display: flex;
@@ -13,9 +20,7 @@ export const Section = styled.div`
         gap: 2rem;
 
         padding: 0;
-
-        max-width: 70rem;
-
+    
         #sign-out {
             display: flex;
             justify-content: center;  

@@ -2,22 +2,38 @@ import styled from "styled-components";
 import { DEVICE_BREAKPOINTS } from "../../styles/deviceBreakpoints";
 
 export const Section = styled.section`
-  margin: 2.875rem auto 0;
-  display: flex;
-  flex-direction: column;
-  
-  max-width: 70rem;
-  position: relative;
+  margin: auto;
+  padding: 0 4rem;
+  width: 100%;
+   
+  > #slider, h1 {    
+    margin: auto;
+    max-width: 85.5rem;
+    position: relative;    
+  }
 
-  #gradient-left, #gradient-right {
-    width: 17.375rem;
-    height: 32rem;
-    position: absolute;
-    top: 4.7rem;
-    padding: 1.1875rem; 
-    pointer-events: none;
+  #gradient-layer {
+    position: absolute;    
+    left: 0;
+    padding: 0 .5rem;
+    top: 0;
+    
+    width: 100%; 
+    height: 100%;
     display: flex;
+    flex-direction: row;
     align-items: center;
+    justify-content: space-between; 
+    
+    background: linear-gradient(90deg, 
+      #00070A 5%, 
+      transparent 30%,
+      transparent 70%,
+      #00070A 95%);
+    
+    z-index: 1;
+
+    pointer-events: none;
 
     > svg {
       height: 2.5rem;
@@ -25,19 +41,6 @@ export const Section = styled.section`
       fill: ${({ theme }) => theme.COLORS.LIGHT_300};        
       cursor: pointer;
     }
-  }
-
-  #gradient-left{     
-    justify-content: left;
-    background: ${({ theme }) => theme.COLORS.GRADIENTS_200};
-    z-index: 2;    
-  }
-
-  #gradient-right{
-    justify-content: right;
-    background: ${({ theme }) => theme.COLORS.GRADIENTS_100};
-    right: 0;
-    z-index: 2;    
   }
 
   h1 {
@@ -50,9 +53,9 @@ export const Section = styled.section`
 
   .swiper-button-prev, .swiper-button-next {
     color: transparent;
-    width: 2.5rem;
-    height: 2.5rem;
-    top: 16.7rem;  
+    width: 3.5rem;
+    height: 5rem;
+    top: 47%;  
   }
 
 `

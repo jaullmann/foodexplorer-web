@@ -23,8 +23,12 @@ export function DishCard({ title, imageFile, description, price, favorite = fals
             alt="Visualizar detalhes do prato" 
             onClick={onClick}
           />
-          <h1 onClick={onClick}>{loading ? "Carregando" : title + " >"}</h1> 
-          <h3 onClick={onClick}>{loading ? "Carregando" : description}</h3>
+          <h1 onClick={onClick}>
+            {loading ? "Carregando" : title + " >"}
+          </h1> 
+          <h3>
+            {loading ? "Carregando" : description}
+          </h3>
           <h2>{loading ? "R$ --,--" : formatCurrency(price)}</h2>
           {!admin &&
             <div>

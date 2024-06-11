@@ -41,12 +41,7 @@ export function CardsSection({ dishesData = null, sectionName, admin = false }) 
   return (
     <Section >    
       <h1>{sectionName}</h1>
-      <div id='gradient-left'>
-        <PiCaretLeft />
-      </div>
-      <div id='gradient-right'>
-        <PiCaretRight />
-      </div>
+      
       <div id='slider'>        
         <Swiper
           slidesPerView={4}
@@ -74,6 +69,10 @@ export function CardsSection({ dishesData = null, sectionName, admin = false }) 
               </SwiperSlide>
             )
           )}
+          <div id='gradient-layer'>
+            <PiCaretLeft />
+            <PiCaretRight />
+          </div>
         </Swiper>
       
       </div>            

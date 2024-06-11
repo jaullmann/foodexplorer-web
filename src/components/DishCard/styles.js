@@ -50,6 +50,7 @@ export const Container = styled.div`
     -webkit-box-orient: vertical;
 
     margin-bottom: -.001rem;
+    cursor: pointer;   
   }  
 
   > h3 {

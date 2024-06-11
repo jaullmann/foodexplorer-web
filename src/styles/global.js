@@ -3,10 +3,10 @@ import { DEVICE_BREAKPOINTS } from "./deviceBreakpoints";
 
 export default createGlobalStyle`
     * {    
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    border: 0.5px dotted yellow;
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        border: 0.5px dotted cyan;
     }
 
     :root {
@@ -18,13 +18,12 @@ export default createGlobalStyle`
         } 
     }
 
-    body {                
+    body {                   
         background-color: ${({ theme }) => theme.COLORS.DARK_100};
         color: ${({ theme }) => theme.COLORS.LIGHT_100}; 
         
-        -webkit-font-smoothing: antialiased;
-        padding: 0 5rem;
-    }     
+        -webkit-font-smoothing: antialiased;        
+    }         
 
     body, input, button, textarea {
         font-family: "Roboto", sans-serif;
