@@ -7,6 +7,7 @@ import theme from './styles/theme';
 import { Header } from './components/Header';
 import { CardsSection } from './components/CardsSection';
 import { Footer } from './components/Footer';
+
 import { register } from 'swiper/element/bundle';
 
 import 'swiper/css';
@@ -22,7 +23,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
     <ThemeProvider theme={theme}>
       <GlobalStyles />            
       <Header admin={false}/>
-      <CardsSection sectionName={"Refeições"}/>   
+      <CardsSection sectionName={"Refeições"}/>        
       <Footer />
     </ThemeProvider>    
   </React.StrictMode>,
