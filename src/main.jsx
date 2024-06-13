@@ -4,9 +4,7 @@ import { ThemeProvider } from 'styled-components';
 import GlobalStyles from './styles/global';
 import theme from './styles/theme';
 
-import { Header } from './components/Header';
-import { CardsSection } from './components/CardsSection';
-import { Footer } from './components/Footer';
+import { SignUp } from './pages/SignUp';
 
 import { register } from 'swiper/element/bundle';
 
@@ -22,9 +20,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <ThemeProvider theme={theme}>
       <GlobalStyles />            
-      <Header admin={false}/>
-      <CardsSection sectionName={"Refeições"}/>        
-      <Footer />
+      <SignUp />
     </ThemeProvider>    
   </React.StrictMode>,
 )

@@ -1,7 +1,7 @@
 import { FiSearch } from "react-icons/fi";
 import { Container, Input } from "./styles";
 
-export function SearchInput({ onClick }){
+export function SearchInput(){
   return (
     <Container id="search">      
       <Input         
@@ -10,9 +10,7 @@ export function SearchInput({ onClick }){
         onChange={null}
         placeholder="Busque por pratos ou ingredientes"
       />
-      <button
-        onClick={onClick}
-      >
+      <button>
         <FiSearch/>
       </button>       
     </Container>    

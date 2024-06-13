@@ -1,9 +1,11 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
+  width: 100%;
+
   display: flex;
   flex-direction: column;;
-  gap: 0.5rem;
+  gap: 0.5rem;  
 
   > h3 {
     color: ${({ theme }) => theme.COLORS.LIGHT_400};
@@ -36,7 +38,10 @@ export const Input = styled.input`
   }
 
   &:focus {
-    border: 1px solid ${({ theme }) => theme.COLORS.LIGHT_400};
+    background-color: ${({ theme, $loginScreenInput }) => 
+      $loginScreenInput ? theme.COLORS.DARK_800 : theme.COLORS.DARK_1000
+    };
+   
   }
 
 `

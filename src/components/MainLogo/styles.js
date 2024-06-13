@@ -6,17 +6,18 @@ export const Container = styled.div`
 
   justify-content: center;
   align-items: center;
-  gap: 0.63rem;
+  gap: 1.1875rem;
 
   @media (max-width: ${DEVICE_BREAKPOINTS.MD}) {
-    gap: 0.5rem;
+    gap: .675rem;
+    width: 17.5rem;
   }
   
   > img {
-    width: 1.88rem;
+    width: 3rem;
 
-    @media (max-width: ${DEVICE_BREAKPOINTS.MD}) {
-      width: 1.5rem
+    @media (max-width: ${DEVICE_BREAKPOINTS.MD}) {      
+      height: 2.7075rem;
     }
     
   }
@@ -31,11 +32,12 @@ export const Container = styled.div`
   > div h1 {
     ${({ theme }) => theme.FONTS.ROBOTO_BOLD}
     color: ${({ theme }) => theme.COLORS.LIGHT_100};
-    font-size: 1.5rem;
-    width: 9.3rem;
+    font-size: 2.625rem;
+    width: 16rem;
 
     @media (max-width: ${DEVICE_BREAKPOINTS.MD}) {
-      font-size: 1.32rem;
+      font-size: 2.325rem; 
+      width: 14.5rem;     
     }
     
   } 

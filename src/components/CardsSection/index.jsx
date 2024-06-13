@@ -1,11 +1,15 @@
 import React from "react";
+import { useState, useEffect } from "react";
 import { PiCaretRight, PiCaretLeft } from "react-icons/pi";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Section } from "./styles";
 import { DishCard } from "../DishCard";
 import { formToJSON } from "axios";
+import { DEVICE_BREAKPOINTS } from "../../styles/deviceBreakpoints";
 
 export function CardsSection({ dishesData = null, sectionName, admin = false }) {
+  const [slidesPerView, setSlidesPerView] = useState(4)
+
   // temp variable for testing
   const cardsData = [
     {
@@ -38,13 +42,33 @@ export function CardsSection({ dishesData = null, sectionName, admin = false }) 
     }
   ]
 
+  useEffect(() => {
+    
+    function handleWindowResize() {
+      if (window.innerWidth < 720) {
+        console.log(window.innerWidth)
+        setSlidesPerView(3)
+      } else {
+        setSlidesPerView(4)
+      }
+    }
+
+    handleWindowResize();
+    window.addEventListener("windowResize", handleWindowResize)
+    
+    return (() => {
+      window.removeEventListener("windowResize", handleWindowResize)
+    })
+
+  }, [])
+
   return (
     <Section >    
       <h1>{sectionName}</h1>
       
       <div id='slider'>        
         <Swiper
-          slidesPerView={4}
+          slidesPerView={slidesPerView}
           spaceBetween={16}
           navigation
           loop={true}

@@ -6,7 +6,7 @@ export default createGlobalStyle`
         margin: 0;
         padding: 0;
         box-sizing: border-box;
-        border: 0.5px dotted cyan;
+        border: 0.1px dotted cyan;
     }
 
     :root {
@@ -35,6 +35,7 @@ export default createGlobalStyle`
 
     a {
         text-decoration: none;
+        color: ${({ theme }) => theme.COLORS.LIGHT_100}; 
     }
 
     button, a {
