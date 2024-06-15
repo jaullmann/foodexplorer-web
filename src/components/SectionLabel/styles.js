@@ -4,6 +4,7 @@ import { DEVICE_BREAKPOINTS } from "../../styles/deviceBreakpoints";
 export const Label = styled.label`
 
   width: 100%;
+  text-align: center;
 
   ${({ theme }) => theme.FONTS.POPPINS_MEDIUM};
   font-size: 2rem;

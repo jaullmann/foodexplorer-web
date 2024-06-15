@@ -8,18 +8,20 @@ export const Container = styled.div`
   align-items: center;
   gap: 1.1875rem;
 
+  width: 20.5rem;
+
   @media (max-width: ${DEVICE_BREAKPOINTS.MD}) {
     gap: .675rem;
-    width: 17.5rem;
+    width: 20rem;
   }
   
-  > img {
-    width: 3rem;
+  @media (max-width: ${DEVICE_BREAKPOINTS.LG}) {
+    gap: .9rem;
+    width: 19.4rem;
+  }
 
-    @media (max-width: ${DEVICE_BREAKPOINTS.MD}) {      
-      height: 2.7075rem;
-    }
-    
+  > img {
+    width: 3rem;    
   }
 
   > div {
@@ -38,6 +40,11 @@ export const Container = styled.div`
     @media (max-width: ${DEVICE_BREAKPOINTS.MD}) {
       font-size: 2.325rem; 
       width: 14.5rem;     
+    }
+
+    @media (max-width: ${DEVICE_BREAKPOINTS.LG}) {
+      font-size: 2.48rem; 
+      width: 15.5rem;     
     }
     
   } 

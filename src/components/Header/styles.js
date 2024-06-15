@@ -7,7 +7,7 @@ export const Section = styled.div`
     width: 100%;
 
     position: relative;
-    background-color: ${({ theme }) => theme.COLORS.DARK_600};   
+    background-color: ${({ theme }) => theme.COLORS.DARK_600};    
     
     > .desktop {
         margin: auto;
@@ -68,6 +68,23 @@ export const Section = styled.div`
         > .mobile {
             display: flex;
         } 
+    }
+
+    #main-logo {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: fit-content;
+        gap: .625rem;
+
+        img {            
+            width: 1.875rem
+        }
+        
+        h1 {
+            font-size: 1.5rem;
+            width: 9.5rem;
+        }
     }
 
 `

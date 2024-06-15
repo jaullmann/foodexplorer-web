@@ -4,7 +4,7 @@ import { ThemeProvider } from 'styled-components';
 import GlobalStyles from './styles/global';
 import theme from './styles/theme';
 
-import { SignUp } from './pages/SignUp';
+import { Home } from './pages/Home';
 
 import { register } from 'swiper/element/bundle';
 
@@ -18,9 +18,9 @@ register();
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <ThemeProvider theme={theme}>
+    <ThemeProvider theme={theme}>      
       <GlobalStyles />            
-      <SignUp />
+      <Home />
     </ThemeProvider>    
   </React.StrictMode>,
 )
