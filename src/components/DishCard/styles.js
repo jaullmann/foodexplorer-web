@@ -78,7 +78,7 @@ export const Container = styled.div`
     gap: 1rem;
   }
 
-  @media (max-width: ${DEVICE_BREAKPOINTS.MD}) {
+  @media (max-width: ${DEVICE_BREAKPOINTS.LG}) {
     width: 13.125rem;
     min-height: 18.25rem;
     gap: .75rem;

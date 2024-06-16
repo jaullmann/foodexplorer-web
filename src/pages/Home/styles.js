@@ -6,40 +6,43 @@ export const Container = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  width: 100%;
+  justify-content: space-between;  
+  width: 100%;  
   
   #banner-section {
-    margin: 10.25rem auto 3.875rem;   
+    margin: 10.25rem auto 3.875rem;
+    width: 100%; 
     
-    width: max-content;
-    height: 16.25rem;
+    height: 16.25rem;   
 
-    display: flex;
-    flex-direction: column;   
-    align-items: center;  
-    justify-content: center;
+    @media (max-width: 93.5rem) {
+      padding: 0 4rem;
+    }
   }
   
-  #banner-slogan { 
-    margin: auto;
-    
+  #banner-slogan {    
+    margin: auto;    
+    padding-right: 5rem;
+
     height: 100%; 
-    width: auto;
+    max-width: 85.5rem;
+    border-radius: .5rem;
 
     display: flex;
     flex-direction: column;   
-    align-items: center;  
+    align-items: flex-end;  
     justify-content: center;
-    gap: 1rem;
+    gap: .5rem;    
+
+    background: linear-gradient(180deg, #091E26 0%, #00131C 100%);
     
     position: relative;       
 
-    h1 {     
-      width: auto; 
+    h1 {                   
       ${({ theme }) => theme.FONTS.POPPINS_MEDIUM};
       font-size: 2.5rem;
-      color: ${({ theme }) => theme.COLORS.LIGHT_300};      
+      color: ${({ theme }) => theme.COLORS.LIGHT_300}; 
+      z-index:2;     
     }
 
     h3 {
@@ -47,12 +50,30 @@ export const Container = styled.div`
       ${({ theme }) => theme.FONTS.ROBOTO_REGULAR};
       font-size: 1rem;
       color: ${({ theme }) => theme.COLORS.LIGHT_300};
+      z-index:2;
     }
 
     img {
       position: absolute;
-      left: 0
+      left: -3.5rem;
+      bottom: 0;      
     }      
+    
+    @media (max-width: ${DEVICE_BREAKPOINTS.LG}) {
+      padding-right: 3rem;
+
+      #banner-image {
+        height: 21rem;
+      }      
+
+      h1{
+        font-size: 2.2rem;
+      }
+      h3{
+        font-size: 0.89rem;
+      }
+      
+    }
   }  
 
 `

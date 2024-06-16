@@ -5,12 +5,10 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Section } from "./styles";
 import { DishCard } from "../DishCard";
 import { formToJSON } from "axios";
-import { DEVICE_BREAKPOINTS } from "../../styles/deviceBreakpoints";
 
-export function CardsSection({ dishesData = null, sectionName, admin = false }) {
-  const [slidesPerView, setSlidesPerView] = useState(4)
 
-  // temp variable for testing
+export function CardsSection({ dishesData = null, sectionName, admin = false}) {
+    // temp variable for testing
   const cardsData = [
     {
       id: 1, title: "Prato food explorer 1", imageFile: "/src/assets/samples/dish_image_large_1.png", 
@@ -40,27 +38,7 @@ export function CardsSection({ dishesData = null, sectionName, admin = false }) 
       id: 7, title: "Prato foodexplorer 7", imageFile: "/src/assets/samples/dish_image_large_7.png", 
       description: "Descrição genérica de prato para página inicial do foodexplorer.", price: 30.90 
     }
-  ]
-
-  useEffect(() => {
-    
-    function handleWindowResize() {
-      if (window.innerWidth < 720) {
-        console.log(window.innerWidth)
-        setSlidesPerView(3)
-      } else {
-        setSlidesPerView(4)
-      }
-    }
-
-    handleWindowResize();
-    window.addEventListener("windowResize", handleWindowResize)
-    
-    return (() => {
-      window.removeEventListener("windowResize", handleWindowResize)
-    })
-
-  }, [])
+  ]  
 
   return (
     <Section >    
@@ -68,15 +46,37 @@ export function CardsSection({ dishesData = null, sectionName, admin = false }) 
       
       <div id='slider'>        
         <Swiper
-          slidesPerView={slidesPerView}
-          spaceBetween={16}
+          slidesPerView={1.7}
+          spaceBetween={5}
           navigation
           loop={true}
           mousewheel={true}
-          // autoplay={{
-          //   delay: 1000,
-          //   disableOnInteraction: true,
-          // }}
+          breakpoints={{
+            320: {
+              slidesPerView: 2,
+              spaceBetween: 9
+            },
+            480: {
+              slidesPerView: 2.7,
+              spaceBetween: 9
+            },
+            620: {
+              slidesPerView: 3,
+              spaceBetween: 10
+            },
+            768: {
+              slidesPerView: 3.4,
+              spaceBetween: 11
+            },
+            1024: {
+              slidesPerView: 3.7,
+              spaceBetween: 13
+            },
+            1280: {
+              slidesPerView: 4.8,
+              spaceBetween: 15              
+            },
+          }}          
         >
           {
             cardsData.map((card) => (

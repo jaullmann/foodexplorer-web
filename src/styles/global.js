@@ -9,8 +9,7 @@ export default createGlobalStyle`
         border: 0.1px dotted cyan;
     }
 
-    :root {
-        
+    :root {        
         font-size: 16px;
 
         @media (max-width: ${DEVICE_BREAKPOINTS.MD}) {

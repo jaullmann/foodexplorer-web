@@ -3,7 +3,7 @@ import { DEVICE_BREAKPOINTS } from "../../styles/deviceBreakpoints";
 
 export const Section = styled.section`
   margin: auto;
-  padding: 0 4rem;
+  padding: 0 4rem 2.9375rem;
   width: 100%;
    
   > #slider, h1 {    

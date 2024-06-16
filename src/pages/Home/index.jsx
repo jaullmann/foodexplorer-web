@@ -5,7 +5,8 @@ import { CardsSection } from "../../components/CardsSection"
 import { Footer } from "../../components/Footer"
 import homeBanner from "../../assets/images/home_banner.png"
 
-export function Home() {  
+export function Home() {
+  
   return(
     <Container>
 
@@ -15,14 +16,12 @@ export function Home() {
         <div id="banner-slogan">
           <h1>Sabores inigualáveis</h1>
           <h3>Sinta o cuidado do preparo com ingredientes selecionados</h3>        
-          {/* <img id="banner-image"
+          <img id="banner-image"
             src= {homeBanner}
             alt="Imagem de biscoitos coloridos e frutas frescas" 
-          /> */}
+          />
         </div>  
       </div>
-      
-      
 
       <CardsSection sectionName={"Refeições"} />
       <CardsSection sectionName={"Sobremesas"} />

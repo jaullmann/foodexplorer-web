@@ -34,6 +34,7 @@ export const Section = styled.div`
     }
     
     > .mobile {
+
         margin: auto;
         display: none;
         align-items: center;    
@@ -41,7 +42,7 @@ export const Section = styled.div`
         
         margin-top: 3.75rem;
         margin-bottom: 2rem;
-        padding: 0 2rem;
+        padding: 0;
         
         display: none;
 
@@ -50,24 +51,59 @@ export const Section = styled.div`
             justify-content: center;            
         }
 
-        > img {
-            width: 1.5rem;
+        #cart-button-mobile {
+            img {                    
+                width: 3.5rem;
+            }
         }
 
-        > div {
-            width: 2rem;
-            height: 2rem;
+        > button {
+            width: 2.5rem;
+
+            > img{
+                width: 100%;
+            }
+        }
+
+   
+
+        @media (max-width: ${DEVICE_BREAKPOINTS.MD}) {
+            margin: auto;
+            display: none;
+            align-items: center;    
+            justify-content: space-between;            
+            
+            margin-top: 3.75rem;
+            margin-bottom: 2rem;
+            padding: 0;
+            
+            display: none;
+
+            #side-menu {
+                display: flex;
+                justify-content: center;            
+            }
+
+            > img {
+                width: 1.5rem;
+            }
+
+            > div {
+                width: 2rem;
+                height: 2rem;
+            }
         }
     }
+        
 
-    @media (max-width: ${DEVICE_BREAKPOINTS.MD}) {
+    @media (max-width: ${DEVICE_BREAKPOINTS.LG}) {
         > .desktop {
             display: none;
         } 
 
         > .mobile {
             display: flex;
-        } 
+        }         
     }
 
     #main-logo {

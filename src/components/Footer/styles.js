@@ -4,7 +4,7 @@ import { DEVICE_BREAKPOINTS } from "../../styles/deviceBreakpoints";
 export const Section = styled.footer` 
   width: 100%;
   height: 4.81rem;
-  margin: 2.9375rem 0 0;  
+  margin: 0;  
   padding: 0 4rem;
 
   background-color: ${({ theme }) => theme.COLORS.DARK_600};
