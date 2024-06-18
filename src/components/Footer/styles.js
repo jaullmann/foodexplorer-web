@@ -2,12 +2,20 @@ import styled from "styled-components";
 import { DEVICE_BREAKPOINTS } from "../../styles/deviceBreakpoints";
 
 export const Section = styled.footer` 
+
+  margin: auto;
+  padding: 0 4rem;
   width: 100%;
   height: 4.81rem;
-  margin: 0;  
-  padding: 0 4rem;
+
+  position: absolute;
+  bottom: 0;
 
   background-color: ${({ theme }) => theme.COLORS.DARK_600};
+
+  @media (max-width: 93.5rem) {
+      padding: 0 4rem;
+  }
 
   > div {
     margin: auto;
@@ -25,10 +33,6 @@ export const Section = styled.footer`
       ${({ theme }) => theme.FONTS.ROBOTO_REGULAR}
       color: ${({ theme }) => theme.COLORS.LIGHT_200}
     }
-  }  
-
-  @media (max-width: ${DEVICE_BREAKPOINTS.MD}) {
-    padding: 0 2rem;
-  }  
+  }    
 
 `

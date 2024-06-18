@@ -17,7 +17,10 @@ export default createGlobalStyle`
         } 
     }
 
-    body {                   
+    body {  
+        min-height: 100svh;
+        position: relative;
+        
         background-color: ${({ theme }) => theme.COLORS.DARK_100};
         color: ${({ theme }) => theme.COLORS.LIGHT_100}; 
         

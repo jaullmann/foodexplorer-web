@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { DEVICE_BREAKPOINTS } from "../../styles/deviceBreakpoints";
 
-export const Container = styled.div`
+export const Container = styled.main`
 
   display: flex;
   flex-direction: column;
@@ -10,7 +10,7 @@ export const Container = styled.div`
   width: 100%;  
   
   #banner-section {
-    margin: 10.25rem auto 3.875rem;
+    margin: 10.25rem auto 3rem;
     width: 100%; 
     
     height: 16.25rem;   
@@ -18,11 +18,22 @@ export const Container = styled.div`
     @media (max-width: 93.5rem) {
       padding: 0 4rem;
     }
+
+    @media (max-width: ${DEVICE_BREAKPOINTS.LG}) {
+      margin: 3.5rem auto 3.875rem;
+      height: 12rem;
+    }
+
+    @media (max-width: ${DEVICE_BREAKPOINTS.MD}) {
+      margin: 2.75rem auto 3.875rem;
+      height: 7.5rem;
+    }
+
   }
   
   #banner-slogan {    
     margin: auto;    
-    padding-right: 5rem;
+    padding: 0 3% 0 50%;
 
     height: 100%; 
     max-width: 85.5rem;
@@ -30,7 +41,7 @@ export const Container = styled.div`
 
     display: flex;
     flex-direction: column;   
-    align-items: flex-end;  
+    align-items: left;  
     justify-content: center;
     gap: .5rem;    
 
@@ -38,42 +49,60 @@ export const Container = styled.div`
     
     position: relative;       
 
-    h1 {                   
+    h1 {              
       ${({ theme }) => theme.FONTS.POPPINS_MEDIUM};
       font-size: 2.5rem;
+      line-height: 140%;
       color: ${({ theme }) => theme.COLORS.LIGHT_300}; 
-      z-index:2;     
+      z-index:2;  
+
+      @media (max-width: ${DEVICE_BREAKPOINTS.LG}) {
+        font-size: 1.9rem;
+      }
+      
+      @media (max-width: ${DEVICE_BREAKPOINTS.MD}) {
+        font-size: 1.4rem;
+      }
     }
 
-    h3 {
-      width: auto;
+    h3 {      
       ${({ theme }) => theme.FONTS.ROBOTO_REGULAR};
       font-size: 1rem;
       color: ${({ theme }) => theme.COLORS.LIGHT_300};
       z-index:2;
+
+      @media (max-width: ${DEVICE_BREAKPOINTS.LG}) {
+        font-size: .85rem;
+      }
+
+      @media (max-width: ${DEVICE_BREAKPOINTS.MD}) {
+        font-size: .75rem;
+      }
     }
 
-    img {
+    @media (max-width: ${DEVICE_BREAKPOINTS.MD}) {
+      height: 7.5rem;   
+      padding: 0 10% 0 40%;      
+    }
+
+    #banner-image {
+      height: 25.375rem;
       position: absolute;
-      left: -3.5rem;
-      bottom: 0;      
-    }      
-    
-    @media (max-width: ${DEVICE_BREAKPOINTS.LG}) {
-      padding-right: 3rem;
+      left: -2.5rem;
+      bottom: 0;
 
-      #banner-image {
-        height: 21rem;
-      }      
-
-      h1{
-        font-size: 2.2rem;
-      }
-      h3{
-        font-size: 0.89rem;
-      }
+      @media (max-width: ${DEVICE_BREAKPOINTS.LG}) { 
+        height: 15rem;
+        left: -2.2rem;        
+      }   
       
-    }
-  }  
+      @media (max-width: ${DEVICE_BREAKPOINTS.MD}) { 
+        height: 9.3125rem;
+        left: -2.5rem;
+      }        
+      
+    }  
 
-`
+  }   
+
+`;

@@ -13,7 +13,7 @@ export const Section = styled.div`
         margin: auto;
         max-width: 85.5rem;
         height: 6.5rem;
-
+        
         display: flex;
         align-items: center;    
         justify-content: space-between;
