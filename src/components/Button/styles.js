@@ -2,12 +2,14 @@ import styled from "styled-components";
 import { DEVICE_BREAKPOINTS } from "../../styles/deviceBreakpoints";
 
 export const Container = styled.button`
-  width: 100%;
-  padding: 0.75rem 1.5rem;
+  width: max-content;
+  padding: 0 1.8rem;
   
   // font
   ${({ theme }) => theme.FONTS.POPPINS_MEDIUM}
-  font-size: 0.9rem;
+  font-size: clamp(.59rem, .7rem + .4vw, 0.9rem);
+  text-align: center;
+  vertical-align: center;
 
   background-color: ${({ theme }) => theme.COLORS.TINTS_TOMATO_100};
   color: ${({ theme }) => theme.COLORS.LIGHT_100};

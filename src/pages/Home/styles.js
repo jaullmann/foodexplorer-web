@@ -10,7 +10,7 @@ export const Container = styled.main`
   width: 100%;  
   
   #banner-section {
-    margin: 10.25rem auto 3rem;
+    margin: min(10.25rem, 8vw + 3.5rem) auto 3rem;
     width: 100%; 
     
     height: 16.25rem;   
@@ -33,7 +33,7 @@ export const Container = styled.main`
   
   #banner-slogan {    
     margin: auto;    
-    padding: 0 3% 0 50%;
+    padding: 0 3% 0 10%;
 
     height: 100%; 
     max-width: 85.5rem;
@@ -41,7 +41,7 @@ export const Container = styled.main`
 
     display: flex;
     flex-direction: column;   
-    align-items: left;  
+    align-items: flex-end;  
     justify-content: center;
     gap: .5rem;    
 
@@ -49,56 +49,41 @@ export const Container = styled.main`
     
     position: relative;       
 
-    h1 {              
+    h1 {      
+      width: max-content;        
       ${({ theme }) => theme.FONTS.POPPINS_MEDIUM};
-      font-size: 2.5rem;
+      font-size: clamp(1.4rem, 1.1rem + 1.1vw, 3.5rem);
       line-height: 140%;
       color: ${({ theme }) => theme.COLORS.LIGHT_300}; 
-      z-index:2;  
-
-      @media (max-width: ${DEVICE_BREAKPOINTS.LG}) {
-        font-size: 1.9rem;
-      }
-      
-      @media (max-width: ${DEVICE_BREAKPOINTS.MD}) {
-        font-size: 1.4rem;
-      }
+      z-index:2;       
     }
 
-    h3 {      
-      ${({ theme }) => theme.FONTS.ROBOTO_REGULAR};
-      font-size: 1rem;
+    h3 {          
+      ${({ theme }) => theme.FONTS.ROBOTO_REGULAR}
+      font-size: clamp(.7rem, .44rem + .45vw, 2rem);
       color: ${({ theme }) => theme.COLORS.LIGHT_300};
-      z-index:2;
-
-      @media (max-width: ${DEVICE_BREAKPOINTS.LG}) {
-        font-size: .85rem;
-      }
-
-      @media (max-width: ${DEVICE_BREAKPOINTS.MD}) {
-        font-size: .75rem;
-      }
+      z-index:2;      
     }
 
     @media (max-width: ${DEVICE_BREAKPOINTS.MD}) {
       height: 7.5rem;   
-      padding: 0 10% 0 40%;      
+      padding: 0 10% 0 20%;      
     }
 
     #banner-image {
-      height: 25.375rem;
+      height: min(25.375rem, 20vw + 8rem);      
       position: absolute;
       left: -2.5rem;
       bottom: 0;
 
       @media (max-width: ${DEVICE_BREAKPOINTS.LG}) { 
-        height: 15rem;
+        height: min(15rem, 11vw + 8rem);
         left: -2.2rem;        
       }   
       
       @media (max-width: ${DEVICE_BREAKPOINTS.MD}) { 
-        height: 9.3125rem;
-        left: -2.5rem;
+        height: min(9.3rem, 6vw + 6rem);
+        left: max(-2.8rem, -1.8vw);
       }        
       
     }  

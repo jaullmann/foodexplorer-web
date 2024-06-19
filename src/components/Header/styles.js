@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { DEVICE_BREAKPOINTS } from "../../styles/deviceBreakpoints";
 
 export const Section = styled.div`    
-    margin: auto;
+    margin: 0;
     padding: 0 4rem;
     width: 100%;
 
@@ -34,8 +34,7 @@ export const Section = styled.div`
     }
     
     > .mobile {
-
-        margin: auto;
+        
         display: none;
         align-items: center;    
         justify-content: space-between;            
@@ -68,12 +67,12 @@ export const Section = styled.div`
    
 
         @media (max-width: ${DEVICE_BREAKPOINTS.MD}) {
-            margin: auto;
+            margin: 3.75rem 0;
             display: none;
             align-items: center;    
             justify-content: space-between;            
             
-            margin-top: 3.75rem;
+            /* margin-top: 3.75rem; */
             margin-bottom: 2rem;
             padding: 0;
             
