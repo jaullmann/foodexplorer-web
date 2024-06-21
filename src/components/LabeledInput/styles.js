@@ -1,11 +1,11 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-  width: 100%;
+  width: auto;
 
   display: flex;
-  flex-direction: column;;
-  gap: 0.5rem;  
+  flex-direction: column;
+  gap: 1rem;  
 
   > h3 {
     color: ${({ theme }) => theme.COLORS.LIGHT_400};

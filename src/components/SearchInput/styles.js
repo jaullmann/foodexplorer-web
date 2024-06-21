@@ -8,7 +8,7 @@ export const Container = styled.div`
 
   height: 3rem;
   width: 36.3125rem; 
-  padding: 0.75rem 1.5rem;
+  padding: 0.75rem 1rem;
   border-radius: 0.3rem;  
 
   font-size: 1.5rem;
@@ -31,7 +31,7 @@ export const Container = styled.div`
 
 export const Input = styled.input`
   all: unset;
-  width: 55%;
+  width: 100%;
   height: 100%;
   text-align: center;  
 
@@ -62,7 +62,7 @@ export const Input = styled.input`
       color: transparent; 
       transition: 0.2s ease-in-out;
     }
-    
+
   } 
 
 `

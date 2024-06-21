@@ -5,6 +5,7 @@ import GlobalStyles from './styles/global';
 import theme from './styles/theme';
 
 import { Home } from './pages/Home';
+import { DishCreation } from './pages/DishCreation';
 
 import { register } from 'swiper/element/bundle';
 
@@ -20,7 +21,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <ThemeProvider theme={theme}>      
       <GlobalStyles />            
-      <Home />
+      <DishCreation />
     </ThemeProvider>    
   </React.StrictMode>,
 )

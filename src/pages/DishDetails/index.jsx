@@ -10,7 +10,8 @@ import { DishCounter } from "../../components/DishCounter";
 import SampleImage from "../../assets/samples/dish_image_large_2.png"
 
 
-export function DishDetails() {
+export function DishDetails() {  
+
   return (
     <Container>
 
@@ -36,7 +37,8 @@ export function DishDetails() {
             </div>
             <div id="user-action">
               <DishCounter />
-              <Button title={"incluir ∙ R$ 25,00"} />
+              {!userAdmin && <Button title={"incluir ∙ R$ 25,00"} />}
+              {userAdmin && <Button title={"Editar prato"} />}
             </div>
           </div>
         </div>  

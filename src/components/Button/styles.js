@@ -18,12 +18,14 @@ export const Container = styled.button`
 
   &.tomato_200 {
     background-color: ${({ theme }) => theme.COLORS.TINTS_TOMATO_200};
-    color: ${({ theme }) => theme.COLORS.LIGHT_100};
   }
 
   &.tomato_400 {
     background-color: ${({ theme }) => theme.COLORS.TINTS_TOMATO_400};
-    color: ${({ theme }) => theme.COLORS.LIGHT_100};
+  }
+
+  &.dark_800 {
+    background-color: ${({ theme }) => theme.COLORS.DARK_800};
   }
     
   height: 3rem;

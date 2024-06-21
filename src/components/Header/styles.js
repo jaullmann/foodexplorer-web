@@ -62,9 +62,7 @@ export const Section = styled.div`
             > img{
                 width: 100%;
             }
-        }
-
-   
+        }   
 
         @media (max-width: ${DEVICE_BREAKPOINTS.MD}) {
             margin: 3.75rem 0;

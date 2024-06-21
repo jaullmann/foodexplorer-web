@@ -27,11 +27,11 @@ export const Main = styled.main`
         align-items: center;
         justify-content: space-between;
         
-        gap: 3.75vw;
+        gap: 3.5vw;
 
         > img {
-            width: min(24.375rem, 30.47vw);
-            height: min(24.375rem, 30.47vw);
+            width: min(24.375rem, 36vw);
+            height: min(24.375rem, 36vw);
         }
 
         @media (max-width: ${DEVICE_BREAKPOINTS.MD}) {
@@ -50,23 +50,24 @@ export const Main = styled.main`
       flex-direction: column;
       align-items: flex-start;
       justify-content: center;
-      gap: 1.5rem;  
+      gap: .9rem + .9vw;  
 
       @media (max-width: ${DEVICE_BREAKPOINTS.MD}) {
         align-items: center;
       }
+
     }
 
     h1 {
         ${({ theme }) => theme.FONTS.POPPINS_MEDIUM};
-        font-size: clamp(1.71rem, 1.5rem + 1.3vw, 2.5rem);
+        font-size: clamp(1.71rem, 1rem + 1.6vw, 2.5rem);
         line-height: 140%;
         color: ${({ theme }) => theme.COLORS.LIGHT_300};
     }
 
     p {
         ${({ theme }) => theme.FONTS.POPPINS_REGULAR};
-        font-size: clamp(1.01rem, .6rem + .8vw, 1.5rem);
+        font-size: clamp(.9rem, .6rem + .8vw, 1.5rem);
         line-height: 140%;
         color: ${({ theme }) => theme.COLORS.LIGHT_300};
 
