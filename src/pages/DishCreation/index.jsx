@@ -1,4 +1,4 @@
-import { PiPlus } from "react-icons/pi";
+import { PiPlus, PiCaretDownBold } from "react-icons/pi";
 import { useState, useEffect } from "react";
 import { Container, Main } from "./styles";
 import { Header } from "../../components/Header";
@@ -20,31 +20,44 @@ export function DishCreation({ newDish = true }) {
             <Main>
                 <BackButton id="back-button" />
                 <SectionLabel title={ newDish ? "Adicionar prato" : "Editar prato" }/>
-                <form id="dish-data">
-                    <UploadButton id="form-upload-button" className="flex-item"
-                        newDish={true}
-                    />
-                    <LabeledInput id="form-dish-name" className="flex-item"
-                        label={"Nome"}
-                        placeholder={"Ex.: Salada Ceasar"}
-                    />
-                    <LabeledInput id="form-category" className="flex-item"
-                        label={"Categoria"}
-                        placeholder={"Refeição"}
-                    />
-                    <div id="form-ingredients" className="flex-item">
-                        <h3>Ingredientes</h3>
-                        <div id="ingredients-area">
-                            <IngredientEditing name={"Pão Naan"} />
-                            <IngredientEditing name={"Gergelim"} />
-                            <IngredientEditing toAdd /> 
-                        </div>                                               
+                <form>
+
+                    <div id="form-section-1">
+                        <UploadButton id="form-upload-button"
+                            newDish={true}
+                        />
+                        <LabeledInput id="form-dish-name"
+                            label={"Nome"}
+                            placeholder={"Ex.: Salada Ceasar"}
+                        />
+                        <div id="form-category">
+                            <h3>Categoria</h3>
+                            <select id="form-category">
+                                <option value={1}>Refeição</option>
+                                <option value={2}>Sobremesa</option>
+                                <option value={3}>Bebida</option>
+                            </select>
+                            <PiCaretDownBold />
+                        </div>
                     </div>
-                    <LabeledInput id="form-price" className="flex-item"
-                        label={"Preço"}
-                        placeholder={"R$ 00,00"}
-                    />
-                    <div id="form-description" className="flex-item">
+
+                    <div id="form-section-2">
+                        <div id="form-ingredients">
+                            <h3>Ingredientes</h3>
+                            <div id="ingredients-area">
+                                <IngredientEditing name={"Pão Naan"} />
+                                <IngredientEditing name={"Gergelim"} />
+                                <IngredientEditing name={"Pão Naan"} />                    
+                                <IngredientEditing toAdd /> 
+                            </div>                                               
+                        </div>
+                        <LabeledInput id="form-price"
+                            label={"Preço"}
+                            placeholder={"R$ 00,00"}
+                        />
+                    </div>                    
+                    
+                    <div id="form-description">
                         <h3>Descrição</h3>
                         <textarea                             
                             placeholder="Registre aqui uma descrição para o seu prato"

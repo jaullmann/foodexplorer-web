@@ -10,10 +10,12 @@ export const Container = styled.div`
     align-items: center;
     justify-content: center;
     gap: .5rem;
-    
-    // font
-    ${({ theme }) => theme.FONTS.ROBOTO_REGULAR}
-    font-size: 1rem;
+        
+    > p {
+        ${({ theme }) => theme.FONTS.ROBOTO_REGULAR}
+        font-size: 1rem;
+        width: max-content;
+    }
 
     border: ${({ theme, $toAdd }) => $toAdd ? 
             '1px dashed' + theme.COLORS.LIGHT_600 : 

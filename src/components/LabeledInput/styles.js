@@ -2,7 +2,6 @@ import styled from "styled-components";
 
 export const Container = styled.div`
   width: auto;
-
   display: flex;
   flex-direction: column;
   gap: 1rem;  
@@ -15,7 +14,7 @@ export const Container = styled.div`
 `
 
 export const Input = styled.input`
-  width: 100%;
+  width: auto;
   height: 3rem;
   padding: .75rem .875rem;
   border: ${({ theme, $loginScreenInput }) => 

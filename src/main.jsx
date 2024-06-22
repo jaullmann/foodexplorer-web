@@ -6,6 +6,7 @@ import theme from './styles/theme';
 
 import { Home } from './pages/Home';
 import { DishCreation } from './pages/DishCreation';
+import { DishDetails } from './pages/DishDetails';
 
 import { register } from 'swiper/element/bundle';
 

@@ -3,7 +3,7 @@ import { DEVICE_BREAKPOINTS } from "../../styles/deviceBreakpoints";
 
 export const Container = styled.div`
     margin: auto;
-    width: 100%;
+    width: 100%; 
     min-height: 100svh;
 
     display: flex;
@@ -14,13 +14,15 @@ export const Container = styled.div`
 
 export const Main = styled.main`
     padding: 0 4rem 2.1rem;
-    max-width: 85.5rem; 
+    width: 100%;
     margin-bottom: auto;
+    max-width: 93.5rem; 
 
     display: flex;
-    flex-direction: column;
+    flex-direction: column;    
 
     a {
+        width: 100%;
         margin: 2.5rem 0 1.5rem;
     }
     
@@ -30,40 +32,94 @@ export const Main = styled.main`
     }
 
     form {   
+        width: 100%;
         display: flex;
-        flex-direction: row;
+        flex-direction: column;
         align-items: center;
-        justify-content: flex-start;
+        justify-content: center;
         gap: 2rem; 
-        flex-wrap: wrap;  
-       
-        > .flex-item {
-            flex-grow: 1;
-            min-width: 500px; 
-            max-width: 1000px; 
-        }   
+    }
+
+    #form-section-1, #form-section-2 {
+        width: 100%;
+        display: flex;
+        align-items: flex-start;
+        justify-content: flex-start;
+        gap: 1.5rem + 1.5vw;  
+        
+        @media (max-width: ${DEVICE_BREAKPOINTS.MD}) {
+            flex-direction: column;
+            align-items: stretch;                    
+        }
+    } 
+    
+    #form-section-1 > div:nth-child(2) {
+        flex-grow: 2;
+        min-width: 35%;
+
+        @media (max-width: ${DEVICE_BREAKPOINTS.MD}) {
+            display: flex;
+        }
+    }
+
+    #form-section-1 > div:nth-child(3) {
+        flex-grow: 2;
+        max-width: 22.5rem;  
+        min-width: 8rem;       
+    }
+
+    #form-section-2 > div:nth-child(1) {
+        flex-grow: 2;
+        min-width: 50%;
+    }
+
+    #form-section-2 > div:nth-child(2) {
+        flex-grow: 2;
+        max-width: 15.625rem;
+        min-width: 4rem;
+    }
+
+    #form-category {
+        position: relative;
+
+        > h3 {
+            color: ${({ theme }) => theme.COLORS.LIGHT_400};
+            ${({ theme }) => theme.FONTS.ROBOTO_REGULAR}; 
+            font-size: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        > select {
+            appearance: none;
+            -webkit-appearance: none;
+            width: 100%;
+            padding: 1rem;
+
+            border: none;
+            border-radius: .5rem;   
+            cursor: pointer;      
+            background-color: ${({ theme }) => theme.COLORS.DARK_900};
+            font-size: .875rem;
+            ${({ theme }) => theme.FONTS.ROBOTO_REGULAR};             
+            color: ${({ theme }) => theme.COLORS.LIGHT_400}; 
+        }
+        
+        > select:focus {              
+            outline: none;         
+            background-color: ${({ theme }) => theme.COLORS.DARK_1000};            
+        }
+        
+        > svg {
+            position: absolute;
+            top: 3rem;
+            right: 1rem;
+            fill: ${({ theme }) => theme.COLORS.LIGHT_400};
+            font-size: 1.5rem;
+            pointer-events: none;
+        }
     }
     
-    #form-upload-image {
-             
-    }
-
-    #form-dish-name {
-        width:
-    }
-
-    #form-category {
-        
-    }
-
-    #form-category {
-        
-    }
-
-    #form-ingredients > h3 {
-        
-        min-width: 40.5rem;        
-
+    #form-ingredients > h3 {        
         color: ${({ theme }) => theme.COLORS.LIGHT_400};
         ${({ theme }) => theme.FONTS.ROBOTO_REGULAR}; 
         font-size: 1rem;
@@ -71,23 +127,20 @@ export const Main = styled.main`
     }    
     
     #ingredients-area {
-        height: 3rem;
-
+        min-height: 3rem;
         padding: .25rem .5rem;
+        border-radius: .5rem;
+
         display: flex;
         align-items: center;
         justify-content: flex-start;
         flex-wrap: wrap;
-        gap: 1rem;        
-    }
+        column-gap: 1rem;        
+        row-gap: .5rem;
+        background-color: ${({ theme }) => theme.COLORS.DARK_900};
+    }  
 
-    #form-price {
-        
-        width: min-content;
-    }
-
-    #form-description {
-        
+    #form-description {        
         width: 100%;
         
         > h3 {
@@ -107,12 +160,17 @@ export const Main = styled.main`
 
             font-size: 1rem;            
             color: ${({ theme }) => theme.COLORS.LIGHT_400};
+            background-color: ${({ theme }) => theme.COLORS.DARK_900};
             ${({ theme }) => theme.FONTS.ROBOTO_REGULAR};            
         }
     }
 
-    #form-buttons {
-        
+    #form-buttons {        
+        height: 3rem;
+        display: flex;
+        align-items: center;
+        align-self: flex-end;
+        justify-content: flex-end;
     }   
 
 `

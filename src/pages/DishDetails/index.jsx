@@ -11,6 +11,7 @@ import SampleImage from "../../assets/samples/dish_image_large_2.png"
 
 
 export function DishDetails() {  
+  const userAdmin = false;
 
   return (
     <Container>

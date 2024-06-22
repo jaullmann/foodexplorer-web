@@ -2,8 +2,8 @@ import styled from "styled-components";
 import { DEVICE_BREAKPOINTS } from "../../styles/deviceBreakpoints";
 
 export const Container = styled.div`    
-    min-width: 14.375rem;
-    padding: 0;   
+    max-width: 15rem;
+    padding: 0 ;   
     
     @media (max-width: ${DEVICE_BREAKPOINTS.MD}) {
         width: 100%;
@@ -21,6 +21,7 @@ export const Container = styled.div`
 export const Button = styled.button`
     width: 100%;
     height: 3rem;    
+    padding: 0 2rem;
     border-radius: .5rem;
 
     display: flex;
@@ -28,7 +29,7 @@ export const Button = styled.button`
     justify-content: center;
     gap: .5rem;
 
-    background-color: ${({ theme }) => theme.COLORS.DARK_800};
+    background-color: ${({ theme }) => theme.COLORS.DARK_900};
 
     @media (max-width: ${DEVICE_BREAKPOINTS.MD}) {
        justify-content: flex-start; 
@@ -41,7 +42,8 @@ export const Button = styled.button`
         fill: ${({ theme }) => theme.COLORS.LIGHT_100};
     }
 
-    > p {        
+    > p {   
+        width: max-content;     
         font-size: .875rem;
         ${({ theme }) => theme.FONTS.POPPINS_MEDIUM};
         color: ${({ theme }) => theme.COLORS.LIGHT_100};
