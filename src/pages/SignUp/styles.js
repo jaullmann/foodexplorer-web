@@ -8,7 +8,7 @@ export const Container = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 15%;
+  gap: 13%;
 
   @media (max-width: ${DEVICE_BREAKPOINTS.LG}) {    
     height: 100vh;
@@ -38,6 +38,10 @@ export const Form = styled.form`
     color: ${({ theme }) => theme.COLORS.LIGHT_100};
     font-size: .875rem;
   } 
+
+  > button {
+    width: 100%;
+  }
 
   @media (max-width: ${DEVICE_BREAKPOINTS.LG}) {   
     padding: 0;

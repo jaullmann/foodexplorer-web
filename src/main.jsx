@@ -5,6 +5,7 @@ import GlobalStyles from './styles/global';
 import theme from './styles/theme';
 
 import { Home } from './pages/Home';
+import { SignUp } from './pages/SignUp';
 import { DishCreation } from './pages/DishCreation';
 import { DishDetails } from './pages/DishDetails';
 import { Payment } from './pages/Payment';

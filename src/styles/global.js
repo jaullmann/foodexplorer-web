@@ -7,8 +7,11 @@ export default createGlobalStyle`
         padding: 0;
         box-sizing: border-box;
         
-        /* div, h1, h2, h3 {
+        div, h1, h2, h3, h4 {
             border: .1px dotted cyan;
+        }
+        a {
+            border: .1px dotted lightcoral;
         }
         section {
             border: 1px dashed white;
@@ -24,7 +27,7 @@ export default createGlobalStyle`
         }
         svg {
             border: .1px dotted orange;
-        } */
+        }
     }
 
     :root {        

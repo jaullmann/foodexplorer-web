@@ -14,25 +14,25 @@ export function SignIn() {
       <MainLogo />
       <Form>
         <SectionLabel          
-          title={"Faça login"} 
+          title="Faça login"
         />
         <LabeledInput 
           className="labeled-input"
-          label={"E-mail"}
+          label="E-mail"
           type="text"
-          loginScreen
-          placeholder={"Exemplo: nome@exemplo.com.br"}
+          altStyle
+          placeholder="Exemplo: nome@exemplo.com.br"
         />
         <LabeledInput 
           className="labeled-input"
-          label={"Senha"}
+          label="Senha"
           type="password"
-          loginScreen
-          placeholder={"No mínimo 6 caracteres"}
+          altStyle
+          placeholder="No mínimo 6 caracteres"
         />
         <Button
-          title={"Entrar"}
-          onClick={null}
+          title="Entrar"
+          onClick={undefined}
         />
         <a href="/signUp">
           Criar uma conta

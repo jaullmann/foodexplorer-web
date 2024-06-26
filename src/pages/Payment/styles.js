@@ -24,7 +24,7 @@ export const Main = styled.main`
 
     #dishes {
         margin-top: 2rem;
-        max-height: 48vh;
+        max-height: 57vh;
         padding-right: 2.5rem;
         overflow-y: scroll;
 

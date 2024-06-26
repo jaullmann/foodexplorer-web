@@ -3,6 +3,7 @@ import { Container, Main } from "./styles";
 import { Header } from "../../components/Header";
 import { Footer } from "../../components/Footer";
 import { SectionLabel } from "../../components/SectionLabel";
+import { PaymentFrame } from "../../components/PaymentFrame";
 import { OrderCardDetail } from "../../components/OrderCardDetail";
 
 export function Payment() {
@@ -39,9 +40,15 @@ export function Payment() {
         {
             id: 4, 
             title: "Prato food explorer 4", 
-            imageFile: "/src/assets/samples/dish_image_large_3.png", 
+            imageFile: "/src/assets/samples/dish_image_large_4.png", 
             amount: 4,
-            price: 24.90
+            price: 27.90
+        },{
+            id: 5, 
+            title: "Prato food explorer 5", 
+            imageFile: "/src/assets/samples/dish_image_large_5.png", 
+            amount: 1,
+            price: 21.90
         },
 
     ] 
@@ -70,7 +77,7 @@ export function Payment() {
                     <h2>{"Total: " + formatCurrency(102.60)}</h2>
                 </div>
                 <div id="order-payment">
-
+                    <PaymentFrame />
                 </div>
             </Main>
 

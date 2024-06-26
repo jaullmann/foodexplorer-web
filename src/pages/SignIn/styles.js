@@ -8,12 +8,12 @@ export const Container = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 15%;
+  gap: 12%;
 
   @media (max-width: ${DEVICE_BREAKPOINTS.LG}) {    
     height: 100vh;
 
-    flex-direction: column;
+    flex-direction: column;    
     justify-content: flex-start;
     padding: 9.875rem 0;
     gap: 4.5625rem;
@@ -28,7 +28,7 @@ export const Form = styled.form`
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: center;  
   gap: 2rem;
 
   background-color: ${({ theme }) => theme.COLORS.DARK_700};
@@ -39,23 +39,28 @@ export const Form = styled.form`
     font-size: .875rem;
   } 
 
+  input {      
+      width: 21.75rem;      
+  }
+
+  button {
+      width: 100%;      
+    }
+
   @media (max-width: ${DEVICE_BREAKPOINTS.LG}) {   
     padding: 0;
     max-width: 19.75rem;
 
-    background-color: transparent;    
-    
+    background-color: transparent;   
+
     label {
-      display: none;
-    }
+      display: none;    
+    }       
 
     .labeled-input {
       width: 100%;
     }
 
-    button {
-      height: 3rem;      
-    }
   }
  
 `
