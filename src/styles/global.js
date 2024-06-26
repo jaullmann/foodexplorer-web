@@ -6,7 +6,25 @@ export default createGlobalStyle`
         margin: 0;
         padding: 0;
         box-sizing: border-box;
-        /* border: 0.1px dotted cyan; */
+        
+        /* div, h1, h2, h3 {
+            border: .1px dotted cyan;
+        }
+        section {
+            border: 1px dashed white;
+        }
+        label {
+            border: 1px dashed lightgreen;
+        }
+        input {
+            border: 1px dashed lightseagreen;
+        }
+        img {
+            border: .1px dotted yellow;
+        }
+        svg {
+            border: .1px dotted orange;
+        } */
     }
 
     :root {        

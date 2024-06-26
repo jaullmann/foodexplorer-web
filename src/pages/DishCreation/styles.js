@@ -9,7 +9,7 @@ export const Container = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: flex-start;    
+    justify-content: flex-start;       
 `;
 
 export const Main = styled.main`
@@ -20,7 +20,7 @@ export const Main = styled.main`
 
     display: flex;
     flex-direction: column;    
-
+    
     a {
         width: 100%;
         margin: 2.5rem 0 1.5rem;
@@ -48,8 +48,7 @@ export const Main = styled.main`
         gap: 1.5rem + 1.5vw;  
         
         @media (max-width: ${DEVICE_BREAKPOINTS.MD}) {
-            flex-direction: column;
-            align-items: stretch;                    
+            flex-direction: column;            
         }
     } 
     
@@ -58,25 +57,40 @@ export const Main = styled.main`
         min-width: 35%;
 
         @media (max-width: ${DEVICE_BREAKPOINTS.MD}) {
-            display: flex;
+            width: 100%;
         }
     }
 
     #form-section-1 > div:nth-child(3) {
         flex-grow: 2;
         max-width: 22.5rem;  
-        min-width: 8rem;       
+        min-width: 8rem;  
+        
+        @media (max-width: ${DEVICE_BREAKPOINTS.MD}) {
+            max-width: none;
+            width: 100%;
+        }
     }
 
     #form-section-2 > div:nth-child(1) {
         flex-grow: 2;
         min-width: 50%;
+
+        @media (max-width: ${DEVICE_BREAKPOINTS.MD}) {
+            max-width: none;
+            width: 100%;
+        }
     }
 
     #form-section-2 > div:nth-child(2) {
         flex-grow: 2;
         max-width: 15.625rem;
         min-width: 4rem;
+
+        @media (max-width: ${DEVICE_BREAKPOINTS.MD}) {
+            max-width: none;
+            width: 100%;
+        }
     }
 
     #form-category {
@@ -101,7 +115,11 @@ export const Main = styled.main`
             background-color: ${({ theme }) => theme.COLORS.DARK_900};
             font-size: .875rem;
             ${({ theme }) => theme.FONTS.ROBOTO_REGULAR};             
-            color: ${({ theme }) => theme.COLORS.LIGHT_400}; 
+            color: ${({ theme }) => theme.COLORS.LIGHT_400};          
+            
+            @media (max-width: ${DEVICE_BREAKPOINTS.MD}) {
+                background-color: ${({ theme }) => theme.COLORS.DARK_1000};
+            }
         }
         
         > select:focus {              
@@ -115,7 +133,7 @@ export const Main = styled.main`
             right: 1rem;
             fill: ${({ theme }) => theme.COLORS.LIGHT_400};
             font-size: 1.5rem;
-            pointer-events: none;
+            pointer-events: none;            
         }
     }
     
@@ -162,7 +180,7 @@ export const Main = styled.main`
             color: ${({ theme }) => theme.COLORS.LIGHT_400};
             background-color: ${({ theme }) => theme.COLORS.DARK_900};
             ${({ theme }) => theme.FONTS.ROBOTO_REGULAR};            
-        }
+        }       
     }
 
     #form-buttons {        
@@ -170,7 +188,18 @@ export const Main = styled.main`
         display: flex;
         align-items: center;
         align-self: flex-end;
-        justify-content: flex-end;
+        justify-content: flex-start;
+        gap: .5rem + 1.5vw;
+
+        @media (max-width: ${DEVICE_BREAKPOINTS.MD}) {
+            width: 100%;            
+        }
+
+        > button {
+            @media (max-width: ${DEVICE_BREAKPOINTS.MD}) {
+                width: 100%;            
+            }
+        }    
     }   
 
 `

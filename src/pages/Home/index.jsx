@@ -5,11 +5,11 @@ import { CardsSection } from "../../components/CardsSection"
 import { Footer } from "../../components/Footer"
 import homeBanner from "../../assets/images/home_banner.png"
 
-export function Home() {    
+export function Home({ admin = true }) {    
   return(
     <Container>
 
-      <Header />
+      <Header admin={admin}/>
 
       <div id="banner-section">
         <div id="banner-slogan">
@@ -22,9 +22,9 @@ export function Home() {
         </div>  
       </div>
 
-      <CardsSection sectionName={"Refeições"} />
-      <CardsSection sectionName={"Sobremesas"} />
-      <CardsSection sectionName={"Bebidas"} />
+      <CardsSection sectionName={"Refeições"} admin={admin}/>
+      <CardsSection sectionName={"Sobremesas"} admin={admin}/>
+      <CardsSection sectionName={"Bebidas"} admin={admin}/>
       
       <Footer />
 

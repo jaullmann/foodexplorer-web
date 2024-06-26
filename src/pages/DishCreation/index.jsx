@@ -1,4 +1,4 @@
-import { PiPlus, PiCaretDownBold } from "react-icons/pi";
+import { PiCaretDownBold } from "react-icons/pi";
 import { useState, useEffect } from "react";
 import { Container, Main } from "./styles";
 import { Header } from "../../components/Header";
@@ -10,7 +10,7 @@ import { SectionLabel } from "../../components/SectionLabel";
 import { UploadButton } from "../../components/UploadButton";
 import { LabeledInput } from "../../components/LabeledInput";
 
-export function DishCreation({ newDish = true }) {
+export function DishCreation({ newDish = false }) {
     
     return (
         <Container>
@@ -47,7 +47,7 @@ export function DishCreation({ newDish = true }) {
                             <div id="ingredients-area">
                                 <IngredientEditing name={"Pão Naan"} />
                                 <IngredientEditing name={"Gergelim"} />
-                                <IngredientEditing name={"Pão Naan"} />                    
+                                <IngredientEditing name={"Pão Naan"} />                                               
                                 <IngredientEditing toAdd /> 
                             </div>                                               
                         </div>

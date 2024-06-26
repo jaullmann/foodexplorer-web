@@ -5,7 +5,7 @@ import { FiHeart } from "react-icons/fi";
 import { PiPencilSimple } from "react-icons/pi";
 
 
-export function DishCard({ title, imageFile, description, price, favorite = false,
+export function DishCard({ dishId, title, imageFile, description, price, favorite = false,
    loading = false, admin = false, onClick }) {
 
     function formatCurrency(number) {
@@ -15,7 +15,7 @@ export function DishCard({ title, imageFile, description, price, favorite = fals
     }
 
     return(
-        <Container $favorite={favorite}>
+        <Container id={dishId} $favorite={favorite}>
           {!admin && <FiHeart id="fav-button"/>}
           {admin && <PiPencilSimple />} 
           <img 

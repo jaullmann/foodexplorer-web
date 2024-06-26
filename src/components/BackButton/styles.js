@@ -7,18 +7,27 @@ export const Container = styled.a`
   display: flex;
   align-items: center;
   justify-content: flex-start;  
-  gap: 0;
+  gap: .25rem;
 
   > svg {
-    width: 32px;
-    height: 32px;
+    width: 2rem;
+    height: 2rem;
     color: ${({ theme }) => theme.COLORS.LIGHT_300};
+
+    @media (max-width: ${DEVICE_BREAKPOINTS.MD}) {
+      width: 1.375rem;
+      height: 1.375rem;
+    }
   }
 
   > div {    
     ${({ theme }) => theme.FONTS.POPPINS_BOLD}
     color: ${({ theme }) => theme.COLORS.LIGHT_300};
     font-size: 24px;
+
+    @media (max-width: ${DEVICE_BREAKPOINTS.MD}) {
+      font-size: 1.125rem;
+    }
   }
   
   cursor: pointer;

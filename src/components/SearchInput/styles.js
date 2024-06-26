@@ -7,7 +7,8 @@ export const Container = styled.div`
   gap: 0.88rem;
 
   height: 3rem;
-  width: 36.3125rem; 
+  width: 100%;
+  max-width: 36.25rem;
   padding: 0.75rem 1rem;
   border-radius: 0.3rem;  
 
@@ -36,8 +37,7 @@ export const Input = styled.input`
   text-align: center;  
 
   ${({ theme}) => theme.FONTS.ROBOTO_REGULAR};
-  font-size: 1rem;
-  font-weight: 400;   
+  font-size: 1rem;  
 
   background: transparent;
   color: ${({ theme }) => theme.COLORS.LIGHT_100};  

@@ -4,7 +4,7 @@ import { DEVICE_BREAKPOINTS } from "../../styles/deviceBreakpoints";
 export const Section = styled.div`    
     margin: 0;
     padding: 0 4rem;
-    width: 100%;
+    width: 100%;    
 
     position: relative;
     background-color: ${({ theme }) => theme.COLORS.DARK_600};    
@@ -19,12 +19,26 @@ export const Section = styled.div`
         justify-content: space-between;
         gap: 2rem;
 
-        padding: 0;
+        padding: 0;        
     
         #sign-out {
             display: flex;
             justify-content: center;  
             width: 2rem;                        
+        }
+
+        > a {            
+            font-size: 1rem;
+            ${({ theme}) => theme.FONTS.ROBOTO_REGULAR};
+            color: ${({ theme }) => theme.COLORS.LIGHT_300};    
+            white-space: nowrap;
+
+            @media (max-width: ${DEVICE_BREAKPOINTS.XL}) {
+                width: 3rem;                
+                font-size: .7rem;
+                ${({ theme}) => theme.FONTS.ROBOTO_BOLD};
+                white-space: pre-line;
+            }
         }
 
         > button {

@@ -6,8 +6,8 @@ export function SearchInput(){
     <Container id="search">      
       <Input         
         autoFocus
-        value={null}
-        onChange={null}
+        value={undefined}
+        onChange={undefined}
         placeholder="Busque por pratos ou ingredientes"
       />
       <button>

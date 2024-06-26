@@ -1,8 +1,8 @@
 import styled from "styled-components";
 
-export const Container = styled.button`
+export const Container = styled.div`
   display: flex;
-  width: fit-content;  
+  width: max-content;  
   
   justify-content: center;
   align-items: center;
@@ -15,6 +15,7 @@ export const Container = styled.button`
   
   // font
   > h3 { 
+    width: max-content;  
     ${({ theme }) => theme.FONTS.POPPINS_MEDIUM}
     font-size: 0.9rem;
   }

@@ -48,9 +48,9 @@ export function CardsSection({ dishesData = null, sectionName, admin = false}) {
         <Swiper
           slidesPerView={1.7}
           spaceBetween={5}
-          navigation
-          loop={true}
-          mousewheel={true}
+          navigation          
+          loop
+          mousewheel
           breakpoints={{
             320: {
               slidesPerView: 2,
@@ -83,7 +83,9 @@ export function CardsSection({ dishesData = null, sectionName, admin = false}) {
               <SwiperSlide
                 key={card.id}
               >
-                <DishCard 
+                <DishCard
+                  id={card.id}
+                  admin={admin}
                   title={card.title}
                   imageFile={card.imageFile}
                   description={card.description}

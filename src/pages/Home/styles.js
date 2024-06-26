@@ -33,7 +33,7 @@ export const Container = styled.main`
   
   #banner-slogan {    
     margin: auto;    
-    padding: 0 3% 0 10%;
+    padding: 0 5% 0 10%;
 
     height: 100%; 
     max-width: 85.5rem;

@@ -37,7 +37,7 @@ export const Container = styled.button`
   }  
 
   @media (max-width: ${DEVICE_BREAKPOINTS.MD}) { 
-    height: 2rem;
+    height: 3rem;
     padding: 0 1rem;
     font-size: .875rem;
   }

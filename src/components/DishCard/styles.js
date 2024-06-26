@@ -4,13 +4,13 @@ import { DEVICE_BREAKPOINTS } from "../../styles/deviceBreakpoints";
 export const Container = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
+  justify-content: space-between;  
   gap: .9375rem;
 
   padding: 1.5rem;
   max-width: 19rem;
-  min-height: 28.875rem;  
+  /* max-height: 28rem;   */
   background-color: transparent;
   position: relative;
   
@@ -39,7 +39,7 @@ export const Container = styled.div`
     text-align: center;    
   }
 
-  > h1 {
+  > h1 {    
     ${({ theme }) => theme.FONTS.POPPINS_BOLD}; 
     font-size: 1.5rem;    
     color: ${({ theme }) => theme.COLORS.LIGHT_300};
