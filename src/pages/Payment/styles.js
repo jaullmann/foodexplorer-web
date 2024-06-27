@@ -19,11 +19,15 @@ export const Main = styled.main`
     margin-bottom: auto;   
 
     display: flex;
-    align-items: center;
-    justify-content: space-between;          
+    align-items: flex-start;
+    justify-content: space-between;  
+    gap: 4.7rem;      
 
-    #dishes {
-        margin-top: 2rem;
+    .section-label {
+        padding-bottom: 2rem;
+    }
+
+    #dishes {        
         max-height: 57vh;
         padding-right: 2.5rem;
         overflow-y: scroll;

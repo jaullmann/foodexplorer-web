@@ -1,3 +1,4 @@
+import { useState, useEffect } from "react";
 import { Container } from "./styles";
 import { LabeledInput } from "../LabeledInput";
 import { PaymentButton } from "../PaymentButton";
@@ -7,18 +8,35 @@ import QrCode from "../../assets/samples/qr_code.svg";
 
 
 export function PaymentFrame() {
+
+    const [paymentOption, setPaymentOption] = useState("pix");
+
+    // useEffect[() => {
+    //     function paymentSelect(button) {        
+    //         setPaymentOption(button)        
+    //     }      
+        
+    //     paymentSelect("pix");
+    // }, []]    
+
     return (
-        <Container>
+        <Container $paymentChoice={paymentOption}>
 
             <div id="payment-option">    
-                <div id="pix-btn">
+                <div 
+                    id="pix-btn"
+                    onClick={() => setPaymentOption("pix")}
+                >
                     <img 
                         src={PixIcon} 
                         alt="Símbolo do PIX" 
                     />
                     <h3>PIX</h3>
                 </div>
-                <div id="credit-btn">
+                <div 
+                    id="credit-btn"
+                    onClick={() => setPaymentOption("credit")}
+                >
                     <img 
                         src={CreditIcon} 
                         alt="Símbolo de cartão de crédito" 
@@ -27,14 +45,14 @@ export function PaymentFrame() {
                 </div>
             </div>
 
-            <div id="frame-pix" className="visible">
+            <div id="frame-pix">
                 <img 
                     src={QrCode} 
                     alt="QrCode para pagamento via PIX" 
                 />
             </div>
 
-            <div id="frame-credit" className="">
+            <div id="frame-credit">
                 <div id="frame-credit-1">
                     <LabeledInput 
                         label="Número do Cartão"

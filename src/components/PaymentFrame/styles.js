@@ -2,8 +2,7 @@ import styled from "styled-components";
 import { DEVICE_BREAKPOINTS } from "../../styles/deviceBreakpoints";
 
 export const Container = styled.div`
-    width: 33.125rem;
-    height: 28.875rem;
+    width: 33.125rem;    
     border-radius: .5rem;
 
     display: flex;
@@ -26,6 +25,8 @@ export const Container = styled.div`
         justify-content: center;
         gap: .875rem;
 
+        cursor: pointer;
+
         > h3 {
             font-size: 1rem;
             ${({ theme }) => theme.FONTS.POPPINS_REGULAR};
@@ -33,23 +34,35 @@ export const Container = styled.div`
         }
     }
 
+    #pix-btn {
+        background-color: ${({ theme, $paymentChoice }) => $paymentChoice === "pix" ? theme.COLORS.DARK_800 : "none"};
+    }
+
     #credit-btn {
-        background-color: ${({ theme }) => theme.COLORS.DARK_800}
+        background-color: ${({ theme, $paymentChoice }) => $paymentChoice === "credit" ? theme.COLORS.DARK_800 : "none"};
     }
 
     #frame-pix {
-        height: 22.75rem;
-        display: none;    
+        height: 100%;
+        padding: 3rem 0;
+
+        display: ${({ $paymentChoice }) => $paymentChoice === "pix" ? "flex" : "none"};        
         align-items: center;
         justify-content: center;
+
+        > img {
+            height: 15.625rem;
+            width: 15.625rem;
+        }
     }
 
     #frame-credit {
         padding: 3.6875rem 5.6875rem 3rem;
+        height: 100%;
 
-        height: 22.75rem;
-        display: flex;
+        display: ${({ $paymentChoice }) => $paymentChoice === "credit" ? "flex" : "none"};        
         flex-direction: column;
+        justify-content: space-between;
 
         gap: 37px;        
 
@@ -59,4 +72,5 @@ export const Container = styled.div`
         }
 
     }
+    
 `

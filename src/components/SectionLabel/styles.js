@@ -3,6 +3,8 @@ import { DEVICE_BREAKPOINTS } from "../../styles/deviceBreakpoints";
 
 export const Label = styled.label`
 
+  display: block;
+
   width: max-content;
   text-align: left;
 

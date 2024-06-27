@@ -65,6 +65,7 @@ export function Payment() {
                         {
                             cardsData.map((card) => (                            
                                 <OrderCardDetail
+                                    key={card.id}
                                     id={card.id}
                                     title={card.title}
                                     imageFile={card.imageFile}
@@ -77,6 +78,7 @@ export function Payment() {
                     <h2>{"Total: " + formatCurrency(102.60)}</h2>
                 </div>
                 <div id="order-payment">
+                    <SectionLabel title={"Pagamento"} />
                     <PaymentFrame />
                 </div>
             </Main>

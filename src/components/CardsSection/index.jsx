@@ -83,7 +83,7 @@ export function CardsSection({ dishesData = null, sectionName, admin = false}) {
               <SwiperSlide
                 key={card.id}
               >
-                <DishCard
+                <DishCard                  
                   id={card.id}
                   admin={admin}
                   title={card.title}

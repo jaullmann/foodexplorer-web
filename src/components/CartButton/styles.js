@@ -1,8 +1,8 @@
 import styled from "styled-components";
 
-export const Container = styled.div`
+export const Container = styled.button`
   display: flex;
-  width: max-content;  
+  min-width: 10rem;  
   
   justify-content: center;
   align-items: center;
