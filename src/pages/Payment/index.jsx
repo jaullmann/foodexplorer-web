@@ -8,6 +8,8 @@ import { OrderCardDetail } from "../../components/OrderCardDetail";
 
 export function Payment() {
 
+    const [orderPaid, setOrderPaid] = useState(false);
+
     function formatCurrency(number) {
         const formattedNumber = number.toFixed(2);
         const parts = formattedNumber.split('.');
@@ -78,7 +80,7 @@ export function Payment() {
                     <h2>{"Total: " + formatCurrency(102.60)}</h2>
                 </div>
                 <div id="order-payment">
-                    <SectionLabel title={"Pagamento"} />
+                    <SectionLabel title={orderPaid ? "Situação" : "Pagamento"} />
                     <PaymentFrame />
                 </div>
             </Main>
