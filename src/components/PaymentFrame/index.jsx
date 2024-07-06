@@ -8,17 +8,9 @@ import CreditIcon from "../../assets/app_icons/credit_card.svg";
 import QrCode from "../../assets/samples/qr_code.svg";
 
 
-export function PaymentFrame({ paidOrder=true, orderStatus="entregue" }) {
+export function PaymentFrame({ paidOrder=false, orderStatus="preparando" }) {
 
     const [paymentOption, setPaymentOption] = useState("pix");
-
-    // useEffect[() => {
-    //     function paymentSelect(button) {        
-    //         setPaymentOption(button)        
-    //     }      
-            
-    //     paymentSelect("pix");
-    // }, []]    
 
     return (
         <Container $paymentChoice={paymentOption}>

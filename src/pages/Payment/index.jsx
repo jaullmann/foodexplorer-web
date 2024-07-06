@@ -9,7 +9,7 @@ import { OrderCardDetail } from "../../components/OrderCardDetail";
 
 export function Payment() {
 
-    const [orderPaid, setOrderPaid] = useState(false);
+    const [paidOrder, setPaidOrder] = useState(false);
     const [proceedPayment, setProceedPayment] = useState(false);
 
     function formatCurrency(number) {
@@ -62,7 +62,7 @@ export function Payment() {
             <Header />
 
             <Main
-                $orderPaid={orderPaid}
+                $orderPaid={paidOrder}
                 $proceedPayment={proceedPayment}
             >
 
@@ -91,7 +91,7 @@ export function Payment() {
                 </div>
                 
                 <div id="order-payment">
-                    <SectionLabel title={orderPaid ? "Situação" : "Pagamento"} />
+                    <SectionLabel title={paidOrder ? "Situação" : "Pagamento"} />
                     <PaymentFrame />
                     <div id="back-btn-frame">
                         <Button 
