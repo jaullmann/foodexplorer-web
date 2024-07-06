@@ -61,8 +61,7 @@ export function Payment() {
 
             <Header />
 
-            <Main
-                $orderPaid={paidOrder}
+            <Main                
                 $proceedPayment={proceedPayment}
             >
 
