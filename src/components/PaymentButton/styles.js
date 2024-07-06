@@ -3,13 +3,14 @@ import styled from "styled-components";
 export const Container = styled.button`
   display: flex;
   width: 100%;  
+  min-width: max-content;
   
   align-items: center;
   justify-content: center;  
-  gap: 0.5rem;
+  gap: .6rem;
   
   height: 3.5rem;
-  padding: 0.75rem;
+  padding: 0.75rem 1rem;
   border-radius: 0.3rem;
   
   // font

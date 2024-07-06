@@ -1,8 +1,10 @@
 import styled from "styled-components";
 import { DEVICE_BREAKPOINTS } from "../../styles/deviceBreakpoints";
 
-export const Container = styled.div`
-    width: 33.125rem;        
+export const Container = styled.div`    
+    width: 34vw;   
+    max-width: 33.125rem;     
+    min-width: 26rem;       
     border-radius: .5rem;   
 
     display: flex;
@@ -57,9 +59,9 @@ export const Container = styled.div`
         align-items: center;
         justify-content: center;
 
-        > img {
-            height: 15.625rem;
-            width: 15.625rem;
+        > img {     
+            width: 16vw;       
+            max-width: 15.625rem;
         }
     }
 
@@ -106,6 +108,16 @@ export const Container = styled.div`
             font-size: 1.5rem;
             ${({ theme }) => theme.FONTS.ROBOTO_BOLD};
             color: ${({ theme }) => theme.COLORS.LIGHT_400};
+        }
+    }  
+    
+    @media (max-width: ${ DEVICE_BREAKPOINTS.LG }) {
+        width: 100%;
+        max-width: 60vw;
+
+        #frame-pix > img {
+            width: 26vw;       
+            max-width: 28rem;
         }
     }
     

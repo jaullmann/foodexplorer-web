@@ -9,7 +9,7 @@ export const Label = styled.label`
   text-align: left;
 
   ${({ theme }) => theme.FONTS.POPPINS_MEDIUM};
-  font-size: 2rem;
+  font-size: clamp(1.4rem, .5rem + 2vw, 2rem);
 
   color: ${({ theme }) => theme.COLORS.LIGHT_100}; 
   

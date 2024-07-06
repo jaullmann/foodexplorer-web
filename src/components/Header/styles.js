@@ -7,7 +7,7 @@ export const Section = styled.div`
     width: 100%;    
 
     position: relative;
-    background-color: ${({ theme }) => theme.COLORS.DARK_600};    
+    background-color: ${({ theme }) => theme.COLORS.DARK_800};    
     
     > .desktop {
         margin: auto;

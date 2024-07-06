@@ -52,4 +52,12 @@ export const Container = styled.div`
     color: ${({ theme }) => theme.COLORS.TINTS_TOMATO_400};
   }
 
+  @media (max-width: ${ DEVICE_BREAKPOINTS.LG }) {    
+    max-width: 100%;
+  }
+
+  .card-info {
+    min-width: 16.5rem;
+  }
+
 `

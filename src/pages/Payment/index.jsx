@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { Container, Main } from "./styles";
 import { Header } from "../../components/Header";
 import { Footer } from "../../components/Footer";
+import { Button } from "../../components/Button";
 import { SectionLabel } from "../../components/SectionLabel";
 import { PaymentFrame } from "../../components/PaymentFrame";
 import { OrderCardDetail } from "../../components/OrderCardDetail";
@@ -9,13 +10,14 @@ import { OrderCardDetail } from "../../components/OrderCardDetail";
 export function Payment() {
 
     const [orderPaid, setOrderPaid] = useState(false);
+    const [proceedPayment, setProceedPayment] = useState(false);
 
     function formatCurrency(number) {
         const formattedNumber = number.toFixed(2);
         const parts = formattedNumber.split('.');
         return `R$ ${parts[0]},${parts[1]}`;
     }
-
+    
     // temporary var for testing
     const cardsData = [
         {
@@ -39,20 +41,19 @@ export function Payment() {
             amount: 4,
             price: 24.90
         },
-        {
-            id: 4, 
-            title: "Prato food explorer 4", 
-            imageFile: "/src/assets/samples/dish_image_large_4.png", 
-            amount: 4,
-            price: 27.90
-        },{
-            id: 5, 
-            title: "Prato food explorer 5", 
-            imageFile: "/src/assets/samples/dish_image_large_5.png", 
-            amount: 1,
-            price: 21.90
-        },
-
+        // {
+        //     id: 4, 
+        //     title: "Prato food explorer 4", 
+        //     imageFile: "/src/assets/samples/dish_image_large_4.png", 
+        //     amount: 4,
+        //     price: 27.90
+        // },{
+        //     id: 5, 
+        //     title: "Prato food explorer 5", 
+        //     imageFile: "/src/assets/samples/dish_image_large_5.png", 
+        //     amount: 1,
+        //     price: 21.90
+        // }
     ] 
     
     return(
@@ -60,7 +61,11 @@ export function Payment() {
 
             <Header />
 
-            <Main>
+            <Main
+                $orderPaid={orderPaid}
+                $proceedPayment={proceedPayment}
+            >
+
                 <div id="order-details">
                     <SectionLabel title={"Meu pedido"} />
                     <div id="dishes">                        
@@ -78,11 +83,25 @@ export function Payment() {
                         }
                     </div>
                     <h2>{"Total: " + formatCurrency(102.60)}</h2>
+                    <Button 
+                        id={"next-btn"} 
+                        title={"Avançar >"} 
+                        onClick={() => setProceedPayment(true)}                    
+                    />
                 </div>
+                
                 <div id="order-payment">
                     <SectionLabel title={orderPaid ? "Situação" : "Pagamento"} />
                     <PaymentFrame />
+                    <div id="back-btn-frame">
+                        <Button 
+                            id={"back-btn"} 
+                            title={"< Revisar pedido"} 
+                            onClick={() => setProceedPayment(false)}                    
+                        />
+                    </div>                    
                 </div>
+
             </Main>
 
             <Footer />

@@ -8,7 +8,7 @@ import CreditIcon from "../../assets/app_icons/credit_card.svg";
 import QrCode from "../../assets/samples/qr_code.svg";
 
 
-export function PaymentFrame({ paidOrder=false, orderStatus="preparando" }) {
+export function PaymentFrame({ paidOrder=true, orderStatus="entregue" }) {
 
     const [paymentOption, setPaymentOption] = useState("pix");
 
@@ -49,9 +49,7 @@ export function PaymentFrame({ paidOrder=false, orderStatus="preparando" }) {
                     </div>
                 </div>
 
-            }
-
-            
+            }          
             
             {
                 !paidOrder &&  
@@ -127,8 +125,7 @@ export function PaymentFrame({ paidOrder=false, orderStatus="preparando" }) {
                     <PiWarning />
                     <h3>Pedido cancelado!</h3>
                 </div>
-            }
-            
+            }            
 
         </Container>
     )

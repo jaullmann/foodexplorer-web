@@ -21,13 +21,20 @@ export const Main = styled.main`
     display: flex;
     align-items: flex-start;
     justify-content: space-between;  
-    gap: 4.7rem;      
+    gap: 2.5vw;      
+
+    #order-details {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+    }
 
     .section-label {
         padding-bottom: 2rem;
     }
 
-    #dishes {        
+    #dishes {    
+        width: 27.5rem;    
         max-height: 57vh;
         padding-right: 2.5rem;
         overflow-y: scroll;
@@ -60,5 +67,61 @@ export const Main = styled.main`
         font-size: 1.25rem;
         ${({ theme }) => theme.FONTS.POPPINS_MEDIUM};
         color: ${({ theme }) => theme.COLORS.LIGHT_300};
+    }   
+    
+    #next-btn, #back-btn {
+        display: none;              
     }
+
+    #order-payment {          
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: flex-end;        
+    }
+    
+
+    @media (max-width: ${ DEVICE_BREAKPOINTS.LG }) {
+
+        padding: 2.125rem 4rem 2.1rem;
+
+        #order-details, #dishes, .section-label {
+            width: 100%;
+        }
+
+        #order-details {
+            display: ${({ $proceedPayment }) => $proceedPayment ? "none" : "flex"};
+        }
+        
+        #order-payment {
+            width: 100%;
+
+            display: ${({ $proceedPayment }) => $proceedPayment ? "flex" : "none"};
+            align-items: center;
+
+            > label {
+                min-width: 26rem; 
+                width: 60vw;
+            }
+        }
+
+        #next-btn, #back-btn {   
+            display: block;         
+            margin-top: 2.9375rem;
+            margin-bottom: 3.625rem;
+            align-self: flex-end;
+            
+            width: 100%;
+            max-width: 13.5rem;                   
+        }    
+        
+        #back-btn-frame {
+            display: flex;
+            justify-content: flex-start;
+            min-width: 26rem; 
+            width: 60vw;
+        } 
+        
+    }
+    
 `
