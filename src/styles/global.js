@@ -45,7 +45,26 @@ export default createGlobalStyle`
         background-color: ${({ theme }) => theme.COLORS.DARK_100};
         color: ${({ theme }) => theme.COLORS.LIGHT_100}; 
         
-        -webkit-font-smoothing: antialiased;        
+        -webkit-font-smoothing: antialiased; 
+        overflow-y: scroll;        
+        
+        &::-webkit-scrollbar {
+            width: 0;
+            background: transparent;
+            overflow: scroll;
+            overflow: overlay;
+            }
+        &::-webkit-scrollbar-thumb {
+            background: ${({ theme }) => theme.COLORS.DARK_1000};
+            border-radius: 0px;
+        }
+
+        @media(min-width: ${DEVICE_BREAKPOINTS.LG}) {            
+            &::-webkit-scrollbar {
+                width: 0;
+            }
+        }  
+        
     }         
 
     body, input, button, textarea {

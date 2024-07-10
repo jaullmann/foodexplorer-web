@@ -20,6 +20,7 @@ export const Container = styled.div`
     
     #pix-btn, #credit-btn {
         border: 1px solid ${({ theme }) => theme.COLORS.LIGHT_600};        
+        border-bottom: none;
         width: 100%;
         height: 100%;
 

@@ -9,6 +9,7 @@ import { SignUp } from './pages/SignUp';
 import { DishCreation } from './pages/DishCreation';
 import { DishDetails } from './pages/DishDetails';
 import { Payment } from './pages/Payment';
+import { Orders } from './pages/Orders';
 
 import { register } from 'swiper/element/bundle';
 
@@ -24,7 +25,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <ThemeProvider theme={theme}>      
       <GlobalStyles />            
-      <Payment />
+      <Orders />
     </ThemeProvider>    
   </React.StrictMode>,
 )
