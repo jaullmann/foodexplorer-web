@@ -1,29 +1,34 @@
+import { useAuth } from '../../hooks/auth';
+import { useNavigate } from "react-router-dom";
 import { Container } from "./styles";
 import { DishCounter } from "../DishCounter";
 import { Button } from "../Button";
 import { FiHeart } from "react-icons/fi";
 import { PiPencilSimple } from "react-icons/pi";
+import { formatCurrency } from "../../functions"
 
 
 export function DishCard({ dishId, title, imageFile, description, price, favorite = false,
-   loading = false, admin = false, onClick }) {
+   loading = false, onClick }) {
+    
+    const { user } = useAuth();
+    const admin = user.role === "admin";
+    const navigate = useNavigate();   
 
-    function formatCurrency(number) {
-      const formattedNumber = number.toFixed(2);
-      const parts = formattedNumber.split('.');
-      return `R$ ${parts[0]},${parts[1]}`;
+    function handleDetails(dishId) { 
+      navigate(`/description/${dishId}`)    
     }
 
     return(
-        <Container id={dishId} $favorite={favorite}>
+        <Container key={String(dishId)} $favorite={favorite}>
           {!admin && <FiHeart id="fav-button"/>}
           {admin && <PiPencilSimple />} 
           <img 
             src={imageFile} 
             alt="Visualizar detalhes do prato" 
-            onClick={onClick}
+            onClick={() => handleDetails(dishId)}
           />
-          <h1 onClick={onClick}>
+          <h1 onClick={() => handleDetails(dishId)}>
             {loading ? "Carregando" : title + " >"}
           </h1> 
           <h3>

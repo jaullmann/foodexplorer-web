@@ -63,7 +63,7 @@ export const Container = styled.div`
     font-size: 0.75rem;        
   }
 
-  .user {
+  .customer {
     display: none;
   }
 

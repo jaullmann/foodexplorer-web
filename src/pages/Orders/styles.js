@@ -23,16 +23,12 @@ export const Main = styled.main`
     justify-content: center;
     gap: 2.1875rem;
 
-    #desktop-table {
-        max-height: 56svh;;
-
-        display: flex;
-        border: 2px solid ${({ theme }) => theme.COLORS.DARK_1000};
-        border-radius: .5rem; 
+    #desktop-table-fr {
+        max-height: 57vh;
         overflow-y: scroll; 
 
         &::-webkit-scrollbar {
-            width: .4rem;
+            width: .6rem;
             background: transparent;
             overflow: scroll;
             overflow: overlay;            
@@ -43,8 +39,14 @@ export const Main = styled.main`
         }
         &::-webkit-scrollbar-thumb {
             background: ${({ theme }) => theme.COLORS.DARK_1000};
-            border-radius: 10px;            
+            border-radius: .2rem;            
         }
+    }
+
+    #desktop-table {
+        display: flex;
+        border: 2px solid ${({ theme }) => theme.COLORS.DARK_1000};
+        border-radius: .5rem .5rem 0 0; 
     }
 
     #mobile-table {

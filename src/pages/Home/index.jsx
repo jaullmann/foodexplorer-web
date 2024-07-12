@@ -5,7 +5,7 @@ import { CardsSection } from "../../components/CardsSection"
 import { Footer } from "../../components/Footer"
 import homeBanner from "../../assets/images/home_banner.png"
 
-export function Home({ admin = true }) {    
+export function Home({ admin = false }) {    
   return(
     <Container>
 
@@ -22,9 +22,9 @@ export function Home({ admin = true }) {
         </div>  
       </div>
 
-      <CardsSection sectionName={"Refeições"} admin={admin}/>
-      <CardsSection sectionName={"Sobremesas"} admin={admin}/>
-      <CardsSection sectionName={"Bebidas"} admin={admin}/>
+      <CardsSection sectionName={"Refeições"} category={"refeicao"}/>
+      <CardsSection sectionName={"Sobremesas"} category={"refeicao"}/>
+      <CardsSection sectionName={"Bebidas"} category={"refeicao"}/>
       
       <Footer />
 

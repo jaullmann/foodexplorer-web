@@ -10,8 +10,8 @@ export function Orders(){
         return orderStatus.charAt(0).toUpperCase() + orderStatus.slice(1);
     }
 
-    function formatDatetime(timestamp) {
-        const date = new Date(timestamp);
+    function formatDatetime(datetime) {
+        const date = new Date(datetime);
         const day = date.getDate();
         const month = date.getMonth() + 1; 
         const year = date.getFullYear();
@@ -267,110 +267,6 @@ export function Orders(){
                     "dish_price_paid": 21.9
                 }                
             ]
-        },
-        {
-            "order_id": 10,
-            "user_id": 1,
-            "payment_method": "crédito",
-            "status": "entregue",
-            "ordered_at": "2024-04-29 23:34:05",
-            "updated_at": "2024-04-30 04:03:23",
-            "details": [
-                {
-                    "order_id": 5,
-                    "dish_id": 1,
-                    "title": "Lasanha de Frango",
-                    "dish_amount": 1,
-                    "dish_price_paid": 21.9
-                },
-                {
-                    "order_id": 5,
-                    "dish_id": 2,
-                    "title": "Lasanha de Carne",
-                    "dish_amount": 1,
-                    "dish_price_paid": 22.9
-                },
-                {
-                    "order_id": 5,
-                    "dish_id": 5,
-                    "title": "Espaguete ao Alho e Óleo",
-                    "dish_amount": 4,
-                    "dish_price_paid": 23.9
-                },
-                {
-                    "order_id": 5,
-                    "dish_id": 1,
-                    "title": "Lasanha de Frango",
-                    "dish_amount": 1,
-                    "dish_price_paid": 21.9
-                },
-                {
-                    "order_id": 5,
-                    "dish_id": 2,
-                    "title": "Lasanha de Carne",
-                    "dish_amount": 1,
-                    "dish_price_paid": 22.9
-                },
-                {
-                    "order_id": 5,
-                    "dish_id": 5,
-                    "title": "Espaguete ao Alho e Óleo",
-                    "dish_amount": 4,
-                    "dish_price_paid": 23.9
-                }
-            ]
-        },
-        {
-            "order_id": 11,
-            "user_id": 1,
-            "payment_method": "crédito",
-            "status": "entregue",
-            "ordered_at": "2024-04-29 23:34:05",
-            "updated_at": "2024-04-30 04:03:23",
-            "details": [
-                {
-                    "order_id": 5,
-                    "dish_id": 1,
-                    "title": "Lasanha de Frango",
-                    "dish_amount": 1,
-                    "dish_price_paid": 21.9
-                },
-                {
-                    "order_id": 5,
-                    "dish_id": 2,
-                    "title": "Lasanha de Carne",
-                    "dish_amount": 1,
-                    "dish_price_paid": 22.9
-                },
-                {
-                    "order_id": 5,
-                    "dish_id": 5,
-                    "title": "Espaguete ao Alho e Óleo",
-                    "dish_amount": 4,
-                    "dish_price_paid": 23.9
-                },
-                {
-                    "order_id": 5,
-                    "dish_id": 1,
-                    "title": "Lasanha de Frango",
-                    "dish_amount": 1,
-                    "dish_price_paid": 21.9
-                },
-                {
-                    "order_id": 5,
-                    "dish_id": 2,
-                    "title": "Lasanha de Carne",
-                    "dish_amount": 1,
-                    "dish_price_paid": 22.9
-                },
-                {
-                    "order_id": 5,
-                    "dish_id": 5,
-                    "title": "Espaguete ao Alho e Óleo",
-                    "dish_amount": 4,
-                    "dish_price_paid": 23.9
-                }
-            ]
         }
     ]
 
@@ -383,67 +279,70 @@ export function Orders(){
 
                 <SectionLabel title={"Histórico de pedidos"} />
 
-                <div id="desktop-table">
-                    <table>
-                        <thead>
-                            <tr>
-                                <th id="th-status">Status</th>
-                                <th id="th-order-id">Código</th>
-                                <th id="th-detail">Detalhamento</th>
-                                <th id="th-timestamp">Data e hora</th>
-                            </tr>
-                        </thead>
-                        <tbody>                                              
-                            {
-                                userOrders.map((order) => (
-                                    <tr 
-                                        key={"tr-order-" + order.order_id}
-                                        onClick={undefined}
-                                    >
-                                        <td 
-                                            key={"tr-order-status-" + order.order_id}
-                                            className="status"
+                <div id="desktop-table-fr">
+                    <div id="desktop-table">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th id="th-status">Status</th>
+                                    <th id="th-order-id">Código</th>
+                                    <th id="th-detail">Detalhamento</th>
+                                    <th id="th-timestamp">Data e hora</th>
+                                </tr>
+                            </thead>
+                            <tbody>                                              
+                                {
+                                    userOrders.map((order) => (
+                                        <tr 
+                                            key={"tr-order-" + order.order_id}
+                                            onClick={undefined}
                                         >
-                                            <div 
-                                                key={"tr-order-status-div-" + order.order_id}
-                                                className="status-div"
+                                            <td 
+                                                key={"tr-order-status-" + order.order_id}
+                                                className="status"
                                             >
-                                                <div className={"status-color " + order.status.toLowerCase()}/>
-                                                <p>{formatStatus(order.status)}</p>
-                                            </div>                                    
-                                        </td>
-                                        <td 
-                                            key={"tr-order-id-" + order.order_id}
-                                            className="order-id"
-                                        >
-                                            {String(order.order_id).padStart(8, '0')}
-                                        </td>
-                                        <td 
-                                            key={"tr-order-details-" + order.order_id}
-                                            className="details"
-                                        >
-                                            {
-                                                order.details.map((details, index, list) => (
-                                                    details.dish_amount + 
-                                                    " x " + 
-                                                    details.title + `
-                                                    ${index == list.length-1 ? "" : ", "}`
-                                                ))
-                                            }
-                                        </td>
-                                        <td 
-                                            key={"tr-order-datetime-" + order.order_id}
-                                            className="datetime"
-                                        >
-                                            {formatDatetime(order.updated_at)}
-                                        </td>
-                                    </tr>   
-                                ))
-                            }
-                                                   
-                        </tbody>
-                    </table>
+                                                <div 
+                                                    key={"tr-order-status-div-" + order.order_id}
+                                                    className="status-div"
+                                                >
+                                                    <div className={"status-color " + order.status.toLowerCase()}/>
+                                                    <p>{formatStatus(order.status)}</p>
+                                                </div>                                    
+                                            </td>
+                                            <td 
+                                                key={"tr-order-id-" + order.order_id}
+                                                className="order-id"
+                                            >
+                                                {String(order.order_id).padStart(8, '0')}
+                                            </td>
+                                            <td 
+                                                key={"tr-order-details-" + order.order_id}
+                                                className="details"
+                                            >
+                                                {
+                                                    order.details.map((details, index, list) => (
+                                                        details.dish_amount + 
+                                                        " x " + 
+                                                        details.title + `
+                                                        ${index == list.length-1 ? "" : ", "}`
+                                                    ))
+                                                }
+                                            </td>
+                                            <td 
+                                                key={"tr-order-datetime-" + order.order_id}
+                                                className="datetime"
+                                            >
+                                                {formatDatetime(order.updated_at)}
+                                            </td>
+                                        </tr>   
+                                    ))
+                                }
+                                                    
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
+                
                 
                 <div id="mobile-table">
                     {
@@ -451,6 +350,7 @@ export function Orders(){
                             <div 
                                 key={"order-" + order.order_id}
                                 className="order-card"
+                                onClick={undefined}
                             >
 
                                 <div 

@@ -1,3 +1,5 @@
+import { Link, useNavigate } from 'react-router-dom';
+import { useAuth } from '../../hooks/auth';
 import { Section } from "./styles";
 import SignOut from "../../assets/app_icons/sign_out.svg"
 import Menu from "../../assets/app_icons/menu.svg"
@@ -7,17 +9,30 @@ import { Button } from "../Button";
 import { CartButtonMobile } from "../CartButtonMobile";
 import { CartButton } from "../CartButton";
 
-export function Header({ admin = false }) {
+export function Header() {
+
+    const { user, signOut } = useAuth();
+    const navigate = useNavigate();
+    const admin = user.role === "admin"
+
+    function handleSignOut() {
+        navigate('/')
+        signOut();
+    }
+
     return (
         <Section>            
             <div className="desktop">   
-                <MainLogo admin={admin} />
+                <MainLogo userRole={user.role} />
                 <SearchInput id="search-input" />
                 {!admin && <a id="favorites">Meus favoritos</a>}
                 {!admin && <a id="orders">Meus pedidos</a>}
                 {!admin && <CartButton totalDishes={0} />}
                 {admin && <Button title={'Novo prato'} />}
-                <button id="sign-out">
+                <button 
+                    id="sign-out"
+                    onClick={handleSignOut}
+                >
                     <img src={SignOut} alt="Sair" />
                 </button>                
             </div>
@@ -25,7 +40,7 @@ export function Header({ admin = false }) {
                 <button id="side-menu">
                     <img src={Menu} alt="Menu lateral" />  
                 </button>                
-                <MainLogo admin={admin} />
+                <MainLogo />
                 {!admin && <CartButtonMobile totalDishes={4} />}
                 {admin && <div/>}
             </div>                

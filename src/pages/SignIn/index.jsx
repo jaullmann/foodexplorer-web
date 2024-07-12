@@ -6,8 +6,20 @@ import { Button } from "../../components/Button"
 import { Container, Form } from "./styles"
 import { Link } from 'react-router-dom';
 
+import { useAuth } from '../../hooks/auth';
+
 
 export function SignIn() {
+
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const { signIn } = useAuth();  
+
+  function handleSignIn() {
+    signIn({ email, password });
+  }
+
   return (
     <Container>
 
@@ -22,6 +34,7 @@ export function SignIn() {
           type="text"
           altStyle
           placeholder="Exemplo: nome@exemplo.com.br"
+          onChange={e => setEmail(e.target.value)}
         />
         <LabeledInput 
           className="labeled-input"
@@ -29,10 +42,11 @@ export function SignIn() {
           type="password"
           altStyle
           placeholder="No mínimo 6 caracteres"
+          onChange={e => setPassword(e.target.value)}
         />
         <Button
           title="Entrar"
-          onClick={undefined}
+          onClick={handleSignIn}
         />
         <a href="/signUp">
           Criar uma conta
