@@ -1,4 +1,6 @@
+import { api } from "../../services/api";
 import { useState, useEffect } from "react";
+import { useParams, useNavigate } from "react-router-dom";
 import { Container, Main } from "./styles";
 import { Header } from "../../components/Header";
 import { Footer } from "../../components/Footer";
@@ -6,102 +8,106 @@ import { Button } from "../../components/Button";
 import { SectionLabel } from "../../components/SectionLabel";
 import { PaymentFrame } from "../../components/PaymentFrame";
 import { OrderCardDetail } from "../../components/OrderCardDetail";
+import { formatCurrency } from "../../functions";
 
 export function Payment() {
 
+    const [data, setData] = useState(null);
+    const [totalPrice, setTotalPrice] = useState(0);
     const [paidOrder, setPaidOrder] = useState(false);
     const [proceedPayment, setProceedPayment] = useState(false);
+    const navigate = useNavigate();
+    const params = useParams();
 
-    function formatCurrency(number) {
-        const formattedNumber = number.toFixed(2);
-        const parts = formattedNumber.split('.');
-        return `R$ ${parts[0]},${parts[1]}`;
-    }
+    useEffect(() => {        
+        if (params.id) {            
+            async function fetchOrder() {
+                try {
+                    const response = await api.get(`/orders/${params.id}`, { withCredentials: true });
+                    setData(response.data.order_details);
+                    setPaidOrder(true);                
+                } catch (e) {
+                    console.log(e);
+                    return navigate("/notfound");
+                }
+            }
+
+            fetchOrder();
+        } else {
+            async function fetchUserCart() {
+                try {
+                    const response = await api.get('/cart', { withCredentials: true });
+                    setData(response.data);
+                    setPaidOrder(false);                                  
+                } catch (e) {
+                    console.log(e);
+                    return navigate("/notfound");
+                }                
+            }
+
+            fetchUserCart();               
+        }               
+        
+    }, [params.id]) 
     
-    // temporary var for testing
-    const cardsData = [
-        {
-            id: 1, 
-            title: "Prato food explorer 1", 
-            imageFile: "/src/assets/samples/dish_image_large_1.png", 
-            amount: 3,
-            price: 23.90
-        },
-        {
-            id: 2, 
-            title: "Prato food explorer 2", 
-            imageFile: "/src/assets/samples/dish_image_large_2.png", 
-            amount: 1,
-            price: 22.90
-        },
-        {
-            id: 3, 
-            title: "Prato food explorer 3", 
-            imageFile: "/src/assets/samples/dish_image_large_3.png", 
-            amount: 4,
-            price: 24.90
-        },
-        // {
-        //     id: 4, 
-        //     title: "Prato food explorer 4", 
-        //     imageFile: "/src/assets/samples/dish_image_large_4.png", 
-        //     amount: 4,
-        //     price: 27.90
-        // },{
-        //     id: 5, 
-        //     title: "Prato food explorer 5", 
-        //     imageFile: "/src/assets/samples/dish_image_large_5.png", 
-        //     amount: 1,
-        //     price: 21.90
-        // }
-    ] 
+    useEffect(() => {
+        if (data){
+            const total = data.reduce((accum, dish) => accum + (dish.dish_amount * dish.dish_price), 0);
+            setTotalPrice(total);
+        }
+    }, [data]);   
     
     return(
         <Container>
 
             <Header />
 
-            <Main                
-                $proceedPayment={proceedPayment}
-            >
-
-                <div id="order-details">
-                    <SectionLabel title={"Meu pedido"} />
-                    <div id="dishes">                        
-                        {
-                            cardsData.map((card) => (                            
-                                <OrderCardDetail
-                                    key={card.id}
-                                    id={card.id}
-                                    title={card.title}
-                                    imageFile={card.imageFile}
-                                    amount={card.amount}
-                                    price={card.price}  
-                                />                            
-                            ))
-                        }
-                    </div>
-                    <h2>{"Total: " + formatCurrency(102.60)}</h2>
-                    <Button 
-                        id={"next-btn"} 
-                        title={"Avançar >"} 
-                        onClick={() => setProceedPayment(true)}                    
-                    />
-                </div>
-                
-                <div id="order-payment">
-                    <SectionLabel title={paidOrder ? "Situação" : "Pagamento"} />
-                    <PaymentFrame />
-                    <div id="back-btn-frame">
+            {
+                data &&
+                <Main                
+                    $proceedPayment={proceedPayment}
+                >
+                    
+                    <div id="order-details">
+                        <SectionLabel title={"Meu pedido"} />
+                        <div id="dishes">                        
+                            {                                   
+                                data.map((card) => {                                    
+                                    return (
+                                        <OrderCardDetail
+                                            key={card.dish_id}
+                                            title={card.title}
+                                            imageFile={`${api.defaults.baseURL}/files/${card.image_file}`}
+                                            amount={card.dish_amount}
+                                            price={card.dish_price}
+                                        />
+                                    );
+                                })
+                            }
+                            
+                        </div>
+                        <h2 id="total">{"Total: " + formatCurrency(totalPrice)}</h2>
                         <Button 
-                            id={"back-btn"} 
-                            title={"< Revisar pedido"} 
-                            onClick={() => setProceedPayment(false)}                    
+                            id={"next-btn"} 
+                            title={"Avançar >"} 
+                            onClick={() => setProceedPayment(true)}                    
                         />
-                    </div>                    
-                </div>
+                    </div>
+                    
+                    <div id="order-payment">
+                        <SectionLabel title={paidOrder ? "Situação" : "Pagamento"} />
+                        <PaymentFrame orderStatus={data.status} />
+                        <div id="back-btn-frame">
+                            <Button 
+                                id={"back-btn"} 
+                                title={"< Revisar pedido"} 
+                                onClick={() => setProceedPayment(false)}                    
+                            />
+                        </div>                    
+                    </div>
 
-            </Main>
+                </Main>
+            }            
 
             <Footer />
 

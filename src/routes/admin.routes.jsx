@@ -13,11 +13,12 @@ export function AdminRoutes() {
     <Routes>
       <Route path="/" element={<Home />} />
       <Route path="/new" element={<DishCreation />} />
-      <Route path="/upddate/:dish_id" element={<DishCreation />} />
-      <Route path="/description/:dish_id" element={<DishDetails />} />
+      <Route path="/edit/:id" element={<DishCreation />} />
+      <Route path="/description/:id" element={<DishDetails />} />
       <Route path="/orders" element={<Orders />} />
       <Route path="/payment" element={<Payment />} />
       <Route path="/favorites" element={<Favorites />} />
+      <Route path="/notfound" element={<NotFound />} />
 
       <Route path="*" exact={true} element={<NotFound />} />
     </Routes>

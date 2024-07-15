@@ -1,3 +1,4 @@
+import { api } from "../../services/api";
 import { useState, useEffect } from "react";
 import { Container, Main } from "./styles";
 import { Header } from "../../components/Header";
@@ -5,104 +6,64 @@ import { Footer } from "../../components/Footer";
 import { SectionLabel } from "../../components/SectionLabel";
 import { FavoriteCard } from "../../components/FavoriteCard";
 
-export function Favorites() {
+export function Favorites() {    
 
-    // data sample
-    const userFavorites = [
-        {
-            "user_id": 2,
-            "dish_id": 1,
-            "title": "Massa aos Quatro Queijos com Filé Mignon",
-            "category": "refeição",
-            "image_file": "/src/assets/samples/dish_image_large_1.png"
-        },
-        {
-            "user_id": 2,
-            "dish_id": 2,
-            "title": "Lasanha de Beringela",
-            "category": "refeição",
-            "image_file": "/src/assets/samples/dish_image_large_2.png"
-        },
-        {
-            "user_id": 2,
-            "dish_id": 3,
-            "title": "Salada Radish",
-            "category": "refeição",
-            "image_file": "/src/assets/samples/dish_image_large_3.png"
-        },
-        {
-            "user_id": 2,
-            "dish_id": 4,
-            "title": "Espaguete à bolonhesa",
-            "category": "refeição",
-            "image_file": "/src/assets/samples/dish_image_large_1.png"
-        },
-        {
-            "user_id": 2,
-            "dish_id": 5,
-            "title": "Lasanha de Beringela",
-            "category": "refeição",
-            "image_file": "/src/assets/samples/dish_image_large_2.png"
-        },
-        {
-            "user_id": 2,
-            "dish_id": 6,
-            "title": "Lasanha de Frango",
-            "category": "refeição",
-            "image_file": "/src/assets/samples/dish_image_large_3.png"
-        },
-        {
-            "user_id": 2,
-            "dish_id": 7,
-            "title": "Espaguete à bolonhesa",
-            "category": "refeição",
-            "image_file": "/src/assets/samples/dish_image_large_1.png"
-        },
-        {
-            "user_id": 2,
-            "dish_id": 8,
-            "title": "Lasanha de Beringela",
-            "category": "refeição",
-            "image_file": "/src/assets/samples/dish_image_large_2.png"
-        },
-        {
-            "user_id": 2,
-            "dish_id": 9,
-            "title": "Lasanha de Frango",
-            "category": "refeição",
-            "image_file": "/src/assets/samples/dish_image_large_3.png"
-        }
+    const [data, setData] = useState();
 
-    ]
+    useEffect(() => {
+        async function fetchFavorites() {
+            try {
+              const response = await api.get('/favorites', { withCredentials: true });
+              setData(response.data);        
+            } catch(e) {
+              navigate("/notfound");              
+              return alert("Erro ao consultar os favoritos do usuário");
+            }
+          }
+      
+          fetchFavorites();
+    }, [])
 
     return(
+        
         <Container>
 
-            <Header />            
+            <Header />  
 
-            <Main> 
-
-                <SectionLabel title={"Meus Favoritos"}/>
-
-                <div id="fav-dishes">
+            {
+                data &&                 
+                <Main> 
+                
+                    {
+                        data.length > 0 &&
+                        <SectionLabel title={"Meus Favoritos"}/>  
+                    }                  
 
                     {
-                        userFavorites.map(( favorite ) => (
-                            <FavoriteCard 
-                                key={"fav-dish-" + favorite.dish_id}
-                                dishId={favorite.dish_id}
-                                title={favorite.title}
-                                imageFile={favorite.image_file}
-                            />
-                        ))
+                        data.length > 0 &&
+                        <div id="fav-dishes">
+                            {
+                                data.map(( favorite ) => (
+                                    <FavoriteCard 
+                                        key={"fav-dish-" + favorite.dish_id}
+                                        dishId={favorite.dish_id}
+                                        title={favorite.title}
+                                        imageFile={`${api.defaults.baseURL}/files/${favorite.image_file}`}
+                                    />
+                                ))
+                            }                    
+                        </div>
                     }
-                    
-                </div>              
 
-                
+                    {
+                        data.length === 0 &&                    
+                        <h1>Sem favoritos até o momento</h1>
+                    }                                               
 
-            </Main>
+                </Main>
 
+            }           
+            
             <Footer />
 
         </Container>        

@@ -11,9 +11,9 @@ import { CartButton } from "../CartButton";
 
 export function Header() {
 
-    const { user, signOut } = useAuth();
+    const { role, signOut } = useAuth();
     const navigate = useNavigate();
-    const admin = user.role === "admin"
+    const admin = role === "admin"
 
     function handleSignOut() {
         navigate('/')
@@ -23,11 +23,11 @@ export function Header() {
     return (
         <Section>            
             <div className="desktop">   
-                <MainLogo userRole={user.role} />
+                <MainLogo userRole={role} />
                 <SearchInput id="search-input" />
-                {!admin && <a id="favorites">Meus favoritos</a>}
-                {!admin && <a id="orders">Meus pedidos</a>}
-                {!admin && <CartButton totalDishes={0} />}
+                {!admin && <Link to={"/favorites"} id="favorites">Meus favoritos</Link>}
+                {!admin && <Link to={"/orders"} id="orders">Meus pedidos</Link>}
+                {!admin && <CartButton totalDishes={0} onClick={() => navigate("/payment")} />}
                 {admin && <Button title={'Novo prato'} />}
                 <button 
                     id="sign-out"
@@ -41,7 +41,7 @@ export function Header() {
                     <img src={Menu} alt="Menu lateral" />  
                 </button>                
                 <MainLogo />
-                {!admin && <CartButtonMobile totalDishes={4} />}
+                {!admin && <CartButtonMobile totalDishes={4} onClick={() => navigate("/payment")} />}
                 {admin && <div/>}
             </div>                
         </Section>

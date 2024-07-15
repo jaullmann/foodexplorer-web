@@ -6,20 +6,22 @@ export const AuthContext = createContext({});
 function AuthProvider({ children }) {
     
     const [data, setData] = useState({});    
-    const [role, setRole] = useState("");
+    const [role, setRole] = useState("customer");
   
     async function signIn({ email, password }) {
   
       try {      
-        const response = await api.post("/sessions", { email, password });
-        const { user, token } = response.data;        
+        const response = await api.post(
+          "/sessions", 
+          { email, password },
+          { withCredentials: true },
+        );
+        const { user } = response.data;        
                 
-        localStorage.setItem("@foodexplorer:user", JSON.stringify(user));
-        localStorage.setItem("@foodexplorer:token", token);
-        setRole(user.role);
-          
-        api.defaults.headers.common['Authorization'] = `Bearer ${token}`;  
-        setData({ user, token })
+        localStorage.setItem("@foodexplorer:user", JSON.stringify(user));        
+
+        setRole(user.role);                  
+        setData({ user })
         
       } catch (error) {
         if (error.response) {
@@ -31,8 +33,7 @@ function AuthProvider({ children }) {
     } 
   
     function signOut() {
-      localStorage.removeItem("@foodexplorer:user");
-      localStorage.removeItem("@foodexplorer:token");
+      localStorage.removeItem("@foodexplorer:user");      
   
       setData({});
     }
@@ -41,7 +42,7 @@ function AuthProvider({ children }) {
       try {                  
         await api.put("/users", user);
         localStorage.setItem("@foodexplorer:user", JSON.stringify(user));
-        setData({ user, token: data.token });
+        setData({ user });
         alert("Perfil atualizado com sucesso!");
         return true;
       } catch (error) {
@@ -54,15 +55,11 @@ function AuthProvider({ children }) {
       }    
     }
       
-    useEffect(() => {    
-      const token = localStorage.getItem("@foodexplorer:token");
+    useEffect(() => {          
       const user = localStorage.getItem("@foodexplorer:user");
   
-      if (token && user) {
-        api.defaults.headers.common['Authorization'] = `Bearer ${token}`;
-  
-        setData({
-          token,
+      if (user) { 
+        setData({          
           user: JSON.parse(user)
         });
       }

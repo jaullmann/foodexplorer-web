@@ -9,6 +9,7 @@ export const Container = styled.div`
   gap: 1.1875rem;
 
   width: 20.5rem;
+  cursor: pointer;
 
   @media (max-width: ${DEVICE_BREAKPOINTS.MD}) {
     gap: .675rem;

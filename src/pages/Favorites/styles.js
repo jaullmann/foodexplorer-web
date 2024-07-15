@@ -23,6 +23,14 @@ export const Main = styled.main`
     justify-content: center;
     gap: 2.1875rem;
 
+    > h1 {
+        margin-top: 8rem;
+        font-size: 1.7rem;
+        ${({ theme }) => theme.FONTS.POPPINS_MEDIUM};
+        color: ${({ theme }) => theme.COLORS.LIGHT_500};
+        text-align: center;
+    }
+
     #fav-dishes {
         width: 100%;
 

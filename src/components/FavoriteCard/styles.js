@@ -37,7 +37,7 @@ export const Container = styled.div`
         }
 
         > button {
-            width: 100%;
+            width: max-content;
             ${({ theme }) => theme.FONTS.ROBOTO_REGULAR}; 
             font-size: .75rem;
             text-align: left;

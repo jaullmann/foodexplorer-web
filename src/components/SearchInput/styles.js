@@ -26,6 +26,10 @@ export const Container = styled.div`
       width: 1.5rem;
       color: ${({ theme }) => theme.COLORS.LIGHT_400};
     }
+
+    > svg:hover {
+      transform: scale(1.1);
+    }
   }
 
 `

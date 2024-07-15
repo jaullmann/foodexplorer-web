@@ -1,23 +1,25 @@
+import { useState, useEffect } from "react";
 import { Container } from "./styles";
 import Minus from "../../assets/app_icons/minus.svg"
 import Plus from "../../assets/app_icons/plus.svg"
-import { useState } from "react";
 
-export function DishCounter() {
+export function DishCounter({ onAmountChange }) {
   
   const [amount, setAmount] = useState(1);
 
+  useEffect(() => {
+    if (onAmountChange) {
+      onAmountChange(amount);
+    }
+  }, [amount, onAmountChange]);
+
   function addDish() {
-    setAmount(amount + 1);
-    return;
+    setAmount((prevAmount) => prevAmount + 1);
   }
 
   function removeDish() {
-    if (amount > 1) {
-      setAmount(amount -1);      
-    }    
-    return;
-  };
+    setAmount((prevAmount) => (prevAmount > 1 ? prevAmount - 1 : 1));
+  }
 
   return(
       <Container>

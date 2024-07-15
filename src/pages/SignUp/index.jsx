@@ -38,9 +38,9 @@ export function SignUp() {
           title={"Criar conta"}
           onClick={null}
         />
-        <a href="/login">
+        <Link to="/">
           Já tenho uma conta
-        </a>
+        </Link>
       </Form>
 
     </Container>   

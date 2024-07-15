@@ -3,24 +3,27 @@ import { DEVICE_BREAKPOINTS } from "../../styles/deviceBreakpoints";
 
 export const Container = styled.div`
     margin: auto;
-    width: 100%;
+    width: 100%; 
     min-height: 100svh;
 
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-between;
-    gap: none;
+    justify-content: center;       
 `;
 
 export const Main = styled.main`
-    padding: 0 4rem 2.1rem;    
+    padding: 2.625rem 4rem;    
+    height: 100%;
+    max-width: 93.5rem; 
 
+    margin-bottom: auto;
+   
     > a {
-        margin: 1.5rem 0 2.625rem;
+        margin-bottom: 2.625rem;
     }
 
-    #dish-presentation {
+    #dish-presentation {        
         max-width: 85.5rem; 
         
         display: flex;

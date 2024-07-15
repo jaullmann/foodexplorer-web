@@ -1,23 +1,21 @@
-import { Container } from "./styles";
+import { Button } from "./styles";
 import { PiCaretLeft } from "react-icons/pi";
-// import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 
 export function BackButton() {
 
-  // const navigate = useNavigate()
-  // const handlePreviousRoute = () => {
-  //   navigate(-1)
-  // }
+  const navigate = useNavigate()  
 
   return (
-    // <Container type="button" onClick={handlePreviousRoute}>
-    //   <PiCaretLeft />
-    //   <div>voltar</div>
-    // </Container> 
-    <Container type="button">
+    <Button 
+      type="button" 
+      onClick={() => {
+        navigate(-1)
+      }}
+    >
       <PiCaretLeft />
       <div>voltar</div>
-    </Container>   
+    </Button> 
   )
 }
