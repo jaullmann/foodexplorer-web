@@ -48,7 +48,7 @@ export function Favorites() {
                                         key={"fav-dish-" + favorite.dish_id}
                                         dishId={favorite.dish_id}
                                         title={favorite.title}
-                                        imageFile={`${api.defaults.baseURL}/files/${favorite.image_file}`}
+                                        imageFile={`${api.defaults.baseURL}/files/${favorite.image_file}`}                                        
                                     />
                                 ))
                             }                    

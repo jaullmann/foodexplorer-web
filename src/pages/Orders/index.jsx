@@ -62,7 +62,7 @@ export function Orders() {
                                                 data.map((order) => (
                                                     <tr
                                                         key={"tr-order-" + order.order_id}
-                                                        onClick={() => navigate(`/orders/${order.order_id}`)}
+                                                        onClick={() => handleOrderDetails(`${order.order_id}`)}
                                                     >
                                                         <td
                                                             key={"tr-order-status-" + order.order_id}

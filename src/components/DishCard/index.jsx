@@ -16,7 +16,7 @@ export function DishCard({ dishId, title, imageFile, description, price, favorit
     const navigate = useNavigate();   
 
     function handleDetails(dishId) { 
-      navigate(`/description/${dishId}`)    
+      navigate(`/description/${dishId}`);    
     }
 
     return(

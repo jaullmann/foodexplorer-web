@@ -16,6 +16,8 @@ export const Container = styled.div`
   img {
     width: 6.25rem;
     height: 6.25rem;
+    
+    cursor: pointer;
   }
 
   .card-info {
@@ -31,6 +33,8 @@ export const Container = styled.div`
     align-items: center;
     justify-content: flex-start;
     gap: 1rem;
+
+    cursor: pointer;
 
     > h2 {
       font-size: 1.25rem;

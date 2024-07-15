@@ -19,32 +19,33 @@ export function Payment() {
     const navigate = useNavigate();
     const params = useParams();
 
-    useEffect(() => {        
+    useEffect(() => {      
+        
+        async function fetchOrder() {
+            try {
+                const response = await api.get(`/orders/${params.id}`, { withCredentials: true });
+                setData(response.data.order_details);
+                setPaidOrder(true);                
+            } catch (e) {
+                console.log(e);
+                return navigate("/notfound");
+            }
+        } 
+
+        async function fetchUserCart() {
+            try {
+                const response = await api.get('/cart', { withCredentials: true });
+                setData(response.data);
+                setPaidOrder(false);                                  
+            } catch (e) {
+                console.log(e);
+                return navigate("/notfound");
+            }                
+        }
+
         if (params.id) {            
-            async function fetchOrder() {
-                try {
-                    const response = await api.get(`/orders/${params.id}`, { withCredentials: true });
-                    setData(response.data.order_details);
-                    setPaidOrder(true);                
-                } catch (e) {
-                    console.log(e);
-                    return navigate("/notfound");
-                }
-            }
-
             fetchOrder();
-        } else {
-            async function fetchUserCart() {
-                try {
-                    const response = await api.get('/cart', { withCredentials: true });
-                    setData(response.data);
-                    setPaidOrder(false);                                  
-                } catch (e) {
-                    console.log(e);
-                    return navigate("/notfound");
-                }                
-            }
-
+        } else {            
             fetchUserCart();               
         }               
         
@@ -56,6 +57,7 @@ export function Payment() {
             setTotalPrice(total);
         }
     }, [data]);   
+
     
     return(
         <Container>
@@ -76,10 +78,12 @@ export function Payment() {
                                     return (
                                         <OrderCardDetail
                                             key={card.dish_id}
+                                            id={card.dish_id}
                                             title={card.title}
                                             imageFile={`${api.defaults.baseURL}/files/${card.image_file}`}
                                             amount={card.dish_amount}
                                             price={card.dish_price}
+                                            paidOrder={paidOrder}
                                         />
                                     );
                                 })
@@ -96,11 +100,11 @@ export function Payment() {
                     
                     <div id="order-payment">
                         <SectionLabel title={paidOrder ? "Situação" : "Pagamento"} />
-                        <PaymentFrame orderStatus={data.status} />
+                        <PaymentFrame paidOrder={paidOrder} orderStatus={data.status} />
                         <div id="back-btn-frame">
                             <Button 
                                 id={"back-btn"} 
-                                title={"< Revisar pedido"} 
+                                title={"< Voltar"} 
                                 onClick={() => setProceedPayment(false)}                    
                             />
                         </div>                    
