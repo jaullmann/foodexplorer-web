@@ -13,6 +13,7 @@ import { formatCurrency } from "../../functions";
 export function Payment() {
 
     const [data, setData] = useState(null);
+    const [orderStatus, setOrderStatus] = useState(null);
     const [totalPrice, setTotalPrice] = useState(0);
     const [paidOrder, setPaidOrder] = useState(false);
     const [proceedPayment, setProceedPayment] = useState(false);
@@ -24,7 +25,8 @@ export function Payment() {
         async function fetchOrder() {
             try {
                 const response = await api.get(`/orders/${params.id}`, { withCredentials: true });
-                setData(response.data.order_details);
+                setData(response.data.order_details);                
+                setOrderStatus(response.data.status);                
                 setPaidOrder(true);                
             } catch (e) {
                 console.log(e);
@@ -49,7 +51,7 @@ export function Payment() {
             fetchUserCart();               
         }               
         
-    }, [params.id]) 
+    }, []) 
     
     useEffect(() => {
         if (data){
@@ -100,7 +102,7 @@ export function Payment() {
                     
                     <div id="order-payment">
                         <SectionLabel title={paidOrder ? "Situação" : "Pagamento"} />
-                        <PaymentFrame paidOrder={paidOrder} orderStatus={data.status} />
+                        <PaymentFrame paidOrder={paidOrder} orderStatus={orderStatus} />
                         <div id="back-btn-frame">
                             <Button 
                                 id={"back-btn"} 
