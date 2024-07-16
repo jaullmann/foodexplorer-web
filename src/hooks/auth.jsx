@@ -6,13 +6,13 @@ export const AuthContext = createContext({});
 function AuthProvider({ children }) {
     
     const [data, setData] = useState({});    
-    const [role, setRole] = useState("customer");
+    const [role, setRole] = useState("customer");    
   
     async function signIn({ email, password }) {
   
       try {      
         const response = await api.post(
-          "sessions", 
+          "/sessions", 
           { email, password },
           { withCredentials: true },
         );
@@ -21,7 +21,7 @@ function AuthProvider({ children }) {
         localStorage.setItem("@foodexplorer:user", JSON.stringify(user));        
 
         setRole(user.role);                  
-        setData({ user })
+        setData({ user });                
         
       } catch (error) {
         if (error.response) {
@@ -29,14 +29,13 @@ function AuthProvider({ children }) {
         } else {
           alert("Não foi possível efetuar o login.");
         }
-      }    
+      }
     } 
-  
+      
     function signOut() {
-      localStorage.removeItem("@foodexplorer:user");      
-  
+      localStorage.removeItem("@foodexplorer:user");            
       setData({});
-    }
+    }    
   
     async function updateProfile({ user }) {
       try {                  
@@ -71,7 +70,7 @@ function AuthProvider({ children }) {
         signOut,
         updateProfile,
         user: data.user,
-        role     
+        role             
       }}>
         {children}
       </AuthContext.Provider>

@@ -25,7 +25,7 @@ export const Container = styled.div`
     cursor: pointer;   
   }
 
-  #fav-button {
+  .favorite-dish {
     fill: ${({ theme, $favorite }) => $favorite ? theme.COLORS.LIGHT_300 : 'none'};
   }
 

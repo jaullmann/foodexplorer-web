@@ -1,15 +1,19 @@
-import { Container } from "./styles"
 import { useState, useEffect } from "react";
-import { Header } from "../../components/Header"
-import { CardsSection } from "../../components/CardsSection"
-import { Footer } from "../../components/Footer"
-import homeBanner from "../../assets/images/home_banner.png"
+import { useAuth } from '../../hooks/auth';
+import { Container } from "./styles";
+import { Header } from "../../components/Header";
+import { CardsSection } from "../../components/CardsSection";
+import { Footer } from "../../components/Footer";
+import homeBanner from "../../assets/images/home_banner.png";
 
 export function Home({ admin = false }) {    
+
+  const { role } = useAuth();
+
   return(
     <Container>
 
-      <Header admin={admin}/>
+      <Header admin={role === 'admin'}/>
 
       <div id="banner-section">
         <div id="banner-slogan">

@@ -15,6 +15,7 @@ export function Routes() {
     api
       .get('/users/validated')
       .catch((error) => {
+        console.log(error)
         if (error.response?.status === 401) {
           signOut();
         }

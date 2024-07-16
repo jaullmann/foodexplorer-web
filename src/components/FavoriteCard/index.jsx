@@ -1,18 +1,14 @@
 import { api } from "../../services/api";
-import { useAuth } from '../../hooks/auth';
 import { useNavigate } from "react-router-dom";
-import { useEffect } from "react";
 import { Container } from "./styles";
 
 export function FavoriteCard({ dishId, title, imageFile }){
-
-    const { user } = useAuth();
+    
     const navigate = useNavigate();
 
     async function deleteFavorite(dishKey) {        
         try {
-            await api.delete("/favorites", {                
-                user_id: user.user_id,
+            await api.delete("/favorites", {
                 dish_id: dishKey
             }, 
             { withCredentials: true });   
