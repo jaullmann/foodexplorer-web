@@ -9,17 +9,18 @@ export function FavoriteCard({ dishId, title, imageFile }){
     const { user } = useAuth();
     const navigate = useNavigate();
 
-    async function deleteFavorite(dish) {
+    async function deleteFavorite(dishKey) {        
         try {
-            await api.delete('/favorites', {
+            await api.delete("/favorites", {                
                 user_id: user.user_id,
-                dish_id: dish
+                dish_id: dishKey
             }, 
-          { withCredentials: true });   
+            { withCredentials: true });   
         } catch(e) {    
             console.log(e);  
             return alert("Erro ao excluir favorito do usuário");
         }
+        
     } 
 
     function handleDishDetails(dishId) { 

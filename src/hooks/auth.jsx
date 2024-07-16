@@ -12,7 +12,7 @@ function AuthProvider({ children }) {
   
       try {      
         const response = await api.post(
-          "/sessions", 
+          "sessions", 
           { email, password },
           { withCredentials: true },
         );
