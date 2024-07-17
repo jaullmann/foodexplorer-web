@@ -27,7 +27,7 @@ export function Payment() {
                 const response = await api.get(`/orders/${orderId}`, { withCredentials: true });
                 setData(response.data.order_details);                
                 setOrderStatus(response.data.status);                
-                setPaidOrder(true);                
+                setPaidOrder(true);                   
             } catch (e) {
                 return navigate("/notfound");
             }
@@ -37,7 +37,7 @@ export function Payment() {
             try {
                 const response = await api.get('/cart', { withCredentials: true });
                 setData(response.data);
-                setPaidOrder(false);                                  
+                setPaidOrder(false);                                         
             } catch (e) {
                 console.log(e);
                 return navigate("/notfound");
@@ -56,7 +56,7 @@ export function Payment() {
         if (data){
             const total = data.reduce((accum, dish) => accum + (dish.dish_amount * dish.dish_price), 0);
             setTotalPrice(total);
-        }
+        }                 
     }, [data]);   
 
     

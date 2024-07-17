@@ -9,12 +9,9 @@ import { formToJSON } from "axios";
 
 export function CardsSection({ dishesData = null, sectionName, category, favorites }) {  
 
-  const [userFavorites, setUserFavorites] = useState(favorites);
+  const [favList, setFavList] = useState([]);
 
-  useEffect(() => {    
-  }, []);
-
-    // temp variable for testing
+  // temp variable for testing
   const cardsData = [
     {
       dish_id: 1, title: "Prato food explorer 1", imageFile: "/src/assets/samples/dish_image_large_1.png", 
@@ -54,6 +51,10 @@ export function CardsSection({ dishesData = null, sectionName, category, favorit
   ]  
 
   const filteredCards = cardsData.filter(c => c.category === category);
+
+  useEffect(() => {    
+    setFavList(favorites)    
+  }, [favorites]);
 
   return (
     <Section >    
@@ -105,7 +106,7 @@ export function CardsSection({ dishesData = null, sectionName, category, favorit
                   imageFile={card.imageFile}
                   description={card.description}
                   price={card.price} 
-                  favorite={userFavorites.includes(card.dish_id)}  
+                  favorites={favList}  
                 />
               </SwiperSlide>
             )

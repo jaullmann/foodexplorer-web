@@ -10,41 +10,57 @@ import { formatCurrency } from "../../functions"
 import { useEffect, useState } from 'react';
 
 
-export function DishCard({ dishId, title, imageFile, description, price, favorite,
+export function DishCard({ dishId, title, imageFile, description, price, favorites,
    loading = false }) {
     
-    const [favDish, setFavDish] = useState(favorite);
+    const [favDish, setFavDish] = useState(false);
     const { user } = useAuth();   
     const navigate = useNavigate();  
-    const admin = user.role === "admin";
+    const admin = user.role === "admin";   
 
-    useEffect(() => {
-      setFavDish(favorite)
-    }, [])
-
-    async function addFavorite(dishKey) {             
+    async function toggleFavoriteDish(dishKey) {             
       setFavDish(!favDish);
-      try {
+      if (!favDish) {
+        try {
           await api.post("/favorites", {
               dish_id: dishKey
           }, 
           { withCredentials: true });   
-      } catch(e) {    
-          console.log(e);  
-          return alert("Erro ao salvar favorito do usuário");
-      }      
+        } catch(e) {    
+            console.log(e);  
+            return alert("Erro ao salvar favorito do usuário");
+        }     
+      } else {
+        try {
+          await api.delete("favorites", {
+              data: {                
+                  user_id: user.user_id,
+                  dish_id: dishKey
+              },
+              withCredentials: true
+          });                              
+        } catch (e) {    
+            console.log(e);  
+            return alert("Erro ao excluir favorito do usuário");
+        }   
+      }
+       
     } 
 
     function handleDetails(dishId) {       
       navigate(`/description/${dishId}`);    
     }
 
+    useEffect(() => {
+      setFavDish(favorites.includes(dishId))      
+    }, [favorites])
+
     return(
         <Container key={String(dishId)}>
           {!admin && 
             <FiHeart 
               id={"fav-button-dish-" + dishId} 
-              onClick={() => addFavorite(dishId)}
+              onClick={() => toggleFavoriteDish(dishId)}
               className={favDish? "favorite-dish" : ""}
             />
           }

@@ -21,8 +21,7 @@ export function Home() {
               favorite.dish_id
             )
           });
-          setUserFavorites(favorites);
-          console.log(favorites);
+          setUserFavorites(favorites);          
         } catch(e) {  
           console.log(e)                   
           return alert("Erro ao consultar os favoritos do usuário");
