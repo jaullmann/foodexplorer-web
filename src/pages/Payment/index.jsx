@@ -18,18 +18,17 @@ export function Payment() {
     const [paidOrder, setPaidOrder] = useState(false);
     const [proceedPayment, setProceedPayment] = useState(false);
     const navigate = useNavigate();
-    const params = useParams();
+    const { orderId } = useParams();
 
     useEffect(() => {      
         
         async function fetchOrder() {
             try {
-                const response = await api.get(`/orders/${params.id}`, { withCredentials: true });
+                const response = await api.get(`/orders/${orderId}`, { withCredentials: true });
                 setData(response.data.order_details);                
                 setOrderStatus(response.data.status);                
                 setPaidOrder(true);                
             } catch (e) {
-                console.log(e);
                 return navigate("/notfound");
             }
         } 
@@ -45,7 +44,7 @@ export function Payment() {
             }                
         }
 
-        if (params.id) {            
+        if (orderId) {            
             fetchOrder();
         } else {            
             fetchUserCart();               

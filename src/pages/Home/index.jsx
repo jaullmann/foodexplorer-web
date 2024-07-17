@@ -22,6 +22,7 @@ export function Home() {
             )
           });
           setUserFavorites(favorites);
+          console.log(favorites);
         } catch(e) {  
           console.log(e)                   
           return alert("Erro ao consultar os favoritos do usuário");
@@ -50,14 +51,17 @@ export function Home() {
       <CardsSection
         sectionName={"Refeições"} 
         category={"refeicao"} 
+        favorites={userFavorites}
       />
       <CardsSection
         sectionName={"Sobremesas"} 
         category={"refeicao"} 
+        favorites={userFavorites}
       />
       <CardsSection
         sectionName={"Bebidas"} 
         category={"refeicao"} 
+        favorites={userFavorites}
       />
       
       <Footer />

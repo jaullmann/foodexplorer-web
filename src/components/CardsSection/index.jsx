@@ -7,7 +7,12 @@ import { DishCard } from "../DishCard";
 import { formToJSON } from "axios";
 
 
-export function CardsSection({ dishesData = null, sectionName, category }) {  
+export function CardsSection({ dishesData = null, sectionName, category, favorites }) {  
+
+  const [userFavorites, setUserFavorites] = useState(favorites);
+
+  useEffect(() => {    
+  }, []);
 
     // temp variable for testing
   const cardsData = [
@@ -100,7 +105,7 @@ export function CardsSection({ dishesData = null, sectionName, category }) {
                   imageFile={card.imageFile}
                   description={card.description}
                   price={card.price} 
-                  favorite={false}  
+                  favorite={userFavorites.includes(card.dish_id)}  
                 />
               </SwiperSlide>
             )

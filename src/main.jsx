@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { AuthProvider } from './hooks/auth';
+import { BrowserRouter } from "react-router-dom";
 import { Routes } from './routes';
 import { ThemeProvider } from 'styled-components';
 import GlobalStyles from './styles/global';

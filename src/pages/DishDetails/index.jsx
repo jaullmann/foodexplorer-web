@@ -21,12 +21,12 @@ export function DishDetails() {
   const [data, setData] = useState(null);
   const [amount, setAmount] = useState(1);
   const navigate = useNavigate();
-  const params = useParams();  
+  const { dishId } = useParams();  
 
   useEffect(() => {
     async function fetchProduct() {
       try {
-        const response = await api.get(`/dishes/${params.id}`, { withCredentials: true });        
+        const response = await api.get(`/dishes/${dishId}`, { withCredentials: true });        
         setData(response.data);
         !response.data && navigate("/notfound");
       } catch (e) {   

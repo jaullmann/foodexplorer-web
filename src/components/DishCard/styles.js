@@ -26,7 +26,7 @@ export const Container = styled.div`
   }
 
   .favorite-dish {
-    fill: ${({ theme, $favorite }) => $favorite ? theme.COLORS.LIGHT_300 : 'none'};
+    fill: ${({ theme }) => theme.COLORS.LIGHT_300};
   }
 
   > img {

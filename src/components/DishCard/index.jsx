@@ -10,14 +10,17 @@ import { formatCurrency } from "../../functions"
 import { useEffect, useState } from 'react';
 
 
-export function DishCard({ dishId, title, imageFile, description, price, favorite = false,
+export function DishCard({ dishId, title, imageFile, description, price, favorite,
    loading = false }) {
     
     const [favDish, setFavDish] = useState(favorite);
-    const { user } = useAuth();
+    const { user } = useAuth();   
+    const navigate = useNavigate();  
     const admin = user.role === "admin";
-    const navigate = useNavigate();   
-    
+
+    useEffect(() => {
+      setFavDish(favorite)
+    }, [])
 
     async function addFavorite(dishKey) {             
       setFavDish(!favDish);
@@ -32,12 +35,12 @@ export function DishCard({ dishId, title, imageFile, description, price, favorit
       }      
     } 
 
-    function handleDetails(dishId) { 
+    function handleDetails(dishId) {       
       navigate(`/description/${dishId}`);    
     }
 
     return(
-        <Container key={String(dishId)} $favorite={favDish}>
+        <Container key={String(dishId)}>
           {!admin && 
             <FiHeart 
               id={"fav-button-dish-" + dishId} 
