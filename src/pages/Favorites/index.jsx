@@ -1,5 +1,6 @@
 import { api } from "../../services/api";
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { Container, Main } from "./styles";
 import { Header } from "../../components/Header";
 import { Footer } from "../../components/Footer";
@@ -9,6 +10,7 @@ import { FavoriteCard } from "../../components/FavoriteCard";
 export function Favorites() {    
 
     const [data, setData] = useState();
+    const navigate = useNavigate();
 
     async function fetchFavorites() {
         try {
