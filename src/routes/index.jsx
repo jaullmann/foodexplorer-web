@@ -12,13 +12,17 @@ export function Routes() {
   const { user, signOut } = useAuth();
 
   useEffect(() => {
-    api
-      .get('/users/validated')
-      .catch((error) => {        
-        if (error.response?.status === 401) {          
+    const fetchValidatedUser = async () => {
+      try {
+        await api.get('/users/validated');
+      } catch (error) {
+        if (error.response?.status === 401) {
           signOut();
         }
-      })
+      }
+    };
+  
+    fetchValidatedUser();
   }, []);
 
   function AccessRoute() {

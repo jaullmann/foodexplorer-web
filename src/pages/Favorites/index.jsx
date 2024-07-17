@@ -10,19 +10,19 @@ export function Favorites() {
 
     const [data, setData] = useState();
 
+    async function fetchFavorites() {
+        try {
+          const response = await api.get('/favorites', { withCredentials: true });
+          setData(response.data);        
+        } catch(e) {
+          navigate("/notfound");              
+          return alert("Erro ao consultar os favoritos do usuário");
+        }
+      }
+
     useEffect(() => {
-        async function fetchFavorites() {
-            try {
-              const response = await api.get('/favorites', { withCredentials: true });
-              setData(response.data);        
-            } catch(e) {
-              navigate("/notfound");              
-              return alert("Erro ao consultar os favoritos do usuário");
-            }
-          }
-      
-          fetchFavorites();
-    }, [])
+        fetchFavorites();
+    }, []);
 
     return(
         
@@ -48,7 +48,8 @@ export function Favorites() {
                                         key={"fav-dish-" + favorite.dish_id}
                                         dishId={favorite.dish_id}
                                         title={favorite.title}
-                                        imageFile={`${api.defaults.baseURL}/files/${favorite.image_file}`}                                        
+                                        imageFile={`${api.defaults.baseURL}/files/${favorite.image_file}`}     
+                                        onDeleteFavorite={fetchFavorites}                                   
                                     />
                                 ))
                             }                    
