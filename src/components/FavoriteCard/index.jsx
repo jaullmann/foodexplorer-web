@@ -11,9 +11,9 @@ export function FavoriteCard({ dishId, title, imageFile }){
 
     async function deleteFavorite(dishKey) {        
         try {
-            await api.delete("/favorites", {                
+            await api.delete("favorites", {                
                 user_id: user.user_id,
-                dish_id: dishKey
+                dishKey
             }, 
             { withCredentials: true });   
         } catch(e) {    
