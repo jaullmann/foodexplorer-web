@@ -91,7 +91,7 @@ export function Orders() {
                                                                     details.dish_amount +
                                                                     " x " +
                                                                     details.title + `
-                                                    ${index == list.length - 1 ? "" : ", "}`
+                                                                    ${index == list.length - 1 ? "" : ", "}`
                                                                 ))
                                                             }
                                                         </td>

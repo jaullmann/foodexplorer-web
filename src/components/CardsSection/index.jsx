@@ -7,7 +7,7 @@ import { DishCard } from "../DishCard";
 import { formToJSON } from "axios";
 
 
-export function CardsSection({ dishesData = null, sectionName, category}) {  
+export function CardsSection({ dishesData = null, sectionName, category }) {  
 
     // temp variable for testing
   const cardsData = [

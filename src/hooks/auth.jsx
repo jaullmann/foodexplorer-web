@@ -1,28 +1,26 @@
 import { api } from "../services/api";
 import { createContext, useContext, useState, useEffect } from "react";
 
-export const AuthContext = createContext({});
+const AuthContext = createContext({});
 
 function AuthProvider({ children }) {
     
-    const [data, setData] = useState({});    
-    const [role, setRole] = useState("customer");    
+    const [data, setData] = useState({});        
   
     async function signIn({ email, password }) {
   
       try {      
         const response = await api.post(
-          "/sessions", 
+          "sessions", 
           { email, password },
           { withCredentials: true },
         );
         const { user } = response.data;        
                 
         localStorage.setItem("@foodexplorer:user", JSON.stringify(user));        
-
-        setRole(user.role);                  
-        setData({ user });                
-        
+                  
+        setData({ user });    
+                
       } catch (error) {
         if (error.response) {
           alert(error.response.data.message);
@@ -33,26 +31,27 @@ function AuthProvider({ children }) {
     } 
       
     function signOut() {
-      localStorage.removeItem("@foodexplorer:user");            
+      localStorage.removeItem("@foodexplorer:user"); 
+
       setData({});
     }    
   
-    async function updateProfile({ user }) {
-      try {                  
-        await api.put("/users", user);
-        localStorage.setItem("@foodexplorer:user", JSON.stringify(user));
-        setData({ user });
-        alert("Perfil atualizado com sucesso!");
-        return true;
-      } catch (error) {
-        if (error.response) {
-          alert(error.response.data.message);
-        } else {
-          alert("Não foi possível atualizar os dados do perfil.");
-          return false;
-        }
-      }    
-    }
+    // async function updateProfile({ user }) {
+    //   try {                  
+    //     await api.put("/users", user);
+    //     localStorage.setItem("@foodexplorer:user", JSON.stringify(user));
+    //     setData({ user });
+    //     alert("Perfil atualizado com sucesso!");
+    //     return true;
+    //   } catch (error) {
+    //     if (error.response) {
+    //       alert(error.response.data.message);
+    //     } else {
+    //       alert("Não foi possível atualizar os dados do perfil.");
+    //       return false;
+    //     }
+    //   }    
+    // }
       
     useEffect(() => {          
       const user = localStorage.getItem("@foodexplorer:user");
@@ -61,16 +60,16 @@ function AuthProvider({ children }) {
         setData({          
           user: JSON.parse(user)
         });
+      } else {        
+        setData({user_id: 0, role: "customer"});
       }
     }, []);
             
     return (
       <AuthContext.Provider value={{ 
         signIn, 
-        signOut,
-        updateProfile,
-        user: data.user,
-        role             
+        signOut,        
+        user: data.user
       }}>
         {children}
       </AuthContext.Provider>

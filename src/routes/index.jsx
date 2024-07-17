@@ -9,7 +9,7 @@ import { useEffect } from "react";
 import { api } from "../services/api";
 
 export function Routes() {
-  const { user, role, signOut } = useAuth();
+  const { user, signOut } = useAuth();
 
   useEffect(() => {
     api
@@ -22,7 +22,7 @@ export function Routes() {
   }, []);
 
   function AccessRoute() {
-    switch (role) {
+    switch (user.role) {
       case USER_ROLE.ADMIN:
         return <AdminRoutes />;
       case USER_ROLE.CUSTOMER:
@@ -36,5 +36,5 @@ export function Routes() {
     <BrowserRouter>      
       {user ? <AccessRoute /> : <AuthRoutes />}
     </BrowserRouter>
-  )
+  );
 }

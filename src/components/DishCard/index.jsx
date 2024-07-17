@@ -11,14 +11,13 @@ import { useEffect, useState } from 'react';
 
 
 export function DishCard({ dishId, title, imageFile, description, price, favorite = false,
-   loading = false, onClick }) {
+   loading = false }) {
     
     const [favDish, setFavDish] = useState(favorite);
     const { user } = useAuth();
     const admin = user.role === "admin";
     const navigate = useNavigate();   
-
-    // useEffect(() => {}, [addFavorite])
+    
 
     async function addFavorite(dishKey) {             
       setFavDish(!favDish);

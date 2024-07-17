@@ -11,9 +11,9 @@ import { CartButton } from "../CartButton";
 
 export function Header() {
 
-    const { role, signOut } = useAuth();
+    const { user, signOut } = useAuth();
     const navigate = useNavigate();
-    const admin = role === "admin"
+    const admin = user?.role === "admin" ? true : false
 
     function handleSignOut() {
         navigate('/')
@@ -23,7 +23,7 @@ export function Header() {
     return (
         <Section>            
             <div className="desktop">   
-                <MainLogo userRole={role} />
+                <MainLogo userRole={admin ? "admin" : "customer"} />
                 <SearchInput id="search-input" />
                 {!admin && <Link to={"/favorites"} id="favorites">Meus favoritos</Link>}
                 {!admin && <Link to={"/orders"} id="orders">Meus pedidos</Link>}

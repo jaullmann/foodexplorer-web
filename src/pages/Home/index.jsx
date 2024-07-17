@@ -1,3 +1,4 @@
+import { api } from "../../services/api";
 import { useState, useEffect } from "react";
 import { useAuth } from '../../hooks/auth';
 import { Container } from "./styles";
@@ -6,14 +7,34 @@ import { CardsSection } from "../../components/CardsSection";
 import { Footer } from "../../components/Footer";
 import homeBanner from "../../assets/images/home_banner.png";
 
-export function Home({ admin = false }) {    
+export function Home() {    
 
-  const { role } = useAuth();
+  const [userFavorites, setUserFavorites] = useState([]); 
+  const { user } = useAuth(); 
+
+  useEffect(() => {
+    async function fetchFavorites() {
+        try {
+          const response = await api.get('/favorites', { withCredentials: true });
+          const favorites = response.data.map((favorite) => {
+            return (
+              favorite.dish_id
+            )
+          });
+          setUserFavorites(favorites);
+        } catch(e) {  
+          console.log(e)                   
+          return alert("Erro ao consultar os favoritos do usuário");
+        }
+      }
+  
+      fetchFavorites();      
+}, [])
 
   return(
     <Container>
 
-      <Header admin={role === 'admin'}/>
+      <Header admin={user.role === 'admin'}/>
 
       <div id="banner-section">
         <div id="banner-slogan">
@@ -26,9 +47,18 @@ export function Home({ admin = false }) {
         </div>  
       </div>
 
-      <CardsSection sectionName={"Refeições"} category={"refeicao"}/>
-      <CardsSection sectionName={"Sobremesas"} category={"refeicao"}/>
-      <CardsSection sectionName={"Bebidas"} category={"refeicao"}/>
+      <CardsSection
+        sectionName={"Refeições"} 
+        category={"refeicao"} 
+      />
+      <CardsSection
+        sectionName={"Sobremesas"} 
+        category={"refeicao"} 
+      />
+      <CardsSection
+        sectionName={"Bebidas"} 
+        category={"refeicao"} 
+      />
       
       <Footer />
 
