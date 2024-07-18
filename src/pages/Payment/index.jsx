@@ -20,30 +20,29 @@ export function Payment() {
     const navigate = useNavigate();
     const { orderId } = useParams();
 
-    useEffect(() => {      
-        
-        async function fetchOrder() {
-            try {
-                const response = await api.get(`/orders/${orderId}`, { withCredentials: true });
-                setData(response.data.order_details);                
-                setOrderStatus(response.data.status);                
-                setPaidOrder(true);                   
-            } catch (e) {
-                return navigate("/notfound");
-            }
-        } 
-
-        async function fetchUserCart() {
-            try {
-                const response = await api.get('/cart', { withCredentials: true });
-                setData(response.data);
-                setPaidOrder(false);                                         
-            } catch (e) {
-                console.log(e);
-                return navigate("/notfound");
-            }                
+    async function fetchOrder() {
+        try {
+            const response = await api.get(`/orders/${orderId}`, { withCredentials: true });
+            setData(response.data.order_details);                
+            setOrderStatus(response.data.status);                
+            setPaidOrder(true);                   
+        } catch (e) {
+            return navigate("/notfound");
         }
+    } 
 
+    async function fetchUserCart() {
+        try {
+            const response = await api.get('/cart', { withCredentials: true });
+            setData(response.data);
+            setPaidOrder(false);                                         
+        } catch (e) {
+            console.log(e);
+            return navigate("/notfound");
+        }                
+    }
+
+    useEffect(() => {      
         if (orderId) {            
             fetchOrder();
         } else {            
@@ -55,7 +54,7 @@ export function Payment() {
     useEffect(() => {
         if (data){
             const total = data.reduce((accum, dish) => accum + (dish.dish_amount * dish.dish_price), 0);
-            setTotalPrice(total);
+            setTotalPrice(total);            
         }                 
     }, [data]);   
 
@@ -79,12 +78,13 @@ export function Payment() {
                                     return (
                                         <OrderCardDetail
                                             key={card.dish_id}
-                                            id={card.dish_id}
+                                            dishId={card.dish_id}
                                             title={card.title}
                                             imageFile={`${api.defaults.baseURL}/files/${card.image_file}`}
                                             amount={card.dish_amount}
                                             price={card.dish_price}
                                             paidOrder={paidOrder}
+                                            onDeleteCartDish={fetchUserCart}
                                         />
                                     );
                                 })

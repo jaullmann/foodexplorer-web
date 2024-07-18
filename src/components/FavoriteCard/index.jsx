@@ -1,7 +1,6 @@
 import { api } from "../../services/api";
 import { useAuth } from '../../hooks/auth';
 import { useNavigate } from "react-router-dom";
-import { useEffect } from "react";
 import { Container } from "./styles";
 
 export function FavoriteCard({ dishId, title, imageFile, onDeleteFavorite }){
@@ -20,8 +19,7 @@ export function FavoriteCard({ dishId, title, imageFile, onDeleteFavorite }){
             });  
             onDeleteFavorite();
             return alert("Favorito excluído com sucesso!")           
-        } catch (e) {    
-            console.log(e);  
+        } catch (e) {                
             return alert("Erro ao excluir favorito do usuário");
         }   
     }
