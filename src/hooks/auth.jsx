@@ -61,9 +61,7 @@ function AuthProvider({ children }) {
           user: JSON.parse(user)
         });
       } 
-      // else {        
-      //   setData({user_id: 0, role: "customer"});
-      // }
+            
     }, []);
             
     return (
