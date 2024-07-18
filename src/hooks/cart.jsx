@@ -11,7 +11,7 @@ function CartProvider({ children }) {
     async function fetchCart() {
         try {
             const response = await api.get(
-                'cart', 
+                "cart", 
                 { withCredentials: true }
             );
 
@@ -33,6 +33,28 @@ function CartProvider({ children }) {
         }
     }
 
+    async function addToCart({dishId, dishAmount}) {  
+        console.log(dishId, dishAmount)      
+        try {
+            await api.post(
+                "cart",                
+                {
+                    dish_id: dishId,
+                    dish_amount: dishAmount
+                },
+                { withCredentials: true }
+            )
+            fetchCart();
+        } catch (error) {  
+            console.log(error)
+            if (error.response) {
+                alert(error.response.data.message);
+            } else {
+                return alert('Erro ao adicionar item ao pedido');
+            }            
+        }
+    }
+
     useEffect(() => {
         fetchCart();
     }, []);
@@ -42,7 +64,8 @@ function CartProvider({ children }) {
             cartData,
             cartAmount, 
             setCartAmount, 
-            fetchCart 
+            fetchCart,
+            addToCart
         }}>
             {children}
         </CartContext.Provider>

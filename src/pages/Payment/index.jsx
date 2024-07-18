@@ -18,9 +18,8 @@ export function Payment() {
     const [totalPrice, setTotalPrice] = useState(0);
     const [paidOrder, setPaidOrder] = useState(false);
     const [proceedPayment, setProceedPayment] = useState(false);
-    const navigate = useNavigate();
-    const { fetchCart, cartData } = useCart();
     const { orderId } = useParams();
+    const navigate = useNavigate();    
 
     async function fetchOrder() {
             try {
@@ -70,47 +69,55 @@ export function Payment() {
                 <Main                
                     $proceedPayment={proceedPayment}
                 >
-                    
-                    <div id="order-details">
-                        <SectionLabel title={"Meu pedido"} />
-                        <div id="dishes">                        
-                            {                                   
-                                data.map((card) => {                                    
-                                    return (
-                                        <OrderCardDetail
-                                            key={card.dish_id}
-                                            dishId={card.dish_id}
-                                            title={card.title}
-                                            imageFile={`${api.defaults.baseURL}/files/${card.image_file}`}
-                                            amount={card.dish_amount}
-                                            price={card.dish_price}
-                                            paidOrder={paidOrder}
-                                            onDeleteCartDish={fetchUserCart}
-                                        />
-                                    );
-                                })
-                            }
-                            
-                        </div>
-                        <h2 id="total">{"Total: " + formatCurrency(totalPrice)}</h2>
-                        <Button 
-                            id={"next-btn"} 
-                            title={"Avançar >"} 
-                            onClick={() => setProceedPayment(true)}                    
-                        />
-                    </div>
-                    
-                    <div id="order-payment">
-                        <SectionLabel title={paidOrder ? "Situação" : "Pagamento"} />
-                        <PaymentFrame paidOrder={paidOrder} orderStatus={orderStatus} />
-                        <div id="back-btn-frame">
+                    {
+                        data.length > 0 &&
+                        <div id="order-details">
+                            <SectionLabel title={"Meu pedido"} />
+                            <div id="dishes">                        
+                                {                                   
+                                    data.map((card) => {                                    
+                                        return (
+                                            <OrderCardDetail
+                                                key={card.dish_id}
+                                                dishId={card.dish_id}
+                                                title={card.title}
+                                                imageFile={`${api.defaults.baseURL}/files/${card.image_file}`}
+                                                amount={card.dish_amount}
+                                                price={card.dish_price}
+                                                paidOrder={paidOrder}
+                                                onDeleteCartDish={fetchUserCart}
+                                            />
+                                        );
+                                    })
+                                }
+                                
+                            </div>
+                            <h2 id="total">{"Total: " + formatCurrency(totalPrice)}</h2>
                             <Button 
-                                id={"back-btn"} 
-                                title={"< Voltar"} 
-                                onClick={() => setProceedPayment(false)}                    
+                                id={"next-btn"} 
+                                title={"Avançar >"} 
+                                onClick={() => setProceedPayment(true)}                    
                             />
-                        </div>                    
-                    </div>
+                        </div>
+                    }
+                    {
+                        data.length > 0 &&
+                        <div id="order-payment">
+                            <SectionLabel title={paidOrder ? "Situação" : "Pagamento"} />
+                            <PaymentFrame paidOrder={paidOrder} orderStatus={orderStatus} />
+                            <div id="back-btn-frame">
+                                <Button 
+                                    id={"back-btn"} 
+                                    title={"< Voltar"} 
+                                    onClick={() => setProceedPayment(false)}                    
+                                />
+                            </div>                    
+                        </div>
+                    }
+                {   
+                    data.length === 0 &&
+                    <h1>Não existem pedidos em aberto até o momento</h1>
+                }
 
                 </Main>
             }            

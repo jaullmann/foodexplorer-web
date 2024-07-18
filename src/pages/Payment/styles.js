@@ -13,7 +13,7 @@ export const Container = styled.div`
 `;
 
 export const Main = styled.main`
-    padding: 2.125rem 12.25rem 2.1rem 4rem;
+    padding: 2.125rem 4rem 2.1rem 4rem;
     width: 100%;
     max-width: 93.5rem; 
     margin-bottom: auto;   
@@ -22,6 +22,15 @@ export const Main = styled.main`
     align-items: flex-start;
     justify-content: space-between;  
     gap: 2.5vw;      
+
+    > h1 {
+        width: 100vw;
+        margin-top: 8rem;
+        font-size: 1.7rem;
+        ${({ theme }) => theme.FONTS.POPPINS_MEDIUM};
+        color: ${({ theme }) => theme.COLORS.LIGHT_500};
+        text-align: center;
+    }
 
     #order-details {
         display: flex;
@@ -73,7 +82,9 @@ export const Main = styled.main`
         display: none;              
     }
 
-    #order-payment {          
+    #order-payment {     
+        margin-right: 8rem;
+
         display: flex;
         flex-direction: column;
         align-items: flex-start;
@@ -95,6 +106,7 @@ export const Main = styled.main`
         
         #order-payment {
             width: 100%;
+            margin: 0;
 
             display: ${({ $proceedPayment }) => $proceedPayment ? "flex" : "none"};
             align-items: center;

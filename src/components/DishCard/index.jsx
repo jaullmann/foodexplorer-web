@@ -1,5 +1,6 @@
 import { api } from '../../services/api';
 import { useAuth } from '../../hooks/auth';
+import { useCart } from "../../hooks/cart";
 import { useNavigate } from "react-router-dom";
 import { Container } from "./styles";
 import { DishCounter } from "../DishCounter";
@@ -14,7 +15,9 @@ export function DishCard({ dishId, title, imageFile, description, price, favorit
    loading = false }) {
     
     const [favDish, setFavDish] = useState(false);
-    const { user } = useAuth();   
+    const [amount, setAmount] = useState(1);  
+    const { user } = useAuth();  
+    const { addToCart } = useCart();
     const navigate = useNavigate();  
     const admin = user.role === "admin";   
 
@@ -79,11 +82,13 @@ export function DishCard({ dishId, title, imageFile, description, price, favorit
           <h2>{loading ? "R$ --,--" : formatCurrency(price)}</h2>
           {!admin &&
             <div>
-              <DishCounter />
+              <DishCounter onAmountChange={setAmount}/>
               <Button 
                 title={"incluir"}
                 loading={loading}    
-                onClick={null}          
+                onClick={() => {                      
+                  addToCart({ dishId: dishId, dishAmount: amount})                     
+                }}         
               />
             </div>     
           }            

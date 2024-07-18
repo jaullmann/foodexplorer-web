@@ -1,5 +1,6 @@
 import { api } from "../../services/api";
 import { useAuth } from '../../hooks/auth';
+import { useCart } from "../../hooks/cart";
 import { Container, Main } from "./styles";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
@@ -19,9 +20,10 @@ export function DishDetails() {
   const admin = user.role === "admin";
 
   const [data, setData] = useState(null);
-  const [amount, setAmount] = useState(1);
+  const [amount, setAmount] = useState(1);  
+  const { dishId } = useParams();
+  const { addToCart } = useCart();
   const navigate = useNavigate();
-  const { dishId } = useParams();  
 
   useEffect(() => {
     async function fetchProduct() {
@@ -77,8 +79,19 @@ export function DishDetails() {
 
               <div id="user-action">
                 <DishCounter onAmountChange={setAmount} />
-                {!admin && <Button title={"incluir ∙ " + formatCurrency(data.price * amount)} />}
-                {admin && <Button title={"Editar prato"} />}
+                {
+                  !admin && 
+                  <Button 
+                    title={"incluir ∙ " + formatCurrency(data.price * amount)} 
+                    onClick={() => {                      
+                      addToCart({ dishId: dishId, dishAmount: amount})                     
+                    }}
+                  />
+                }
+                {
+                  admin && 
+                  <Button title={"Editar prato"} />
+                }
               </div>
             </div>
           </div>
