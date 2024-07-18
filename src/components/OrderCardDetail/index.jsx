@@ -1,11 +1,13 @@
 import { api } from "../../services/api";
 import { useNavigate } from "react-router-dom";
+import { useCart } from "../../hooks/cart";
 import { Container } from "./styles";
 import { formatCurrency } from "../../functions";
 
 export function OrderCardDetail({ dishId, title, imageFile, amount, price, paidOrder, onDeleteCartDish }){
 
   const navigate = useNavigate();
+  const { fetchCart } = useCart();
 
   async function deleteCartDish(dishId) {
     if (!confirm("Deseja realmente retirar esse produto do seu pedido?")) {
@@ -18,10 +20,11 @@ export function OrderCardDetail({ dishId, title, imageFile, amount, price, paidO
         },
         withCredentials: true
       });
+      fetchCart();
       onDeleteCartDish();
     } catch(e) {
       console.log(e);  
-      return alert("Erro ao remover do carrinho");
+      return alert("Erro ao excluir produto do pedido");
     }
   }
 

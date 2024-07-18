@@ -1,4 +1,5 @@
 import { api } from "../../services/api";
+import { useCart } from "../../hooks/cart";
 import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { Container, Main } from "./styles";
@@ -18,18 +19,19 @@ export function Payment() {
     const [paidOrder, setPaidOrder] = useState(false);
     const [proceedPayment, setProceedPayment] = useState(false);
     const navigate = useNavigate();
+    const { fetchCart, cartData } = useCart();
     const { orderId } = useParams();
 
     async function fetchOrder() {
-        try {
-            const response = await api.get(`/orders/${orderId}`, { withCredentials: true });
-            setData(response.data.order_details);                
-            setOrderStatus(response.data.status);                
-            setPaidOrder(true);                   
-        } catch (e) {
-            return navigate("/notfound");
-        }
-    } 
+            try {
+                const response = await api.get(`/orders/${orderId}`, { withCredentials: true });
+                setData(response.data.order_details);                
+                setOrderStatus(response.data.status);                
+                setPaidOrder(true);                   
+            } catch (e) {
+                return navigate("/notfound");
+            }
+        } 
 
     async function fetchUserCart() {
         try {
@@ -46,9 +48,8 @@ export function Payment() {
         if (orderId) {            
             fetchOrder();
         } else {            
-            fetchUserCart();               
-        }               
-        
+            fetchUserCart();            
+        }            
     }, []) 
     
     useEffect(() => {

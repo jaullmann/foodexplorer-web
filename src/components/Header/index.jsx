@@ -1,6 +1,7 @@
 import { api } from "../../services/api";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../../hooks/auth";
+import { useCart } from "../../hooks/cart";
 import { Section } from "./styles";
 import { MainLogo } from "../MainLogo";
 import { SearchInput } from "../SearchInput";
@@ -15,27 +16,27 @@ import Menu from "../../assets/app_icons/menu.svg"
 export function Header() {
 
     const { user, signOut } = useAuth();
-    const [cartAmount, setCartAmount] = useState(0);
+    const { cartAmount } = useCart();
     const navigate = useNavigate();
-    const admin = user?.role === "admin" ? true : false
+    const admin = user?.role === "admin"
 
-    async function fetchCart() {
-        try {
-            const response = await api.get("cart", { withCredentials: true });
-            let totalDishAmount = 0;
-            response.data.forEach(dish => {
-                totalDishAmount += dish.dish_amount;
-            });
-            setCartAmount(totalDishAmount);          
-        }   catch(e) {  
-            console.log(e)                   
-            return alert("Erro ao consultar os favoritos do usuário");
-        }
-    }
+    // async function fetchCart() {
+    //     try {
+    //         const response = await api.get("cart", { withCredentials: true });
+    //         let totalDishAmount = 0;
+    //         response.data.forEach(dish => {
+    //             totalDishAmount += dish.dish_amount;
+    //         });
+    //         setCartAmount(totalDishAmount);          
+    //     }   catch(e) {  
+    //         console.log(e)                   
+    //         return alert("Erro ao consultar os favoritos do usuário");
+    //     }
+    // }
 
-    useEffect(() => {       
-        fetchCart();      
-    }, [])
+    // useEffect(() => {       
+    //     fetchCart();      
+    // }, [])
 
     function handleSignOut() {
         navigate('/')
