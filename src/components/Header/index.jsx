@@ -20,24 +20,6 @@ export function Header() {
     const navigate = useNavigate();
     const admin = user?.role === "admin"
 
-    // async function fetchCart() {
-    //     try {
-    //         const response = await api.get("cart", { withCredentials: true });
-    //         let totalDishAmount = 0;
-    //         response.data.forEach(dish => {
-    //             totalDishAmount += dish.dish_amount;
-    //         });
-    //         setCartAmount(totalDishAmount);          
-    //     }   catch(e) {  
-    //         console.log(e)                   
-    //         return alert("Erro ao consultar os favoritos do usuário");
-    //     }
-    // }
-
-    // useEffect(() => {       
-    //     fetchCart();      
-    // }, [])
-
     function handleSignOut() {
         navigate('/')
         signOut();

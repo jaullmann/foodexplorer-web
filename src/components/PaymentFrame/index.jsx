@@ -2,6 +2,7 @@ import { PiClock, PiCheckCircle, PiClockUser, PiForkKnife, PiWarning } from "rea
 import { useState, useEffect } from "react";
 import { Container } from "./styles";
 import { LabeledInput } from "../LabeledInput";
+import { LabeledCreditInput } from "../LabeledCreditInput";  
 import { PaymentButton } from "../PaymentButton";
 import PixIcon from "../../assets/app_icons/pix.svg";
 import CreditIcon from "../../assets/app_icons/credit_card.svg";
@@ -57,21 +58,24 @@ export function PaymentFrame({ paidOrder=false, orderStatus="preparando" }) {
                !paidOrder &&  
                <div id="frame-credit">
                     <div id="frame-credit-1">
-                        <LabeledInput 
+                        <LabeledCreditInput 
                             label="Número do Cartão"
                             placeholder="0000 0000 0000 0000"
+                            inputType={"creditCard"}
                             altStyle
                         />
                     </div>
                     <div id="frame-credit-2">
-                        <LabeledInput 
+                        <LabeledCreditInput 
                             label="Validade"
-                            placeholder="04/25"
+                            placeholder="04/29"
+                            inputType={"expiryDate"}
                             altStyle
                         />
-                        <LabeledInput 
+                        <LabeledCreditInput 
                             label="CVC"
                             placeholder="000"
+                            inputType={"cvv"}
                             altStyle
                         />
                     </div>
