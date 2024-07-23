@@ -14,9 +14,13 @@ export function PaymentFrame({ paidOrder=false, orderStatus="preparando", cartDa
 
     const [paymentOption, setPaymentOption] = useState("pix");
     const [cardNumber, setCardNumber] = useState("");
-    const [cvvNumber, setCvvNumber] = useState("");
+    const [cardDate, setCardDate] = useState("");
+    const [cardCvv, setCardCvv] = useState("");
 
-    async function placeOrder() {
+    async function placeOrder() {   
+        if (!isValidCardNumber() || !isValidCvv() || isValidDate ()) {
+            return
+        }
         const orderData = {
             payment_method: paymentOption === "pix" ? "pix" : "crédito",
             ordered_dishes: cartData.map((dish) => {
@@ -27,9 +31,9 @@ export function PaymentFrame({ paidOrder=false, orderStatus="preparando", cartDa
                 })
             })
         }
-        console.log(orderData);
         try {
-            api.post("orders", { orderData }, { withCredentials: true });
+            const response = await api.post("orders", orderData, { withCredentials: true });
+            const { order_id } = response.data;            
         } catch (error) {
             if (error.response) {
                 alert(error.response.data.message);
@@ -39,14 +43,31 @@ export function PaymentFrame({ paidOrder=false, orderStatus="preparando", cartDa
         }
                 
     };
+    
+    function isValidCardNumber() {             
+        if (String(cardNumber).length === 19) {
+            return true;
+        }
+        alert("Erro - número do cartão deve ter 16 dígitos!");
+        return false;
+    };
 
-    function isValidCardNumber(cardNumber) {
-        return cardNumber.length === 19;
+    function isValidDate() {
+        if (cardDate.length === 5) {
+            return true;
+        }
+        alert("Erro - data de vencimento incompleta!");
+        return false;
+    }
+    
+    function isValidCvv() {
+        if (String(cardCvv).length === 3) {
+            return true;
+        }
+        alert("Erro - código de segurança deve ter 3 dígitos!");
+        return false;
     };
     
-    function isValidCvv(cvv) {
-        return cvv.length === 3;
-    };
 
     return (
         <Container $paymentChoice={paymentOption}>
@@ -97,22 +118,26 @@ export function PaymentFrame({ paidOrder=false, orderStatus="preparando", cartDa
                             label="Número do Cartão"
                             placeholder="0000 0000 0000 0000"
                             inputType={"creditCard"}
-                            onChange={e => setCardNumber(e.target.value)}
+                            value={cardNumber}
+                            onChange={setCardNumber}
                             altStyle
                         />
                     </div>
                     <div id="frame-credit-2">
                         <LabeledCreditInput 
                             label="Validade"
-                            placeholder="04/29"
+                            placeholder="04/29"                            
                             inputType={"expiryDate"}
+                            value={cardDate}
+                            onChange={setCardDate}
                             altStyle
                         />
                         <LabeledCreditInput 
                             label="CVC"
                             placeholder="000"
                             inputType={"cvv"}
-                            onChange={e => setCvvNumber(e.target.value)}
+                            value={cardCvv}
+                            onChange={setCardCvv}
                             altStyle
                         />
                     </div>
