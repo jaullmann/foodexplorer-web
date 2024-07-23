@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { Container, Input } from "./styles";
 
-export function LabeledCreditInput({ label, placeholder, altStyle, inputType, ...rest }) {
-  const [value, setValue] = useState("");  
+export function LabeledCreditInput({ label, placeholder, altStyle, value, inputType, onChange, ...rest }) {
+  const [innerValue, setInnerValue] = useState("");  
   
   function handleInputChange(e) {
     const inputValue = e.target.value;
@@ -21,7 +21,7 @@ export function LabeledCreditInput({ label, placeholder, altStyle, inputType, ..
         .substring(0, 5); 
 
       if (formattedValue.length === 5 && !isValidExpiryDate(formattedValue)) {     
-        setValue(""); 
+        setInnerValue(""); 
         return alert("Data de validade inválida!");  
       }
 
@@ -32,7 +32,10 @@ export function LabeledCreditInput({ label, placeholder, altStyle, inputType, ..
 
     }
 
-    setValue(formattedValue);    
+    setInnerValue(formattedValue);    
+    if (onChange) {
+      onChange(formattedValue);
+    }
   };
 
   function isValidExpiryDate(date) {
@@ -52,7 +55,7 @@ export function LabeledCreditInput({ label, placeholder, altStyle, inputType, ..
       <Input
         $alternativeStyle={altStyle} 
         type="text"
-        value={value}
+        value={innerValue}
         onChange={(e) => handleInputChange(e)}
         placeholder={placeholder}
         maxLength={inputType === 'creditCard' ? 19 : inputType === 'expiryDate' ? 5 : 3}
