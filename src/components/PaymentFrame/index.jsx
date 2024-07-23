@@ -1,8 +1,8 @@
 import { api } from "../../services/api";
 import { PiClock, PiCheckCircle, PiClockUser, PiForkKnife, PiWarning } from "react-icons/pi";
-import { useState, useEffect } from "react";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { Container } from "./styles";
-import { LabeledInput } from "../LabeledInput";
 import { LabeledCreditInput } from "../LabeledCreditInput";  
 import { PaymentButton } from "../PaymentButton";
 import PixIcon from "../../assets/app_icons/pix.svg";
@@ -16,6 +16,8 @@ export function PaymentFrame({ paidOrder=false, orderStatus="preparando", cartDa
     const [cardNumber, setCardNumber] = useState("");
     const [cardDate, setCardDate] = useState("");
     const [cardCvv, setCardCvv] = useState("");
+
+    const navigate = useNavigate();    
 
     async function placeOrder() {   
         if (!isValidCardNumber() || !isValidCvv() || !isValidDate()) {
@@ -31,17 +33,31 @@ export function PaymentFrame({ paidOrder=false, orderStatus="preparando", cartDa
                 })
             })
         }
+        
+        let orderId;
         try {
             const response = await api.post("orders", orderData, { withCredentials: true });
-            const { order_id } = response.data;            
-        } catch (error) {
-            if (error.response) {
-                alert(error.response.data.message);
+            orderId = response.data.order_id;            
+        } catch (e) {
+            if (e.response) {
+                alert(e.response.data.message);
             } else {
                 alert("Não foi possível finalizar o pedido.");
             }
+        }        
+        
+        try {
+            await api.delete("cart", { withCredentials: true });            
+        } catch (e) {
+            if (e.response) {
+                alert(e.response.data.message);
+            } else {
+                alert("Pedido registrado; erro ao limpar o carrinho de compras.");
+            }
         }
-                
+
+        alert(`Pedido efetuado com sucesso!\nNúmero do pedido: ${orderId}`)
+        handleOrderDetails(orderId);
     };
     
     function isValidCardNumber() {             
@@ -71,7 +87,10 @@ export function PaymentFrame({ paidOrder=false, orderStatus="preparando", cartDa
     function isValidCardData() {
         return cardNumber.length === 19 && cardDate.length === 5 && String(cardCvv).length === 3
     }
-    
+
+    function handleOrderDetails(orderId) {
+        navigate(`/orders/${orderId}`)
+    }    
 
     return (
         <Container $paymentChoice={paymentOption}>
@@ -137,7 +156,7 @@ export function PaymentFrame({ paidOrder=false, orderStatus="preparando", cartDa
                             altStyle
                         />
                         <LabeledCreditInput 
-                            label="CVC"
+                            label="CVV"
                             placeholder="000"
                             inputType={"cvv"}
                             value={cardCvv}

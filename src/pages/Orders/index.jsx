@@ -99,7 +99,7 @@ export function Orders() {
                                                             key={"tr-order-datetime-" + order.order_id}
                                                             className="datetime"
                                                         >
-                                                            {formatDatetime(order.updated_at)}
+                                                            {formatDatetime(order.ordered_at)}
                                                         </td>
                                                     </tr>
                                                 ))

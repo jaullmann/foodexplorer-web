@@ -34,7 +34,6 @@ function CartProvider({ children }) {
     }
 
     async function addToCart({dishId, dishAmount}) {  
-        console.log(dishId, dishAmount)      
         try {
             await api.post(
                 "cart",                
@@ -46,7 +45,6 @@ function CartProvider({ children }) {
             )
             fetchCart();
         } catch (error) {  
-            console.log(error)
             if (error.response) {
                 alert(error.response.data.message);
             } else {
