@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Container, Input } from "./styles";
 
 export function LabeledCreditInput({ label, placeholder, altStyle, inputType, ...rest }) {
-  const [value, setValue] = useState('');  
+  const [value, setValue] = useState("");  
   
   function handleInputChange(e) {
     const inputValue = e.target.value;
@@ -10,23 +10,26 @@ export function LabeledCreditInput({ label, placeholder, altStyle, inputType, ..
 
     if (inputType === 'creditCard') {
       formattedValue = inputValue
-        .replace(/\D/g, '') 
+        .replace(/\D/g, "") 
         .replace(/(.{4})/g, '$1 ') 
-        .trim(); 
+        .trim();
+
     } else if (inputType === 'expiryDate') {
       formattedValue = inputValue
-        .replace(/\D/g, '') 
+        .replace(/\D/g, "") 
         .replace(/(\d{2})(\d{1,2})/, '$1/$2') 
         .substring(0, 5); 
 
       if (formattedValue.length === 5 && !isValidExpiryDate(formattedValue)) {     
-        setValue(''); 
+        setValue(""); 
         return alert("Data de validade inválida!");  
       }
+
     } else if (inputType === 'cvv') {
       formattedValue = inputValue
-        .replace(/\D/g, '') 
-        .substring(0, 3); 
+        .replace(/\D/g, "") 
+        .substring(0, 3);
+
     }
 
     setValue(formattedValue);    

@@ -26,10 +26,10 @@ export const Section = styled.section`
     justify-content: space-between; 
     
     background: linear-gradient(90deg, 
-      #00070A 5%, 
+      ${({ theme }) => theme.COLORS.DARK_100} 5%, 
       transparent 30%,
       transparent 70%,
-      #00070A 95%);
+      ${({ theme }) => theme.COLORS.DARK_100} 95%);
     
     z-index: 1;
 

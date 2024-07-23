@@ -104,7 +104,7 @@ export function Payment() {
                         data.length > 0 &&
                         <div id="order-payment">
                             <SectionLabel title={paidOrder ? "Situação" : "Pagamento"} />
-                            <PaymentFrame paidOrder={paidOrder} orderStatus={orderStatus} />
+                            <PaymentFrame paidOrder={paidOrder} orderStatus={orderStatus} cartData={data}/>
                             <div id="back-btn-frame">
                                 <Button 
                                     id={"back-btn"} 

@@ -1,3 +1,4 @@
+import { api } from "../../services/api";
 import { PiClock, PiCheckCircle, PiClockUser, PiForkKnife, PiWarning } from "react-icons/pi";
 import { useState, useEffect } from "react";
 import { Container } from "./styles";
@@ -9,9 +10,43 @@ import CreditIcon from "../../assets/app_icons/credit_card.svg";
 import QrCode from "../../assets/samples/qr_code.svg";
 
 
-export function PaymentFrame({ paidOrder=false, orderStatus="preparando" }) {
+export function PaymentFrame({ paidOrder=false, orderStatus="preparando", cartData=null }) {
 
     const [paymentOption, setPaymentOption] = useState("pix");
+    const [cardNumber, setCardNumber] = useState("");
+    const [cvvNumber, setCvvNumber] = useState("");
+
+    async function placeOrder() {
+        const orderData = {
+            payment_method: paymentOption === "pix" ? "pix" : "crédito",
+            ordered_dishes: cartData.map((dish) => {
+                return({
+                    dish_id: dish.dish_id,
+                    dish_amount: dish.dish_amount,
+                    dish_price_paid: dish.dish_price
+                })
+            })
+        }
+        console.log(orderData);
+        try {
+            api.post("orders", { orderData }, { withCredentials: true });
+        } catch (error) {
+            if (error.response) {
+                alert(error.response.data.message);
+            } else {
+                alert("Não foi possível finalizar o pedido.");
+            }
+        }
+                
+    };
+
+    function isValidCardNumber(cardNumber) {
+        return cardNumber.length === 19;
+    };
+    
+    function isValidCvv(cvv) {
+        return cvv.length === 3;
+    };
 
     return (
         <Container $paymentChoice={paymentOption}>
@@ -62,6 +97,7 @@ export function PaymentFrame({ paidOrder=false, orderStatus="preparando" }) {
                             label="Número do Cartão"
                             placeholder="0000 0000 0000 0000"
                             inputType={"creditCard"}
+                            onChange={e => setCardNumber(e.target.value)}
                             altStyle
                         />
                     </div>
@@ -76,10 +112,11 @@ export function PaymentFrame({ paidOrder=false, orderStatus="preparando" }) {
                             label="CVC"
                             placeholder="000"
                             inputType={"cvv"}
+                            onChange={e => setCvvNumber(e.target.value)}
                             altStyle
                         />
                     </div>
-                    <PaymentButton />
+                    <PaymentButton onClick={placeOrder} />
                 </div>
             }
 
