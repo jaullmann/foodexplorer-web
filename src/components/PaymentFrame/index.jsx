@@ -18,7 +18,7 @@ export function PaymentFrame({ paidOrder=false, orderStatus="preparando", cartDa
     const [cardCvv, setCardCvv] = useState("");
 
     async function placeOrder() {   
-        if (!isValidCardNumber() || !isValidCvv() || isValidDate ()) {
+        if (!isValidCardNumber() || !isValidCvv() || !isValidDate()) {
             return
         }
         const orderData = {
@@ -45,7 +45,7 @@ export function PaymentFrame({ paidOrder=false, orderStatus="preparando", cartDa
     };
     
     function isValidCardNumber() {             
-        if (String(cardNumber).length === 19) {
+        if (cardNumber.length === 19) {
             return true;
         }
         alert("Erro - número do cartão deve ter 16 dígitos!");
@@ -67,6 +67,10 @@ export function PaymentFrame({ paidOrder=false, orderStatus="preparando", cartDa
         alert("Erro - código de segurança deve ter 3 dígitos!");
         return false;
     };
+
+    function isValidCardData() {
+        return cardNumber.length === 19 && cardDate.length === 5 && String(cardCvv).length === 3
+    }
     
 
     return (
@@ -141,7 +145,7 @@ export function PaymentFrame({ paidOrder=false, orderStatus="preparando", cartDa
                             altStyle
                         />
                     </div>
-                    <PaymentButton onClick={placeOrder} />
+                    <PaymentButton onClick={placeOrder} disabled={!isValidCardData()} />
                 </div>
             }
 

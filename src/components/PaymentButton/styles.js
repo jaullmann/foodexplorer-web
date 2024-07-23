@@ -12,8 +12,7 @@ export const Container = styled.button`
   height: 3.5rem;
   padding: 0.75rem 1rem;
   border-radius: 0.3rem;
-  
-  // font
+    
   > h3 {      
     ${({ theme }) => theme.FONTS.POPPINS_MEDIUM}
     font-size: 0.9rem;
@@ -26,4 +25,14 @@ export const Container = styled.button`
 
   background-color: ${({ theme }) => theme.COLORS.TINTS_TOMATO_100};
   color: ${({ theme }) => theme.COLORS.LIGHT_100};
+
+  &:disabled {
+    background-color: ${({ theme }) => theme.COLORS.LIGHT_700};
+    cursor: not-allowed;
+
+    &:hover {
+      filter: none;
+      background-color: ${({ theme }) => theme.COLORS.LIGHT_700};
+    }
+  }
 `
