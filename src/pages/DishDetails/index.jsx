@@ -5,6 +5,8 @@ import { Container, Main } from "./styles";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useParams } from "react-router-dom";
+import { FiHeart } from "react-icons/fi";
+import { PiPencilSimple } from "react-icons/pi";
 import { Header } from "../../components/Header";
 import { Footer } from "../../components/Footer";
 import { Button } from "../../components/Button";
@@ -20,10 +22,39 @@ export function DishDetails() {
   const admin = user.role === "admin";
 
   const [data, setData] = useState(null);
-  const [amount, setAmount] = useState(1);  
+  const [amount, setAmount] = useState(1);
+  const [favDish, setFavDish] = useState(false);  
   const { dishId } = useParams();
   const { addToCart } = useCart();
   const navigate = useNavigate();
+
+  async function toggleFavoriteDish(dishKey) {             
+    setFavDish(!favDish);
+    if (!favDish) {
+      try {
+        await api.post("/favorites", {
+            dish_id: dishKey
+        }, 
+        { withCredentials: true });   
+      } catch(e) {    
+          console.log(e);  
+          return alert("Erro ao salvar favorito do usuário");
+      }     
+    } else {
+      try {
+        await api.delete("favorites", {
+            data: {                
+                user_id: user.user_id,
+                dish_id: dishKey
+            },
+            withCredentials: true
+        });                              
+      } catch (e) {    
+          console.log(e);  
+          return alert("Erro ao excluir favorito do usuário");
+      }   
+    }       
+  } 
 
   useEffect(() => {
     async function fetchProduct() {
@@ -32,7 +63,7 @@ export function DishDetails() {
         setData(response.data);
         !response.data && navigate("/notfound");
       } catch (e) {   
-        alert("Erro ao obter dados do produto")     
+        alert("Erro ao obter informações do produto")     
         return navigate("/notfound");                
       }
     }
@@ -92,6 +123,16 @@ export function DishDetails() {
                   admin && 
                   <Button title={"Editar prato"} />
                 }
+                {admin ? (
+                    <PiPencilSimple />
+                  ) : (
+                    <FiHeart
+                      id={`fav-button-dish-${dishId}`}
+                      onClick={() => toggleFavoriteDish(dishId)}
+                      className={favDish ? "favorite-dish" : ""}
+                    />
+                  )
+                } 
               </div>
             </div>
           </div>

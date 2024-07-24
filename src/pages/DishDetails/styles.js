@@ -106,4 +106,16 @@ export const Main = styled.main`
         gap: 2rem;
     }
 
+    svg {
+        width: 2.2rem;
+        height: 2.2rem;                       
+        color: ${({ theme }) => theme.COLORS.LIGHT_300};       
+
+        cursor: pointer;   
+    }
+
+    .favorite-dish {
+        fill: ${({ theme }) => theme.COLORS.LIGHT_300};
+    }
+
 `;
