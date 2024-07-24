@@ -23,17 +23,18 @@ export function DishDetails() {
 
   const [data, setData] = useState(null);
   const [amount, setAmount] = useState(1);
-  const [favDish, setFavDish] = useState(false);  
+  const [favDish, setFavDish] = useState(false);   
+  const [userFavorites, setUserFavorites] = useState([]);
   const { dishId } = useParams();
   const { addToCart } = useCart();
   const navigate = useNavigate();
 
-  async function toggleFavoriteDish(dishKey) {             
+  async function toggleFavoriteDish() {             
     setFavDish(!favDish);
     if (!favDish) {
       try {
         await api.post("/favorites", {
-            dish_id: dishKey
+            dish_id: dishId
         }, 
         { withCredentials: true });   
       } catch(e) {    
@@ -45,7 +46,7 @@ export function DishDetails() {
         await api.delete("favorites", {
             data: {                
                 user_id: user.user_id,
-                dish_id: dishKey
+                dish_id: dishId
             },
             withCredentials: true
         });                              
@@ -68,8 +69,27 @@ export function DishDetails() {
       }
     }
 
+    async function fetchFavorites() {
+      try {
+        const response = await api.get('/favorites', { withCredentials: true });
+        const favorites = response.data.map((favorite) => {
+          return (
+            favorite.dish_id
+          )
+        });        
+        setUserFavorites(favorites)           
+      } catch(e) {                    
+        return alert("Erro ao consultar os favoritos do usuário");
+      }
+    }      
+
     fetchProduct();
-  }, []);
+    fetchFavorites();
+  }, [dishId, navigate]);
+
+  useEffect(() => {
+    setFavDish(userFavorites.includes(dishId)) 
+  }, [userFavorites, dishId])
 
   return (
     <Container>
@@ -127,7 +147,7 @@ export function DishDetails() {
                     <PiPencilSimple />
                   ) : (
                     <FiHeart
-                      id={`fav-button-dish-${dishId}`}
+                      id={"fav-button"}
                       onClick={() => toggleFavoriteDish(dishId)}
                       className={favDish ? "favorite-dish" : ""}
                     />
