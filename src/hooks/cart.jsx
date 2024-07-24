@@ -24,9 +24,9 @@ function CartProvider({ children }) {
 
             setCartAmount(totalDishAmount);
 
-        } catch (error) {  
-            if (error.response) {
-                alert(error.response.data.message);
+        } catch (e) {  
+            if (e.response) {
+                alert(e.response.data.message);
             } else {
                 return alert('Erro ao consultar dados do pedido');
             }            
@@ -44,13 +44,26 @@ function CartProvider({ children }) {
                 { withCredentials: true }
             )
             fetchCart();
-        } catch (error) {  
-            if (error.response) {
-                alert(error.response.data.message);
+        } catch (e) {  
+            if (e.response) {
+                alert(e.response.data.message);
             } else {
                 return alert('Erro ao adicionar item ao pedido');
             }            
         }
+    }
+
+    async function deleteCart() {
+        try {
+            await api.delete("cart", { withCredentials: true });            
+        } catch (e) {
+            if (e.response) {
+                alert(e.response.data.message);
+            } else {
+                alert("Erro ao excluir itens do carrinho de compras.");
+            }
+        }
+        fetchCart();
     }
 
     useEffect(() => {
@@ -63,7 +76,8 @@ function CartProvider({ children }) {
             cartAmount, 
             setCartAmount, 
             fetchCart,
-            addToCart
+            addToCart,
+            deleteCart
         }}>
             {children}
         </CartContext.Provider>

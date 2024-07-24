@@ -1,5 +1,6 @@
 import { api } from "../../services/api";
 import { PiClock, PiCheckCircle, PiClockUser, PiForkKnife, PiWarning } from "react-icons/pi";
+import { useCart } from "../../hooks/cart";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Container } from "./styles";
@@ -10,13 +11,14 @@ import CreditIcon from "../../assets/app_icons/credit_card.svg";
 import QrCode from "../../assets/samples/qr_code.svg";
 
 
-export function PaymentFrame({ paidOrder=false, orderStatus="preparando", cartData=null }) {
+export function PaymentFrame({ paidOrder=false, orderStatus="preparando", cartData=null, placeNewOrder }) {
 
     const [paymentOption, setPaymentOption] = useState("pix");
     const [cardNumber, setCardNumber] = useState("");
     const [cardDate, setCardDate] = useState("");
-    const [cardCvv, setCardCvv] = useState("");
+    const [cardCvv, setCardCvv] = useState("");    
 
+    const { deleteCart } = useCart();
     const navigate = useNavigate();    
 
     async function placeOrder() {   
@@ -45,19 +47,9 @@ export function PaymentFrame({ paidOrder=false, orderStatus="preparando", cartDa
                 alert("Não foi possível finalizar o pedido.");
             }
         }        
-        
-        try {
-            await api.delete("cart", { withCredentials: true });            
-        } catch (e) {
-            if (e.response) {
-                alert(e.response.data.message);
-            } else {
-                alert("Pedido registrado; erro ao limpar o carrinho de compras.");
-            }
-        }
-
-        alert(`Pedido efetuado com sucesso!\nNúmero do pedido: ${orderId}`)
-        handleOrderDetails(orderId);
+        deleteCart();
+        placeNewOrder(orderId);
+        alert(`Pedido efetuado com sucesso!\nNúmero do pedido: ${orderId}`)        
     };
     
     function isValidCardNumber() {             

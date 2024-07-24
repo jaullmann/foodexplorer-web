@@ -18,38 +18,45 @@ export function Payment() {
     const [totalPrice, setTotalPrice] = useState(0);
     const [paidOrder, setPaidOrder] = useState(false);
     const [proceedPayment, setProceedPayment] = useState(false);
+    const [newOrderId, setNewOrderId] = useState("");
     const { orderId } = useParams();
     const navigate = useNavigate();    
 
     async function fetchOrder() {
-            try {
-                const response = await api.get(`/orders/${orderId}`, { withCredentials: true });
-                setData(response.data.order_details);                
-                setOrderStatus(response.data.status);                
-                setPaidOrder(true);                   
-            } catch (e) {
-                return navigate("/notfound");
-            }
-        } 
+        try {
+            const response = await api.get(
+                `/orders/${newOrderId || orderId}`, 
+                { withCredentials: true }
+            );
+            setData(response.data.order_details);                
+            setOrderStatus(response.data.status);                
+            setPaidOrder(true);                   
+        } catch (e) {
+            return navigate("/notfound");
+        }
+    } 
 
     async function fetchUserCart() {
         try {
             const response = await api.get('/cart', { withCredentials: true });
             setData(response.data);
             setPaidOrder(false);                                         
-        } catch (e) {
-            console.log(e);
+        } catch (e) {            
             return navigate("/notfound");
         }                
     }
 
+    function placeNewOrder(orderId) {
+        setNewOrderId(orderId);
+    }
+
     useEffect(() => {      
-        if (orderId) {            
+        if (orderId || newOrderId) {            
             fetchOrder();
         } else {            
             fetchUserCart();            
         }            
-    }, []) 
+    }, [newOrderId]) 
     
     useEffect(() => {
         if (data){
@@ -103,8 +110,15 @@ export function Payment() {
                     {
                         data.length > 0 &&
                         <div id="order-payment">
-                            <SectionLabel title={paidOrder ? "Situação" : "Pagamento"} />
-                            <PaymentFrame paidOrder={paidOrder} orderStatus={orderStatus} cartData={data}/>
+                            <SectionLabel 
+                                title={paidOrder ? "Situação" : "Pagamento"} 
+                            />
+                            <PaymentFrame 
+                                paidOrder={paidOrder} 
+                                orderStatus={orderStatus} 
+                                cartData={data}
+                                placeNewOrder={placeNewOrder}
+                            />
                             <div id="back-btn-frame">
                                 <Button 
                                     id={"back-btn"} 
