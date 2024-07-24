@@ -46,8 +46,7 @@ export function DishCard({ dishId, title, imageFile, description, price, favorit
             console.log(e);  
             return alert("Erro ao excluir favorito do usuário");
         }   
-      }
-       
+      }       
     } 
 
     function handleDetails(dishId) {       
@@ -60,14 +59,16 @@ export function DishCard({ dishId, title, imageFile, description, price, favorit
 
     return(
         <Container key={String(dishId)}>
-          {!admin && 
-            <FiHeart 
-              id={"fav-button-dish-" + dishId} 
-              onClick={() => toggleFavoriteDish(dishId)}
-              className={favDish? "favorite-dish" : ""}
-            />
-          }
-          {admin && <PiPencilSimple />} 
+          {admin ? (
+              <PiPencilSimple />
+            ) : (
+              <FiHeart
+                id={`fav-button-dish-${dishId}`}
+                onClick={() => toggleFavoriteDish(dishId)}
+                className={favDish ? "favorite-dish" : ""}
+              />
+            )
+          } 
           <img 
             src={imageFile} 
             alt="Visualizar detalhes do prato" 
