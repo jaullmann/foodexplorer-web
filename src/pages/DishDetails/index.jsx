@@ -1,6 +1,7 @@
 import { api } from "../../services/api";
 import { useAuth } from '../../hooks/auth';
 import { useCart } from "../../hooks/cart";
+import { useFavorites } from "../../hooks/favorites";
 import { Container, Main } from "./styles";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
@@ -16,50 +17,27 @@ import { DishCounter } from "../../components/DishCounter";
 import { formatCurrency } from "../../functions"
 
 
-
 export function DishDetails() {
-  const { user } = useAuth();
-  const admin = user.role === "admin";
-
+  
   const [data, setData] = useState(null);
-  const [amount, setAmount] = useState(1);
-  const [favDish, setFavDish] = useState(false);   
-  const [userFavorites, setUserFavorites] = useState([]);
-  const { dishId } = useParams();
+  const [favorite, setFavorite] = useState(false);  
+  const [amount, setAmount] = useState(1);  
+  const { dishId } = useParams();  
+  const { user } = useAuth();
   const { addToCart } = useCart();
-  const navigate = useNavigate();
-
-  async function toggleFavoriteDish() {             
-    setFavDish(!favDish);
-    if (!favDish) {
-      try {
-        await api.post("/favorites", {
-            dish_id: dishId
-        }, 
-        { withCredentials: true });   
-      } catch(e) {    
-          console.log(e);  
-          return alert("Erro ao salvar favorito do usuário");
-      }     
-    } else {
-      try {
-        await api.delete("favorites", {
-            data: {                
-                user_id: user.user_id,
-                dish_id: dishId
-            },
-            withCredentials: true
-        });                              
-      } catch (e) {    
-          console.log(e);  
-          return alert("Erro ao excluir favorito do usuário");
-      }   
-    }       
-  } 
+  const { userFavorites, toggleFavorite, isUserFavorite } = useFavorites();
+  const navigate = useNavigate();    
+  
+  const admin = user.role === "admin"; 
+  
+  function toggleUserFavorite() {    
+    toggleFavorite(dishId);
+    setFavorite(!favorite);    
+  }
 
   useEffect(() => {
     async function fetchProduct() {
-      try {
+      try {        
         const response = await api.get(`/dishes/${dishId}`, { withCredentials: true });        
         setData(response.data);
         !response.data && navigate("/notfound");
@@ -67,39 +45,23 @@ export function DishDetails() {
         alert("Erro ao obter informações do produto")     
         return navigate("/notfound");                
       }
-    }
+    }    
+    
+    setFavorite(isUserFavorite(dishId));    
+    fetchProduct();         
+  }, []);
 
-    async function fetchFavorites() {
-      try {
-        const response = await api.get('/favorites', { withCredentials: true });
-        const favorites = response.data.map((favorite) => {
-          return (
-            favorite.dish_id
-          )
-        });        
-        setUserFavorites(favorites)           
-      } catch(e) {                    
-        return alert("Erro ao consultar os favoritos do usuário");
-      }
-    }      
-
-    fetchProduct();
-    fetchFavorites();
-  }, [dishId, navigate]);
-
-  useEffect(() => {
-    setFavDish(userFavorites.includes(dishId)) 
-  }, [userFavorites, dishId])
+  useEffect(() => {     
+  }, [userFavorites])
 
   return (
     <Container>
 
-
       <Header />
 
       {
-        data &&
-        
+        data && userFavorites &&
+
         <Main>
           <BackButton id="back-button" />
           <div id="dish-presentation">
@@ -148,8 +110,8 @@ export function DishDetails() {
                   ) : (
                     <FiHeart
                       id={"fav-button"}
-                      onClick={() => toggleFavoriteDish(dishId)}
-                      className={favDish ? "favorite-dish" : ""}
+                      onClick={toggleUserFavorite}
+                      className={favorite ? "favorite-dish" : ""}
                     />
                   )
                 } 

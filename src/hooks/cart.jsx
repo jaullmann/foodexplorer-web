@@ -1,7 +1,7 @@
 import { api } from "../services/api";
 import { createContext, useContext, useState, useEffect } from "react";
 
-const CartContext = createContext();
+const CartContext = createContext({});
 
 function CartProvider({ children }) {
 
@@ -26,7 +26,7 @@ function CartProvider({ children }) {
 
         } catch (e) {  
             if (e.response) {
-                alert(e.response.data.message);
+                return alert(e.response.data.message);
             } else {
                 return alert('Erro ao consultar dados do pedido');
             }            
@@ -79,7 +79,7 @@ function CartProvider({ children }) {
             addToCart,
             deleteCart
         }}>
-            {children}
+            { children }
         </CartContext.Provider>
     )   
 }

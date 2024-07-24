@@ -1,0 +1,88 @@
+import { api } from "../services/api";
+import { useAuth } from "./auth";
+import { createContext, useContext, useState, useEffect } from "react";
+
+const FavoritesContext = createContext({});
+
+function FavoritesProvider({ children }) {
+
+  const [userFavorites, setUserFavorites] = useState([]);
+  const { user } = useAuth();
+
+  async function fetchFavorites() {
+    try {
+      const response = await api.get('/favorites', { withCredentials: true });
+      const favorites = response.data.map((favorite) => {
+        return (
+          favorite.dish_id
+        )
+      });
+      setUserFavorites(favorites)
+    } catch (e) {
+      if (e.response) {
+        return alert(e.response.data.message);
+      } else {
+        return alert('Erro ao consultar os favoritos do cliente');
+      }
+    }
+  }
+  
+  async function toggleFavorite(dishId) {                     
+    if (!isUserFavorite(dishId)) {
+      try {
+        await api.post("/favorites", {
+              dish_id: dishId
+          }, 
+          { withCredentials: true }); 
+      } catch (e) {
+        if (e.response) {
+          return alert(e.response.data.message);
+        } else {
+          return alert('Erro ao salvar favorito do cliente');
+        }
+      }    
+    } else {
+      try {
+        await api.delete("favorites", {
+            data: {                
+                  user_id: user.user_id,
+                  dish_id: dishId
+              },
+              withCredentials: true
+        });                         
+      } catch (e) {
+        if (e.response) {
+          return alert(e.response.data.message);
+        } else {
+          return alert('Erro ao excluir favorito do cliente');
+        }
+      }  
+    }   
+    fetchFavorites();    
+  }
+
+  async function isUserFavorite(dishId) {
+    await fetchFavorites();
+    return userFavorites.includes(dishId);
+  }
+
+  useEffect(() => {    
+  }, [userFavorites]);
+
+  return (
+    <FavoritesContext.Provider value={{
+      userFavorites,
+      fetchFavorites,
+      toggleFavorite,
+      isUserFavorite
+    }}>
+      { children }      
+    </FavoritesContext.Provider>
+  )
+}
+
+function useFavorites() {
+  return useContext(FavoritesContext);
+}
+
+export { FavoritesProvider, useFavorites };
