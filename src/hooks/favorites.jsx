@@ -11,13 +11,13 @@ function FavoritesProvider({ children }) {
 
   async function fetchFavorites() {
     try {
-      const response = await api.get('/favorites', { withCredentials: true });
+      const response = await api.get('favorites', { withCredentials: true });
       const favorites = response.data.map((favorite) => {
         return (
           favorite.dish_id
         )
       });
-      setUserFavorites(favorites)
+      setUserFavorites(favorites)      
     } catch (e) {
       if (e.response) {
         return alert(e.response.data.message);
@@ -26,54 +26,55 @@ function FavoritesProvider({ children }) {
       }
     }
   }
-  
-  async function toggleFavorite(dishId) {                     
-    if (!isUserFavorite(dishId)) {
-      try {
-        await api.post("/favorites", {
-              dish_id: dishId
-          }, 
-          { withCredentials: true }); 
-      } catch (e) {
-        if (e.response) {
-          return alert(e.response.data.message);
-        } else {
-          return alert('Erro ao salvar favorito do cliente');
-        }
-      }    
-    } else {
-      try {
-        await api.delete("favorites", {
-            data: {                
-                  user_id: user.user_id,
-                  dish_id: dishId
-              },
-              withCredentials: true
-        });                         
-      } catch (e) {
-        if (e.response) {
-          return alert(e.response.data.message);
-        } else {
-          return alert('Erro ao excluir favorito do cliente');
-        }
-      }  
-    }   
-    fetchFavorites();    
+
+  async function addFavorite(dishId) {
+    try {
+      await api.post("/favorites", {
+            dish_id: dishId
+        }, 
+        { withCredentials: true }); 
+    } catch (e) {
+      if (e.response) {
+        return alert(e.response.data.message);
+      } else {
+        return alert('Erro ao salvar favorito do cliente');
+      }
+    }    
   }
+
+  async function deleteFavorite(dishId) {
+    try {
+      await api.delete("favorites", {
+          data: {                
+                user_id: user.user_id,
+                dish_id: dishId
+            },
+            withCredentials: true
+      });                         
+    } catch (e) {
+      if (e.response) {
+        return alert(e.response.data.message);
+      } else {
+        return alert('Erro ao excluir favorito do cliente');
+      }
+    }  
+  }  
 
   async function isUserFavorite(dishId) {
     await fetchFavorites();
     return userFavorites.includes(dishId);
   }
 
-  useEffect(() => {    
-  }, [userFavorites]);
+  useEffect(() => {  
+    fetchFavorites();
+  }, []);
 
   return (
     <FavoritesContext.Provider value={{
       userFavorites,
       fetchFavorites,
-      toggleFavorite,
+      addFavorite,
+      deleteFavorite,
       isUserFavorite
     }}>
       { children }      

@@ -25,18 +25,22 @@ export function DishDetails() {
   const { dishId } = useParams();  
   const { user } = useAuth();
   const { addToCart } = useCart();
-  const { userFavorites, toggleFavorite, isUserFavorite } = useFavorites();
+  const { isUserFavorite, addFavorite, deleteFavorite } = useFavorites();
   const navigate = useNavigate();    
   
   const admin = user.role === "admin"; 
   
-  function toggleUserFavorite() {    
-    toggleFavorite(dishId);
-    setFavorite(!favorite);    
-  }
+  async function toggleUserFavorite() {    
+    if (favorite) {
+      await deleteFavorite(dishId);      
+    } else {
+      await addFavorite(dishId);
+    }
+    setFavorite(!favorite);
+  } 
 
   useEffect(() => {
-    async function fetchProduct() {
+    async function fetchProduct() {      
       try {        
         const response = await api.get(`/dishes/${dishId}`, { withCredentials: true });        
         setData(response.data);
@@ -45,14 +49,17 @@ export function DishDetails() {
         alert("Erro ao obter informações do produto")     
         return navigate("/notfound");                
       }
-    }    
-    
-    setFavorite(isUserFavorite(dishId));    
+    }        
     fetchProduct();         
   }, []);
 
-  useEffect(() => {     
-  }, [userFavorites])
+  useEffect(() => {
+    async function setPreviousFavStatus() {
+      const isFavorite = await isUserFavorite(dishId);
+      setFavorite(isFavorite);
+    }
+    setPreviousFavStatus();
+  }, [])
 
   return (
     <Container>
@@ -60,7 +67,7 @@ export function DishDetails() {
       <Header />
 
       {
-        data && userFavorites &&
+        data && 
 
         <Main>
           <BackButton id="back-button" />
