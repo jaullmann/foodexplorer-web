@@ -2,30 +2,23 @@ import { useState, useEffect } from "react";
 import { FiSearch } from "react-icons/fi";
 import { Container, Input } from "./styles";
 import { useNavigate } from "react-router-dom";
+import { useSearch } from "../../hooks/search";
+
 
 export function SearchInput() {
-  const [searchQuery, setSearchQuery] = useState("");
-  const navigate = useNavigate();
 
-  const handleInputChange = (e) => {
+  const { inputValue, handleInputValue } = useSearch();
+
+  function handleInputChange(e) {
     const value = e.target.value;
-    setSearchQuery(value);
+    handleInputValue(value);
   };
-
-  useEffect(() => {
-    if (searchQuery) {
-      const timer = setTimeout(() => {
-        navigate(`/search/${searchQuery}`);
-      }, 300);
-      return () => clearTimeout(timer);
-    }
-  }, [searchQuery, navigate]);
 
   return (
     <Container id="search">
       <Input
         autoFocus
-        value={searchQuery}
+        value={inputValue}
         onChange={handleInputChange}
         placeholder="Busque por pratos ou ingredientes"
       />

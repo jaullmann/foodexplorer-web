@@ -1,6 +1,7 @@
 import { api } from "../../services/api";
-import { useState, useEffect } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useEffect } from "react";
+import { useSearch } from "../../hooks/search";
+import { useNavigate } from "react-router-dom";
 import { Container, Main } from "./styles";
 import { Header } from "../../components/Header";
 import { Footer } from "../../components/Footer";
@@ -8,25 +9,19 @@ import { SectionLabel } from "../../components/SectionLabel";
 import { FavoriteCard } from "../../components/FavoriteCard";
 
 export function SearchResults() {
-  const [data, setData] = useState([]);
-  const { dishQuery: inputText } = useParams();
+
+  const { searchResult, inputValue } = useSearch();
   const navigate = useNavigate();
 
-  async function fetchDishes(searchKey) {
-    try {
-      const response = await api.get(`dishes?search_key=${searchKey}`, { withCredentials: true });
-      setData(response.data);
-    } catch (e) {
-      navigate("/notfound");
-      return alert("Erro ao efetuar a pesquisa de produtos");
+  function handleEmptySearch() {
+    if (!inputValue) {
+      navigate("/");
     }
   }
 
-  useEffect(() => {
-    if (inputText) {
-      fetchDishes(inputText);
-    }
-  }, [inputText]);
+  useEffect(() => { 
+    handleEmptySearch()   
+  }, [inputValue]);
 
   return (
     <Container>
@@ -34,17 +29,17 @@ export function SearchResults() {
       <Header />
 
       {
-        data &&
+        searchResult &&
         <Main>
           {
-            data.length > 0 &&
-            <SectionLabel title={`Resultados para "${inputText}"`} />
+            searchResult.length > 0 &&
+            <SectionLabel title={`Resultados para "${inputValue}"`} />
           }
           {
-            data.length > 0 &&
+            searchResult.length > 0 &&
             <div id="found-dishes">
               {
-                data.map((foundDish) => (
+                searchResult.map((foundDish) => (
                   <FavoriteCard
                     key={"found-dish-" + foundDish.dish_id}
                     dishId={foundDish.dish_id}
@@ -56,7 +51,7 @@ export function SearchResults() {
             </div>
           }
           {
-            data.length === 0 &&
+            searchResult.length === 0 &&
             <h1>Não há pratos com o nome ou ingrediente pesquisado</h1>
           }
         </Main>
