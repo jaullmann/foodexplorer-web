@@ -55,7 +55,7 @@ export function DishDetails() {
 
   useEffect(() => {
     async function setPreviousFavStatus() {
-      const isFavorite = await isUserFavorite(dishId);
+      const isFavorite = await isUserFavorite(Number(dishId));
       setFavorite(isFavorite);
     }
     setPreviousFavStatus();

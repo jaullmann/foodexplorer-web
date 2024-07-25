@@ -8,6 +8,7 @@ import { DishDetails } from '../pages/DishDetails'
 import { Orders } from '../pages/Orders';
 import { Payment } from '../pages/Payment';
 import { Favorites } from '../pages/Favorites';
+import { SearchResults } from '../pages/SearchResults';
 import { NotFound } from '../pages/NotFound';
 
 export function CustomerRoutes() {
@@ -21,6 +22,7 @@ export function CustomerRoutes() {
           <Route path="/orders/:orderId" element={<Payment />} />
           <Route path="/payment" element={<Payment />} />
           <Route path="/favorites" element={<Favorites />} />
+          <Route path="/search/:dishQuery" element={<SearchResults />} />
           <Route path="/notfound" element={<NotFound />} />
 
           <Route path="*" exact={true} element={<NotFound />} />
