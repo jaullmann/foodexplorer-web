@@ -1,6 +1,6 @@
-import { api } from "../../services/api";
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import { useAuth } from '../../hooks/auth';
+import { useFavorites } from "../../hooks/favorites";
 import { Container } from "./styles";
 import { Header } from "../../components/Header";
 import { CardsSection } from "../../components/CardsSection";
@@ -9,25 +9,10 @@ import homeBanner from "../../assets/images/home_banner.png";
 
 export function Home() {    
 
-  const [userFavorites, setUserFavorites] = useState([]); 
+  const { userFavorites, fetchFavorites } = useFavorites();
   const { user } = useAuth(); 
 
-  useEffect(() => {
-    async function fetchFavorites() {
-        try {
-          const response = await api.get('/favorites', { withCredentials: true });
-          const favorites = response.data.map((favorite) => {
-            return (
-              favorite.dish_id
-            )
-          });
-          setUserFavorites(favorites);          
-        } catch(e) {  
-          console.log(e)                   
-          return alert("Erro ao consultar os favoritos do usuário");
-        }
-      }
-  
+  useEffect(() => {  
       fetchFavorites();      
 }, [])
 
