@@ -30,6 +30,11 @@ export function Header() {
         navigate("/payment");
     }
 
+    function handleCreate() {
+        handleInputValue("");
+        navigate("/new");
+    }
+
     return (
         <Section>            
             <div className="desktop">   
@@ -38,7 +43,7 @@ export function Header() {
                 {!admin && <Link to={"/favorites"} id="favorites">Meus favoritos</Link>}
                 {!admin && <Link to={"/orders"} id="orders">Meus pedidos</Link>}
                 {!admin && <CartButton totalDishes={cartAmount} onClick={handlePayment} />}
-                {admin && <Button title={'Novo prato'} />}
+                {admin && <Button title={'Novo prato'} onClick={handleCreate} />}
                 <button 
                     id="sign-out"
                     onClick={handleSignOut}
