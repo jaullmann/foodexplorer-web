@@ -18,7 +18,7 @@ export function SearchInput() {
     if (inputValue.length > 2) {
       navigate("/search");
     } else {
-      alert("Palavra chave deve possuir ao menos 3 caracteres");
+      alert("Palavra-chave deve conter ao menos 3 caracteres");
     }
   }
 

@@ -27,12 +27,12 @@ export const Container = styled.button`
   color: ${({ theme }) => theme.COLORS.LIGHT_100};
 
   &:disabled {
-    background-color: ${({ theme }) => theme.COLORS.LIGHT_700};
+    background-color: ${({ theme }) => theme.COLORS.TINTS_TOMATO_400};
     cursor: not-allowed;
 
     &:hover {
       filter: none;
-      background-color: ${({ theme }) => theme.COLORS.LIGHT_700};
+      background-color: ${({ theme }) => theme.COLORS.TINTS_TOMATO_300};
     }
   }
 `

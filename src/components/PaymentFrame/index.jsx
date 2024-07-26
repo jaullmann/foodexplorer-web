@@ -78,11 +78,7 @@ export function PaymentFrame({ paidOrder=false, orderStatus="preparando", cartDa
 
     function isValidCardData() {
         return cardNumber.length === 19 && cardDate.length === 5 && String(cardCvv).length === 3
-    }
-
-    function handleOrderDetails(orderId) {
-        navigate(`/orders/${orderId}`)
-    }    
+    }       
 
     return (
         <Container $paymentChoice={paymentOption}>

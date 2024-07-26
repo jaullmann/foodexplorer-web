@@ -24,14 +24,15 @@ export const Main = styled.main`
     a {
         width: 100%;
         margin: 2.5rem 0 1.5rem;
-    }
+    }  
     
     label {
-        text-align: left;
-        margin-bottom: 2rem;
+        text-align: left;    
     }
 
     form {   
+        margin-top: 2rem;
+
         width: 100%;
         display: flex;
         flex-direction: column;
@@ -74,7 +75,7 @@ export const Main = styled.main`
 
     #form-section-2 > div:nth-child(1) {
         flex-grow: 2;
-        min-width: 50%;
+        min-width: 77%;
 
         @media (max-width: ${DEVICE_BREAKPOINTS.MD}) {
             max-width: none;
@@ -95,6 +96,7 @@ export const Main = styled.main`
 
     #form-category {
         position: relative;
+        width: 55%;
 
         > h3 {
             color: ${({ theme }) => theme.COLORS.LIGHT_400};
@@ -107,13 +109,14 @@ export const Main = styled.main`
             appearance: none;
             -webkit-appearance: none;
             width: 100%;
+            height: 3rem;
             padding: 1rem;
 
             border: none;
             border-radius: .5rem;   
             cursor: pointer;      
             background-color: ${({ theme }) => theme.COLORS.DARK_900};
-            font-size: .875rem;
+            font-size: 1rem;
             ${({ theme }) => theme.FONTS.ROBOTO_REGULAR};             
             color: ${({ theme }) => theme.COLORS.LIGHT_400};          
             
@@ -200,6 +203,37 @@ export const Main = styled.main`
                 width: 100%;            
             }
         }    
-    }   
+    }  
+    
+    #new-ingredient {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: .5rem;      
+
+      height: 2rem;  
+      width: fit-content;
+      border: 1px dashed ${({ theme }) => theme.COLORS.LIGHT_600};
+
+      padding: .625rem 1rem;
+      border-radius: .5rem;
+      
+      background-color: ${({ theme }) => theme.COLORS.BACKGROUND_600};
+
+      > input {  
+        border: none;   
+        width: 5rem;    
+        ${({ theme }) => theme.FONTS.ROBOTO_REGULAR};  
+        font-size: 1rem;          
+        background-color: transparent;
+        color: ${({ theme }) => theme.COLORS.LIGHT_400};       
+      }
+
+      > svg {
+        font-size: .8rem;
+        cursor: pointer;
+      }
+      
+    }
 
 `

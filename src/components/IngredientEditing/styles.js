@@ -44,5 +44,6 @@ export const Container = styled.div`
             theme.COLORS.LIGHT_500 : 
             theme.COLORS.LIGHT_100 
         };
+        cursor: pointer;
     }
 `

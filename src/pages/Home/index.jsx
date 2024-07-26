@@ -1,5 +1,4 @@
 import { useEffect } from "react";
-import { useAuth } from '../../hooks/auth';
 import { useFavorites } from "../../hooks/favorites";
 import { Container } from "./styles";
 import { Header } from "../../components/Header";
@@ -9,8 +8,7 @@ import homeBanner from "../../assets/images/home_banner.png";
 
 export function Home() {    
 
-  const { userFavorites, fetchFavorites } = useFavorites();
-  const { user } = useAuth(); 
+  const { userFavorites, fetchFavorites } = useFavorites();  
 
   useEffect(() => {  
       fetchFavorites();      
@@ -19,7 +17,7 @@ export function Home() {
   return(
     <Container>
 
-      <Header admin={user.role === 'admin'}/>
+      <Header />
 
       <div id="banner-section">
         <div id="banner-slogan">
