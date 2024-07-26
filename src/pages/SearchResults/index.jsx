@@ -6,16 +6,16 @@ import { Container, Main } from "./styles";
 import { Header } from "../../components/Header";
 import { Footer } from "../../components/Footer";
 import { SectionLabel } from "../../components/SectionLabel";
-import { FavoriteCard } from "../../components/FavoriteCard";
+import { SearchCard } from "../../components/SearchCard";
 
 export function SearchResults() {
 
-  const { searchResult, inputValue } = useSearch();
+  const { searchResult, inputValue, lastRoute } = useSearch();
   const navigate = useNavigate();
 
   function handleEmptySearch() {
     if (!inputValue) {
-      navigate("/");
+      navigate(lastRoute);
     }
   }
 
@@ -40,7 +40,7 @@ export function SearchResults() {
             <div id="found-dishes">
               {
                 searchResult.map((foundDish) => (
-                  <FavoriteCard
+                  <SearchCard
                     key={"found-dish-" + foundDish.dish_id}
                     dishId={foundDish.dish_id}
                     title={foundDish.title}

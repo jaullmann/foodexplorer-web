@@ -24,7 +24,7 @@ export function DishDetails() {
   const [amount, setAmount] = useState(1);  
   const { dishId } = useParams();  
   const { user } = useAuth();
-  const { addToCart } = useCart();
+  const { addToCart } = useCart();  
   const { isUserFavorite, addFavorite, deleteFavorite } = useFavorites();
   const navigate = useNavigate();    
   
@@ -51,6 +51,7 @@ export function DishDetails() {
       }
     }        
     fetchProduct();         
+
   }, []);
 
   useEffect(() => {

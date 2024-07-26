@@ -1,4 +1,5 @@
 import { api } from "../../services/api";
+import { useSearch } from "../../hooks/search";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { Container, Main } from "./styles";
@@ -10,6 +11,7 @@ import { FavoriteCard } from "../../components/FavoriteCard";
 export function Favorites() {    
 
     const [data, setData] = useState();
+    const { handleInputValue } = useSearch();
     const navigate = useNavigate();
 
     async function fetchFavorites() {
@@ -24,6 +26,7 @@ export function Favorites() {
 
     useEffect(() => {
         fetchFavorites();
+        handleInputValue("");
     }, []);
 
     return(

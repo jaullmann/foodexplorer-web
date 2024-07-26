@@ -1,20 +1,20 @@
-import { api } from "../../services/api";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../../hooks/auth";
 import { useCart } from "../../hooks/cart";
+import { useSearch } from "../../hooks/search";
 import { Section } from "./styles";
 import { MainLogo } from "../MainLogo";
 import { SearchInput } from "../SearchInput";
 import { Button } from "../Button";
 import { CartButtonMobile } from "../CartButtonMobile";
 import { CartButton } from "../CartButton";
-import { useState, useEffect } from "react";
 import SignOut from "../../assets/app_icons/sign_out.svg"
 import Menu from "../../assets/app_icons/menu.svg"
 
 
 export function Header() {
 
+    const { handleInputValue } = useSearch();
     const { user, signOut } = useAuth();
     const { cartAmount } = useCart();
     const navigate = useNavigate();
@@ -25,6 +25,11 @@ export function Header() {
         signOut();
     }
 
+    function handlePayment() {
+        handleInputValue("");
+        navigate("/payment");
+    }
+
     return (
         <Section>            
             <div className="desktop">   
@@ -32,7 +37,7 @@ export function Header() {
                 <SearchInput id="search-input" />
                 {!admin && <Link to={"/favorites"} id="favorites">Meus favoritos</Link>}
                 {!admin && <Link to={"/orders"} id="orders">Meus pedidos</Link>}
-                {!admin && <CartButton totalDishes={cartAmount} onClick={() => navigate("/payment")} />}
+                {!admin && <CartButton totalDishes={cartAmount} onClick={handlePayment} />}
                 {admin && <Button title={'Novo prato'} />}
                 <button 
                     id="sign-out"
@@ -46,7 +51,7 @@ export function Header() {
                     <img src={Menu} alt="Menu lateral" />  
                 </button>                
                 <MainLogo />
-                {!admin && <CartButtonMobile totalDishes={cartAmount} onClick={() => navigate("/payment")} />}
+                {!admin && <CartButtonMobile totalDishes={cartAmount} onClick={handlePayment} />}
                 {admin && <div/>}
             </div>                
         </Section>

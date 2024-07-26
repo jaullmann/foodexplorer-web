@@ -8,12 +8,11 @@ function SearchProvider({ children }) {
   
   const [searchResult, setSearchResult] = useState([]);
   const [inputValue, setInputValue] = useState("");
+  const [lastRoute, setLastRoute] = useState("/");
   const navigate = useNavigate();
   const location = useLocation();
 
   async function fetchDishes(searchKey) {
-    let currentRoute = location.pathname;
-    console.log(currentRoute)
     try {      
       const response = await api.get(
         `dishes?search_key=${searchKey}`, 
@@ -32,17 +31,19 @@ function SearchProvider({ children }) {
   }
 
   useEffect(() => {
+    location.pathname !== '/search' && setLastRoute(location.pathname);    
     if (inputValue.length < 3) {
       setSearchResult([]);      
     } else {
-      fetchDishes(inputValue);
-    }    
-  }, [inputValue]);
+      fetchDishes(inputValue);      
+    }            
+  }, [inputValue]);  
 
   return (
     <SearchContext.Provider value={{
       searchResult,
       inputValue,
+      lastRoute,
       handleInputValue
     }}>
       { children }

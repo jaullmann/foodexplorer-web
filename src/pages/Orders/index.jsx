@@ -1,4 +1,5 @@
 import { api } from "../../services/api";
+import { useSearch } from "../../hooks/search";
 import { useState, useEffect } from "react";
 import { Container, Main } from "./styles";
 import { Header } from "../../components/Header";
@@ -10,6 +11,7 @@ import { useNavigate } from "react-router-dom";
 export function Orders() {
 
     const [data, setData] = useState(null);
+    const { handleInputValue } = useSearch();
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -23,6 +25,7 @@ export function Orders() {
         }
 
         fetchOrders();
+        handleInputValue("");        
     }, []);
 
     function handleOrderDetails(orderId) {

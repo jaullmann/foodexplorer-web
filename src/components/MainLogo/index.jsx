@@ -1,16 +1,22 @@
-import { useAuth } from '../../hooks/auth';
+import { useSearch } from "../../hooks/search";
 import { useNavigate } from 'react-router-dom';
 import { Container } from "./styles";
 import HexagonIcon from "../../assets/app_icons/hexagon_icon.svg";
 
 export function MainLogo({ userRole="customer" }) {
 
-  const navigate = useNavigate();
+  const { handleInputValue } = useSearch();
+  const navigate = useNavigate();  
+
+  function handleClick() {
+    handleInputValue("");
+    navigate("/");
+  }
 
   return (
     <Container 
       id='main-logo'
-      onClick={() => navigate("/")}
+      onClick={handleClick}
     >
       <img 
         src={HexagonIcon}
