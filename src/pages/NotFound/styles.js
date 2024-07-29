@@ -43,7 +43,7 @@ export const Main = styled.main`
             color: ${({ theme }) => theme.COLORS.LIGHT_400};
         }
 
-        a {
+        button {
             font-size: 1.5rem;
             ${({ theme }) => theme.FONTS.POPPINS_REGULAR};
             color: ${({ theme }) => theme.COLORS.LIGHT_100};

@@ -16,10 +16,11 @@ export const Container = styled.div`
         ${({ theme }) => theme.FONTS.ROBOTO_REGULAR};
         color: ${({ theme }) => theme.COLORS.LIGHT_400};
     }
-    
+
+    position: relative;    
 `
 
-export const Button = styled.button`
+export const Label = styled.label`
     width: 100%;
     height: 3rem;    
     padding: 0 2rem;
@@ -35,6 +36,10 @@ export const Button = styled.button`
     @media (max-width: ${DEVICE_BREAKPOINTS.MD}) {
        justify-content: flex-start; 
        padding-left: 2rem; 
+    }
+
+    input {
+        display: none;
     }
 
     > svg {

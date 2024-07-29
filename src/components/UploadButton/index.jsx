@@ -1,16 +1,21 @@
 import { PiUploadSimple } from "react-icons/pi";
-import { Container, Button } from "./styles";
+import { Container, Label } from "./styles";
 
 export function UploadButton({ newDish = true, onChange, ...rest }) {
   return (
     <Container>
       <h3>Imagem do prato</h3>
-      <Button onChange={onChange}>
+      <Label htmlFor="dishImage">
         <PiUploadSimple />
-        <input type="file" onChange={onchange}/>
+        <input 
+          id="dishImage"
+          type="file" 
+          onChange={onChange}
+          accept="image/png, image/jpeg"  
+        />
         {newDish && <p>Selecione imagem</p>}
-        {!newDish && <p>Selecione imagem para alterá-la</p>}
-      </Button>
+        {!newDish && <p>Selecione nova imagem</p>}
+      </Label>
     </Container>
   )
 }

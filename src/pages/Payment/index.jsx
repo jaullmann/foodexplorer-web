@@ -56,7 +56,7 @@ export function Payment() {
         } else {            
             fetchUserCart();            
         }            
-    }, [newOrderId]) 
+    }, [newOrderId, navigate]) 
     
     useEffect(() => {
         if (data){

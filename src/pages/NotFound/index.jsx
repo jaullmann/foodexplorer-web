@@ -1,11 +1,13 @@
 import { PiPlugs } from "react-icons/pi";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { Container, Main } from "./styles";
 import { Header } from "../../components/Header";
 import { Footer } from "../../components/Footer";
 
 
 export function NotFound() {   
+
+    const navigate = useNavigate()
 
     return(
         <Container>
@@ -16,8 +18,8 @@ export function NotFound() {
 
                 <div>
                     <PiPlugs />
-                    <h1>Ops... Página não encontrada!</h1>  
-                    <Link to="/" >Voltar para a Home</Link>
+                    <h1>Ops... Algo deu errado!</h1>  
+                    <button onClick={() => navigate(-1)}>Voltar</button>
                 </div>                             
 
             </Main>
