@@ -49,8 +49,12 @@ export function DishCard({ dishId, title, imageFile, description, price, favorit
       }       
     } 
 
-    function handleDetails(dishId) {       
+    function handleDetails() {       
       navigate(`/description/${dishId}`);    
+    }
+
+    function handleUpdate() {
+      navigate(`/edit/${dishId}`); 
     }
 
     useEffect(() => {
@@ -60,7 +64,11 @@ export function DishCard({ dishId, title, imageFile, description, price, favorit
     return(
         <Container key={String(dishId)}>
           {admin ? (
-              <PiPencilSimple />
+              <PiPencilSimple 
+                id={`edit-button-dish-${dishId}`}
+                onClick={() => handleUpdate(dishId)}
+                className={favDish ? "favorite-dish" : ""}
+              />
             ) : (
               <FiHeart
                 id={`fav-button-dish-${dishId}`}
@@ -71,13 +79,16 @@ export function DishCard({ dishId, title, imageFile, description, price, favorit
           } 
           <img 
             src={imageFile} 
-            alt="Visualizar detalhes do prato" 
+            alt="Foto do produto" 
             onClick={() => handleDetails(dishId)}
           />
-          <h1 onClick={() => handleDetails(dishId)}>
+          <h1 
+            onClick={() => handleDetails(dishId)}>
             {loading ? "Carregando" : title + " >"}
           </h1> 
-          <h3>
+          <h3 
+            id="dish-description"
+          >
             {loading ? "Carregando" : description}
           </h3>
           <h2>{loading ? "R$ --,--" : formatCurrency(price)}</h2>

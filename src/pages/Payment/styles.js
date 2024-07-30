@@ -9,19 +9,24 @@ export const Container = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;       
+    justify-content: space-between;       
 `;
 
 export const Main = styled.main`
     padding: 2.125rem 4rem 2.1rem 4rem;
     width: 100%;
     max-width: 93.5rem; 
+    margin-top: 6.5rem;
     margin-bottom: auto;   
 
     display: flex;
     align-items: flex-start;
     justify-content: space-between;  
-    gap: 2.5vw;      
+    gap: 2.5vw;     
+    
+    @media (max-width: ${DEVICE_BREAKPOINTS.LG}) {
+        margin: 9rem 0 3rem;
+    }
 
     > h1 {
         width: 100vw;

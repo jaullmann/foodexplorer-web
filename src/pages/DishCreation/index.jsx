@@ -1,7 +1,8 @@
 import { api } from "../../services/api";
 import { PiCaretDownBold } from "react-icons/pi";
 import { FiPlus } from "react-icons/fi";
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
+import { useParams, useNavigate } from "react-router-dom";
 import { Container, Main } from "./styles";
 import { Header } from "../../components/Header";
 import { Footer } from "../../components/Footer";
@@ -11,10 +12,9 @@ import { IngredientEditing } from "../../components/IngredientEditing";
 import { SectionLabel } from "../../components/SectionLabel";
 import { UploadButton } from "../../components/UploadButton";
 import { LabeledInput } from "../../components/LabeledInput";
+import { LabeledCurrencyInput } from "../../components/LabeledCurrencyInput";
 
-
-export function DishCreation({ newDish = true }) {
-
+export function DishCreation() {
     const [title, setTitle] = useState("");
     const [category, setCategory] = useState("refeição");
     const [price, setPrice] = useState("");
@@ -23,50 +23,70 @@ export function DishCreation({ newDish = true }) {
     const [description, setDescription] = useState("");
     const [imageFile, setImageFile] = useState(null);
     const [prevDishes, setPrevDishes] = useState([]);
+    const [newDish, setNewDish] = useState(true);
+    const { dishId } = useParams();
+    const navigate = useNavigate();
 
     async function fetchProducts() {
         try {
             const response = await api.get("dishes", { withCredentials: true });
             const ProductNames = response.data.map((product) => product.title.toLowerCase())
             setPrevDishes(ProductNames)
-        } catch(e) {
+        } catch (e) {
             if (e.response) {
                 alert(e.response.data.message);
             } else {
-                alert("Erro ao obter dados de produtos já cadastrados");
+                alert("Erro ao obter dados de produtos já cadastrados.");
             }
-        }        
-    }    
+        }
+    }
+
+    async function fetchEditingProduct() {
+        try {
+            const response = await api.get(`dishes/${dishId}`, { withCredentials: true });
+            setTitle(response.data.title);
+            setCategory(response.data.category);
+            setIngredients(response.data.ingredients);
+            setDescription(response.data.description);
+            setPrice(response.data.price * 100);
+        } catch (e) {
+            if (e.response) {
+                alert(e.response.data.message);
+            } else {
+                alert("Erro ao obter dados do produto.");
+            }
+        }
+    }
 
     async function uploadProductImage(dishId) {
         if (imageFile) {
             const fileUploadForm = new FormData();
-            fileUploadForm.append("image", imageFile); 
-            
+            fileUploadForm.append("image", imageFile);
+
             try {
-                await api.patch(`dishes/image/${dishId}`, 
-                    fileUploadForm, 
+                await api.patch(`dishes/image/${dishId}`,
+                    fileUploadForm,
                     {
                         withCredentials: true,
                         headers: {
                             'Content-Type': 'multipart/form-data'
                         }
                     }
-                );            
-            } catch(e) {
+                );
+            } catch (e) {
                 if (e.response) {
                     alert(e.response.data.message);
                 } else {
                     alert("Não foi possível gravar a imagem do novo produto.");
                 }
-            } 
+            }
         }
     }
 
-    async function createProduct() {        
-        await fetchProducts()  
+    async function createProduct() {
+        await fetchProducts()
         if (!isFormValidated()) {
-            return
+            return false;
         }
         try {
             const response = await api.post("dishes", {
@@ -74,29 +94,69 @@ export function DishCreation({ newDish = true }) {
                 category: category,
                 description: description,
                 ingredients: ingredients,
-                price: price
+                price: Number(price)/100
             },
                 { withCredentials: true }
             );
             const dishId = await response.data.dish_id;
 
-            uploadProductImage(dishId);            
+            imageFile && uploadProductImage(dishId);
             window.location.reload();
-            
-        } catch(e) {
+            return true;
+
+        } catch (e) {
             if (e.response) {
                 alert(e.response.data.message);
             } else {
                 alert("Não foi possível registrar o novo produto.");
             }
-        }               
+            return false;
+        }
+    }
+
+    async function updateProduct() {
+        await fetchProducts()
+        if (!isFormValidated()) {
+            return false;
+        }
+        try {
+            await api.put(`dishes/${dishId}`, {
+                title: title,
+                category: category,
+                description: description,
+                ingredients: ingredients,
+                price: Number(price)/100
+            },
+                { withCredentials: true }
+            );    
+
+            imageFile && uploadProductImage(dishId);            
+            return true;
+
+        } catch (e) {
+            if (e.response) {
+                alert(e.response.data.message);
+            } else {
+                alert("Não foi possível atualizar os dados do produto.");
+            }
+            return false;
+        }
     }
 
     async function handleProduct(event) {
         event.preventDefault();
-        await createProduct();
-        alert("Prato criado com sucesso!");
-    }    
+        if (newDish) {
+            const productCreated = await createProduct();
+            productCreated && alert("Produto criado com sucesso!");
+        } else {
+            const productUpdated = await updateProduct();
+            if (productUpdated) {
+                alert("Produto atualizado com êxito!");
+                navigate(-1);
+            }             
+        }
+
+    }
 
     function handleUploadPicture(event) {
         const file = event.target.files[0];
@@ -135,19 +195,23 @@ export function DishCreation({ newDish = true }) {
             alert("O produto precisa ter um nome válido com pelo menos três caracteres.");
             return false;
         }
-        if (prevDishes.includes(title.toLowerCase())) {
+        if (prevDishes.includes(title.toLowerCase()) && newDish) {
             alert("Já existe outro produto cadastrado com este nome.");
             return false;
         }
         if (ingredients.length === 0) {
-            alert("O produto precisa ter ao menos um ingrediente cadastrado.");
+            alert("Necessário cadastrar ao menos um ingrediente para o produto.");
             return false;
         }
-        if (!price || price < 1 || price > 100) {
-            alert("O produto precisa ter um preço registrado com valor entre 1,00 e 99,99.");
+        if (!price || price / 100 < 1 || price / 100 > 100) {
+            alert("Necessário informar um valor entre 1,00 e 99,99.");
             return false;
         }
-        if (!imageFile) {
+        if (!description || description.trim().length < 3 || description.length > 500) {
+            alert("Necessário registrar uma descrição ao produto com até 500 caracteres.");
+            return false;
+        }
+        if (!imageFile && newDish) {
             const noImage = confirm("Você não selecionou nenhuma imagem para o produto. Deseja cadastrá-lo inicialmente sem uma foto associada?")
             if (!noImage) {
                 return false;
@@ -156,7 +220,14 @@ export function DishCreation({ newDish = true }) {
         return true;
     }
 
-    
+    useEffect(() => {
+        if (dishId) {
+            setNewDish(false);
+            fetchEditingProduct();
+        }
+    }, [navigate])
+
+
     return (
         <Container>
 
@@ -166,7 +237,7 @@ export function DishCreation({ newDish = true }) {
                 <BackButton id="back-button" />
                 <SectionLabel
                     id={"main-label"}
-                    title={newDish ? "Adicionar prato" : "Editar prato"}
+                    title={newDish ? "Adicionar produto" : "Editar produto"}
                 />
                 <form>
 
@@ -223,11 +294,12 @@ export function DishCreation({ newDish = true }) {
                                 </div>
                             </div>
                         </div>
-                        <LabeledInput id="form-price"
+                        <LabeledCurrencyInput
+                            id="form-price"
                             label={"Preço"}
                             placeholder={"R$ 00,00"}
                             value={price}
-                            onChange={e => setPrice(e.target.value)}
+                            onChange={setPrice}
                         />
                     </div>
 
@@ -235,7 +307,7 @@ export function DishCreation({ newDish = true }) {
                         <h3>Descrição</h3>
                         <textarea
                             value={description}
-                            placeholder="Registre aqui uma descrição para o seu prato"
+                            placeholder="Registre aqui uma descrição para o seu produto"
                             onChange={e => setDescription(e.target.value)}
                         />
                     </div>
@@ -252,12 +324,12 @@ export function DishCreation({ newDish = true }) {
                     {!newDish &&
                         <div id="form-buttons">
                             <Button
-                                title={"Excluir prato"}
+                                title={"Excluir produto"}
                                 color={"dark_800"}
                             />
                             <Button
-                                title={"Salvar alterações"}
-                                color={"tomato_400"}
+                                title={newDish ? "Salvar" : "Salvar alterações"}
+                                color={"tomato_200"}
                                 onClick={handleProduct}
                             />
                         </div>

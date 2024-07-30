@@ -16,7 +16,7 @@ export const Main = styled.main`
     padding: 2.625rem 4rem;    
     height: 100%;
     max-width: 93.5rem; 
-
+    margin-top: 6.5rem;
     margin-bottom: auto;
    
     > a {
@@ -63,14 +63,14 @@ export const Main = styled.main`
 
     h1 {
         ${({ theme }) => theme.FONTS.POPPINS_MEDIUM};
-        font-size: clamp(1.71rem, 1rem + 1.6vw, 2.5rem);
+        font-size: clamp(1.81rem, 1rem + 1.6vw, 2.5rem);
         line-height: 140%;
         color: ${({ theme }) => theme.COLORS.LIGHT_300};
     }
 
     p {
         ${({ theme }) => theme.FONTS.POPPINS_REGULAR};
-        font-size: clamp(.9rem, .6rem + .8vw, 1.5rem);
+        font-size: clamp(1rem, .6rem + .8vw, 1.5rem);
         line-height: 140%;
         color: ${({ theme }) => theme.COLORS.LIGHT_300};
 
@@ -79,7 +79,9 @@ export const Main = styled.main`
         }
     }
 
-    @media (max-width: ${DEVICE_BREAKPOINTS.MD}) {
+    @media (max-width: ${DEVICE_BREAKPOINTS.LG}) {
+        margin-top: 9rem;
+
         h1, p, #ingredients {
             max-width: 26.75rem; 
         } 

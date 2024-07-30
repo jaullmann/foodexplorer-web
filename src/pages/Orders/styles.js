@@ -17,12 +17,17 @@ export const Main = styled.main`
     width: 100%;
     height: 100%;
     max-width: 93.5rem; 
+    margin-top: 6.5rem;
     margin-bottom: auto; 
     
     display: flex;
     flex-direction: column;
     justify-content: center;
     gap: 2.1875rem;
+
+    @media (max-width: ${DEVICE_BREAKPOINTS.LG}) {
+        margin: 9rem 0 1rem;
+    }
 
     > h1 {
         margin-top: 8rem;

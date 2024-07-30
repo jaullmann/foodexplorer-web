@@ -10,8 +10,8 @@ export const Container = styled.main`
   width: 100%;  
   
   #banner-section {
-    margin: min(10.25rem, 8vw + 3.5rem) auto 3rem;
-    width: 100%; 
+    margin: min(17rem, 8vw + 9rem) auto 3rem;
+    width: 100%;     
     
     height: 16.25rem;   
 
@@ -20,12 +20,12 @@ export const Container = styled.main`
     }
 
     @media (max-width: ${DEVICE_BREAKPOINTS.LG}) {
-      margin: 3.5rem auto 3.875rem;
+      margin: 12rem auto 3.875rem;
       height: 12rem;
     }
 
     @media (max-width: ${DEVICE_BREAKPOINTS.MD}) {
-      margin: 2.75rem auto 3.875rem;
+      margin: 11rem auto 3.875rem;
       height: 7.5rem;
     }
 

@@ -17,7 +17,7 @@ export function SearchCard({ dishId, title, imageFile, ...rest }){
         <Container>
             <img 
                 src={imageFile}                
-                alt={"Visualizar detalhes do prato"}
+                alt={"Foto do produto"}
                 onClick={() => handleDishDetails(dishId)}
             />
             <div>

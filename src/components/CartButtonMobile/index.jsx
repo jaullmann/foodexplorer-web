@@ -1,9 +1,14 @@
 import { Container } from "./styles";
 import Receipt from "../../assets/app_icons/receipt.svg"
 
-export function CartButtonMobile({ totalDishes=10 }) {  
+export function CartButtonMobile({ totalDishes, loading = false, onClick }) {  
   return (
-    <Container id="cart-button-mobile">
+    <Container 
+      id="cart-button-mobile"
+      type="button"
+      disabled={loading}
+      onClick={onClick}
+    >
       <img src={Receipt} alt="Carrinho de compras"/>
       <div>{totalDishes}</div>
     </Container>

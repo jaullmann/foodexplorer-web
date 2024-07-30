@@ -15,9 +15,8 @@ export const Container = styled.div`
         font-size: 1rem;
         ${({ theme }) => theme.FONTS.ROBOTO_REGULAR};
         color: ${({ theme }) => theme.COLORS.LIGHT_400};
-    }
+    }  
 
-    position: relative;    
 `
 
 export const Label = styled.label`
@@ -30,6 +29,7 @@ export const Label = styled.label`
     align-items: center;
     justify-content: center;
     gap: .5rem;
+    cursor: pointer;    
 
     background-color: ${({ theme }) => theme.COLORS.DARK_900};
 

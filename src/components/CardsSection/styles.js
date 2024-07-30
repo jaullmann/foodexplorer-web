@@ -29,7 +29,18 @@ export const Section = styled.section`
       ${({ theme }) => theme.COLORS.DARK_100} 5%, 
       transparent 30%,
       transparent 70%,
-      ${({ theme }) => theme.COLORS.DARK_100} 95%);
+      ${({ theme }) => theme.COLORS.DARK_100} 95%
+    );
+
+      @media (max-width: ${DEVICE_BREAKPOINTS.MD}) {        
+        background: linear-gradient(90deg, 
+          ${({ theme }) => theme.COLORS.DARK_100} 5%, 
+          transparent 15%,
+          transparent 80%,
+          ${({ theme }) => theme.COLORS.DARK_100} 95%
+        );
+    
+      }
     
     z-index: 1;
 

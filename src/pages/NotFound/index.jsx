@@ -19,7 +19,7 @@ export function NotFound() {
                 <div>
                     <PiPlugs />
                     <h1>Ops... Algo deu errado!</h1>  
-                    <button onClick={() => navigate(-1)}>Voltar</button>
+                    <button onClick={() => navigate("/")}>Voltar</button>
                 </div>                             
 
             </Main>

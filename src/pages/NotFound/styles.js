@@ -9,7 +9,7 @@ export const Container = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;       
+    justify-content: space-between;       
 `;
 
 export const Main = styled.main`
@@ -17,14 +17,14 @@ export const Main = styled.main`
     width: 100%;
     max-width: 93.5rem; 
     margin-bottom: auto; 
-    margin-top: auto;
+    margin-top: 15rem;
 
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 2.1875rem;  
-    
+    gap: 2.1875rem;
+         
     > div {
         display: flex;
         flex-direction: column;

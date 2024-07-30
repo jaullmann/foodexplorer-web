@@ -15,11 +15,16 @@ export const Container = styled.div`
 export const Main = styled.main`
     padding: 0 4rem 2.1rem;
     width: 100%;
+    margin-top: 6.5rem;
     margin-bottom: auto;
     max-width: 93.5rem; 
 
     display: flex;
     flex-direction: column;    
+
+    @media (max-width: ${DEVICE_BREAKPOINTS.LG}) {
+        margin: 9rem 0 3rem;
+    }
     
     a {
         width: 100%;
@@ -184,7 +189,7 @@ export const Main = styled.main`
             background-color: ${({ theme }) => theme.COLORS.DARK_900};
             ${({ theme }) => theme.FONTS.ROBOTO_REGULAR};            
         }       
-    }
+    }   
 
     #form-buttons {        
         height: 3rem;
@@ -204,6 +209,10 @@ export const Main = styled.main`
             }
         }    
     }  
+
+    #form-price {
+        text-align: right;
+    }
     
     #new-ingredient {
       display: flex;
@@ -234,6 +243,6 @@ export const Main = styled.main`
         cursor: pointer;
       }
       
-    }
+    }    
 
 `

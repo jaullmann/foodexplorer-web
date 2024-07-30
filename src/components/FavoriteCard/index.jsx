@@ -32,7 +32,7 @@ export function FavoriteCard({ dishId, title, imageFile, onDeleteFavorite }){
         <Container>
             <img 
                 src={imageFile}                
-                alt={"Visualizar detalhes do prato"}
+                alt={"Foto do produto"}
                 onClick={() => handleDishDetails(dishId)}
             />
             <div>

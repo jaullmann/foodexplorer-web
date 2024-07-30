@@ -39,6 +39,10 @@ export function DishDetails() {
     setFavorite(!favorite);
   } 
 
+  function handleDish() {
+    navigate(`/edit/${dishId}`);
+  }
+
   useEffect(() => {
     async function fetchProduct() {      
       try {        
@@ -60,7 +64,7 @@ export function DishDetails() {
       setFavorite(isFavorite);
     }
     setPreviousFavStatus();
-  }, [])
+  }, []);
 
   return (
     <Container>
@@ -111,16 +115,19 @@ export function DishDetails() {
                 }
                 {
                   admin && 
-                  <Button title={"Editar prato"} />
+                  <Button 
+                    title={"Editar prato"} 
+                    onClick={handleDish}
+                  />
                 }
-                {admin ? (
-                    <PiPencilSimple />
-                  ) : (
+                {!admin ? (
                     <FiHeart
                       id={"fav-button"}
                       onClick={toggleUserFavorite}
                       className={favorite ? "favorite-dish" : ""}
                     />
+                  ) : (
+                    <></>
                   )
                 } 
               </div>

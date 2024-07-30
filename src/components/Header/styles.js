@@ -6,8 +6,10 @@ export const Section = styled.div`
     padding: 0 4rem;
     width: 100%;    
 
-    position: relative;
+    position: fixed;
+    top: 0;
     background-color: ${({ theme }) => theme.COLORS.DARK_800};    
+    z-index: 10;
     
     > .desktop {
         margin: auto;

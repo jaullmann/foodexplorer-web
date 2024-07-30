@@ -1,4 +1,5 @@
-import { useEffect } from "react";
+import { api } from "../../services/api";
+import { useEffect, useState } from "react";
 import { useFavorites } from "../../hooks/favorites";
 import { Container } from "./styles";
 import { Header } from "../../components/Header";
@@ -8,13 +9,29 @@ import homeBanner from "../../assets/images/home_banner.png";
 
 export function Home() {    
 
-  const { userFavorites, fetchFavorites } = useFavorites();  
+  const [data, setData] = useState(null);
+  const { userFavorites, fetchFavorites } = useFavorites();
 
-  useEffect(() => {  
-      fetchFavorites();      
-}, [])
+  async function fetchProducts() {
+    try {
+      const response = await api.get("dishes", { withCredentials: true });
+      setData(response.data);
+    } catch (e) {
+      if (e.response) {
+          alert(e.response.data.message);
+      } else {
+          alert("Erro ao obter dados dos produtos.");
+      }
+    }
+  }
+
+  useEffect(() => {
+    fetchProducts();
+    fetchFavorites();
+  }, []);
 
   return(
+    
     <Container>
 
       <Header />
@@ -30,21 +47,37 @@ export function Home() {
         </div>  
       </div>
 
-      <CardsSection
-        sectionName={"Refeições"} 
-        category={"refeicao"} 
-        favorites={userFavorites}
-      />
-      <CardsSection
-        sectionName={"Sobremesas"} 
-        category={"refeicao"} 
-        favorites={userFavorites}
-      />
-      <CardsSection
-        sectionName={"Bebidas"} 
-        category={"refeicao"} 
-        favorites={userFavorites}
-      />
+      {
+        data &&
+        <CardsSection
+          dishesData={data}
+          sectionName={"Refeições"} 
+          category={"refeição"} 
+          favorites={userFavorites}
+        />
+      }
+      
+      {
+        data &&
+        <CardsSection
+          dishesData={data}
+          sectionName={"Sobremesas"} 
+          category={"sobremesa"} 
+          favorites={userFavorites}
+        />
+      }
+      
+
+      {
+        data &&
+        <CardsSection
+          dishesData={data}
+          sectionName={"Bebidas"} 
+          category={"bebida"} 
+          favorites={userFavorites}
+        />
+      }
+      
       
       <Footer />
 

@@ -47,9 +47,7 @@ export const Container = styled.div`
     overflow: hidden;
     display: -webkit-box;
     -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
-
-    margin-bottom: -.001rem;
+    -webkit-box-orient: vertical;    
     cursor: pointer;   
   }  
 
@@ -80,8 +78,8 @@ export const Container = styled.div`
 
   @media (max-width: ${DEVICE_BREAKPOINTS.LG}) {
     width: 13.125rem;
-    min-height: 18.25rem;
-    gap: .75rem;
+    min-height: 18.25rem;    
+    
 
     > svg {
       right: 1rem;
@@ -89,8 +87,8 @@ export const Container = styled.div`
     }
 
     > img {
-      width: 5.5rem;
-      height: 5.5rem;
+      width: 6.5rem;
+      height: 6.5rem;
       cursor: pointer;
     }
 
