@@ -42,22 +42,25 @@ export const Main = styled.main`
             gap: 1.5rem;
 
             > img {
-                width: max(16.5rem, 41vw);
-                height: max(16.5rem, 41vw);
+                width: max(22rem, 43vw);
+                height: max(22rem, 43vw);
             }
         }
     }
 
     #dish-details {
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start;
-      justify-content: center;
-      gap: .9rem + .9vw;  
+        min-width: 40vw;
 
-      @media (max-width: ${DEVICE_BREAKPOINTS.MD}) {
-        align-items: center;
-      }
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: center;
+        gap: 1.5rem;  
+
+        @media (max-width: ${DEVICE_BREAKPOINTS.MD}) {
+            min-width: 65vw;
+            align-items: center;
+        }
 
     }
 

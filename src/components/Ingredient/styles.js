@@ -3,8 +3,12 @@ import styled from "styled-components";
 export const Container = styled.div`    
     width: max-content;
     height: 2rem;
-    padding: 0.25rem 0.5rem;
-    border-radius: 0.3rem; 
+    padding: 0rem 0.5rem;
+    border-radius: 0.3rem;     
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
     // font
     ${({ theme }) => theme.FONTS.POPPINS_MEDIUM}

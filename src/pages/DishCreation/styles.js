@@ -182,6 +182,7 @@ export const Main = styled.main`
             height: 10.75rem;            
             background: none;            
             border: none;
+            border-radius: .5rem;
             resize: none;
 
             font-size: 1rem;            

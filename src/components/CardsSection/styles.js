@@ -30,7 +30,7 @@ export const Section = styled.section`
       transparent 30%,
       transparent 70%,
       ${({ theme }) => theme.COLORS.DARK_100} 95%
-    );
+    );    
 
       @media (max-width: ${DEVICE_BREAKPOINTS.MD}) {        
         background: linear-gradient(90deg, 

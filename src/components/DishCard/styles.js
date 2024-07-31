@@ -2,6 +2,9 @@ import styled from "styled-components";
 import { DEVICE_BREAKPOINTS } from "../../styles/deviceBreakpoints";
 
 export const Container = styled.div`
+  border-radius: .5rem;
+  border: 1px solid grey;
+
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -39,7 +42,9 @@ export const Container = styled.div`
     text-align: center;    
   }
 
-  > h1 {    
+  > h1 {   
+    height: 4.5rem;
+    
     ${({ theme }) => theme.FONTS.POPPINS_BOLD}; 
     font-size: 1.5rem;    
     color: ${({ theme }) => theme.COLORS.LIGHT_300};
@@ -92,10 +97,10 @@ export const Container = styled.div`
       cursor: pointer;
     }
 
-    > h1 {
+    > h1 {      
       ${({ theme }) => theme.FONTS.POPPINS_MEDIUM}; 
       font-size: .875rem;
-      width: 100%;
+      width: 100%;      
     }  
 
     > h3 {

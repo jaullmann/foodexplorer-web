@@ -33,7 +33,12 @@ export const Container = styled.button`
   border-radius: 0.3rem; 
 
   &:disabled {
-    opacity: 0.5;
+    opacity: 0.8;
+
+    &:hover {
+      filter: none;
+      cursor: not-allowed;
+    }
   }  
 
   @media (max-width: ${DEVICE_BREAKPOINTS.MD}) { 

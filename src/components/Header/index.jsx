@@ -1,4 +1,4 @@
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import { useAuth } from "../../hooks/auth";
 import { useCart } from "../../hooks/cart";
 import { useSearch } from "../../hooks/search";
@@ -31,8 +31,8 @@ export function Header() {
     }
 
     function handleCreate() {
-        handleInputValue("");
-        navigate("/new");
+        handleInputValue("");        
+        navigate("/new", { state: { newDish: true } });
     }
 
     return (

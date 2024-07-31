@@ -152,7 +152,10 @@ export function PaymentFrame({ paidOrder=false, orderStatus="preparando", cartDa
                             altStyle
                         />
                     </div>
-                    <PaymentButton onClick={placeOrder} disabled={!isValidCardData()} />
+                    <PaymentButton 
+                        onClick={placeOrder} 
+                        disabled={!isValidCardData()} 
+                    />
                 </div>
             }
 

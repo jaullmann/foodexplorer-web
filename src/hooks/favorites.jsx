@@ -48,8 +48,8 @@ function FavoritesProvider({ children }) {
           data: {                
                 user_id: user.user_id,
                 dish_id: dishId
-            },
-            withCredentials: true
+          },
+          withCredentials: true
       });                         
     } catch (e) {
       if (e.response) {

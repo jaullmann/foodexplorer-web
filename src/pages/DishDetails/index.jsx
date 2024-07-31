@@ -102,16 +102,19 @@ export function DishDetails() {
                 </div>
               }
 
-              <div id="user-action">
-                <DishCounter onAmountChange={setAmount} />
+              <div id="user-action">                
                 {
                   !admin && 
-                  <Button 
-                    title={"incluir ∙ " + formatCurrency(data.price * amount)} 
-                    onClick={() => {                      
-                      addToCart({ dishId: dishId, dishAmount: amount})                     
-                    }}
-                  />
+                  <>
+                    <DishCounter onAmountChange={setAmount} />
+                    <Button 
+                      title={"incluir ∙ " + formatCurrency(data.price * amount)} 
+                      onClick={() => {                      
+                        addToCart({ dishId: dishId, dishAmount: amount})                     
+                      }}
+                    />
+                  </>
+                  
                 }
                 {
                   admin && 
