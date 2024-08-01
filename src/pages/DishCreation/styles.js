@@ -115,25 +115,37 @@ export const Main = styled.main`
             -webkit-appearance: none;
             width: 100%;
             height: 3rem;
-            padding: 1rem;
+            padding: .9rem;
 
             border: none;
-            border-radius: .5rem;   
-            cursor: pointer;      
+            border-radius: .5rem;
+            
+            transition: 0.2s;
+            border: 1px solid ${({ theme, $alternativeStyle }) => 
+                $alternativeStyle ? 'transparent' : theme.COLORS.DARK_900
+            };
             background-color: ${({ theme }) => theme.COLORS.DARK_900};
             font-size: 1rem;
             ${({ theme }) => theme.FONTS.ROBOTO_REGULAR};             
-            color: ${({ theme }) => theme.COLORS.LIGHT_400};          
-            
+            color: ${({ theme }) => theme.COLORS.LIGHT_400};
+            cursor: pointer;  
+
             @media (max-width: ${DEVICE_BREAKPOINTS.MD}) {
                 background-color: ${({ theme }) => theme.COLORS.DARK_1000};
             }
-        }
-        
-        > select:focus {              
-            outline: none;         
-            background-color: ${({ theme }) => theme.COLORS.DARK_1000};            
-        }
+
+            &:hover {
+                transition: 0.2s;
+                border: 1px solid ${({ theme }) => theme.COLORS.LIGHT_500}
+            }
+
+            &:focus {              
+                outline: none; 
+                transition: 0.2s;
+                border: 1px solid ${({ theme }) => theme.COLORS.LIGHT_500};      
+                background-color: ${({ theme }) => theme.COLORS.DARK_1000};            
+            }
+        }        
         
         > svg {
             position: absolute;
@@ -163,7 +175,23 @@ export const Main = styled.main`
         flex-wrap: wrap;
         column-gap: 1rem;        
         row-gap: .5rem;
+        border: 1px solid ${({ theme }) => theme.COLORS.DARK_900};
         background-color: ${({ theme }) => theme.COLORS.DARK_900};
+
+        transition: 0.2s;
+
+        &:hover {
+            transition: 0.2s;
+            border: 1px solid ${({ theme }) => theme.COLORS.LIGHT_500};            
+        }
+
+        &:focus, &:focus-within {
+            transition: 0.2s;
+            border: 1px solid ${({ theme }) => theme.COLORS.LIGHT_500};
+            background-color: ${({ theme, $alternativeStyle }) => 
+                $alternativeStyle ? theme.COLORS.DARK_800 : theme.COLORS.DARK_1000
+            }; 
+        }
     }  
 
     #form-description {        
@@ -187,8 +215,23 @@ export const Main = styled.main`
 
             font-size: 1rem;            
             color: ${({ theme }) => theme.COLORS.LIGHT_400};
+            border: 1px solid ${({ theme }) => theme.COLORS.DARK_900};
             background-color: ${({ theme }) => theme.COLORS.DARK_900};
-            ${({ theme }) => theme.FONTS.ROBOTO_REGULAR};            
+            ${({ theme }) => theme.FONTS.ROBOTO_REGULAR}; 
+            transition: 0.2s;
+            
+            &:hover {
+                transition: 0.2s;
+                border: 1px solid ${({ theme }) => theme.COLORS.LIGHT_500};            
+            }
+
+            &:focus, &:focus-within {
+                transition: 0.2s;
+                border: 1px solid ${({ theme }) => theme.COLORS.LIGHT_500};
+                background-color: ${({ theme, $alternativeStyle }) => 
+                    $alternativeStyle ? theme.COLORS.DARK_800 : theme.COLORS.DARK_1000
+                }; 
+            }
         }       
     }   
 

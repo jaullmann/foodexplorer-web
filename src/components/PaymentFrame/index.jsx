@@ -26,7 +26,7 @@ export function PaymentFrame({ paidOrder=false, orderStatus="preparando", cartDa
             return
         }
         const orderData = {
-            payment_method: paymentOption === "pix" ? "pix" : "crédito",
+            payment_method: paymentOption === "pix" ? "pix" : "credit",
             ordered_dishes: cartData.map((dish) => {
                 return({
                     dish_id: dish.dish_id,

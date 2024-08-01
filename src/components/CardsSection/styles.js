@@ -27,8 +27,8 @@ export const Section = styled.section`
     
     background: linear-gradient(90deg, 
       ${({ theme }) => theme.COLORS.DARK_100} 5%, 
-      transparent 30%,
-      transparent 70%,
+      transparent 25%,
+      transparent 75%,
       ${({ theme }) => theme.COLORS.DARK_100} 95%
     );    
 

@@ -15,7 +15,7 @@ export const Container = styled.div`
         font-size: 1rem;
         ${({ theme }) => theme.FONTS.ROBOTO_REGULAR};
         color: ${({ theme }) => theme.COLORS.LIGHT_400};
-    }  
+    }      
 
 `
 
@@ -29,9 +29,20 @@ export const Label = styled.label`
     align-items: center;
     justify-content: center;
     gap: .5rem;
-    cursor: pointer;    
+    cursor: pointer; 
+    
+    transition: 0.2s;
 
+    border: 1px solid ${({ theme }) => theme.COLORS.DARK_900};
     background-color: ${({ theme }) => theme.COLORS.DARK_900};
+
+    &:hover, &:focus {
+        transition: 0.2s;
+        border: 1px solid ${({ theme }) => theme.COLORS.LIGHT_500};
+        background-color: ${({ theme, $alternativeStyle }) => 
+            $alternativeStyle ? theme.COLORS.DARK_800 : theme.COLORS.DARK_1000
+        }; 
+    }
 
     @media (max-width: ${DEVICE_BREAKPOINTS.MD}) {
        justify-content: flex-start; 

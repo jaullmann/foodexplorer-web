@@ -52,7 +52,7 @@ export function Home() {
         <CardsSection
           dishesData={data}
           sectionName={"Refeições"} 
-          category={"refeição"} 
+          category={"refeicao"} 
           favorites={userFavorites}
         />
       }

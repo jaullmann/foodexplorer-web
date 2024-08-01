@@ -63,6 +63,7 @@ export function SignUp() {
           type="text"
           placeholder={"Exemplo: Maria Silva"}
           onChange={e => setName(e.target.value)}
+          altStyle
         />
         <LabeledInput 
           className="labeled-input"
@@ -70,6 +71,7 @@ export function SignUp() {
           type="text"
           placeholder={"Exemplo: nome@exemplo.com.br"}
           onChange={e => setEmail(e.target.value)}
+          altStyle
         />
         <LabeledInput 
           className="labeled-input"
@@ -77,6 +79,7 @@ export function SignUp() {
           type="password"
           placeholder={"No mínimo 6 caracteres"}
           onChange={e => setPassword(e.target.value)}
+          altStyle
         />
         <Button
           title={"Criar conta"}

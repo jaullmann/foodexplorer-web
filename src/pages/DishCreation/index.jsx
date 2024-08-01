@@ -282,7 +282,7 @@ export function DishCreation() {
         } else {
             setNewDish(true);            
             setTitle("");
-            setCategory("refeição");
+            setCategory("refeicao");
             setPrice("");
             setIngredients([]);
             setNewIngredient("");
@@ -315,14 +315,14 @@ export function DishCreation() {
                         <UploadButton
                             id="form-upload-button"
                             newDish={newDish}
-                            onChange={handleUploadPicture}
-                        />
+                            onChange={handleUploadPicture}                            
+                        />                        
                         <LabeledInput id="form-dish-title"
                             label={"Nome"}
                             placeholder={"Ex.: Salada Ceasar"}
                             value={title}
                             onChange={e => setTitle(e.target.value)}
-                        />
+                        />                        
                         <div id="form-category">
                             <h3>Categoria</h3>
                             <select
@@ -330,7 +330,7 @@ export function DishCreation() {
                                 value={category}
                                 onChange={e => setCategory(e.target.value)}
                             >
-                                <option value="refeição">Refeição</option>
+                                <option value="refeicao">Refeição</option>
                                 <option value="sobremesa">Sobremesa</option>
                                 <option value="bebida">Bebida</option>
                             </select>

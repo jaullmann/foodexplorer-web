@@ -32,6 +32,20 @@ export const Container = styled.div`
     }
   }
 
+  transition: 0.2s;
+  border: 1px solid ${({ theme }) => theme.COLORS.DARK_900};
+
+  &:hover {
+    transition: 0.2s;
+    border: 1px solid ${({ theme }) => theme.COLORS.LIGHT_500};            
+  }
+
+  &:focus, &:focus-within {
+    transition: 0.2s;
+    border: 1px solid ${({ theme }) => theme.COLORS.LIGHT_400};
+    background-color: ${({ theme }) => theme.COLORS.DARK_500}; 
+  }
+
 `
 
 export const Input = styled.input`

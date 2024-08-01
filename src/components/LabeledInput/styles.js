@@ -27,6 +27,11 @@ export const Input = styled.input`
     $alternativeStyle ? '5px' : '.5rem'
   };
 
+  transition: 0.2s;
+  border: 1px solid ${({ theme, $alternativeStyle }) => 
+    $alternativeStyle ? theme.COLORS.LIGHT_100 : theme.COLORS.DARK_900
+  };
+
   color: ${({ theme }) => theme.COLORS.LIGHT_300}; 
   background-color: ${({ theme, $alternativeStyle }) => 
     $alternativeStyle ? 'transparent' : theme.COLORS.DARK_900
@@ -40,10 +45,16 @@ export const Input = styled.input`
   }
 
   &:focus {
-    background-color: ${({ theme, $alternativeStyle }) => 
-      $alternativeStyle ? theme.COLORS.DARK_800 : theme.COLORS.DARK_1000
-    };
-   
+      transition: 0.2s;
+      border: 1px solid ${({ theme }) => theme.COLORS.LIGHT_500};
+      background-color: ${({ theme, $alternativeStyle }) => 
+        $alternativeStyle ? theme.COLORS.DARK_800 : theme.COLORS.DARK_1000
+      };  
+  }
+
+  &:hover {
+      transition: 0.2s;
+      border: 1px solid ${({ theme }) => theme.COLORS.LIGHT_500}
   }
 
 `

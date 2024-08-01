@@ -3,19 +3,26 @@ import { DEVICE_BREAKPOINTS } from "../../styles/deviceBreakpoints";
 
 export const Container = styled.div`
   border-radius: .5rem;
-  border: 1px solid grey;
+  border: 1px solid ${({ theme }) => theme.COLORS.LIGHT_700}; 
 
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-between;  
-  gap: .9375rem;
+  justify-content: space-between;
+  gap: 1rem;
 
-  padding: 1.5rem;
+  padding: 1.2rem;
   max-width: 19rem;
-  /* max-height: 28rem;   */
+  height: 32.5rem;  
   background-color: transparent;
   position: relative;
+
+  transition: .2s;
+
+  &:hover {
+    transition: .2s;
+    border: 1px solid ${({ theme }) => theme.COLORS.LIGHT_300};
+  }
   
   > svg {
     width: 1.5rem;
@@ -24,7 +31,6 @@ export const Container = styled.div`
     right: 1.125rem;
     top: 1rem;   
     color: ${({ theme }) => theme.COLORS.LIGHT_300};       
-
     cursor: pointer;   
   }
 
@@ -36,15 +42,17 @@ export const Container = styled.div`
     width: 11rem;
     height: 11rem;
     cursor: pointer;
+    margin-bottom: .5rem;
   }
   
   > h1, h2, h3 {
     text-align: center;    
+    margin-bottom: 0.5rem;    
   }
 
-  > h1 {   
-    height: 4.5rem;
-    
+  > h1 {     
+    max-height: 13rem;
+
     ${({ theme }) => theme.FONTS.POPPINS_BOLD}; 
     font-size: 1.5rem;    
     color: ${({ theme }) => theme.COLORS.LIGHT_300};
@@ -56,7 +64,9 @@ export const Container = styled.div`
     cursor: pointer;   
   }  
 
-  > h3 {
+  > h3 {    
+    max-height: 5rem;
+
     ${({ theme }) => theme.FONTS.ROBOTO_REGULAR}; 
     font-size: .875rem;
     color: ${({ theme }) => theme.COLORS.LIGHT_400};     
@@ -79,12 +89,12 @@ export const Container = styled.div`
     justify-content: space-between;
     align-items: center;
     gap: 1rem;
+    margin-top: 1rem;
   }
 
   @media (max-width: ${DEVICE_BREAKPOINTS.LG}) {
     width: 13.125rem;
-    min-height: 18.25rem;    
-    
+    min-height: 18.25rem;        
 
     > svg {
       right: 1rem;
@@ -94,7 +104,7 @@ export const Container = styled.div`
     > img {
       width: 6.5rem;
       height: 6.5rem;
-      cursor: pointer;
+      margin-bottom: 0.5rem;
     }
 
     > h1 {      
@@ -117,10 +127,9 @@ export const Container = styled.div`
       flex-direction: column;      
       align-items: center;
       gap: 1rem;
+      margin-top: 1rem;
 
       width: 100%;
     }
-
   }
-  
-  `
+`;
