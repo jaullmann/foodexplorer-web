@@ -36,7 +36,7 @@ export function CardsSection({ dishesData, sectionName, category, favorites }) {
                   spaceBetween: 10
                 },
                 480: {
-                  slidesPerView: 2,
+                  slidesPerView: 2.5,
                   spaceBetween: 10
                 },
                 620: {
@@ -44,7 +44,7 @@ export function CardsSection({ dishesData, sectionName, category, favorites }) {
                   spaceBetween: 10
                 },
                 768: {
-                  slidesPerView: 3.4,
+                  slidesPerView: 3.1,
                   spaceBetween: 11
                 },
                 1024: {

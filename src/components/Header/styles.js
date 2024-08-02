@@ -59,9 +59,80 @@ export const Section = styled.div`
         margin-bottom: 2rem;
         padding: 0;
         
-        display: none;
+        display: none;       
 
         #side-menu {
+            display: ${({ $sideMenuVisible }) => $sideMenuVisible ? "flex": "none" };
+            flex-direction: column;
+            align-items: center;
+            position: fixed;
+            width: 100svw;
+            height: 100svh;            
+
+            top: 0;
+            left: 0;
+            z-index: 999;
+
+            background-color: ${({ theme }) => theme.COLORS.DARK_400};
+            
+            #side-menu-top-bar {
+                width: 100%;
+                padding: 4rem 1.75rem 2rem;
+
+                display: flex;
+                align-items: center;
+                justify-content: flex-start;
+                gap: 1rem;  
+                
+                background-color: ${({ theme }) => theme.COLORS.DARK_700};
+
+                > svg {
+                    font-size: 1.8rem;
+                    fill: ${({ theme }) => theme.COLORS.LIGHT_100};
+                }
+
+                > h1 {
+                    font-size: 1.325rem;
+                    ${({ theme}) => theme.FONTS.ROBOTO_REGULAR};
+                    color: ${({ theme }) => theme.COLORS.LIGHT_100};
+                }
+            }          
+            
+            #side-menu-bottom-bar {
+                width: 100%;
+                height: 100%;
+                padding: 2.25rem 1.75rem;
+
+                #side-menu-links {
+                    margin-top: 2.25rem;
+
+                    display: flex;
+                    flex-direction: column;
+                    align-items: flex-start;
+                    
+
+                    a {
+                        width: 100%;
+                        padding: .625rem 0;
+
+                        border-bottom: 1px solid ${({ theme }) => theme.COLORS.DARK_1000};
+                    }
+
+                    button {
+                        padding: .625rem 0;
+                    }
+
+                    a, button {
+                        font-size: 1.5rem;
+                        ${({ theme}) => theme.FONTS.POPPINS_REGULAR};
+                        color: ${({ theme }) => theme.COLORS.LIGHT_300};
+                    }
+                }
+            }          
+
+        }
+
+        #side-menu-btn {
             display: flex;
             justify-content: center;            
         }
@@ -92,7 +163,7 @@ export const Section = styled.div`
             
             display: none;
 
-            #side-menu {
+            #side-menu-btn {
                 display: flex;
                 justify-content: center;            
             }
@@ -134,6 +205,6 @@ export const Section = styled.div`
             font-size: 1.5rem;
             width: 9.5rem;
         }
-    }
+    }    
 
 `

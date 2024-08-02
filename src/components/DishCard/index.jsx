@@ -62,7 +62,7 @@ export function DishCard({ dishId, title, imageFile, description, price, favorit
     }, [favorites])
 
     return(
-        <Container key={String(dishId)}>
+        <Container key={String(dishId)} $admin={admin}>
           {admin ? (
               <PiPencilSimple 
                 id={`edit-button-dish-${dishId}`}
@@ -95,7 +95,7 @@ export function DishCard({ dishId, title, imageFile, description, price, favorit
           {!admin &&
             <div>
               <DishCounter onAmountChange={setAmount}/>
-              <Button 
+              <Button className={"add-product"}
                 title={"incluir"}
                 loading={loading}    
                 onClick={() => {                      

@@ -20,7 +20,7 @@ export default createGlobalStyle`
             border: 1px dashed lightgreen;
         }
         input {
-            border: 1px dashed lightseagreen;
+            border: 1px dashed lightseagreen;     
         }
         img {
             border: .1px dotted yellow;
@@ -37,7 +37,7 @@ export default createGlobalStyle`
             font-size: 12px;
         } 
     }
-
+    
     body {  
         min-height: 100svh;
         position: relative;              

@@ -3,11 +3,12 @@ import { DEVICE_BREAKPOINTS } from "../../styles/deviceBreakpoints";
 
 export const Container = styled.div`
   display: flex;
-  width: fit-content;
-  padding: 0.25rem 0;
+  width: max-content;
+  /* height: 2rem; */
+  /* padding: 0.25rem 0; */
   
-  justify-content: center;
   align-items: center;
+  justify-content: center;  
   gap: 0.9rem;
 
   background-color: transparent;
@@ -20,9 +21,11 @@ export const Container = styled.div`
   }
 
   > h3 {      
-    text-align: center;  
-    font-size: 1.25rem;
+    height: 2rem;    
+    text-align: center;      
+    font-size: 1.5rem;
     ${({ theme }) => theme.FONTS.ROBOTO_BOLD}
+    line-height: 160%;
   }
 
   @media (max-width: ${DEVICE_BREAKPOINTS.MD}) {

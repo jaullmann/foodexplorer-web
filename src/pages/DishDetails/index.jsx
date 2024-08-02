@@ -7,7 +7,6 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import { FiHeart } from "react-icons/fi";
-import { PiPencilSimple } from "react-icons/pi";
 import { Header } from "../../components/Header";
 import { Footer } from "../../components/Footer";
 import { Button } from "../../components/Button";
@@ -25,7 +24,7 @@ export function DishDetails() {
   const { dishId } = useParams();  
   const { user } = useAuth();
   const { addToCart } = useCart();  
-  const { isUserFavorite, addFavorite, deleteFavorite } = useFavorites();
+  const { isUserFavorite, addFavorite, deleteFavorite } = useFavorites();  
   const navigate = useNavigate();    
   
   const admin = user.role === "admin"; 

@@ -26,8 +26,7 @@ export const Input = styled.input`
   border-radius: ${({ $alternativeStyle }) => 
     $alternativeStyle ? '5px' : '.5rem'
   };
-
-  transition: 0.2s;
+  
   border: 1px solid ${({ theme, $alternativeStyle }) => 
     $alternativeStyle ? theme.COLORS.LIGHT_100 : theme.COLORS.DARK_900
   };
@@ -43,6 +42,8 @@ export const Input = styled.input`
   &::placeholder {
     color: ${({ theme }) => theme.COLORS.LIGHT_500};
   }
+
+  transition: 0.2s;
 
   &:focus {
       transition: 0.2s;
