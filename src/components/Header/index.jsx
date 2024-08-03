@@ -38,8 +38,12 @@ export function Header() {
         navigate("/new", { state: { newDish: true } });
     }   
 
-    function toggleSideMenu() {
-        setIsSideMenuVisible(!isSideMenuVisible);        
+    function openSideMenu() {
+        setIsSideMenuVisible(true);        
+    }
+
+    function closeSideMenu() {
+        setIsSideMenuVisible(false);        
     }
 
     return (
@@ -61,7 +65,7 @@ export function Header() {
             <div className="mobile">
                 <div id="side-menu">
                     <div id={"side-menu-top-bar"}>
-                        <PiX onClick={toggleSideMenu}/>
+                        <PiX onClick={closeSideMenu}/>
                         <h1>Menu</h1>
                     </div>
                     <div id={"side-menu-bottom-bar"}>
@@ -69,12 +73,12 @@ export function Header() {
                         <div id={"side-menu-links"}>
                             {!admin && <Link to={"/favorites"} id="side-menu-favorites">Meus favoritos</Link>}
                             {!admin && <Link to={"/orders"} id="side-menu-orders">Meus pedidos</Link>}
-                            {admin && <Button title={'Novo prato'} id="side-menu-signout" onClick={handleCreate} />}
+                            {admin && <button id="side-menu-new" onClick={handleCreate}>Novo prato</button>}
                             <button onClick={handleSignOut}>Sair</button>
                         </div>
                     </div>                    
                 </div>
-                <button id="side-menu-btn" onClick={toggleSideMenu}>
+                <button id="side-menu-btn" onClick={openSideMenu}>
                     <img src={Menu} alt="Menu lateral" />  
                 </button>                
                 <MainLogo />

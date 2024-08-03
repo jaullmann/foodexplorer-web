@@ -49,7 +49,7 @@ export const Main = styled.main`
     }
 
     #dish-details {
-        min-width: 40vw;
+        width: 100%;
 
         display: flex;
         flex-direction: column;
@@ -71,7 +71,7 @@ export const Main = styled.main`
         color: ${({ theme }) => theme.COLORS.LIGHT_300};
     }
 
-    p {
+    p {        
         ${({ theme }) => theme.FONTS.POPPINS_REGULAR};
         font-size: clamp(1rem, .6rem + .8vw, 1.5rem);
         line-height: 140%;

@@ -59,10 +59,10 @@ export const Section = styled.div`
         margin-bottom: 2rem;
         padding: 0;
         
-        display: none;       
+        display: none;               
 
         #side-menu {
-            display: ${({ $sideMenuVisible }) => $sideMenuVisible ? "flex": "none" };
+            display: ${({ $sideMenuVisible }) => $sideMenuVisible ? "flex" : "none"};
             flex-direction: column;
             align-items: center;
             position: fixed;
@@ -72,7 +72,7 @@ export const Section = styled.div`
             top: 0;
             left: 0;
             z-index: 999;
-
+            animation: ${({ $sideMenuVisible }) => $sideMenuVisible ? "openmenu" : "closemenu"} .5s ease-in-out;
             background-color: ${({ theme }) => theme.COLORS.DARK_400};
             
             #side-menu-top-bar {
@@ -103,6 +103,11 @@ export const Section = styled.div`
                 height: 100%;
                 padding: 2.25rem 1.75rem;
 
+                > div:nth-child(1) {
+                    max-width: none;
+                    width: 100%;
+                }
+
                 #side-menu-links {
                     margin-top: 2.25rem;
 
@@ -127,10 +132,38 @@ export const Section = styled.div`
                         ${({ theme}) => theme.FONTS.POPPINS_REGULAR};
                         color: ${({ theme }) => theme.COLORS.LIGHT_300};
                     }
+
+                    #side-menu-new {
+                        width: 100%;
+                        padding: .625rem 0;
+                        border-bottom: 1px solid ${({ theme }) => theme.COLORS.DARK_1000};
+                        text-align: left;
+                    }
                 }
-            }          
+            } 
+            
+            @keyframes openmenu {
+                0% {                    
+                    transform: translateX(-100%);
+                }
+
+                100% {                    
+                    transform: translateX(0);
+                }
+            }
+
+            @keyframes closemenu {
+                0% {                    
+                    transform: translateX(0);
+                }
+
+                100% {                    
+                    transform: translateX(-100%);
+                }
+            }
 
         }
+
 
         #side-menu-btn {
             display: flex;
