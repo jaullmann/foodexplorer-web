@@ -110,7 +110,7 @@ export const Container = styled.div`
     }
 
     > h1 {   
-      height: 2.8rem;   
+      height: 3.2rem;   
       ${({ theme }) => theme.FONTS.POPPINS_MEDIUM}; 
       font-size: 1rem;
       width: 100%;      
@@ -153,7 +153,7 @@ export const Container = styled.div`
     }
     
     > h1 {   
-      height: 3rem;   
+      height: 3.1rem;   
       ${({ theme }) => theme.FONTS.POPPINS_MEDIUM}; 
       font-size: 1rem;
       width: 100%;      

@@ -22,7 +22,7 @@ export function AdminRoutes() {
           <Route path="/edit/:dishId" element={<DishCreation />} />
           <Route path="/description/:dishId" element={<DishDetails />} />
           <Route path="/orders" element={<Orders />} />
-          <Route path="/payment" element={<Payment />} />
+          <Route path="/orders/:orderId" element={<Payment />} />
           <Route path="/favorites" element={<Favorites />} />
           <Route path="/search" element={<SearchResults />} />
           <Route path="/notfound" element={<NotFound />} />

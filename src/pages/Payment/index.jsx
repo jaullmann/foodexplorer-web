@@ -1,7 +1,7 @@
 import { api } from "../../services/api";
-import { useCart } from "../../hooks/cart";
 import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
+import { useAuth } from '../../hooks/auth';
 import { Container, Main } from "./styles";
 import { Header } from "../../components/Header";
 import { Footer } from "../../components/Footer";
@@ -20,7 +20,10 @@ export function Payment() {
     const [proceedPayment, setProceedPayment] = useState(false);
     const [newOrderId, setNewOrderId] = useState("");
     const { orderId } = useParams();
-    const navigate = useNavigate();    
+    const { user } = useAuth();
+    const navigate = useNavigate();   
+
+    const admin = user.role === "admin";      
 
     async function fetchOrder() {
         try {
@@ -79,7 +82,7 @@ export function Payment() {
                     {
                         data.length > 0 &&
                         <div id="order-details">
-                            <SectionLabel title={"Meu pedido"} />
+                            <SectionLabel title={admin ? "Detalhes do pedido" : "Meu pedido"} />
                             <div id="dishes">                        
                                 {                                   
                                     data.map((card) => {                                    

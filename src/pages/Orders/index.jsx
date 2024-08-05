@@ -123,7 +123,7 @@ export function Orders() {
                                         <div
                                             key={"order-" + order.order_id}
                                             className="order-card"
-                                            onClick={undefined}
+                                            onClick={() => handleOrderDetails(`${order.order_id}`)}
                                         >
 
                                             <div

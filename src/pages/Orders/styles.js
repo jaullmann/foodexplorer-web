@@ -168,6 +168,7 @@ export const Main = styled.main`
             display: flex;
             flex-direction: column;
             gap: 1rem;
+            cursor: pointer;
         }
 
         .order-card-header {
