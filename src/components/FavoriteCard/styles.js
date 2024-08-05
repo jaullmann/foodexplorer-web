@@ -12,7 +12,7 @@ export const Container = styled.div`
 
     > img {
         height: 4.5rem;
-
+        border-radius: 50%;
         cursor: pointer;
     }
 

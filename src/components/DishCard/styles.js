@@ -3,7 +3,7 @@ import { DEVICE_BREAKPOINTS } from "../../styles/deviceBreakpoints";
 
 export const Container = styled.div`
   border-radius: .5rem;
-  border: 1px solid ${({ theme }) => theme.COLORS.LIGHT_700}; 
+  /* border: 1px solid ${({ theme }) => theme.COLORS.LIGHT_700};  */
 
   display: flex;
   flex-direction: column;
@@ -17,12 +17,12 @@ export const Container = styled.div`
   background-color: transparent;
   position: relative;
 
-  transition: .2s;
+  transition: .3s;
 
-  &:hover {
-    transition: .2s;
-    border: 1px solid ${({ theme }) => theme.COLORS.LIGHT_300};
-  }
+  /* &:hover {
+    transition: .3s;
+    border: 1px solid ${({ theme }) => theme.COLORS.LIGHT_600};
+  } */
   
   > svg {
     width: 1.5rem;
@@ -42,6 +42,7 @@ export const Container = styled.div`
     width: 11rem;
     height: 11rem;    
     margin-bottom: .5rem;
+    border-radius: 50%;
     cursor: pointer;
   }
   

@@ -23,7 +23,8 @@ export const Main = styled.main`
         margin-bottom: 2.625rem;
     }
 
-    #dish-presentation {        
+    #dish-presentation {
+        min-width: 50vw;        
         max-width: 85.5rem; 
         
         display: flex;
@@ -33,6 +34,7 @@ export const Main = styled.main`
         gap: 3.5vw;
 
         > img {
+            border-radius: 50%;
             width: min(24.375rem, 36vw);
             height: min(24.375rem, 36vw);
         }

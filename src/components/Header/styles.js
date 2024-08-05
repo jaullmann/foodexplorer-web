@@ -62,17 +62,20 @@ export const Section = styled.div`
         display: none;               
 
         #side-menu {
-            display: ${({ $sideMenuVisible }) => $sideMenuVisible ? "flex" : "none"};
+            display: flex;
             flex-direction: column;
             align-items: center;
             position: fixed;
-            width: 100svw;
-            height: 100svh;            
+            width: 99svw;
+            height: 99svh;
+            
+            border-top-right-radius: 1rem;
+            border-bottom-right-radius: 1rem;
 
-            top: 0;
-            left: 0;
+            top: 1svh;
+            left: ${({ $sideMenuVisible }) => $sideMenuVisible ? "0" : "-100%"};
             z-index: 999;
-            animation: ${({ $sideMenuVisible }) => $sideMenuVisible ? "openmenu" : "closemenu"} .5s ease-in-out;
+            transition: .3s ease-in-out;
             background-color: ${({ theme }) => theme.COLORS.DARK_400};
             
             #side-menu-top-bar {

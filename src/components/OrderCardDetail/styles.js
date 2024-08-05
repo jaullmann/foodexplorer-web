@@ -36,7 +36,7 @@ export const Container = styled.div`
 
     cursor: pointer;
 
-    > h2 {
+    > h2 {    
       font-size: 1.25rem;
       ${({ theme }) => theme.FONTS.POPPINS_MEDIUM};
       color: ${({ theme }) => theme.COLORS.LIGHT_300};
