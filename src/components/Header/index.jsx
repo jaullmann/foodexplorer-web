@@ -1,3 +1,4 @@
+import { api } from "../../services/api";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../../hooks/auth";
 import { useCart } from "../../hooks/cart";
@@ -10,13 +11,13 @@ import { CartButton } from "../CartButton";
 import { SideMenu } from "../SideMenu";
 import SignOut from "../../assets/app_icons/sign_out.svg";
 import Menu from "../../assets/app_icons/menu.svg";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
-export function Header() {
+export function Header(orderStatuses = {}) {
   const { handleInputValue } = useSearch();
   const { user, signOut } = useAuth();
   const { cartAmount } = useCart();
-  const [orders, setOrders] = useState(0);
+  const [ordersAmount, setOrdersAmount] = useState(0);
   const [isSideMenuOpen, setIsSideMenuOpen] = useState(false);
   const navigate = useNavigate();
   const admin = user?.role === "admin";
@@ -44,16 +45,35 @@ export function Header() {
     setIsSideMenuOpen(false);
   }
 
+  useEffect(() => {
+    if (admin) {
+      async function fetchOrders() {
+        try {
+          const response = await api.get("/orders", { withCredentials: true });      
+          const openOrders = response.data.filter(ord => ord.status !== 'cancelado' && ord.status !== 'entregue')    
+          setOrdersAmount(openOrders.length);
+        } catch(e) {
+          return alert("Erro ao obter dados de pedidos em aberto.")
+        }
+      } 
+      
+      admin && fetchOrders();       
+    }        
+  }, [navigate, orderStatuses])
+
   return (
     <Section>
       <div className="desktop">
         <MainLogo userRole={admin ? "admin" : "customer"} />
-        <SearchInput id="search-input" />
+        <SearchInput 
+          id="search-input" 
+          isSideMenuOpen={false}
+        />
         <Link to={"/favorites"} id="favorites">Meus favoritos</Link>
         {!admin && <Link to={"/orders"} id="orders">Meus pedidos</Link>}
         {admin && <Link to={"/new"} id="orders">Novo Prato</Link>}
         {!admin && <CartButton amount={cartAmount} onClick={handlePayment} />}
-        {admin && <CartButton amount={orders} onClick={() => navigate("/orders")} />}
+        {admin && <CartButton amount={ordersAmount} onClick={() => navigate("/orders")} />}
         <button id="sign-out" onClick={handleSignOut}>
           <img src={SignOut} alt="Sair" />
         </button>
@@ -78,7 +98,7 @@ export function Header() {
         )}
         {admin && (
           <CartButtonMobile
-            amount={orders}
+            amount={ordersAmount}
             onClick={() => navigate("/orders")}
           />
         )}

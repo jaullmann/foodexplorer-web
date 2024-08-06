@@ -4,13 +4,14 @@ import { Container, Input } from "./styles";
 import { useNavigate } from "react-router-dom";
 import { useSearch } from "../../hooks/search";
 
-export function SearchInput() {
+export function SearchInput({ isSideMenuOpen }) {
   const inputRef = useRef(null);
-  const { inputValue, handleInputValue } = useSearch();
+  const { inputValue, handleInputValue, handleSideMenuStatus } = useSearch();
   const navigate = useNavigate();
 
   function handleInputChange(e) {
     const value = e.target.value;
+    handleSideMenuStatus(isSideMenuOpen)
     handleInputValue(value);
   };
 

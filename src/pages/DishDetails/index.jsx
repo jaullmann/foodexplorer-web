@@ -122,16 +122,11 @@ export function DishDetails() {
                     onClick={handleDish}
                   />
                 }
-                {!admin ? (
-                    <FiHeart
-                      id={"fav-button"}
-                      onClick={toggleUserFavorite}
-                      className={favorite ? "favorite-dish" : ""}
-                    />
-                  ) : (
-                    <></>
-                  )
-                } 
+                <FiHeart
+                  id={"fav-button"}
+                  onClick={toggleUserFavorite}
+                  className={favorite ? "favorite-dish" : ""}
+                />
               </div>
             </div>
           </div>

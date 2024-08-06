@@ -29,7 +29,8 @@ export default {
       TINTS_CARROT_100: "#FBA94C",
       TINTS_MINT_100: "#04D361",
       TINTS_CAKE_100: "#065E7C",
-      TINTS_CAKE_200: "#82F3FF"
+      TINTS_CAKE_200: "#82F3FF",
+      TINTS_CAKE_300: "#31A1DE"
     },
 
     FONTS: {

@@ -2,6 +2,7 @@ import { Container } from "./styles";
 import Receipt from "../../assets/app_icons/receipt.svg"
 
 export function CartButton({ amount, loading = false, onClick }){
+
   return (
     <Container
       type="button"

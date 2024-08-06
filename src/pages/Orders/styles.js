@@ -101,8 +101,7 @@ export const Main = styled.main`
         height: 3.375rem;
         padding: 1rem 1.5rem;
         border-right: 2px solid ${({ theme }) => theme.COLORS.DARK_1000}; 
-        border-top: 2px solid ${({ theme }) => theme.COLORS.DARK_1000};
-        cursor: pointer;
+        border-top: 2px solid ${({ theme }) => theme.COLORS.DARK_1000};        
 
         ${({ theme }) => theme.FONTS.ROBOTO_REGULAR};
         line-height: 160%;
@@ -110,30 +109,77 @@ export const Main = styled.main`
         &:nth-child(4) {              
             border-right: none;
         }  
-
+        
         .status-div {
             display: flex;
             align-items: center;
             justify-content: flex-start;
-            gap: .5rem;
-        }
-
-        .status-color {
-            width: .5rem;
-            height: .5rem;            
-            border-radius: 50%;
-        }
+            gap: .5rem;            
+        }        
         
         .pendente, .cancelado {            
             background-color: ${({ theme }) => theme.COLORS.TINTS_TOMATO_300};            
         }
+        .aprovado {            
+            background-color: ${({ theme }) => theme.COLORS.TINTS_CAKE_300};            
+        }
         .preparando {            
             background-color: ${({ theme }) => theme.COLORS.TINTS_CARROT_100};            
         }
-        .aprovado, .entregue {            
+        .entregue {            
             background-color: ${({ theme }) => theme.COLORS.TINTS_MINT_100};            
         }
     }
+
+    .order-id, .details, .datetime {
+            cursor: pointer;
+    }
+
+    .status-select-div {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        position: relative;            
+    }
+
+    .status-color-select {
+        position: absolute; 
+        left: 1rem;
+    }
+
+    .status-select {
+        appearance: none;
+        -webkit-appearance: none;
+
+        width: 11rem;
+        padding: 1rem 1rem 1rem 2rem;
+        border-radius: .3125rem;
+
+        font-size: .875rem;
+        ${({ theme }) => theme.FONTS.ROBOTO_REGULAR};
+        line-height: 160%;
+        color: ${({ theme }) => theme.COLORS.LIGHT_400};
+        background-color: ${({ theme }) => theme.COLORS.DARK_900};
+
+        border: none;
+        border-radius: none;           
+    }
+            
+    .select-caret-down {
+        position: absolute;
+        right: .5rem;
+        width: 1.5rem;
+        height: 1.5rem;                      
+        
+        fill: ${({ theme }) => theme.COLORS.LIGHT_400};
+        pointer-events: none;
+    }
+
+    .status-color, .status-color-select {
+        width: .5rem;
+        height: .5rem;            
+        border-radius: 50%;
+    }       
 
     @media(max-width: ${DEVICE_BREAKPOINTS.LG}) {
         #desktop-table {
@@ -150,8 +196,7 @@ export const Main = styled.main`
         }
 
         #mobile-table {
-            width: 100%;
-            /* height: 65svh; */
+            width: 100%;            
             margin-bottom: 3rem;            
 
             display: flex;
@@ -181,7 +226,7 @@ export const Main = styled.main`
         }
 
         .status-div {
-            width: max-content;            
+            width: max-content;                        
 
             display: flex;
             align-items: center;
@@ -194,14 +239,25 @@ export const Main = styled.main`
             height: .5rem;            
             border-radius: 50%;
         }
+
+        .status-select-div {
+            margin-bottom: .5rem;
+        }
+
+        .status-select {
+            width: 100%;            
+        }
         
         .pendente, .cancelado {            
             background-color: ${({ theme }) => theme.COLORS.TINTS_TOMATO_300};            
         }
+        .aprovado {            
+            background-color: ${({ theme }) => theme.COLORS.TINTS_CAKE_300};        
+        }
         .preparando {            
             background-color: ${({ theme }) => theme.COLORS.TINTS_CARROT_100};            
         }
-        .aprovado, .entregue {            
+        .entregue {            
             background-color: ${({ theme }) => theme.COLORS.TINTS_MINT_100};            
         }
     }

@@ -9,6 +9,7 @@ function SearchProvider({ children }) {
   const [searchResult, setSearchResult] = useState([]);
   const [inputValue, setInputValue] = useState("");
   const [lastRoute, setLastRoute] = useState("/");
+  const [isSideMenuOpen, setIsSideMenuOpen] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -19,7 +20,7 @@ function SearchProvider({ children }) {
         { withCredentials: true }
       );
       setSearchResult(response.data);
-      navigate("/search");
+      !isSideMenuOpen && navigate("/search");
     } catch (e) {
       navigate("/notfound");
       return alert("Erro ao efetuar a pesquisa de produtos");
@@ -28,6 +29,10 @@ function SearchProvider({ children }) {
 
   function handleInputValue(value) {
     setInputValue(value);
+  }
+
+  function handleSideMenuStatus(isOpen) {
+    setIsSideMenuOpen(isOpen);
   }
 
   useEffect(() => {
@@ -44,7 +49,8 @@ function SearchProvider({ children }) {
       searchResult,
       inputValue,
       lastRoute,
-      handleInputValue
+      handleInputValue,
+      handleSideMenuStatus
     }}>
       { children }
     </SearchContext.Provider>

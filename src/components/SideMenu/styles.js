@@ -71,6 +71,17 @@ export const Nav = styled.nav`
       padding: 0.625rem 0;
     }
 
+    #search-results {
+      margin-top: -2rem;
+      padding-bottom: 3rem;
+      width: 100%;
+      text-align: center;
+      font-size: 1.3rem;
+      /* text-decoration: underline; */
+      color: ${({ theme }) => theme.COLORS.LIGHT_100};
+      ${({ theme }) => theme.FONTS.POPPINS_BOLD};
+    }
+
     a, button {
       font-size: 1.5rem;
       ${({ theme }) => theme.FONTS.POPPINS_REGULAR};
