@@ -82,10 +82,12 @@ export function DishCard({ dishId, title, imageFile, description, price, favorit
             alt="Foto do produto" 
             onClick={() => handleDetails(dishId)}
           />
-          <h1 
-            onClick={() => handleDetails(dishId)}>
-            {loading ? "Carregando" : title + "\u00A0" + ">"}
-          </h1> 
+          <div className="dish-title">
+            <h1 
+              onClick={() => handleDetails(dishId)}>
+              {loading ? "Carregando" : title + "\u00A0" + ">"}
+            </h1>
+          </div>           
           <h3 
             id="dish-description"
           >

@@ -21,10 +21,10 @@ export const Container = styled.div`
   }
 
   > h3 {      
-    height: 2rem;    
+    /* height: 2rem;     */
     text-align: center;      
-    font-size: 1.5rem;
-    ${({ theme }) => theme.FONTS.ROBOTO_BOLD}
+    font-size: 1.6rem;
+    ${({ theme }) => theme.FONTS.ROBOTO_REGULAR}
     line-height: 160%;
   }
 
