@@ -44,7 +44,12 @@ export function SearchResults() {
                     key={"found-dish-" + foundDish.dish_id}
                     dishId={foundDish.dish_id}
                     title={foundDish.title}
-                    imageFile={`${api.defaults.baseURL}/files/${foundDish.image_file}`}
+                    imageFile={
+                      foundDish.image_file ? 
+                          `${api.defaults.baseURL}/files/${foundDish.image_file}` 
+                          : 
+                          null
+                    }   
                   />
                 ))
               }

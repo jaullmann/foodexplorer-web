@@ -1,3 +1,5 @@
+import { FiHeart } from "react-icons/fi";
+import { PiCameraSlash } from "react-icons/pi";
 import { api } from "../../services/api";
 import { useAuth } from '../../hooks/auth';
 import { useCart } from "../../hooks/cart";
@@ -6,7 +8,6 @@ import { Container, Main } from "./styles";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useParams } from "react-router-dom";
-import { FiHeart } from "react-icons/fi";
 import { Header } from "../../components/Header";
 import { Footer } from "../../components/Footer";
 import { Button } from "../../components/Button";
@@ -75,11 +76,21 @@ export function DishDetails() {
 
         <Main>
           <BackButton id="back-button" />
-          <div id="dish-presentation">
-            <img
-              src={`${api.defaults.baseURL}/files/${data.image_file}`}
-              alt="Foto do prato"
-            />
+          <div id="dish-presentation">            
+            {
+              data.image_file &&
+              <img
+                src={`${api.defaults.baseURL}/files/${data.image_file}`}
+                alt="Foto do prato"
+              />
+            }
+            {
+              !data.image_file &&
+              <div id="default-image">
+                <PiCameraSlash />
+              </div>              
+            }
+
             <div id="dish-details">
               <h1>
                 {data.title}

@@ -152,7 +152,7 @@ export const Main = styled.main`
         -webkit-appearance: none;
 
         width: 11rem;
-        padding: 1rem 1rem 1rem 2rem;
+        padding: .6rem .6rem .6rem 2rem;
         border-radius: .3125rem;
 
         font-size: .875rem;

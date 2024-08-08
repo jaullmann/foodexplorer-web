@@ -326,7 +326,7 @@ export function DishCreation() {
                         <div id="form-category">
                             <h3>Categoria</h3>
                             <select
-                                id="form-category"
+                                id="form-category-select"
                                 value={category}
                                 onChange={e => setCategory(e.target.value)}
                             >

@@ -1,3 +1,4 @@
+import { PiCameraSlash } from "react-icons/pi";
 import { api } from "../../services/api";
 import { useSearch } from '../../hooks/search';
 import { useNavigate } from "react-router-dom";
@@ -15,11 +16,22 @@ export function SearchCard({ dishId, title, imageFile, ...rest }){
 
     return(
         <Container>
-            <img 
-                src={imageFile}                
-                alt={"Foto do produto"}
-                onClick={() => handleDishDetails(dishId)}
-            />
+            {
+                imageFile && 
+                <img 
+                    src={imageFile}                
+                    alt={"Foto do produto"}
+                    onClick={() => handleDishDetails(dishId)}
+                />
+            }
+            {
+                !imageFile &&
+                <div className="default-image">
+                    <PiCameraSlash 
+                        onClick={() => handleDishDetails(dishId)}
+                    />
+                </div>                
+            }
             <div>
                 <h2 
                     onClick={() => handleDishDetails(dishId)}

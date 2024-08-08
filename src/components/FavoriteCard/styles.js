@@ -16,6 +16,25 @@ export const Container = styled.div`
         cursor: pointer;
     }
 
+    > .default-image {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 4.5rem;
+        width: 4.5rem;        
+        border: 1px solid ${({ theme }) => theme.COLORS.LIGHT_500};
+        border-radius: 50%;        
+        background-color: ${({ theme }) => theme.COLORS.DARK_900};
+
+        > svg {
+            width: 100%;
+            height: 100%;
+            padding: .8rem;
+
+            fill: ${({ theme }) => theme.COLORS.LIGHT_500};
+        }
+    }
+
     > div {        
         display: flex;
         flex-direction: column;

@@ -1,3 +1,6 @@
+import { FiHeart } from "react-icons/fi";
+import { PiCameraSlash } from "react-icons/pi";
+import { PiPencilSimple } from "react-icons/pi";
 import { api } from '../../services/api';
 import { useAuth } from '../../hooks/auth';
 import { useCart } from "../../hooks/cart";
@@ -5,8 +8,6 @@ import { useNavigate } from "react-router-dom";
 import { Container } from "./styles";
 import { DishCounter } from "../DishCounter";
 import { Button } from "../Button";
-import { FiHeart } from "react-icons/fi";
-import { PiPencilSimple } from "react-icons/pi";
 import { formatCurrency } from "../../functions"
 import { useEffect, useState } from 'react';
 
@@ -19,7 +20,8 @@ export function DishCard({ dishId, title, imageFile, description, price, favorit
     const { user } = useAuth();  
     const { addToCart } = useCart();
     const navigate = useNavigate();  
-    const admin = user.role === "admin";   
+    const admin = user.role === "admin"; 
+    console.log(imageFile)  
 
     async function toggleFavoriteDish(dishKey) {             
       setFavDish(!favDish);
@@ -77,11 +79,21 @@ export function DishCard({ dishId, title, imageFile, description, price, favorit
               />
             )
           } 
-          <img 
-            src={imageFile} 
-            alt="Foto do produto" 
-            onClick={() => handleDetails(dishId)}
-          />
+          { 
+            imageFile &&  
+            <img 
+              src={imageFile} 
+              alt="Foto do produto" 
+              onClick={() => handleDetails(dishId)}
+            />
+          }
+          { 
+            !imageFile &&  
+            <PiCameraSlash
+              className="defaultImage"            
+              onClick={() => handleDetails(dishId)}
+            />
+          }
           <div className="dish-title">
             <h1 
               onClick={() => handleDetails(dishId)}>

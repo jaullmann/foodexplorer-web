@@ -66,7 +66,10 @@ export function CardsSection({ dishesData, sectionName, category, favorites }) {
                       key={"dish-card-" + card.dish_id}
                       dishId={card.dish_id}
                       title={card.title}
-                      imageFile={`${api.defaults.baseURL}/files/${card.image_file}`}
+                      imageFile={card.image_file ? 
+                        `${api.defaults.baseURL}/files/${card.image_file}` 
+                        : 
+                        null}
                       description={card.description}
                       price={card.price}
                       favorites={favList}

@@ -38,12 +38,22 @@ export const Container = styled.div`
     fill: ${({ theme }) => theme.COLORS.LIGHT_300};
   }
 
-  > img {
+  > img, .defaultImage {
     width: 11rem;
     height: 11rem;    
     margin-bottom: .5em;
     border-radius: 50%;
     cursor: pointer;
+  }
+
+  .defaultImage {        
+    position: relative;
+    right: 0;
+    top: 0;   
+    padding: 2rem;
+    border: 1px solid ${({ theme }) => theme.COLORS.LIGHT_500};
+    fill: ${({ theme }) => theme.COLORS.LIGHT_500};
+    background-color: ${({ theme }) => theme.COLORS.DARK_900};    
   }
   
   > h3 {
@@ -110,10 +120,20 @@ export const Container = styled.div`
       top: 1rem;       
     }
 
-    > img {
+    > img, .defaultImage {
       width: 8rem;
       height: 8rem;
       margin-bottom: 0.5rem;
+    }
+
+    > .defaultImage {        
+      position: relative;
+      right: 0;
+      top: 0;   
+      padding: 1.5rem;
+      border: 1px solid ${({ theme }) => theme.COLORS.LIGHT_500};
+      fill: ${({ theme }) => theme.COLORS.LIGHT_500};
+      background-color: ${({ theme }) => theme.COLORS.DARK_900};
     }
 
     > .dish-title {       
@@ -170,7 +190,7 @@ export const Container = styled.div`
   @media (max-width: ${DEVICE_BREAKPOINTS.MD}) {
     height: ${({ $admin }) => $admin ? "20rem" : "25.5rem" }; 
     
-    > img {
+    > img, .defaultImage {
       width: 8.5rem;
       height: 8.5rem;           
     }

@@ -128,11 +128,7 @@ export const Main = styled.main`
             font-size: 1rem;
             ${({ theme }) => theme.FONTS.ROBOTO_REGULAR};             
             color: ${({ theme }) => theme.COLORS.LIGHT_400};
-            cursor: pointer;  
-
-            @media (max-width: ${DEVICE_BREAKPOINTS.MD}) {
-                background-color: ${({ theme }) => theme.COLORS.DARK_1000};
-            }
+            cursor: pointer;              
 
             &:hover {
                 transition: 0.2s;

@@ -39,6 +39,25 @@ export const Main = styled.main`
             height: min(24.375rem, 36vw);
         }
 
+        > #default-image {            
+            display: flex;
+            align-items: center;
+            justify-content: center;            
+            
+            border-radius: 50%;
+            border: 1px solid ${({ theme }) => theme.COLORS.LIGHT_500};
+            background-color: ${({ theme }) => theme.COLORS.DARK_900};
+
+            > svg {
+                padding: 20%;
+                width: min(24.375rem, 36vw);
+                height: min(24.375rem, 36vw);
+                fill: ${({ theme }) => theme.COLORS.LIGHT_500};
+                filter: drop-shadow(10px 7px 8px rgba(0, 0, 0, 0.5));    
+                cursor: default;              
+            }
+        }
+
         @media (max-width: ${DEVICE_BREAKPOINTS.MD}) {
             flex-direction: column;  
             gap: 1.5rem;
@@ -47,6 +66,23 @@ export const Main = styled.main`
                 width: max(22rem, 43vw);
                 height: max(22rem, 43vw);
             }
+
+            > #default-image {            
+            display: flex;
+            align-items: center;
+            justify-content: center;            
+            
+            border-radius: 50%;
+            border: 1px solid ${({ theme }) => theme.COLORS.LIGHT_500};
+            background-color: ${({ theme }) => theme.COLORS.DARK_900};
+
+            > svg {
+                padding: 20%;
+                width: max(22rem, 43vw);
+                height: max(22rem, 43vw);
+                fill: ${({ theme }) => theme.COLORS.LIGHT_500};                
+            }
+        }
         }
     }
 

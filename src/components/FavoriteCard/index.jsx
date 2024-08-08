@@ -1,3 +1,4 @@
+import { PiCameraSlash } from "react-icons/pi";
 import { api } from "../../services/api";
 import { useAuth } from '../../hooks/auth';
 import { useNavigate } from "react-router-dom";
@@ -29,12 +30,23 @@ export function FavoriteCard({ dishId, title, imageFile, onDeleteFavorite }){
     }
 
     return(
-        <Container>
-            <img 
-                src={imageFile}                
-                alt={"Foto do produto"}
-                onClick={() => handleDishDetails(dishId)}
-            />
+        <Container>            
+            {
+                imageFile && 
+                <img 
+                    src={imageFile}                
+                    alt={"Foto do produto"}
+                    onClick={() => handleDishDetails(dishId)}
+                />
+            }
+            {
+                !imageFile &&
+                <div className="default-image">
+                    <PiCameraSlash 
+                        onClick={() => handleDishDetails(dishId)}
+                    />
+                </div>                
+            }
             <div>
                 <h2 onClick={() => handleDishDetails(dishId)}>
                     {title}
