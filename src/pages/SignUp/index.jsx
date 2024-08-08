@@ -49,6 +49,12 @@ export function SignUp() {
     }
   }
 
+  function handleKeyDown(event) {
+    if (event.key === 'Enter') {
+      handleSignUp();
+    }
+  }
+
   return (
     <Container>
 
@@ -79,6 +85,7 @@ export function SignUp() {
           type="password"
           placeholder={"No mínimo 6 caracteres"}
           onChange={e => setPassword(e.target.value)}
+          onKeyDown={handleKeyDown}
           altStyle
         />
         <Button

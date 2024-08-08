@@ -20,6 +20,12 @@ export function SignIn() {
     signIn({ email, password });
   }
 
+  function handleKeyDown(event) {
+    if (event.key === 'Enter') {
+      handleSignIn();
+    }
+  }
+
   return (
     <Container>
 
@@ -43,6 +49,7 @@ export function SignIn() {
           altStyle
           placeholder="No mínimo 6 caracteres"
           onChange={e => setPassword(e.target.value)}
+          onKeyDown={handleKeyDown}
         />
         <Button
           title="Entrar"
