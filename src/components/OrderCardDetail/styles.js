@@ -16,8 +16,19 @@ export const Container = styled.div`
   img {
     width: 6.25rem;
     height: 6.25rem;
+    border-radius: 50%;
     
     cursor: pointer;
+  }
+
+  svg {
+    width: 6.25rem;
+    height: 6.25rem;
+    border-radius: 50%;
+    padding: 1rem;
+    border: 1px solid ${({ theme }) => theme.COLORS.LIGHT_500};
+    fill: ${({ theme }) => theme.COLORS.LIGHT_500};
+    background-color: ${({ theme }) => theme.COLORS.DARK_900};
   }
 
   .card-info {

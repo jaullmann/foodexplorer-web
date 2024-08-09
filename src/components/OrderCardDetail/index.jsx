@@ -1,3 +1,4 @@
+import { PiCameraSlash } from "react-icons/pi";
 import { api } from "../../services/api";
 import { useNavigate } from "react-router-dom";
 import { useCart } from "../../hooks/cart";
@@ -34,11 +35,21 @@ export function OrderCardDetail({ dishId, title, imageFile, amount, price, paidO
   
   return (
     <Container> 
-      <img 
-        src={imageFile} 
-        alt={"Miniatura do prato "+ title}
-        onClick={() => handleDishDetails(dishId)}
-      />
+      {
+        imageFile &&
+        <img 
+          src={imageFile} 
+          alt={"Miniatura do prato "+ title}
+          onClick={() => handleDishDetails(dishId)}
+        />
+      }
+      {
+        !imageFile &&
+        <PiCameraSlash           
+          onClick={() => handleDishDetails(dishId)}
+        />
+      }
+      
       <div className="card-info">
         <div 
           className="dish-details"

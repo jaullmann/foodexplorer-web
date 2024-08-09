@@ -11,7 +11,7 @@ export function BackButton() {
     <Button 
       type="button" 
       onClick={() => {
-        navigate("-1")
+        navigate(-1)
       }}
     >
       <PiCaretLeft />

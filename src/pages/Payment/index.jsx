@@ -91,7 +91,12 @@ export function Payment() {
                                                 key={card.dish_id}
                                                 dishId={card.dish_id}
                                                 title={card.title}
-                                                imageFile={`${api.defaults.baseURL}/files/${card.image_file}`}
+                                                imageFile={
+                                                    card.image_file ? 
+                                                    `${api.defaults.baseURL}/files/${card.image_file}` 
+                                                    : 
+                                                    null
+                                                }
                                                 amount={card.dish_amount}
                                                 price={card.dish_price}
                                                 paidOrder={paidOrder}

@@ -1,5 +1,4 @@
 import { PiCameraSlash } from "react-icons/pi";
-import { api } from "../../services/api";
 import { useSearch } from '../../hooks/search';
 import { useNavigate } from "react-router-dom";
 import { Container } from "./styles";
