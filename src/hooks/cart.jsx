@@ -44,6 +44,7 @@ function CartProvider({ children }) {
                 { withCredentials: true }
             )
             fetchCart();
+            alert(dishAmount > 1 ? "Produtos adicionados ao pedido!" : "Produto adicionado ao pedido!")
         } catch (e) {  
             if (e.response) {
                 alert(e.response.data.message);
@@ -63,7 +64,7 @@ function CartProvider({ children }) {
                 alert("Erro ao excluir itens do carrinho de compras.");
             }
         }
-        fetchCart();
+        fetchCart();        
     }
 
     useEffect(() => {

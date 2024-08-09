@@ -23,6 +23,7 @@ export function OrderCardDetail({ dishId, title, imageFile, amount, price, paidO
       });
       fetchCart();
       onDeleteCartDish();
+      alert("Produto(s) removido(s) do pedido!")
     } catch(e) {
       console.log(e);  
       return alert("Erro ao excluir produto do pedido");
