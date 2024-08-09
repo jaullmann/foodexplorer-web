@@ -9,7 +9,7 @@ export function SearchCard({ dishId, title, imageFile, ...rest }){
     const navigate = useNavigate();    
 
     function handleDishDetails(dishId) { 
-        handleInputValue("");
+        // handleInputValue("");
         navigate(`/description/${dishId}`);
     }
 
