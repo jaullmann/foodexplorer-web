@@ -330,19 +330,21 @@ export function DishCreation() {
                         <div id="product-image">
                             { 
                                 (imageUrl || prevImageFile) &&
-                                <img
-                                    src={imageUrl ? imageUrl : `${api.defaults.baseURL}/files/${prevImageFile}`}
-                                    alt="Foto do prato"
-                                />
+                                <>
+                                    <img
+                                        src={imageUrl ? imageUrl : `${api.defaults.baseURL}/files/${prevImageFile}`}
+                                        alt="Foto do prato"
+                                    />
+                                    <PiTrash 
+                                        id="delete-img-btn"
+                                        onClick={deleteCurrentPicture} 
+                                    />
+                                </>                                
                             }
                             {
                                 (!imageUrl && !prevImageFile) &&
                                 <PiCameraSlash id="placeholder" />                                
-                            }
-                            <PiTrash 
-                                id="delete-img-btn"
-                                onClick={deleteCurrentPicture} 
-                            />
+                            }                            
                         </div>
 
                         <div id="form-fields">

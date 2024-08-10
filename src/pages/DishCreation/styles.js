@@ -61,11 +61,16 @@ export const Main = styled.main`
         
         position: relative;
 
+        @media (max-width: ${DEVICE_BREAKPOINTS.LG}) {
+            width: 100%;
+            height: 40%;          
+        }
+
         > img {
             width: 12rem;
             height: 12rem;
 
-            border-radius: 50%;
+            border-radius: 50%;           
         }
 
         #placeholder {
@@ -106,6 +111,11 @@ export const Main = styled.main`
         align-items: flex-end;
         justify-content: space-between;
         gap: 2rem;
+
+        @media (max-width: ${DEVICE_BREAKPOINTS.LG}) {
+            flex-direction: column; 
+            align-items: center;           
+        }
     }
 
     #form-fields {
