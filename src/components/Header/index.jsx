@@ -78,6 +78,7 @@ export function Header(orderStatuses = {}) {
           <img src={SignOut} alt="Sair" />
         </button>
       </div>
+      
       <div className="mobile">
         <button id="side-menu-btn" onClick={openSideMenu}>
           <img src={Menu} alt="Menu lateral" />
@@ -103,6 +104,7 @@ export function Header(orderStatuses = {}) {
           />
         )}
       </div>
+
     </Section>
   );
 }

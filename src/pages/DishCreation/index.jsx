@@ -1,6 +1,8 @@
 import { api } from "../../services/api";
 import { PiCaretDownBold } from "react-icons/pi";
+import { PiCameraSlash } from "react-icons/pi";
 import { FiPlus } from "react-icons/fi";
+import { PiTrash } from "react-icons/pi";
 import { useEffect, useState } from "react";
 import { useParams, useNavigate, useLocation } from "react-router-dom";
 import { Container, Main } from "./styles";
@@ -23,7 +25,8 @@ export function DishCreation() {
     const [description, setDescription] = useState("");
     const [imageFile, setImageFile] = useState(null);
     const [prevImageFile, setPrevImageFile] = useState(null);
-    const [prevDishes, setPrevDishes] = useState([]);    
+    const [imageUrl, setImageUrl] = useState(null);
+    const [prevDishes, setPrevDishes] = useState([]);
     const [newDish, setNewDish] = useState(true);
     const [formFilled, setFormFilled] = useState(false);
     const { dishId } = useParams();
@@ -46,13 +49,13 @@ export function DishCreation() {
 
     async function fetchEditingProduct() {
         try {
-            const response = await api.get(`dishes/${dishId}`, { withCredentials: true });            
+            const response = await api.get(`dishes/${dishId}`, { withCredentials: true });
             setTitle(response.data.title);
             setCategory(response.data.category);
             setIngredients(response.data.ingredients);
             setDescription(response.data.description);
             setPrice(response.data.price * 100);
-            setPrevImageFile(response.data.image_file);               
+            setPrevImageFile(response.data.image_file);
         } catch (e) {
             if (e.response) {
                 alert(e.response.data.message);
@@ -87,20 +90,20 @@ export function DishCreation() {
         }
     }
 
-    async function deleteProductImage() {        
+    async function deleteProductImage() {
         try {
             await api.delete("pictures", {
-                data: {                
+                data: {
                     image_file: prevImageFile
                 },
                 withCredentials: true
-            });          
-        } catch(e) {
+            });
+        } catch (e) {
             if (e.response) {
                 alert(e.response.data.message);
             } else {
                 alert("Erro ao excluir imagem da base de dados");
-            }            
+            }
         }
     }
 
@@ -108,22 +111,22 @@ export function DishCreation() {
         await fetchProducts()
         if (!isFormValidated()) {
             return false;
-        }                    
+        }
         try {
-            const response = await api.post("dishes", 
-                {                         
+            const response = await api.post("dishes",
+                {
                     title: title,
                     category: category,
                     description: description,
                     ingredients: ingredients,
-                    price: Number(price)/100
-                }, 
+                    price: Number(price) / 100
+                },
                 {
                     withCredentials: true
                 }
-            );   
+            );
             const dishId = await response.data.dish_id;
-
+            
             imageFile && uploadProductImage(dishId);
             window.location.reload();
             return true;
@@ -144,17 +147,19 @@ export function DishCreation() {
             return false;
         }
         try {
+            
             await api.put(`dishes/${dishId}`, {
                 title: title,
                 category: category,
                 description: description,
                 ingredients: ingredients,
-                price: Number(price)/100
+                price: Number(price) / 100,
+                image_file: `${prevImageFile ? prevImageFile : ""}`
             },
                 { withCredentials: true }
-            );    
+            );
 
-            imageFile && uploadProductImage(dishId);            
+            imageFile && uploadProductImage(dishId);
             return true;
 
         } catch (e) {
@@ -169,8 +174,8 @@ export function DishCreation() {
 
     async function deleteProduct(event) {
         event.preventDefault();
-        const message = title 
-            ? `Deseja realmente excluir o produto "${title}"? \nTodos os dados serão perdidos.` 
+        const message = title
+            ? `Deseja realmente excluir o produto "${title}"? \nTodos os dados serão perdidos.`
             : `Deseja realmente excluir o produto? \nTodos os dados serão perdidos.`;
 
         const isConfirmed = confirm(message);
@@ -178,16 +183,16 @@ export function DishCreation() {
             return;
         }
         try {
-            await api.delete(`dishes/${dishId}`, { withCredentials: true });            
-            deleteProductImage();            
+            await api.delete(`dishes/${dishId}`, { withCredentials: true });
+            deleteProductImage();
             alert("Produto excluído com sucesso!");
             return navigate(-1);
-        } catch(e) {
+        } catch (e) {
             if (e.response) {
                 return alert(e.response.data.message);
             } else {
                 return alert("Não foi possível fazer a exclusão do produto.");
-            }           
+            }
         }
     };
 
@@ -198,17 +203,26 @@ export function DishCreation() {
             productCreated && alert("Produto criado com sucesso!");
         } else {
             const productUpdated = await updateProduct();
-            if (productUpdated) {                
+            if (productUpdated) {
                 alert("Produto atualizado com êxito!");
                 navigate(-1);
-            }             
+            }
         }
 
     }
 
     function handleUploadPicture(event) {
         const file = event.target.files[0];
-        setImageFile(file);        
+        setImageFile(file);
+
+        const imagePreview = URL.createObjectURL(file);
+        setImageUrl(imagePreview);
+    }
+
+    function deleteCurrentPicture() {
+        setPrevImageFile(null);
+        setImageFile(null);
+        setImageUrl(null);
     }
 
     function handleAddIngredient() {
@@ -266,7 +280,7 @@ export function DishCreation() {
             }
         }
         return true;
-    }    
+    }
 
     function checkFormFilled() {
         const validTitle = Boolean(title);
@@ -275,12 +289,12 @@ export function DishCreation() {
         setFormFilled(validTitle && validPrice && validDescription);
     }
 
-    useEffect(() => {        
+    useEffect(() => {
         if (dishId) {
             setNewDish(false);
             fetchEditingProduct();
         } else {
-            setNewDish(true);            
+            setNewDish(true);
             setTitle("");
             setCategory("refeicao");
             setPrice("");
@@ -290,10 +304,10 @@ export function DishCreation() {
             setImageFile(null);
             setPrevImageFile(null);
         }
-        
+
     }, [dishId, location.key]);
 
-    useEffect(() => {        
+    useEffect(() => {
         checkFormFilled();
     }, [, title, price, description])
 
@@ -309,68 +323,91 @@ export function DishCreation() {
                     id={"main-label"}
                     title={newDish ? "Adicionar produto" : "Editar produto"}
                 />
-                <form>
+                <form>                  
 
-                    <div id="form-section-1">
-                        <UploadButton
-                            id="form-upload-button"
-                            newDish={newDish}
-                            onChange={handleUploadPicture}                            
-                        />                        
-                        <LabeledInput id="form-dish-title"
-                            label={"Nome"}
-                            placeholder={"Ex.: Salada Ceasar"}
-                            value={title}
-                            onChange={e => setTitle(e.target.value)}
-                        />                        
-                        <div id="form-category">
-                            <h3>Categoria</h3>
-                            <select
-                                id="form-category-select"
-                                value={category}
-                                onChange={e => setCategory(e.target.value)}
-                            >
-                                <option value="refeicao">Refeição</option>
-                                <option value="sobremesa">Sobremesa</option>
-                                <option value="bebida">Bebida</option>
-                            </select>
-                            <PiCaretDownBold />
+                    <div id="form">
+
+                        <div id="product-image">
+                            { 
+                                (imageUrl || prevImageFile) &&
+                                <img
+                                    src={imageUrl ? imageUrl : `${api.defaults.baseURL}/files/${prevImageFile}`}
+                                    alt="Foto do prato"
+                                />
+                            }
+                            {
+                                (!imageUrl && !prevImageFile) &&
+                                <PiCameraSlash id="placeholder" />                                
+                            }
+                            <PiTrash 
+                                id="delete-img-btn"
+                                onClick={deleteCurrentPicture} 
+                            />
                         </div>
-                    </div>
 
-                    <div id="form-section-2">
-                        <div id="form-ingredients">
-                            <h3>Ingredientes</h3>
-                            <div id="ingredients-area">
-                                {
-                                    ingredients.map((ingredient, index) => (
-                                        <IngredientEditing
-                                            key={index}
-                                            name={ingredient}
-                                            onClick={() => handleRemoveIngredient(ingredient)}
-                                        />
-                                    ))
-                                }
-                                <div id="new-ingredient">
-                                    <input
-                                        type="text"
-                                        placeholder="Adicionar"
-                                        value={newIngredient}
-                                        onChange={e => setNewIngredient(e.target.value)}
-                                    />
-                                    <FiPlus
-                                        onClick={handleAddIngredient}
-                                    />
+                        <div id="form-fields">
+                            <div id="form-section-1">
+                                <UploadButton
+                                    id="form-upload-button"
+                                    newDish={newDish}
+                                    onChange={handleUploadPicture}
+                                />
+                                <LabeledInput id="form-dish-title"
+                                    label={"Nome"}
+                                    placeholder={"Ex.: Salada Ceasar"}
+                                    value={title}
+                                    onChange={e => setTitle(e.target.value)}
+                                />
+                                <div id="form-category">
+                                    <h3>Categoria</h3>
+                                    <select
+                                        id="form-category-select"
+                                        value={category}
+                                        onChange={e => setCategory(e.target.value)}
+                                    >
+                                        <option value="refeicao">Refeição</option>
+                                        <option value="sobremesa">Sobremesa</option>
+                                        <option value="bebida">Bebida</option>
+                                    </select>
+                                    <PiCaretDownBold />
                                 </div>
                             </div>
+
+                            <div id="form-section-2">
+                                <div id="form-ingredients">
+                                    <h3>Ingredientes</h3>
+                                    <div id="ingredients-area">
+                                        {
+                                            ingredients.map((ingredient, index) => (
+                                                <IngredientEditing
+                                                    key={index}
+                                                    name={ingredient}
+                                                    onClick={() => handleRemoveIngredient(ingredient)}
+                                                />
+                                            ))
+                                        }
+                                        <div id="new-ingredient">
+                                            <input
+                                                type="text"
+                                                placeholder="Adicionar"
+                                                value={newIngredient}
+                                                onChange={e => setNewIngredient(e.target.value)}
+                                            />
+                                            <FiPlus
+                                                onClick={handleAddIngredient}
+                                            />
+                                        </div>
+                                    </div>
+                                </div>
+                                <LabeledCurrencyInput
+                                    id="form-price"
+                                    label={"Preço"}
+                                    placeholder={"R$ 00,00"}
+                                    value={price}
+                                    onChange={setPrice}
+                                />
+                            </div>
                         </div>
-                        <LabeledCurrencyInput
-                            id="form-price"
-                            label={"Preço"}
-                            placeholder={"R$ 00,00"}
-                            value={price}
-                            onChange={setPrice}
-                        />
                     </div>
 
                     <div id="form-description">

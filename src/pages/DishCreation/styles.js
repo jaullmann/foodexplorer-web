@@ -43,7 +43,77 @@ export const Main = styled.main`
         flex-direction: column;
         align-items: center;
         justify-content: center;
-        gap: 2rem; 
+        gap: 2rem;         
+    }
+
+    #product-image {   
+        padding: 1rem;        
+        
+        display: flex;        
+        align-items: center;
+        justify-content: center;
+                
+        border-radius: .5rem;
+        border: 1px solid ${({ theme }) => theme.COLORS.DARK_900};
+        background-color: ${({ theme }) => theme.COLORS.DARK_900};
+
+        transition: .2s;
+        
+        position: relative;
+
+        > img {
+            width: 12rem;
+            height: 12rem;
+
+            border-radius: 50%;
+        }
+
+        #placeholder {
+            padding: 2rem;
+
+            width: 12rem;
+            height: 12rem;            
+            border: 1px solid ${({ theme }) => theme.COLORS.LIGHT_500};
+            border-radius: 50%;        
+            background-color: ${({ theme }) => theme.COLORS.DARK_900};
+            fill: ${({ theme }) => theme.COLORS.LIGHT_400};
+        }
+
+        &:hover {
+            transition: 0.2s;
+            border: 1px solid ${({ theme }) => theme.COLORS.LIGHT_500}
+        }
+
+        #delete-img-btn {
+            position: absolute;
+            right: 1rem;
+            bottom: 1rem;
+
+            font-size: 3rem;
+            padding: .4rem;
+
+            border-radius: 50%;
+            background-color: ${({ theme }) => theme.COLORS.DARK_200};
+
+            fill: ${({ theme }) => theme.COLORS.LIGHT_400};
+            cursor: pointer;
+        }
+    }
+
+    #form {
+        width: 100%;
+        display: flex;
+        align-items: flex-end;
+        justify-content: space-between;
+        gap: 2rem;
+    }
+
+    #form-fields {
+        width: 100%;        
+    }
+
+    #form-section-1 {
+        margin-bottom: 2rem;
     }
 
     #form-section-1, #form-section-2 {
@@ -70,7 +140,7 @@ export const Main = styled.main`
     #form-section-1 > div:nth-child(3) {
         flex-grow: 2;
         max-width: 22.5rem;  
-        min-width: 8rem;  
+        min-width: 11rem;  
         
         @media (max-width: ${DEVICE_BREAKPOINTS.MD}) {
             max-width: none;
@@ -101,7 +171,7 @@ export const Main = styled.main`
 
     #form-category {
         position: relative;
-        width: 55%;
+        width: 35%;
 
         > h3 {
             color: ${({ theme }) => theme.COLORS.LIGHT_400};
