@@ -1,13 +1,13 @@
 import { api } from "../../services/api";
 import { PiClock, PiCheckCircle, PiClockUser, PiForkKnife, PiWarning } from "react-icons/pi";
+import { MdOutlinePix } from "react-icons/md";
+import { PiCreditCard } from "react-icons/pi";
 import { useCart } from "../../hooks/cart";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Container } from "./styles";
 import { LabeledCreditInput } from "../LabeledCreditInput";  
 import { PaymentButton } from "../PaymentButton";
-import PixIcon from "../../assets/app_icons/pix.svg";
-import CreditIcon from "../../assets/app_icons/credit_card.svg";
 import QrCode from "../../assets/samples/qr_code.svg";
 
 
@@ -91,20 +91,14 @@ export function PaymentFrame({ paidOrder=false, orderStatus="preparando", cartDa
                         id="pix-btn"
                         onClick={() => setPaymentOption("pix")}
                     >
-                        <img 
-                            src={PixIcon} 
-                            alt="Símbolo do PIX" 
-                        />
+                        <MdOutlinePix />
                         <h3>PIX</h3>
                     </div>
                     <div 
                         id="credit-btn"
                         onClick={() => setPaymentOption("credit")}
                     >
-                        <img 
-                            src={CreditIcon} 
-                            alt="Símbolo de cartão de crédito" 
-                        />
+                        <PiCreditCard />
                         <h3>Crédito</h3>
                     </div>
                 </div>

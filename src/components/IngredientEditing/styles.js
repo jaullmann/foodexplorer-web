@@ -13,7 +13,7 @@ export const Container = styled.div`
         
     > p {
         ${({ theme }) => theme.FONTS.ROBOTO_REGULAR};
-        font-size: clamp(.8rem, .4rem + .5vw, 1vw);
+        font-size: clamp(.7rem, .4rem + .5vw, 1.1rem);  
         width: max-content;
     }
 

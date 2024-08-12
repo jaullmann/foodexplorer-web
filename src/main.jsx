@@ -2,10 +2,9 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { AuthProvider } from './hooks/auth';
 import { Routes } from './routes';
-import { ThemeProvider } from 'styled-components';
-import GlobalStyles from './styles/global';
-import theme from './styles/theme';
+import { ThemeProvider } from './hooks/theme';
 import { register } from 'swiper/element/bundle';
+import GlobalStyles from './styles/global';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
@@ -16,7 +15,7 @@ register();
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <ThemeProvider theme={theme}>      
+    <ThemeProvider>      
       <GlobalStyles />  
         <AuthProvider>
           <Routes /> 

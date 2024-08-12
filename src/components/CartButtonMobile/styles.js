@@ -4,15 +4,14 @@ export const Container = styled.button`
   display: flex;
   position: relative;
 
-  > img {
-    width: 2rem;
-    height: 2rem;
+  > svg {
+    font-size: 3.2rem;
+    fill: ${({ theme }) => theme.COLORS.LIGHT_200}; 
   }
 
   > div {
     position: absolute;
-    right: -.5rem;
-    top: -.4rem;
+    right: -.3rem;  
 
     width: 1.25rem;
     height: 1.25rem;    

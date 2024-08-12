@@ -3,20 +3,23 @@ import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../../hooks/auth";
 import { useCart } from "../../hooks/cart";
 import { useSearch } from "../../hooks/search";
+import { useTheme } from '../../hooks/theme';
 import { Section } from "./styles";
 import { MainLogo } from "../MainLogo";
 import { SearchInput } from "../SearchInput";
 import { CartButtonMobile } from "../CartButtonMobile";
 import { CartButton } from "../CartButton";
+import { ThemeButton } from "../ThemeButton";
 import { SideMenu } from "../SideMenu";
-import SignOut from "../../assets/app_icons/sign_out.svg";
-import Menu from "../../assets/app_icons/menu.svg";
+import { FiMenu } from "react-icons/fi";
+import { PiSignOut } from "react-icons/pi";
 import { useEffect, useState } from "react";
 
 export function Header(orderStatuses = {}) {
   const { handleInputValue } = useSearch();
   const { user, signOut } = useAuth();
   const { cartAmount } = useCart();
+  const { toggleTheme, theme } = useTheme();
   const [ordersAmount, setOrdersAmount] = useState(0);
   const [isSideMenuOpen, setIsSideMenuOpen] = useState(false);
   const navigate = useNavigate();
@@ -74,15 +77,21 @@ export function Header(orderStatuses = {}) {
         {admin && <Link to={"/new"} id="orders">Novo Prato</Link>}
         {!admin && <CartButton amount={cartAmount} onClick={handlePayment} />}
         {admin && <CartButton amount={ordersAmount} onClick={() => navigate("/orders")} />}
-        <button id="sign-out" onClick={handleSignOut}>
-          <img src={SignOut} alt="Sair" />
-        </button>
+        <ThemeButton 
+          currentTheme={theme.NAME} 
+          onClick={toggleTheme} 
+        />
+        <PiSignOut 
+          id="sign-out" 
+          onClick={handleSignOut} 
+        />        
       </div>
       
       <div className="mobile">
-        <button id="side-menu-btn" onClick={openSideMenu}>
-          <img src={Menu} alt="Menu lateral" />
-        </button>
+        <FiMenu 
+          id="side-menu-btn" 
+          onClick={openSideMenu}
+        />
         <SideMenu
           admin={admin}
           handleCreate={handleCreate}

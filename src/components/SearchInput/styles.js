@@ -14,7 +14,7 @@ export const Container = styled.div`
 
   font-size: 1.5rem;
   
-  color: ${({ theme }) => theme.COLORS.LIGHT_400};
+  color: ${({ theme }) => theme.COLORS.LIGHT_00};
   background-color: ${({ theme}) => theme.COLORS.DARK_900};
 
   > button {
@@ -43,7 +43,7 @@ export const Container = styled.div`
   &:focus, &:focus-within {
     transition: 0.2s;
     border: 1px solid ${({ theme }) => theme.COLORS.LIGHT_400};
-    background-color: ${({ theme }) => theme.COLORS.DARK_500}; 
+    background-color: ${({ theme }) => theme.COLORS.DARK_300}; 
   }
 
 `
@@ -55,10 +55,10 @@ export const Input = styled.input`
   text-align: center;  
 
   ${({ theme}) => theme.FONTS.ROBOTO_REGULAR};
-  font-size: 1rem;  
+  font-size: clamp(1rem, .5rem + .5vw, 1.3rem);  
 
   background: transparent;
-  color: ${({ theme }) => theme.COLORS.LIGHT_100};  
+  color: ${({ theme }) => theme.COLORS.LIGHT_200};  
 
   overflow: hidden;
     text-overflow: ellipsis;

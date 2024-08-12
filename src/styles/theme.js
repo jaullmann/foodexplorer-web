@@ -1,12 +1,35 @@
-export default {
+const fonts = {
+  POPPINS_REGULAR: `
+    font-family: "Poppins", sans-serif; 
+    font-weight: 400; `,   
+  POPPINS_MEDIUM: `
+    font-family: "Poppins", sans-serif;
+    font-weight: 500; `,
+  POPPINS_BOLD: `
+    font-family: "Poppins", sans-serif;
+    font-weight: 700; `,
+  ROBOTO_REGULAR: `
+    font-family: "Roboto", sans-serif;
+    font-weight: 400; `,
+  ROBOTO_MEDIUM: `
+    font-family: "Roboto", sans-serif;
+    font-weight: 500; `,
+  ROBOTO_BOLD: `
+    font-family: "Roboto", sans-serif;
+    font-weight: 700; `
+  }
+
+export const darkTheme = {
+    NAME: "darkTheme",
+
     COLORS: {
       LIGHT_100: "#FFFFFF",
       LIGHT_200: "#FFFAF1",
-      LIGHT_300: "#E1E1E6",
+      LIGHT_300: "#e6e6eb",
       LIGHT_400: "#C4C4CC",
-      LIGHT_500: "#7C7C8A",
-      LIGHT_600: "#76797B",
-      LIGHT_700: "#4D585E",      
+      LIGHT_500: "#a3a3b1",
+      LIGHT_600: "#8a9297",
+      LIGHT_700: "#6a7377",      
 
       DARK_100: "#000405",
       DARK_200: "#00070A",
@@ -33,24 +56,47 @@ export default {
       TINTS_CAKE_300: "#31A1DE"
     },
 
-    FONTS: {
-      POPPINS_REGULAR: `
-        font-family: "Poppins", sans-serif; 
-        font-weight: 400; `,   
-      POPPINS_MEDIUM: `
-        font-family: "Poppins", sans-serif;
-        font-weight: 500; `,
-      POPPINS_BOLD: `
-        font-family: "Poppins", sans-serif;
-        font-weight: 700; `,
-      ROBOTO_REGULAR: `
-        font-family: "Roboto", sans-serif;
-        font-weight: 400; `,
-      ROBOTO_MEDIUM: `
-        font-family: "Roboto", sans-serif;
-        font-weight: 500; `,
-      ROBOTO_BOLD: `
-        font-family: "Roboto", sans-serif;
-        font-weight: 700; `
-      }
+    FONTS: fonts
   }
+
+  export const lightTheme = {
+    NAME: "lightTheme",
+
+    COLORS: {
+      LIGHT_100: "#FFFAF1",
+      LIGHT_200: "#000204",
+      LIGHT_300: "#000C12",
+      LIGHT_400: "#001119",
+      LIGHT_500: "#000C12",
+      LIGHT_600: "#0D1D25",
+      LIGHT_700: "#192227",      
+
+      DARK_100: "#FFFAF1",
+      DARK_200: "#FFFAF1",
+      DARK_300: "#E1E1E6",
+      DARK_400: "#b6b6c2",
+      DARK_500: "#a3a3af",
+      DARK_600: "#9e9ea7",
+      DARK_700: "#85858d",
+      DARK_800: "#67676d",
+      DARK_900: "#5e666b",
+      DARK_1000: "#4D585E",  
+
+      GRADIENTS_100: 'linear-gradient(90deg, rgba(0, 10, 15, 0.27), rgba(0, 10, 15, 1))',
+      GRADIENTS_200: 'linear-gradient(90deg, rgba(0, 10, 15, 1), rgba(0, 10, 15, 0.27))',
+
+      TINTS_TOMATO_100: "#AB222E",
+      TINTS_TOMATO_200: "#AB222E",
+      TINTS_TOMATO_300: "#92000E",
+      TINTS_TOMATO_400: "#750310",
+      TINTS_CARROT_100: "#FBA94C",
+      TINTS_MINT_100: "#04D361",
+      TINTS_CAKE_100: "#82F3FF",
+      TINTS_CAKE_200: "#065E7C",
+      TINTS_CAKE_300: "#31A1DE",
+    },
+
+    FONTS: fonts
+  }
+
+  

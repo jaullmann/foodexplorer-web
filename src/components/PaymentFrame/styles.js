@@ -19,7 +19,7 @@ export const Container = styled.div`
     }
     
     #pix-btn, #credit-btn {
-        border: 1px solid ${({ theme }) => theme.COLORS.LIGHT_600};        
+        border: 2px solid ${({ theme }) => theme.COLORS.LIGHT_600};        
         border-bottom: none;
         width: 100%;
         height: 100%;
@@ -34,11 +34,17 @@ export const Container = styled.div`
         > h3 {
             font-size: 1rem;
             ${({ theme }) => theme.FONTS.POPPINS_REGULAR};
-            color: ${({ theme }) => theme.COLORS.LIGHT_100};
+            color: ${({ theme }) => theme.COLORS.LIGHT_200};
+        }
+
+        > svg {
+            font-size: 1.5rem;
+            fill: ${({ theme }) => theme.COLORS.LIGHT_200};
         }
     }
 
     #pix-btn {
+        border-right: none;
         border-top-left-radius: .5rem;
         background-color: ${({ theme, $paymentChoice }) => $paymentChoice === "pix" ? theme.COLORS.DARK_800 : "none"};
     }
@@ -49,7 +55,7 @@ export const Container = styled.div`
     }
 
     #frame-pix {
-        border: 1px solid ${({ theme }) => theme.COLORS.LIGHT_600};    
+        border: 2px solid ${({ theme }) => theme.COLORS.LIGHT_600};    
         border-bottom-left-radius: .5rem;
         border-bottom-right-radius: .5rem;
 
@@ -67,7 +73,7 @@ export const Container = styled.div`
     }
 
     #frame-credit {
-        border: 1px solid ${({ theme }) => theme.COLORS.LIGHT_600};    
+        border: 2px solid ${({ theme }) => theme.COLORS.LIGHT_600};    
         border-bottom-left-radius: .5rem;
         border-bottom-right-radius: .5rem;
 
@@ -90,7 +96,7 @@ export const Container = styled.div`
     .placed-order {
         height: 24.5rem;
 
-        border: 1px solid ${({ theme }) => theme.COLORS.LIGHT_600};    
+        border: 2px solid ${({ theme }) => theme.COLORS.LIGHT_600};    
         border-radius: .5rem;        
 
         display: flex;

@@ -46,7 +46,7 @@ export const Container = styled.main`
     justify-content: center;
     gap: .5rem;    
 
-    background: linear-gradient(180deg, #091E26 0%, #00131C 100%);
+    background: ${({ theme }) => theme.COLORS.GRADIENTS_100};
     
     position: relative;       
 
@@ -55,14 +55,14 @@ export const Container = styled.main`
       ${({ theme }) => theme.FONTS.POPPINS_MEDIUM};
       font-size: clamp(2rem, 1.4rem + 1.2vw, 3.5rem);
       line-height: 140%;
-      color: ${({ theme }) => theme.COLORS.LIGHT_300}; 
+      color: ${({ theme }) => theme.COLORS.LIGHT_100}; 
       z-index:2;       
     }
 
     h3 {          
       ${({ theme }) => theme.FONTS.ROBOTO_REGULAR}
       font-size: clamp(.7rem, .61rem + .4vw, 2rem);
-      color: ${({ theme }) => theme.COLORS.LIGHT_300};
+      color: ${({ theme }) => theme.COLORS.LIGHT_100};
       z-index:2;      
     }
 

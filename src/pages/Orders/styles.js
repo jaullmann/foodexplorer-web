@@ -158,7 +158,7 @@ export const Main = styled.main`
         font-size: .875rem;
         ${({ theme }) => theme.FONTS.ROBOTO_REGULAR};
         line-height: 160%;
-        color: ${({ theme }) => theme.COLORS.LIGHT_400};
+        color: ${({ theme }) => theme.COLORS.LIGHT_100};
         background-color: ${({ theme }) => theme.COLORS.DARK_900};
 
         border: none;
@@ -171,7 +171,7 @@ export const Main = styled.main`
         width: 1.5rem;
         height: 1.5rem;                      
         
-        fill: ${({ theme }) => theme.COLORS.LIGHT_400};
+        fill: ${({ theme }) => theme.COLORS.LIGHT_100};
         pointer-events: none;
     }
 

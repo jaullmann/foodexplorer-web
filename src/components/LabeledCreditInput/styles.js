@@ -21,7 +21,7 @@ export const Input = styled.input`
   height: 3rem;
   padding: .75rem .875rem;
   border: ${({ theme, $alternativeStyle }) => 
-    $alternativeStyle ? '1px solid ' + theme.COLORS.LIGHT_100 : 'none'
+    $alternativeStyle ? '2px solid ' + theme.COLORS.LIGHT_200 : 'none'
   };
   border-radius: ${({ $alternativeStyle }) => 
     $alternativeStyle ? '5px' : '.5rem'

@@ -28,6 +28,8 @@ export default createGlobalStyle`
         svg {
             border: .1px dotted orange;
         } */
+
+        transition: .2s;
     }
 
     :root {        

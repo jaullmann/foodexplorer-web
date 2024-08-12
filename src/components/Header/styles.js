@@ -8,7 +8,7 @@ export const Section = styled.div`
 
     position: fixed;
     top: 0;
-    background-color: ${({ theme }) => theme.COLORS.DARK_800};    
+    background-color: ${({ theme }) => theme.COLORS.DARK_700};    
     z-index: 10;
     
     > .desktop {
@@ -23,16 +23,18 @@ export const Section = styled.div`
 
         padding: 0;        
     
-        #sign-out {
-            display: flex;
-            justify-content: center;  
-            width: 2rem;                        
+        #sign-out {            
+            width: 6rem;
+            height: 2rem;    
+            
+            fill: ${({ theme }) => theme.COLORS.LIGHT_200};
+            cursor: pointer;
         }
 
         > a {            
             font-size: 1rem;
             ${({ theme}) => theme.FONTS.ROBOTO_REGULAR};
-            color: ${({ theme }) => theme.COLORS.LIGHT_300};    
+            color: ${({ theme }) => theme.COLORS.LIGHT_200};    
             white-space: nowrap;
 
             @media (max-width: ${DEVICE_BREAKPOINTS.XL}) {
@@ -62,8 +64,10 @@ export const Section = styled.div`
         display: none;                       
 
         #side-menu-btn {
-            display: flex;
-            justify-content: center;            
+            font-size: 2.7rem;           
+            
+            color: ${({ theme }) => theme.COLORS.LIGHT_300};
+            cursor: pointer;
         }
 
         #cart-button-mobile {
@@ -90,12 +94,7 @@ export const Section = styled.div`
             margin-bottom: 2rem;
             padding: 0;
             
-            display: none;
-
-            #side-menu-btn {
-                display: flex;
-                justify-content: center;            
-            }
+            display: none;           
 
             > img {
                 width: 1.5rem;

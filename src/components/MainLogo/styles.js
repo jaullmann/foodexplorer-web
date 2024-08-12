@@ -34,7 +34,7 @@ export const Container = styled.div`
 
   > div h1 {
     ${({ theme }) => theme.FONTS.ROBOTO_BOLD}
-    color: ${({ theme }) => theme.COLORS.LIGHT_100};
+    color: ${({ theme }) => theme.COLORS.LIGHT_200};
     font-size: 2.625rem;
     width: max-content;    
   } 

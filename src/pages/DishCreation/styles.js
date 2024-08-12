@@ -101,7 +101,7 @@ export const Main = styled.main`
             border: 1px solid ${({ theme }) => theme.COLORS.LIGHT_700};
             background-color: ${({ theme }) => theme.COLORS.LIGHT_700};
 
-            fill: ${({ theme }) => theme.COLORS.LIGHT_200};
+            fill: ${({ theme }) => theme.COLORS.LIGHT_100};
             cursor: pointer;
 
             transition: 0.2s;

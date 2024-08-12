@@ -32,14 +32,14 @@ export const Container = styled.aside`
 
       > svg {
         font-size: 1.8rem;
-        fill: ${({ theme }) => theme.COLORS.LIGHT_100};
+        fill: ${({ theme }) => theme.COLORS.LIGHT_200};
         cursor: pointer;
       }
 
       > h1 {
         font-size: 1.325rem;
         ${({ theme }) => theme.FONTS.ROBOTO_REGULAR};
-        color: ${({ theme }) => theme.COLORS.LIGHT_100};
+        color: ${({ theme }) => theme.COLORS.LIGHT_200};
       }
     }
   }

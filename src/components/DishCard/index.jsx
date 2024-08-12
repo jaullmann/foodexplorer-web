@@ -21,7 +21,6 @@ export function DishCard({ dishId, title, imageFile, description, price, favorit
     const { addToCart } = useCart();
     const navigate = useNavigate();  
     const admin = user.role === "admin"; 
-    console.log(imageFile)  
 
     async function toggleFavoriteDish(dishKey) {             
       setFavDish(!favDish);

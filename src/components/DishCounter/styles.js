@@ -14,10 +14,12 @@ export const Container = styled.div`
   background-color: transparent;
   color: ${({ theme }) => theme.COLORS.LIGHT_300}; 
 
-  > img {
+  > svg {
     width: 1.5rem;
     height: 1.5rem;
     cursor: pointer;
+
+    fill: ${({ theme }) => theme.COLORS.LIGHT_200};
   }
 
   > h3 {      

@@ -31,7 +31,7 @@ export const Input = styled.input`
     $alternativeStyle ? theme.COLORS.LIGHT_100 : theme.COLORS.DARK_900
   };
 
-  color: ${({ theme }) => theme.COLORS.LIGHT_300}; 
+  color: ${({ theme }) => theme.COLORS.LIGHT_100}; 
   background-color: ${({ theme, $alternativeStyle }) => 
     $alternativeStyle ? 'transparent' : theme.COLORS.DARK_900
   };
