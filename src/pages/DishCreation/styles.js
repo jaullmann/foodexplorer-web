@@ -67,8 +67,8 @@ export const Main = styled.main`
         }
 
         > img {
-            width: 12rem;
-            height: 12rem;
+            width: 12.4rem;
+            height: 12.4rem;
 
             border-radius: 50%;           
         }
