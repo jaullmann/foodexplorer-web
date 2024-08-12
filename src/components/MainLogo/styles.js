@@ -36,18 +36,7 @@ export const Container = styled.div`
     ${({ theme }) => theme.FONTS.ROBOTO_BOLD}
     color: ${({ theme }) => theme.COLORS.LIGHT_100};
     font-size: 2.625rem;
-    width: 16rem;
-
-    @media (max-width: ${DEVICE_BREAKPOINTS.MD}) {
-      font-size: 2.325rem; 
-      width: 14.5rem;     
-    }
-
-    @media (max-width: ${DEVICE_BREAKPOINTS.LG}) {
-      font-size: 2.48rem; 
-      width: 15.5rem;     
-    }
-    
+    width: max-content;    
   } 
 
   > div h3 {

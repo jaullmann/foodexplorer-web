@@ -94,14 +94,22 @@ export const Main = styled.main`
             right: 1rem;
             bottom: 1rem;
 
-            font-size: 3rem;
+            font-size: 2rem;
             padding: .4rem;
 
             border-radius: 50%;
-            background-color: ${({ theme }) => theme.COLORS.DARK_200};
+            border: 1px solid ${({ theme }) => theme.COLORS.LIGHT_700};
+            background-color: ${({ theme }) => theme.COLORS.LIGHT_700};
 
-            fill: ${({ theme }) => theme.COLORS.LIGHT_400};
+            fill: ${({ theme }) => theme.COLORS.LIGHT_200};
             cursor: pointer;
+
+            transition: 0.2s;
+
+            &:hover {
+                transition: 0.2s;
+                border: 1px solid ${({ theme }) => theme.COLORS.LIGHT_400}
+            }
         }
     }
 
@@ -129,11 +137,11 @@ export const Main = styled.main`
     #form-section-1, #form-section-2 {
         width: 100%;
         display: flex;
-        align-items: flex-start;
+        align-items: flex-end;
         justify-content: flex-start;
         gap: 1.5rem + 1.5vw;  
         
-        @media (max-width: ${DEVICE_BREAKPOINTS.MD}) {
+        @media (max-width: ${DEVICE_BREAKPOINTS.LG}) {
             flex-direction: column;            
         }
     } 
@@ -142,7 +150,7 @@ export const Main = styled.main`
         flex-grow: 2;
         min-width: 35%;
 
-        @media (max-width: ${DEVICE_BREAKPOINTS.MD}) {
+        @media (max-width: ${DEVICE_BREAKPOINTS.LG}) {
             width: 100%;
         }
     }
@@ -152,7 +160,7 @@ export const Main = styled.main`
         max-width: 22.5rem;  
         min-width: 11rem;  
         
-        @media (max-width: ${DEVICE_BREAKPOINTS.MD}) {
+        @media (max-width: ${DEVICE_BREAKPOINTS.LG}) {
             max-width: none;
             width: 100%;
         }
@@ -162,7 +170,7 @@ export const Main = styled.main`
         flex-grow: 2;
         min-width: 77%;
 
-        @media (max-width: ${DEVICE_BREAKPOINTS.MD}) {
+        @media (max-width: ${DEVICE_BREAKPOINTS.LG}) {
             max-width: none;
             width: 100%;
         }
@@ -173,7 +181,7 @@ export const Main = styled.main`
         max-width: 15.625rem;
         min-width: 4rem;
 
-        @media (max-width: ${DEVICE_BREAKPOINTS.MD}) {
+        @media (max-width: ${DEVICE_BREAKPOINTS.LG}) {
             max-width: none;
             width: 100%;
         }
@@ -253,7 +261,7 @@ export const Main = styled.main`
         row-gap: .5rem;
         border: 1px solid ${({ theme }) => theme.COLORS.DARK_900};
         background-color: ${({ theme }) => theme.COLORS.DARK_900};
-
+        
         transition: 0.2s;
 
         &:hover {
@@ -319,12 +327,12 @@ export const Main = styled.main`
         justify-content: flex-start;
         gap: .5rem + 1.5vw;
 
-        @media (max-width: ${DEVICE_BREAKPOINTS.MD}) {
+        @media (max-width: ${DEVICE_BREAKPOINTS.LG}) {
             width: 100%;            
         }
 
         > button {
-            @media (max-width: ${DEVICE_BREAKPOINTS.MD}) {
+            @media (max-width: ${DEVICE_BREAKPOINTS.LG}) {
                 width: 100%;            
             }
         }    
@@ -345,7 +353,7 @@ export const Main = styled.main`
       border: 1px dashed ${({ theme }) => theme.COLORS.LIGHT_600};
 
       padding: .625rem 1rem;
-      border-radius: .5rem;
+      border-radius: .4rem;
       
       background-color: ${({ theme }) => theme.COLORS.BACKGROUND_600};
 
@@ -353,7 +361,7 @@ export const Main = styled.main`
         border: none;   
         width: 5rem;    
         ${({ theme }) => theme.FONTS.ROBOTO_REGULAR};  
-        font-size: 1rem;          
+        font-size: clamp(.8rem, .4rem + .5vw, 1vw);      
         background-color: transparent;
         color: ${({ theme }) => theme.COLORS.LIGHT_400};       
       }

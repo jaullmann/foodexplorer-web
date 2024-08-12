@@ -5,7 +5,7 @@ export const Container = styled.div`
     max-width: 15rem;
     padding: 0;   
     
-    @media (max-width: ${DEVICE_BREAKPOINTS.MD}) {
+    @media (max-width: ${DEVICE_BREAKPOINTS.LG}) {
         max-width: none;
         width: 100%;
     }
@@ -44,9 +44,9 @@ export const Label = styled.label`
         }; 
     }
 
-    @media (max-width: ${DEVICE_BREAKPOINTS.MD}) {
+    @media (max-width: ${DEVICE_BREAKPOINTS.LG}) {
        justify-content: flex-start; 
-       padding-left: 2rem; 
+       padding-left: 1rem; 
     }
 
     input {

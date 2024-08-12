@@ -4,7 +4,7 @@ export const Container = styled.div`
     width: max-content;
     height: 2rem;
     padding: .625rem 1rem;
-    border-radius: 0.5rem; 
+    border-radius: 0.4rem; 
 
     display: flex;
     align-items: center;
@@ -12,8 +12,8 @@ export const Container = styled.div`
     gap: .5rem;
         
     > p {
-        ${({ theme }) => theme.FONTS.ROBOTO_REGULAR}
-        font-size: 1rem;
+        ${({ theme }) => theme.FONTS.ROBOTO_REGULAR};
+        font-size: clamp(.8rem, .4rem + .5vw, 1vw);
         width: max-content;
     }
 
