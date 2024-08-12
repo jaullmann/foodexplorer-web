@@ -363,11 +363,12 @@ export const Main = styled.main`
         ${({ theme }) => theme.FONTS.ROBOTO_REGULAR};  
         font-size: clamp(.8rem, .4rem + .5vw, 1vw);      
         background-color: transparent;
-        color: ${({ theme }) => theme.COLORS.LIGHT_400};       
+        color: ${({ theme }) => theme.COLORS.LIGHT_200};       
       }
 
       > svg {
         font-size: .8rem;
+        color: ${({ theme }) => theme.COLORS.LIGHT_200};
         cursor: pointer;
       }
       

@@ -12,7 +12,7 @@ export const Container = styled.aside`
     width: 100%;
     height: 100svh;
     z-index: 999;
-    background-color: ${({ theme }) => theme.COLORS.DARK_400};
+    background-color: ${({ theme }) => theme.COLORS.DARK_500};
     transform: translateX(-100%);
     transition: transform 0.3s ease-in-out;
 

@@ -15,5 +15,5 @@ export const Container = styled.div`
     font-size: 0.9rem;
 
     background-color: ${({ theme }) => theme.COLORS.DARK_1000};
-    color: ${({ theme }) => theme.COLORS.LIGHT_100};
+    color: ${({ theme }) => theme.COLORS.LIGHT_200};
 `

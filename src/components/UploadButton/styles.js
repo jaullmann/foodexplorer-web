@@ -56,13 +56,13 @@ export const Label = styled.label`
     > svg {
         height: 1.5rem;
         width: 1.5rem;
-        fill: ${({ theme }) => theme.COLORS.LIGHT_100};
+        fill: ${({ theme }) => theme.COLORS.LIGHT_200};
     }
 
     > p {   
         width: max-content;     
         font-size: .875rem;
         ${({ theme }) => theme.FONTS.POPPINS_MEDIUM};
-        color: ${({ theme }) => theme.COLORS.LIGHT_100};
+        color: ${({ theme }) => theme.COLORS.LIGHT_200};
     }
 `

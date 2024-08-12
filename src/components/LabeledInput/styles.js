@@ -21,17 +21,17 @@ export const Input = styled.input`
   height: 3rem;
   padding: .75rem .875rem;
   border: ${({ theme, $alternativeStyle }) => 
-    $alternativeStyle ? '1px solid ' + theme.COLORS.LIGHT_100 : 'none'
+    $alternativeStyle ? '1px solid ' + theme.COLORS.LIGHT_200 : 'none'
   };
   border-radius: ${({ $alternativeStyle }) => 
     $alternativeStyle ? '5px' : '.5rem'
   };
   
   border: 1px solid ${({ theme, $alternativeStyle }) => 
-    $alternativeStyle ? theme.COLORS.LIGHT_100 : theme.COLORS.DARK_900
+    $alternativeStyle ? theme.COLORS.LIGHT_200 : theme.COLORS.DARK_900
   };
 
-  color: ${({ theme }) => theme.COLORS.LIGHT_100}; 
+  color: ${({ theme }) => theme.COLORS.LIGHT_200}; 
   background-color: ${({ theme, $alternativeStyle }) => 
     $alternativeStyle ? 'transparent' : theme.COLORS.DARK_900
   };

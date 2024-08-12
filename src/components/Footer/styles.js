@@ -11,7 +11,7 @@ export const Section = styled.footer`
   /* position: absolute;
   bottom: 0;   */
 
-  background-color: ${({ theme }) => theme.COLORS.DARK_800};
+  background-color: ${({ theme }) => theme.COLORS.DARK_700};
 
   @media (max-width: 93.5rem) {
       padding: 0 4rem;

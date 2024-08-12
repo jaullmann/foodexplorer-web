@@ -43,7 +43,7 @@ export const Container = styled.div`
   &:focus, &:focus-within {
     transition: 0.2s;
     border: 1px solid ${({ theme }) => theme.COLORS.LIGHT_400};
-    background-color: ${({ theme }) => theme.COLORS.DARK_300}; 
+    background-color: ${({ theme }) => theme.COLORS.DARK_800}; 
   }
 
 `
