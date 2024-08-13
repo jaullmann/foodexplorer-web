@@ -1,5 +1,5 @@
 import { Container } from "./styles";
-import Receipt from "../../assets/app_icons/receipt.svg"
+import { PiReceipt } from "react-icons/pi";
 
 export function CartButton({ amount, loading = false, onClick }){
 
@@ -9,10 +9,7 @@ export function CartButton({ amount, loading = false, onClick }){
       disabled={loading}
       onClick={onClick}
     >
-      <img 
-        src={Receipt} 
-        alt="Ícone de recibo"
-      />
+      <PiReceipt />
       <h3>Pedidos ({ amount })</h3>
 
     </Container>

@@ -1,24 +1,3 @@
-const fonts = {
-  POPPINS_REGULAR: `
-    font-family: "Poppins", sans-serif; 
-    font-weight: 400; `,   
-  POPPINS_MEDIUM: `
-    font-family: "Poppins", sans-serif;
-    font-weight: 500; `,
-  POPPINS_BOLD: `
-    font-family: "Poppins", sans-serif;
-    font-weight: 700; `,
-  ROBOTO_REGULAR: `
-    font-family: "Roboto", sans-serif;
-    font-weight: 400; `,
-  ROBOTO_MEDIUM: `
-    font-family: "Roboto", sans-serif;
-    font-weight: 500; `,
-  ROBOTO_BOLD: `
-    font-family: "Roboto", sans-serif;
-    font-weight: 700; `
-  }
-
 export const darkTheme = {
     NAME: "darkTheme",
 
@@ -56,7 +35,26 @@ export const darkTheme = {
       TINTS_CAKE_300: "#31A1DE"
     },
 
-    FONTS: fonts
+    FONTS: {
+      POPPINS_REGULAR: `
+        font-family: "Poppins", sans-serif; 
+        font-weight: 400; `,   
+      POPPINS_MEDIUM: `
+        font-family: "Poppins", sans-serif;
+        font-weight: 500; `,
+      POPPINS_BOLD: `
+        font-family: "Poppins", sans-serif;
+        font-weight: 700; `,
+      ROBOTO_REGULAR: `
+        font-family: "Roboto", sans-serif;
+        font-weight: 400; `,
+      ROBOTO_MEDIUM: `
+        font-family: "Roboto", sans-serif;
+        font-weight: 500; `,
+      ROBOTO_BOLD: `
+        font-family: "Roboto", sans-serif;
+        font-weight: 700; `
+      }
   }
 
   export const lightTheme = {
@@ -96,7 +94,26 @@ export const darkTheme = {
       TINTS_CAKE_300: "#31A1DE",
     },
 
-    FONTS: fonts
+    FONTS: {
+      POPPINS_REGULAR: `
+        font-family: "Poppins", sans-serif; 
+        font-weight: 500; `,   
+      POPPINS_MEDIUM: `
+        font-family: "Poppins", sans-serif;
+        font-weight: 500; `,
+      POPPINS_BOLD: `
+        font-family: "Poppins", sans-serif;
+        font-weight: 700; `,
+      ROBOTO_REGULAR: `
+        font-family: "Roboto", sans-serif;
+        font-weight: 500; `,
+      ROBOTO_MEDIUM: `
+        font-family: "Roboto", sans-serif;
+        font-weight: 500; `,
+      ROBOTO_BOLD: `
+        font-family: "Roboto", sans-serif;
+        font-weight: 700; `
+      }
   }
 
   

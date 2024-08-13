@@ -26,21 +26,29 @@ export const Container = styled.aside`
       padding: 4rem 1.75rem 2rem;
       display: flex;
       align-items: center;
-      justify-content: flex-start;
-      gap: 1rem;
+      justify-content: space-between;      
       background-color: ${({ theme }) => theme.COLORS.DARK_700};
 
-      > svg {
-        font-size: 1.8rem;
-        fill: ${({ theme }) => theme.COLORS.LIGHT_200};
-        cursor: pointer;
+      > div {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 1rem;
+
+        > svg {
+          font-size: 1.8rem;
+          fill: ${({ theme }) => theme.COLORS.LIGHT_200};
+          cursor: pointer;
+        }
+
+        > h1 {
+          font-size: 1.325rem;
+          ${({ theme }) => theme.FONTS.ROBOTO_REGULAR};
+          color: ${({ theme }) => theme.COLORS.LIGHT_200};
+        }
       }
 
-      > h1 {
-        font-size: 1.325rem;
-        ${({ theme }) => theme.FONTS.ROBOTO_REGULAR};
-        color: ${({ theme }) => theme.COLORS.LIGHT_200};
-      }
+      
     }
   }
 `;
@@ -61,9 +69,14 @@ export const Nav = styled.nav`
     flex-direction: column;
     align-items: flex-start;
 
-    a {
+    a {     
       width: 100%;
-      padding: 0.625rem 0;
+      padding: 1rem 0;
+
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+
       border-bottom: 1px solid ${({ theme }) => theme.COLORS.DARK_1000};
     }
 
@@ -88,11 +101,8 @@ export const Nav = styled.nav`
       color: ${({ theme }) => theme.COLORS.LIGHT_300};
     }
 
-    #side-menu-new {
-      width: 100%;
-      padding: 0.625rem 0;
-      border-bottom: 1px solid ${({ theme }) => theme.COLORS.DARK_1000};
-      text-align: left;
-    }
+    svg {
+      font-size: 2rem;
+    }    
   }
 `;

@@ -77,14 +77,17 @@ export function Header(orderStatuses = {}) {
         {admin && <Link to={"/new"} id="orders">Novo Prato</Link>}
         {!admin && <CartButton amount={cartAmount} onClick={handlePayment} />}
         {admin && <CartButton amount={ordersAmount} onClick={() => navigate("/orders")} />}
-        <ThemeButton 
-          currentTheme={theme.NAME} 
-          onClick={toggleTheme} 
-        />
-        <PiSignOut 
-          id="sign-out" 
-          onClick={handleSignOut} 
-        />        
+        <button id="theme-btn">
+          <ThemeButton           
+            currentTheme={theme.NAME} 
+            onClick={toggleTheme} 
+          />
+        </button>
+        <button id="sign-out">
+          <PiSignOut
+            onClick={handleSignOut} 
+          />  
+        </button>                  
       </div>
       
       <div className="mobile">
@@ -93,11 +96,12 @@ export function Header(orderStatuses = {}) {
           onClick={openSideMenu}
         />
         <SideMenu
-          admin={admin}
-          handleCreate={handleCreate}
+          admin={admin}         
           handleSignOut={handleSignOut}
           closeSideMenu={closeSideMenu}
           sideMenuOpen={isSideMenuOpen}
+          currentTheme={theme.NAME}
+          toggleTheme={toggleTheme}
         />
         <MainLogo userRole={admin ? "admin" : "customer"} />
         {!admin && (

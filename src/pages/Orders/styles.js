@@ -73,7 +73,7 @@ export const Main = styled.main`
         
         font-size: .875rem;
         text-align: left;
-        color: ${({ theme }) => theme.COLORS.LIGHT_300};
+        color: ${({ theme }) => theme.COLORS.LIGHT_200};
     }
 
     table th {  

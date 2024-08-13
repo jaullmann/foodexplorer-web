@@ -158,7 +158,7 @@ export const Main = styled.main`
     #form-section-1 > div:nth-child(3) {
         flex-grow: 2;
         max-width: 22.5rem;  
-        min-width: 11rem;  
+        min-width: 9rem;  
         
         @media (max-width: ${DEVICE_BREAKPOINTS.LG}) {
             max-width: none;
@@ -168,7 +168,7 @@ export const Main = styled.main`
 
     #form-section-2 > div:nth-child(1) {
         flex-grow: 2;
-        min-width: 77%;
+        min-width: 78%;
 
         @media (max-width: ${DEVICE_BREAKPOINTS.LG}) {
             max-width: none;

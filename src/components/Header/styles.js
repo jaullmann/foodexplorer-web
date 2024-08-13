@@ -19,53 +19,45 @@ export const Section = styled.div`
         display: flex;
         align-items: center;    
         justify-content: space-between;
-        gap: 2rem;
+        gap: 1rem; 
 
-        padding: 0;        
-    
-        #sign-out {            
-            width: 6rem;
-            height: 2rem;    
+        padding: 0; 
+
+        > a {
+            font-size: clamp(.6rem, .4rem + .6vw, 1rem);
+            ${({ theme }) => theme.FONTS.ROBOTO_MEDIUM};
+            color: ${({ theme }) => theme.COLORS.LIGHT_200};
+        }
+                
+        #theme-btn, #sign-out {
+            display: flex;
+            justify-content: center;
+            align-items: center;            
+            margin: 0; 
+            padding: 0; 
             
-            fill: ${({ theme }) => theme.COLORS.LIGHT_200};
-            cursor: pointer;
+            > svg {                  
+                font-size: 2rem; 
+                color: ${({ theme }) => theme.COLORS.LIGHT_200};  
+            }            
+        }       
+
+        > a, > button {
+            margin: 0; 
+            padding: 0; 
         }
-
-        > a {            
-            font-size: 1rem;
-            ${({ theme}) => theme.FONTS.ROBOTO_REGULAR};
-            color: ${({ theme }) => theme.COLORS.LIGHT_200};    
-            white-space: nowrap;
-
-            @media (max-width: ${DEVICE_BREAKPOINTS.XL}) {
-                width: 3rem;                
-                font-size: .7rem;
-                ${({ theme}) => theme.FONTS.ROBOTO_BOLD};
-                white-space: pre-line;
-            }
-        }
-
-        > button {
-            width: 13.5rem;
-            padding: 0;
-        }        
     }
-    
-    > .mobile {
         
-        display: none;
+    > .mobile {
+        height: 6.6rem;
+
+        display: none; 
         align-items: center;    
         justify-content: space-between;            
-        
-        margin-top: 3.75rem;
-        margin-bottom: 2rem;
         padding: 0;
         
-        display: none;                       
-
         #side-menu-btn {
             font-size: 2.7rem;           
-            
             color: ${({ theme }) => theme.COLORS.LIGHT_300};
             cursor: pointer;
         }
@@ -75,38 +67,7 @@ export const Section = styled.div`
                 width: 3.5rem;
             }
         }
-
-        > button {
-            width: 2.5rem;
-
-            > img{
-                width: 100%;
-            }
-        }   
-
-        @media (max-width: ${DEVICE_BREAKPOINTS.MD}) {
-            margin: 3.75rem 0;
-            display: none;
-            align-items: center;    
-            justify-content: space-between;            
-            
-            /* margin-top: 3.75rem; */
-            margin-bottom: 2rem;
-            padding: 0;
-            
-            display: none;           
-
-            > img {
-                width: 1.5rem;
-            }
-
-            > div {
-                width: 2rem;
-                height: 2rem;
-            }
-        }
     }
-        
 
     @media (max-width: ${DEVICE_BREAKPOINTS.LG}) {
         > .desktop {
@@ -123,7 +84,7 @@ export const Section = styled.div`
         align-items: center;
         justify-content: center;
         width: fit-content;
-        gap: .625rem;
+        gap: 0.625rem;
 
         img {            
             width: 1.875rem
@@ -134,5 +95,4 @@ export const Section = styled.div`
             width: 9.5rem;
         }
     }    
-
-`
+`;

@@ -59,7 +59,7 @@ export const Main = styled.main`
             }
         }
 
-        @media (max-width: ${DEVICE_BREAKPOINTS.MD}) {
+        @media (max-width: ${DEVICE_BREAKPOINTS.LG}) {
             flex-direction: column;  
             gap: 1.5rem;
 
@@ -96,7 +96,7 @@ export const Main = styled.main`
         justify-content: center;
         gap: 1.5rem;  
 
-        @media (max-width: ${DEVICE_BREAKPOINTS.MD}) {
+        @media (max-width: ${DEVICE_BREAKPOINTS.LG}) {
             min-width: 65vw;
             align-items: center;
         }
@@ -117,7 +117,7 @@ export const Main = styled.main`
         line-height: 140%;
         color: ${({ theme }) => theme.COLORS.LIGHT_300};
 
-        @media (max-width: ${DEVICE_BREAKPOINTS.MD}) {
+        @media (max-width: ${DEVICE_BREAKPOINTS.LG}) {
             text-align: center;
         }
     }
