@@ -139,7 +139,7 @@ export const Main = styled.main`
         flex-wrap: wrap;
         gap: .75rem;
 
-        @media (max-width: ${DEVICE_BREAKPOINTS.MD}) {
+        @media (max-width: ${DEVICE_BREAKPOINTS.LG}) {
             justify-content: center;
         }
     }
