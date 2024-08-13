@@ -35,23 +35,6 @@ function AuthProvider({ children }) {
 
       setData({});
     }    
-  
-    // async function updateProfile({ user }) {
-    //   try {                  
-    //     await api.put("/users", user);
-    //     localStorage.setItem("@foodexplorer:user", JSON.stringify(user));
-    //     setData({ user });
-    //     alert("Perfil atualizado com sucesso!");
-    //     return true;
-    //   } catch (error) {
-    //     if (error.response) {
-    //       alert(error.response.data.message);
-    //     } else {
-    //       alert("Não foi possível atualizar os dados do perfil.");
-    //       return false;
-    //     }
-    //   }    
-    // }
       
     useEffect(() => {          
       const user = localStorage.getItem("@foodexplorer:user");
