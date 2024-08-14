@@ -90,11 +90,10 @@ export const Container = styled.main`
     }  
   }   
 
-  .card-section {
-    opacity: 0;
-    animation: fade-in-dishcards 1000ms linear forwards;
+  .card-section {    
+    animation: fade-in-dishcards 2000ms ease-out;
     animation-timeline: view();
-    animation-range: entry 5% cover 20%;
+    animation-range: entry -25% cover 30%;
   }
 
 `;

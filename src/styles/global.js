@@ -83,7 +83,7 @@ export default createGlobalStyle`
     }
 
     button, a {
-        background-color: initial; /* or 'transparent' */
+        background-color: initial; 
         border: none;
         outline: none;
         box-shadow: none;
@@ -120,19 +120,18 @@ export default createGlobalStyle`
             transform: scaleY(82%);            
         }
         100% {            
-            transform: scaleX(100%);
+            transform: scaleY(100%);
         }
     }
 
     @keyframes fade-in-dishcards {
         0% {
-            opacity: .5; 
-            transform: translateY(30svh);     
-        }
+            opacity: 0; 
+            transform: translateY(50%);  
+        }        
         100% {
-            opacity: 1;
-            transform: translateY(0);     
-        }
+            opacity: 1;                
+        }        
     }
 
 `
