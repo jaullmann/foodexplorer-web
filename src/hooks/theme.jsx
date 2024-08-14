@@ -25,7 +25,7 @@ export const ThemeProvider = ({ children }) => {
   function loadUserTheme() {
     const user = JSON.parse(localStorage.getItem("@foodexplorer:user"));
     setTheme(() => (
-      user.theme === "lightTheme" ? lightTheme : darkTheme
+      user && user.theme === "lightTheme" ? lightTheme : darkTheme
     ));
   }
 

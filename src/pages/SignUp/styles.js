@@ -8,7 +8,7 @@ export const Container = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 13%;
+  gap: 12%;
 
   @media (max-width: ${DEVICE_BREAKPOINTS.LG}) {    
     height: 100vh;
@@ -17,7 +17,11 @@ export const Container = styled.div`
     justify-content: flex-start;
     padding: 9.875rem 0;
     gap: 4.5625rem;
-  }
+  }  
+
+  form {
+    animation: fade-in-light 80ms ease-out forwards;
+  } 
 
 `
 
@@ -31,13 +35,17 @@ export const Form = styled.form`
   align-items: center;
   justify-content: center;
   gap: 2rem;
-
-  background-color: ${({ theme }) => theme.COLORS.DARK_700};
+  
+  background-color: ${({ theme }) => theme.COLORS.DARK_900};
+  box-shadow: ${({ theme }) => theme.NAME === "lightTheme"
+    ? `0.125rem 0.125rem 0.3rem 0.125rem ${theme.COLORS.DARK_700}`
+    : "none"
+  };
 
   > a {
     ${({ theme }) => theme.FONTS.POPPINS_MEDIUM};
-    color: ${({ theme }) => theme.COLORS.LIGHT_100};
-    font-size: .875rem;
+    color: ${({ theme }) => theme.COLORS.LIGHT_200};
+    font-size: 1rem;
   } 
 
   > button {

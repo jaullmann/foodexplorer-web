@@ -19,6 +19,16 @@ export const Container = styled.div`
     gap: 4.5625rem;
   }
 
+  #main-logo {
+    opacity: 0;
+    animation: fade-in 1500ms ease-out forwards;
+    animation-delay: 700ms; 
+  }
+
+  form {
+    animation: right-left 500ms ease-out forwards;
+  } 
+
 `
 
 export const Form = styled.form`
@@ -32,12 +42,16 @@ export const Form = styled.form`
   justify-content: center;  
   gap: 2rem;
 
-  background-color: ${({ theme }) => theme.COLORS.DARK_700};
+  background-color: ${({ theme }) => theme.COLORS.DARK_900};
+  box-shadow: ${({ theme }) => theme.NAME === "lightTheme"
+    ? `0.125rem 0.125rem 0.3rem 0.125rem ${theme.COLORS.DARK_700}`
+    : "none"
+  };  
 
   > a {
     ${({ theme }) => theme.FONTS.POPPINS_MEDIUM};
-    color: ${({ theme }) => theme.COLORS.LIGHT_100};
-    font-size: .875rem;
+    color: ${({ theme }) => theme.COLORS.LIGHT_200};
+    font-size: 1rem;
   } 
 
   input {      
@@ -52,7 +66,14 @@ export const Form = styled.form`
     padding: 0;
     max-width: 19.75rem;
 
-    background-color: transparent;   
+    background-color: transparent;     
+    border: none;
+    box-shadow: none;
+
+    &:hover {
+      border: none;
+      box-shadow: none;
+    }
 
     label {
       display: none;    
@@ -61,7 +82,6 @@ export const Form = styled.form`
     .labeled-input {
       width: 100%;
     }
-
-  }
+  }  
  
 `

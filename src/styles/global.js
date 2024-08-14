@@ -95,4 +95,44 @@ export default createGlobalStyle`
     button:hover, a:hover {
         filter: brightness(0.8);
     }
+
+    @keyframes fade-in {
+        0% {
+            opacity: 0;      
+        }
+        100% {
+            opacity: 1;
+        }
+    }
+
+    @keyframes right-left{
+        0% {
+            opacity: 0.2;
+            transform: translateX(3vw);
+        }
+        100% {
+            opacity: 1;
+        }
+    }
+
+    @keyframes fade-in-light {
+        0% {        
+            transform: scaleY(82%);            
+        }
+        100% {            
+            transform: scaleX(100%);
+        }
+    }
+
+    @keyframes fade-in-dishcards {
+        0% {
+            opacity: .5; 
+            transform: translateY(30svh);     
+        }
+        100% {
+            opacity: 1;
+            transform: translateY(0);     
+        }
+    }
+
 `

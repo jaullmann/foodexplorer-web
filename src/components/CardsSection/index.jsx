@@ -16,7 +16,7 @@ export function CardsSection({ dishesData, sectionName, category, favorites }) {
   }, [favorites]);
 
   return (
-    <Section >
+    <Section className="card-section">
 
       {
         filteredCards.length > 0 &&

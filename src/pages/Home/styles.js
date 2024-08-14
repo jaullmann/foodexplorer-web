@@ -88,7 +88,13 @@ export const Container = styled.main`
       }        
       
     }  
-
   }   
+
+  .card-section {
+    opacity: 0;
+    animation: fade-in-dishcards 1000ms linear forwards;
+    animation-timeline: view();
+    animation-range: entry 5% cover 20%;
+  }
 
 `;

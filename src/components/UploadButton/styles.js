@@ -61,8 +61,8 @@ export const Label = styled.label`
 
     > p {   
         width: max-content;     
-        font-size: .875rem;
-        ${({ theme }) => theme.FONTS.POPPINS_MEDIUM};
+        font-size: 1rem;
+        ${({ theme }) => theme.FONTS.ROBOTO_MEDIUM};
         color: ${({ theme }) => theme.COLORS.LIGHT_200};
     }
 `
