@@ -107,8 +107,8 @@ export default createGlobalStyle`
 
     @keyframes right-left{
         0% {
-            opacity: 0.2;
-            transform: translateX(3vw);
+            opacity: 0;
+            transform: translateX(5vw);
         }
         100% {
             opacity: 1;
@@ -127,11 +127,17 @@ export default createGlobalStyle`
     @keyframes fade-in-dishcards {
         0% {
             opacity: 0; 
-            transform: translateY(50%);  
+            transform: translateY(80%);  
         }        
         100% {
             opacity: 1;                
         }        
+    }
+
+    .favorite-card,
+    .search-card {        
+        opacity: 0;
+        animation: right-left .3s forwards;    
     }
 
 `

@@ -4,7 +4,7 @@ import { useAuth } from '../../hooks/auth';
 import { useNavigate } from "react-router-dom";
 import { Container } from "./styles";
 
-export function FavoriteCard({ dishId, title, imageFile, onDeleteFavorite }){
+export function FavoriteCard({ dishId, title, imageFile, onDeleteFavorite, ...rest }){
 
     const { user } = useAuth();
     const navigate = useNavigate();
@@ -30,7 +30,7 @@ export function FavoriteCard({ dishId, title, imageFile, onDeleteFavorite }){
     }
 
     return(
-        <Container>            
+        <Container {...rest}>            
             {
                 imageFile && 
                 <img 

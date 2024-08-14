@@ -30,6 +30,8 @@ export const Container = styled.main`
       height: 7.5rem;
     }
 
+    animation: fade-in 1s ease-out forwards;    
+
   }
   
   #banner-slogan {    
@@ -93,7 +95,7 @@ export const Container = styled.main`
   .card-section {    
     animation: fade-in-dishcards 2000ms ease-out;
     animation-timeline: view();
-    animation-range: entry -25% cover 30%;
+    animation-range: entry -20% cover 25%;
   }
 
 `;

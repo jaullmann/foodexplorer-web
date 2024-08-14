@@ -63,7 +63,11 @@ export function DishCard({ dishId, title, imageFile, description, price, favorit
     }, [favorites])
 
     return(
-        <Container key={String(dishId)} $admin={admin}>
+        <Container 
+          className="dish-card"
+          key={String(dishId)} 
+          $admin={admin}
+        >
           {admin ? (
               <PiPencilSimple 
                 id={`edit-button-dish-${dishId}`}

@@ -48,6 +48,6 @@ export const Main = styled.main`
         @media(max-width: ${DEVICE_BREAKPOINTS.MD}) {
             gap: .5rem;     
         }  
-    }    
+    }        
     
 `

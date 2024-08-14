@@ -14,7 +14,7 @@ export function SearchCard({ dishId, title, imageFile, ...rest }){
     }
 
     return(
-        <Container>
+        <Container {...rest} >
             {
                 imageFile && 
                 <img 

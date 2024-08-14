@@ -39,8 +39,9 @@ export function SearchResults() {
             searchResult.length > 0 &&
             <div id="found-dishes">
               {
-                searchResult.map((foundDish) => (
+                searchResult.map((foundDish, index) => (
                   <SearchCard
+                    className={"search-card"}
                     key={"found-dish-" + foundDish.dish_id}
                     dishId={foundDish.dish_id}
                     title={foundDish.title}
@@ -50,6 +51,7 @@ export function SearchResults() {
                           : 
                           null
                     }   
+                    style={{ animationDelay: `${index * 0.1}s` }} 
                   />
                 ))
               }

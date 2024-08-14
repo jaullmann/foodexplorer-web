@@ -45,8 +45,9 @@ export function Favorites() {
                         data.length > 0 &&
                         <div id="fav-dishes">
                             {
-                                data.map(( favorite ) => (
+                                data.map(( favorite, index ) => (
                                     <FavoriteCard 
+                                        className="favorite-card"
                                         key={"fav-dish-" + favorite.dish_id}
                                         dishId={favorite.dish_id}
                                         title={favorite.title}
@@ -56,7 +57,8 @@ export function Favorites() {
                                                 : 
                                                 null
                                         }   
-                                        onDeleteFavorite={fetchFavorites}                                   
+                                        onDeleteFavorite={fetchFavorites}
+                                        style={{ animationDelay: `${index * 0.1}s` }}                                  
                                     />
                                 ))
                             }                    
