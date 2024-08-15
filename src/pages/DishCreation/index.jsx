@@ -128,7 +128,8 @@ export function DishCreation() {
             const dishId = await response.data.dish_id;
             
             imageFile && uploadProductImage(dishId);
-            window.location.reload();
+            // window.location.reload();
+            clearForm()
             return true;
 
         } catch (e) {
@@ -147,7 +148,6 @@ export function DishCreation() {
             return false;
         }
         try {
-            
             await api.put(`dishes/${dishId}`, {
                 title: title,
                 category: category,
@@ -272,9 +272,9 @@ export function DishCreation() {
             alert("Descrição do produto deve possuir entre 8 e 500 caracteres.");
             return false;
         }
-        if (!imageFile && newDish) {
+        if (!imageFile) {
             const noImage = confirm("Você não selecionou nenhuma imagem para o produto." +
-                "\nDeseja cadastrá-lo inicialmente sem uma foto associada?")
+                "\nDeseja salvar assim mesmo?")
             if (!noImage) {
                 return false;
             }
@@ -289,20 +289,26 @@ export function DishCreation() {
         setFormFilled(validTitle && validPrice && validDescription);
     }
 
+    function clearForm() {
+        setTitle("");
+        setNewDish(true);
+        setTitle("");
+        setCategory("refeicao");
+        setPrice("");
+        setIngredients([]);
+        setNewIngredient("");
+        setDescription("");
+        setImageFile(null);
+        setPrevImageFile(null);
+        setImageUrl(null);        
+    }
+
     useEffect(() => {
         if (dishId) {
             setNewDish(false);
             fetchEditingProduct();
         } else {
-            setNewDish(true);
-            setTitle("");
-            setCategory("refeicao");
-            setPrice("");
-            setIngredients([]);
-            setNewIngredient("");
-            setDescription("");
-            setImageFile(null);
-            setPrevImageFile(null);
+            clearForm();
         }
 
     }, [dishId, location.key]);
@@ -435,7 +441,7 @@ export function DishCreation() {
                         <div id="form-buttons">
                             <Button
                                 title={"Excluir produto"}
-                                color={"dark_800"}
+                                color={"light_700"}
                                 onClick={deleteProduct}
                             />
                             <Button

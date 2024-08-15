@@ -67,8 +67,8 @@ export const Main = styled.main`
         }
 
         > img {
-            width: 12.4rem;
-            height: 12.4rem;
+            width: 12.8rem;
+            height: 12.8rem;
 
             border-radius: 50%;           
         }
@@ -76,8 +76,8 @@ export const Main = styled.main`
         #placeholder {
             padding: 2rem;
 
-            width: 12rem;
-            height: 12rem;            
+            width: 12.8rem;
+            height: 12.8rem;            
             border: 1px solid ${({ theme }) => theme.COLORS.LIGHT_500};
             border-radius: 50%;        
             background-color: ${({ theme }) => theme.COLORS.DARK_900};
@@ -373,5 +373,22 @@ export const Main = styled.main`
       }
       
     }    
+
+    //animation effects
+
+    #product-image {
+        opacity: 0;
+        animation: fade-in .7s ease-out forwards;
+    }
+
+    #form-fields {
+        opacity: 0;
+        animation: fade-in .7s ease-out forwards;
+    }
+
+    #form-description {
+        opacity: 0;
+        animation: fade-in .7s ease-out forwards;
+    }
 
 `

@@ -9,6 +9,9 @@ export const Button = styled.a`
   justify-content: flex-start;  
   gap: .25rem;
 
+  opacity: 0;
+  animation: fade-in 1s ease-out forwards;
+
   > svg {
     width: 2rem;
     height: 2rem;

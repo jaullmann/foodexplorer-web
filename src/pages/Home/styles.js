@@ -92,10 +92,12 @@ export const Container = styled.main`
     }  
   }   
 
+  // animation effects
+
   .card-section {    
-    animation: fade-in-dishcards 2000ms ease-out;
+    animation: fade-in 3s linear;
     animation-timeline: view();
-    animation-range: entry -20% cover 25%;
+    animation-range: entry 10% cover 20%;
   }
 
 `;

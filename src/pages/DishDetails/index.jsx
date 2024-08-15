@@ -80,6 +80,7 @@ export function DishDetails() {
             {
               data.image_file &&
               <img
+                id="dish-image"
                 src={`${api.defaults.baseURL}/files/${data.image_file}`}
                 alt="Foto do prato"
               />
@@ -106,6 +107,7 @@ export function DishDetails() {
                       <Ingredient 
                         key={index}
                         name={ingredient} 
+                        style={{ animationDelay: `${index * 0.1}s` }} 
                       />
                     ))
                   }

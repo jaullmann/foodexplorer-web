@@ -11,5 +11,8 @@ export const Label = styled.label`
   font-size: 2rem;
 
   color: ${({ theme }) => theme.COLORS.LIGHT_200}; 
+
+  opacity: 0;
+  animation: fade-in 1s ease-out forwards;
   
 `

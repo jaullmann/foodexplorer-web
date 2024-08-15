@@ -85,9 +85,10 @@ export function Payment() {
                             <SectionLabel title={admin ? "Detalhes do pedido" : "Meu pedido"} />
                             <div id="dishes">                        
                                 {                                   
-                                    data.map((card) => {                                    
+                                    data.map((card, index) => {                                    
                                         return (
                                             <OrderCardDetail
+                                                className="order-card"
                                                 key={card.dish_id}
                                                 dishId={card.dish_id}
                                                 title={card.title}
@@ -101,6 +102,7 @@ export function Payment() {
                                                 price={card.dish_price}
                                                 paidOrder={paidOrder}
                                                 onDeleteCartDish={fetchUserCart}
+                                                style={{ animationDelay: `${index * 0.1}s` }} 
                                             />
                                         );
                                     })
@@ -129,7 +131,7 @@ export function Payment() {
                             />
                             <div id="back-btn-frame">
                                 <Button 
-                                    id={"back-btn"} 
+                                    id="back-btn" 
                                     title={"< Voltar"} 
                                     onClick={() => setProceedPayment(false)}                    
                                 />

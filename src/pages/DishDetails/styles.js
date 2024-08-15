@@ -163,4 +163,21 @@ export const Main = styled.main`
         fill: ${({ theme }) => theme.COLORS.LIGHT_300};
     }
 
+    //animation effects
+
+    #dish-image, #default-image {
+        opacity: 0;
+        animation: grow .8s ease-out forwards;
+    }
+
+    #dish-details {
+        opacity: 0;
+        animation: right-left 1s 0s ease-out forwards;
+    }
+
+    .dish-ingredient {
+        opacity: 0;
+        animation: fade-in .5s ease-out forwards;
+    }
+
 `;

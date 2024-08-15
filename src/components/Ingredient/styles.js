@@ -16,4 +16,7 @@ export const Container = styled.div`
 
     background-color: ${({ theme }) => theme.COLORS.DARK_1000};
     color: ${({ theme }) => theme.COLORS.LIGHT_200};
+
+    opacity: 0;
+    animation: fade-in .5s ease-out forwards;
 `

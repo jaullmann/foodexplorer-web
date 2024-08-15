@@ -24,8 +24,8 @@ export const Container = styled.button`
     background-color: ${({ theme }) => theme.COLORS.TINTS_TOMATO_400};
   }
 
-  &.dark_800 {
-    background-color: ${({ theme }) => theme.COLORS.DARK_800};
+  &.light_700 {
+    background-color: ${({ theme }) => theme.COLORS.LIGHT_700};
   }
     
   height: 3rem;

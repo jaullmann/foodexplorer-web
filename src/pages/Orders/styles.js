@@ -23,7 +23,7 @@ export const Main = styled.main`
     display: flex;
     flex-direction: column;
     justify-content: center;
-    gap: 2.1875rem;
+    gap: 2.1875rem;    
 
     @media (max-width: ${DEVICE_BREAKPOINTS.LG}) {
         margin: 9rem 0 1rem;
@@ -55,12 +55,15 @@ export const Main = styled.main`
             background: ${({ theme }) => theme.COLORS.DARK_1000};
             border-radius: .2rem;            
         }
+
+        opacity: 0;
+        animation: fade-in .8s ease-out forwards;
     }
 
     #desktop-table {
         display: flex;
         border: 2px solid ${({ theme }) => theme.COLORS.DARK_1000};
-        border-radius: .5rem .5rem 0 0; 
+        border-radius: .5rem; 
     }
 
     #mobile-table {
@@ -214,6 +217,9 @@ export const Main = styled.main`
             flex-direction: column;
             gap: 1rem;
             cursor: pointer;
+
+            opacity: 0;
+            animation: left-right .4s ease-out forwards;
         }
 
         .order-card-header {

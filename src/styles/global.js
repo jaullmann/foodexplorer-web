@@ -105,10 +105,30 @@ export default createGlobalStyle`
         }
     }
 
+    @keyframes grow {
+        0% {
+            opacity: 0;
+            scale: .8;      
+        }
+        100% {
+            opacity: 1;
+        }
+    }
+
     @keyframes right-left{
         0% {
             opacity: 0;
             transform: translateX(5vw);
+        }
+        100% {
+            opacity: 1;
+        }
+    }
+
+    @keyframes left-right{
+        0% {
+            opacity: 0;
+            transform: translateX(-10vw);
         }
         100% {
             opacity: 1;
@@ -124,20 +144,10 @@ export default createGlobalStyle`
         }
     }
 
-    @keyframes fade-in-dishcards {
-        0% {
-            opacity: 0; 
-            transform: translateY(80%);  
-        }        
-        100% {
-            opacity: 1;                
-        }        
-    }
-
     .favorite-card,
     .search-card {        
         opacity: 0;
-        animation: right-left .3s forwards;    
-    }
+        animation: right-left .2s ease-out forwards;    
+    }    
 
 `

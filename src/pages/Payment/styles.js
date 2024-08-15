@@ -137,8 +137,19 @@ export const Main = styled.main`
             justify-content: flex-start;
             min-width: 26rem; 
             width: 60vw;
-        } 
-        
+        }                
+    }
+
+    // animation effects
+
+    .order-card {
+        opacity: 0;
+        animation: left-right .4s ease-out forwards;
+    }
+
+    #total, #order-payment, #next-btn, #back-btn {
+        opacity: 0;
+        animation: fade-in 1.5s .4s forwards;
     }
     
 `

@@ -1,8 +1,11 @@
 import { Container } from "./styles";
 
-export function Ingredient({ name }) {
+export function Ingredient({ name, ...rest }) {
     return(
-        <Container>
+        <Container 
+            className="dish-ingredient"
+            {...rest}
+        >
             { name }
         </Container>
     )

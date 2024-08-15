@@ -5,7 +5,7 @@ import { useCart } from "../../hooks/cart";
 import { Container } from "./styles";
 import { formatCurrency } from "../../functions";
 
-export function OrderCardDetail({ dishId, title, imageFile, amount, price, paidOrder, onDeleteCartDish }){
+export function OrderCardDetail({ dishId, title, imageFile, amount, price, paidOrder, onDeleteCartDish, ...rest }){
 
   const navigate = useNavigate();
   const { fetchCart } = useCart();
@@ -35,7 +35,7 @@ export function OrderCardDetail({ dishId, title, imageFile, amount, price, paidO
   } 
   
   return (
-    <Container> 
+    <Container {...rest}> 
       {
         imageFile &&
         <img 

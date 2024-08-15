@@ -130,10 +130,11 @@ export function Orders() {
                     )}
                     {data.length > 0 && (
                         <div id="mobile-table">
-                            {data.map(order => (
+                            {data.map((order, index) => (
                                 <div
                                     key={"order-" + order.order_id}
-                                    className="order-card"                                    
+                                    className="order-card"
+                                    style={{ animationDelay: `${index * 0.2}s` }}                                    
                                 >
                                     <div 
                                         key={"order-header-" + order.order_id} 

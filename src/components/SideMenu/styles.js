@@ -14,11 +14,11 @@ export const Container = styled.aside`
     z-index: 999;
     background-color: ${({ theme }) => theme.COLORS.DARK_500};
     transform: translateX(-100%);
-    transition: transform 0.3s ease-in-out;
+    transition: transform 0.5s ease-in-out;
 
     &[data-menu-is-open="true"] {
       transform: translateX(0);
-      transition: transform 0.3s ease-in-out;
+      transition: transform 0.5s ease-in-out;
     }
 
     #side-menu-top-bar {
