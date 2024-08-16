@@ -39,15 +39,24 @@ export const Main = styled.main`
     #fav-dishes {
         width: 100%;
 
-        display: flex;    
-        justify-content: flex-start;
-        align-items: center;
-        gap: 2.1875rem;
-        flex-wrap: wrap;
+        display: grid;          
+        grid-auto-rows: 7rem;        
+        grid-template-columns: repeat(5, 19.5%);        
+        justify-content: space-between;
 
+        @media(max-width: ${DEVICE_BREAKPOINTS.UL}) {
+            grid-template-columns: repeat(4, 24%);   
+        }
+        @media(max-width: ${DEVICE_BREAKPOINTS.XL}) {
+            grid-template-columns: repeat(3, 31%);    
+        }
+        @media(max-width: ${DEVICE_BREAKPOINTS.LG}) {
+            grid-template-columns: repeat(2, 48%);        
+        }         
         @media(max-width: ${DEVICE_BREAKPOINTS.MD}) {
-            gap: .5rem;     
-        }  
+            grid-template-columns: repeat(1, 100%);         
+        } 
+             
     }     
     
     //animation effects

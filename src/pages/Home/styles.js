@@ -55,7 +55,7 @@ export const Container = styled.main`
     h1 {      
       width: max-content;        
       ${({ theme }) => theme.FONTS.POPPINS_MEDIUM};
-      font-size: clamp(2rem, 1.4rem + 1.2vw, 3.5rem);
+      font-size: clamp(1.5rem, 1.4rem + 1.4vw, 3.5rem);
       line-height: 140%;
       color: ${({ theme }) => theme.COLORS.LIGHT_100}; 
       z-index:2;       
@@ -63,7 +63,7 @@ export const Container = styled.main`
 
     h3 {          
       ${({ theme }) => theme.FONTS.ROBOTO_REGULAR}
-      font-size: clamp(.7rem, .61rem + .4vw, 2rem);
+      font-size: clamp(.5rem, .5rem + .6vw, 2rem);
       color: ${({ theme }) => theme.COLORS.LIGHT_100};
       z-index:2;      
     }

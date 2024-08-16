@@ -3,7 +3,8 @@ import { DEVICE_BREAKPOINTS } from "../../styles/deviceBreakpoints";
 
 export const Container = styled.div`
     height: 6.5rem;
-    width: 15.2rem;            
+    min-width: 15rem;                
+    width: 100%;
 
     display: flex;
     align-items: center;
@@ -43,7 +44,7 @@ export const Container = styled.div`
         > h2 {
             width: fit-content;
             ${({ theme }) => theme.FONTS.POPPINS_MEDIUM}; 
-            font-size: 1.25rem;
+            font-size: clamp(1rem, .5rem + .6vw, 1.25rem);
             color: ${({ theme }) => theme.COLORS.LIGHT_300};            
             line-height: 160%; 
 
@@ -64,18 +65,5 @@ export const Container = styled.div`
             line-height: 160%;  
         }
     }
-
-    @media(max-width: ${DEVICE_BREAKPOINTS.UL}) {
-        width: 22rem;    
-    }
-    @media(max-width: ${DEVICE_BREAKPOINTS.XL}) {
-        width: 20rem;    
-    }
-    @media(max-width: ${DEVICE_BREAKPOINTS.LG}) {
-        width: 18rem;    
-    }    
-    @media(max-width: ${DEVICE_BREAKPOINTS.MD}) {
-        width: 100%;        
-    }    
 
 `

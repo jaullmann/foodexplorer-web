@@ -3,7 +3,8 @@ import { DEVICE_BREAKPOINTS } from "../../styles/deviceBreakpoints";
 
 export const Container = styled.div`
     height: 6.5rem;
-    width: 15.2rem;            
+    min-width: 15rem;                
+    width: 100%;          
 
     display: flex;
     align-items: center;
@@ -55,18 +56,5 @@ export const Container = styled.div`
             cursor: pointer;          
         }
     }
-
-    @media(max-width: ${DEVICE_BREAKPOINTS.UL}) {
-        width: 22rem;    
-    }
-    @media(max-width: ${DEVICE_BREAKPOINTS.XL}) {
-        width: 20rem;    
-    }
-    @media(max-width: ${DEVICE_BREAKPOINTS.LG}) {
-        width: 18rem;    
-    }    
-    @media(max-width: ${DEVICE_BREAKPOINTS.MD}) {
-        width: 100%;        
-    }    
 
 `

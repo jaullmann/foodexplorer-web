@@ -10,6 +10,9 @@ export const Container = styled.div`
     align-items: center;
     justify-content: center;
     gap: .5rem;
+
+    opacity: 0;
+    animation: grow .2s ease-out forwards;
         
     > p {
         ${({ theme }) => theme.FONTS.ROBOTO_REGULAR};
