@@ -250,14 +250,14 @@ export const Main = styled.main`
     
     #ingredients-area {
         min-height: 3rem;
-        padding: .25rem .5rem;
+        padding: .3rem .5rem;
         border-radius: .5rem;
 
         display: flex;
         align-items: center;
-        justify-content: flex-start;
+        justify-content: flex-start;        
         flex-wrap: wrap;
-        column-gap: 1rem;        
+        column-gap: .5rem;        
         row-gap: .5rem;
         border: 1px solid ${({ theme }) => theme.COLORS.DARK_900};
         background-color: ${({ theme }) => theme.COLORS.DARK_900};
@@ -361,7 +361,7 @@ export const Main = styled.main`
         border: none;   
         width: 5rem;    
         ${({ theme }) => theme.FONTS.ROBOTO_REGULAR};  
-        font-size: clamp(.8rem, .4rem + .5vw, 1vw);      
+        font-size: clamp(.6rem, .4rem + .5vw, .9rem);      
         background-color: transparent;
         color: ${({ theme }) => theme.COLORS.LIGHT_200};       
       }
@@ -378,17 +378,17 @@ export const Main = styled.main`
 
     #product-image {
         opacity: 0;
-        animation: fade-in .7s ease-out forwards;
+        animation: grow .5s ease-out forwards;
     }
 
     #form-fields {
         opacity: 0;
-        animation: fade-in .7s ease-out forwards;
+        animation: fade-in .5s .3s ease-out forwards;
     }
 
     #form-description {
         opacity: 0;
-        animation: fade-in .7s ease-out forwards;
+        animation: fade-in .5s .6s ease-out forwards;
     }
 
 `

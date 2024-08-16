@@ -25,6 +25,7 @@ export function DishCreation() {
     const [description, setDescription] = useState("");
     const [imageFile, setImageFile] = useState(null);
     const [prevImageFile, setPrevImageFile] = useState(null);
+    const [deletedImageFile, setDeletedImageFile] = useState(null);
     const [imageUrl, setImageUrl] = useState(null);
     const [prevDishes, setPrevDishes] = useState([]);
     const [newDish, setNewDish] = useState(true);
@@ -55,7 +56,7 @@ export function DishCreation() {
             setIngredients(response.data.ingredients);
             setDescription(response.data.description);
             setPrice(response.data.price * 100);
-            setPrevImageFile(response.data.image_file);
+            setPrevImageFile(response.data.image_file);            
         } catch (e) {
             if (e.response) {
                 alert(e.response.data.message);
@@ -94,7 +95,7 @@ export function DishCreation() {
         try {
             await api.delete("pictures", {
                 data: {
-                    image_file: prevImageFile
+                    image_file: deletedImageFile || prevImageFile
                 },
                 withCredentials: true
             });
@@ -148,18 +149,22 @@ export function DishCreation() {
             return false;
         }
         try {
+
+            !imageFile && deleteProductImage();                      
+
             await api.put(`dishes/${dishId}`, {
                 title: title,
                 category: category,
                 description: description,
                 ingredients: ingredients,
                 price: Number(price) / 100,
-                image_file: `${prevImageFile ? prevImageFile : ""}`
+                image_file: `${deletedImageFile ? "" : prevImageFile}`
             },
                 { withCredentials: true }
             );
 
-            imageFile && uploadProductImage(dishId);
+            uploadProductImage(dishId);  
+            
             return true;
 
         } catch (e) {
@@ -184,9 +189,9 @@ export function DishCreation() {
         }
         try {
             await api.delete(`dishes/${dishId}`, { withCredentials: true });
-            deleteProductImage();
+            prevImageFile && deleteProductImage();
             alert("Produto excluído com sucesso!");
-            return navigate(-1);
+            return navigate("/");
         } catch (e) {
             if (e.response) {
                 return alert(e.response.data.message);
@@ -220,12 +225,16 @@ export function DishCreation() {
     }
 
     function deleteCurrentPicture() {
+        setDeletedImageFile(prevImageFile);
         setPrevImageFile(null);
         setImageFile(null);
         setImageUrl(null);
     }
 
-    function handleAddIngredient() {
+    function handleAddIngredient(event) {
+        if (event.key !== 'Enter') {
+            return
+        }
         if (ingredients.length < 15) {
             if (newIngredient.length < 3 || newIngredient.length > 20) {
                 alert("Ingrediente deve possuir entre 3 e 20 caracteres.")
@@ -272,7 +281,7 @@ export function DishCreation() {
             alert("Descrição do produto deve possuir entre 8 e 500 caracteres.");
             return false;
         }
-        if (!imageFile) {
+        if (!imageFile && !prevImageFile) {
             const noImage = confirm("Você não selecionou nenhuma imagem para o produto." +
                 "\nDeseja salvar assim mesmo?")
             if (!noImage) {
@@ -309,7 +318,7 @@ export function DishCreation() {
             fetchEditingProduct();
         } else {
             clearForm();
-        }
+        }       
 
     }, [dishId, location.key]);
 
@@ -400,6 +409,7 @@ export function DishCreation() {
                                                 placeholder="Adicionar"
                                                 value={newIngredient}
                                                 onChange={e => setNewIngredient(e.target.value)}
+                                                onKeyDown={handleAddIngredient}
                                             />
                                             <FiPlus
                                                 onClick={handleAddIngredient}

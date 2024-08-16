@@ -55,7 +55,7 @@ export const Input = styled.input`
   text-align: center;  
 
   ${({ theme}) => theme.FONTS.ROBOTO_REGULAR};
-  font-size: clamp(1rem, .5rem + .5vw, 1.3rem);  
+  font-size: clamp(.7rem, .4rem + .6vw, 1.1rem);  
 
   background: transparent;
   color: ${({ theme }) => theme.COLORS.LIGHT_200};  
@@ -66,7 +66,7 @@ export const Input = styled.input`
   transition: 0.2s ease-in-out;
     
   &::placeholder {
-    color: ${({ theme }) => theme.COLORS.LIGHT_500}; 
+    color: ${({ theme }) => theme.COLORS.LIGHT_800}; 
     overflow: hidden;
     text-overflow: ellipsis;   
     transition: 0.2s ease-in-out; 

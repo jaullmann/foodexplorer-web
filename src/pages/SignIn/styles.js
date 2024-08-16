@@ -21,12 +21,12 @@ export const Container = styled.div`
 
   #main-logo {
     opacity: 0;
-    animation: fade-in 1500ms ease-out forwards;
-    animation-delay: 700ms; 
+    animation: fade-in 1.5s ease-out forwards;
+    animation-delay: .7s; 
   }
 
   form {
-    animation: right-left 500ms ease-out forwards;
+    animation: fade-in .5s ease-out forwards;
   } 
 
 `

@@ -41,6 +41,7 @@ export function SignIn() {
           altStyle
           placeholder="Exemplo: nome@exemplo.com.br"
           onChange={e => setEmail(e.target.value)}
+          onKeyDown={handleKeyDown}
         />
         <LabeledInput 
           className="labeled-input"

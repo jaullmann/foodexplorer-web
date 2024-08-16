@@ -30,7 +30,7 @@ export const Container = styled.main`
       height: 7.5rem;
     }
 
-    animation: fade-in 1s ease-out forwards;    
+    animation: fade-in 1.3s ease-out forwards;    
 
   }
   

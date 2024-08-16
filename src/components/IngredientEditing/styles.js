@@ -13,7 +13,7 @@ export const Container = styled.div`
         
     > p {
         ${({ theme }) => theme.FONTS.ROBOTO_REGULAR};
-        font-size: clamp(.7rem, .4rem + .5vw, 1.1rem);  
+        font-size: clamp(.6rem, .4rem + .5vw, 1rem);  
         width: max-content;
     }
 
@@ -24,11 +24,11 @@ export const Container = styled.div`
 
     background-color: ${({ theme, $toAdd }) => $toAdd ? 
             'transparent' : 
-            theme.COLORS.LIGHT_600 
+            theme.COLORS.DARK_700 
         };
     color: ${({ theme, $toAdd }) => $toAdd ? 
             theme.COLORS.LIGHT_500 : 
-            theme.COLORS.LIGHT_100 
+            theme.COLORS.LIGHT_500 
         };
     
     button {
@@ -42,7 +42,7 @@ export const Container = styled.div`
     svg {
         fill: ${({ theme, $toAdd }) => $toAdd ? 
             theme.COLORS.LIGHT_500 : 
-            theme.COLORS.LIGHT_100 
+            theme.COLORS.LIGHT_500 
         };
         cursor: pointer;
     }

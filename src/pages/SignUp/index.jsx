@@ -69,6 +69,7 @@ export function SignUp() {
           type="text"
           placeholder={"Exemplo: Maria Silva"}
           onChange={e => setName(e.target.value)}
+          onKeyDown={handleKeyDown}
           altStyle
         />
         <LabeledInput 
@@ -77,6 +78,7 @@ export function SignUp() {
           type="text"
           placeholder={"Exemplo: nome@exemplo.com.br"}
           onChange={e => setEmail(e.target.value)}
+          onKeyDown={handleKeyDown}
           altStyle
         />
         <LabeledInput 
