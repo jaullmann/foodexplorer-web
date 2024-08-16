@@ -142,12 +142,6 @@ export default createGlobalStyle`
         100% {            
             transform: scaleY(100%);
         }
-    }
-
-    .favorite-card,
-    .search-card {        
-        opacity: 0;
-        animation: right-left .2s ease-out forwards;    
-    }    
+    }     
 
 `

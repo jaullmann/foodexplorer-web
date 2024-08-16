@@ -1,5 +1,5 @@
 import { api } from "../../services/api";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useSearch } from "../../hooks/search";
 import { useNavigate } from "react-router-dom";
 import { Container, Main } from "./styles";
@@ -11,7 +11,17 @@ import { SearchCard } from "../../components/SearchCard";
 export function SearchResults() {
 
   const { searchResult, inputValue, lastRoute } = useSearch();
+  const [dishes, setDishes] = useState([]);
+  const [desserts, setDesserts] = useState([]);
+  const [drinks, setDrinks] = useState([]);
+
   const navigate = useNavigate();
+
+  const products = [
+    {type: dishes, label: "Refeições"},
+    {type: desserts, label: "Sobremesas"},
+    {type: drinks, label: "Bebidas"}
+  ]
 
   function handleEmptySearch() {
     if (!inputValue) {
@@ -19,7 +29,17 @@ export function SearchResults() {
     }
   }
 
-  useEffect(() => { 
+  function splitResultsByCategory() {
+    const filteredDishes = searchResult.filter(r => r.category === "refeicao");
+    const filteredDesserts = searchResult.filter(r => r.category === "sobremesa");
+    const filteredDrinks = searchResult.filter(r => r.category === "bebida");
+    setDishes(filteredDishes);
+    setDesserts(filteredDesserts);
+    setDrinks(filteredDrinks);
+  }
+  
+  useEffect(() => {
+    splitResultsByCategory();
     handleEmptySearch()   
   }, [inputValue]);
 
@@ -33,21 +53,23 @@ export function SearchResults() {
         <Main>
           {
             searchResult.length > 0 &&
-            <SectionLabel title={`Resultados para "${inputValue}"`} />
+            <h1>{`Resultados para "${inputValue}"`}</h1>
           }
           {
-            searchResult.length > 0 &&
-            <div id="found-dishes">
+            dishes.length > 0 &&
+            <>
+              <SectionLabel title={"Refeições"} />
+              <div className="found-dishes">
               {
-                searchResult.map((foundDish, index) => (
+                dishes.map((foundProduct, index) => (
                   <SearchCard
                     className={"search-card"}
-                    key={"found-dish-" + foundDish.dish_id}
-                    dishId={foundDish.dish_id}
-                    title={foundDish.title}
+                    key={"found-dish-" + foundProduct.dish_id}
+                    dishId={foundProduct.dish_id}
+                    title={foundProduct.title}
                     imageFile={
-                      foundDish.image_file ? 
-                          `${api.defaults.baseURL}/files/${foundDish.image_file}` 
+                      foundProduct.image_file ? 
+                          `${api.defaults.baseURL}/files/${foundProduct.image_file}` 
                           : 
                           null
                     }   
@@ -55,11 +77,62 @@ export function SearchResults() {
                   />
                 ))
               }
-            </div>
+              </div>
+            </>            
+          }
+          {
+            desserts.length > 0 &&
+            <>
+              <SectionLabel title={"Sobremesas"} />
+              <div className="found-dishes">
+              {
+                desserts.map((foundProduct, index) => (
+                  <SearchCard
+                    className={"search-card"}
+                    key={"found-dish-" + foundProduct.dish_id}
+                    dishId={foundProduct.dish_id}
+                    title={foundProduct.title}
+                    imageFile={
+                      foundProduct.image_file ? 
+                          `${api.defaults.baseURL}/files/${foundProduct.image_file}` 
+                          : 
+                          null
+                    }   
+                    style={{ animationDelay: `${index * 0.1}s` }} 
+                  />
+                ))
+              }
+              </div>
+            </>            
+          }
+          {
+            drinks.length > 0 &&
+            <>
+              <SectionLabel title={"Bebidas"} />
+              <div className="found-dishes">
+              {
+                drinks.map((foundProduct, index) => (
+                  <SearchCard
+                    className={"search-card"}
+                    key={"found-dish-" + foundProduct.dish_id}
+                    dishId={foundProduct.dish_id}
+                    title={foundProduct.title}
+                    imageFile={
+                      foundProduct.image_file ? 
+                          `${api.defaults.baseURL}/files/${foundProduct.image_file}` 
+                          : 
+                          null
+                    }   
+                    style={{ animationDelay: `${index * 0.1}s` }} 
+                  />
+                ))
+              }
+              </div>
+            </>            
           }
           {
             searchResult.length === 0 &&
-            <h1>Não há pratos com o nome ou ingrediente pesquisado</h1>
+            <h1>Nenhum resultado encontrado</h1>
           }
         </Main>
 

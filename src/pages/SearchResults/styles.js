@@ -15,14 +15,17 @@ export const Container = styled.div`
 export const Main = styled.main`
     padding: 2.125rem 4rem;
     width: 100%;
-    max-width: 93.5rem;
-    margin-top: 6.5rem; 
+    max-width: 93.5rem;    
     margin-bottom: auto; 
 
     display: flex;
     flex-direction: column;
     justify-content: center;
-    gap: 2.1875rem;
+    gap: .5rem;
+
+    label {
+        margin: .5rem 0;
+    }
 
     @media (max-width: ${DEVICE_BREAKPOINTS.LG}) {
         margin: 9rem 0 3rem;
@@ -36,11 +39,12 @@ export const Main = styled.main`
         text-align: center;
     }
 
-    #found-dishes {
+    .found-dishes {
         width: 100%;
 
         display: grid;          
-        grid-auto-rows: 7rem;        
+        grid-auto-rows: 6.5rem;      
+        grid-row-gap: .5rem;  
         grid-template-columns: repeat(5, 19.5%);        
         justify-content: space-between;
 

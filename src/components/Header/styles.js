@@ -24,6 +24,7 @@ export const Section = styled.div`
         padding: 0; 
 
         > a {
+            width: min-content;
             font-size: clamp(.6rem, .4rem + .6vw, 1rem);
             ${({ theme }) => theme.FONTS.ROBOTO_MEDIUM};
             color: ${({ theme }) => theme.COLORS.LIGHT_200};
@@ -41,11 +42,7 @@ export const Section = styled.div`
                 color: ${({ theme }) => theme.COLORS.LIGHT_200};  
             }            
         }       
-
-        > a, > button {
-            margin: 0; 
-            padding: 0; 
-        }
+        
     }
         
     > .mobile {
