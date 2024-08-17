@@ -9,24 +9,24 @@ export const Container = styled.div`
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(255, 255, 255, 0.7);
+  background-color: rgba(255, 255, 255, 0.6);
   opacity: ${({ $isVisible }) => (
     $isVisible ? 1 : 0
   )};
   visibility: ${({ $isVisible }) => (
     $isVisible ? 'visible' : 'hidden'
   )};
-  transition: opacity 0.3s ease, visibility 0.3s ease;
+  transition: opacity .4s ease, visibility .4s ease;
   z-index: 999;
 `;
 
 export const Spinner = styled.div`
-  border: 4px solid rgba(0, 0, 0, 0.1);
-  border-top: 4px solid #000;
+  border: 1rem solid ${({ theme }) => theme.COLORS.DARK_800};
+  border-top: 1rem solid ${({ theme }) => theme.COLORS.LIGHT_200};  
   border-radius: 50%;
-  width: 40px;
-  height: 40px;
-  animation: spin 1s linear infinite ease-in-out;
+  width: 7rem;
+  height: 7rem;  
+  animation: spin 1s ease-out infinite;
 
   @keyframes spin {
     0% { 

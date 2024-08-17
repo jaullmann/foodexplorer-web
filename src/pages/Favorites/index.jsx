@@ -6,20 +6,25 @@ import { Header } from "../../components/Header";
 import { Footer } from "../../components/Footer";
 import { SectionLabel } from "../../components/SectionLabel";
 import { FavoriteCard } from "../../components/FavoriteCard";
+import { LoadingSpinner } from "../../components/LoadingSpinner";
 
 export function Favorites() {    
 
+    const [isLoading, setIsLoading] = useState(true);
     const [data, setData] = useState();
     const navigate = useNavigate();
 
     async function fetchFavorites() {
         try {
-          const response = await api.get('favorites', { withCredentials: true });
-          setData(response.data);        
+            const response = await api.get('favorites', { withCredentials: true });
+            setData(response.data);        
         } catch(e) {
-          navigate("/notfound");              
-          return alert("Erro ao consultar os favoritos do usuário");
+            navigate("/notfound");              
+            return alert("Erro ao consultar os favoritos do usuário");
+        } finally {
+            setIsLoading(false);
         }
+
       }
 
     useEffect(() => {
@@ -28,9 +33,11 @@ export function Favorites() {
 
     return(
         
-        <Container>
+        <Container>            
 
             <Header />  
+
+            <LoadingSpinner isVisible={ isLoading }/>
 
             {
                 data &&                 
