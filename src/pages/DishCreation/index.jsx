@@ -150,7 +150,7 @@ export function DishCreation() {
         }
         try {
 
-            !imageFile && deleteProductImage();                      
+            !imageFile && !prevImageFile && deleteProductImage();                      
 
             await api.put(`dishes/${dishId}`, {
                 title: title,

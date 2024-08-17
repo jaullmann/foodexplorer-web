@@ -25,7 +25,7 @@ export function FavoriteCard({ dishId, title, imageFile, onDeleteFavorite, ...re
         }   
     }
 
-    function handleDishDetails(dishId) { 
+    function handleDishDetails(dishId) {
         navigate(`/description/${dishId}`);
     }
 

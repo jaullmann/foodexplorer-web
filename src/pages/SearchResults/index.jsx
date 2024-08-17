@@ -17,12 +17,6 @@ export function SearchResults() {
 
   const navigate = useNavigate();
 
-  const products = [
-    {type: dishes, label: "Refeições"},
-    {type: desserts, label: "Sobremesas"},
-    {type: drinks, label: "Bebidas"}
-  ]
-
   function handleEmptySearch() {
     if (!inputValue) {
       navigate(lastRoute);
@@ -44,7 +38,7 @@ export function SearchResults() {
   }, [inputValue]);
 
   return (
-    <Container>
+    <Container> 
 
       <Header />
 
@@ -59,7 +53,7 @@ export function SearchResults() {
             dishes.length > 0 &&
             <>
               <SectionLabel title={"Refeições"} />
-              <div className="found-dishes">
+              <div className={"found-dishes"}>
               {
                 dishes.map((foundProduct, index) => (
                   <SearchCard
@@ -84,7 +78,7 @@ export function SearchResults() {
             desserts.length > 0 &&
             <>
               <SectionLabel title={"Sobremesas"} />
-              <div className="found-dishes">
+              <div className={"found-dishes"}>
               {
                 desserts.map((foundProduct, index) => (
                   <SearchCard
@@ -109,7 +103,7 @@ export function SearchResults() {
             drinks.length > 0 &&
             <>
               <SectionLabel title={"Bebidas"} />
-              <div className="found-dishes">
+              <div className={"found-dishes"}>
               {
                 drinks.map((foundProduct, index) => (
                   <SearchCard
@@ -132,7 +126,7 @@ export function SearchResults() {
           }
           {
             searchResult.length === 0 &&
-            <h1 id="no-results">Nenhum resultado encontrado</h1>
+            <h1 id="no-results">Sem resultados para a pesquisa</h1>
           }
         </Main>
 

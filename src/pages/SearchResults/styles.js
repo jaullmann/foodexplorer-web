@@ -9,7 +9,7 @@ export const Container = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-between;       
+    justify-content: space-between;     
 `;
 
 export const Main = styled.main`
@@ -72,6 +72,6 @@ export const Main = styled.main`
     .search-card {        
         opacity: 0;
         animation: fade-in .2s ease-out forwards;    
-    }  
+    }      
     
 `

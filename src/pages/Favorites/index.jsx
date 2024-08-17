@@ -34,7 +34,7 @@ export function Favorites() {
 
             {
                 data &&                 
-                <Main> 
+                <Main>
                 
                     {
                         data.length > 0 &&

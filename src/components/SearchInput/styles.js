@@ -55,7 +55,7 @@ export const Input = styled.input`
   text-align: center;  
 
   ${({ theme}) => theme.FONTS.ROBOTO_REGULAR};
-  font-size: clamp(.7rem, .4rem + .6vw, 1.1rem);  
+  font-size: clamp(.9rem, .4rem + .6vw, 1.2rem);  
 
   background: transparent;
   color: ${({ theme }) => theme.COLORS.LIGHT_200};  

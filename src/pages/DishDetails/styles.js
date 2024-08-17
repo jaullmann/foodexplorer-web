@@ -9,7 +9,7 @@ export const Container = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;       
+    justify-content: space-between;       
 `;
 
 export const Main = styled.main`
@@ -166,17 +166,17 @@ export const Main = styled.main`
     //animation effects
 
     #dish-image, #default-image {
-        opacity: 0;
-        animation: grow .8s ease-out forwards;
+        /* opacity: 0; */
+        animation: grow .7s ease-out forwards;
     }
 
     #dish-details {
-        opacity: 0;
+        /* opacity: 0; */
         animation: right-left 1s 0s ease-out forwards;
     }
 
     .dish-ingredient {
-        opacity: 0;
+        /* opacity: 0; */
         animation: fade-in .5s ease-out forwards;
     }
 
