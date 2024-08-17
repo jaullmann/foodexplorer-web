@@ -25,7 +25,7 @@ export const Main = styled.main`
     gap: 2.1875rem;
 
     @media (max-width: ${DEVICE_BREAKPOINTS.LG}) {
-        margin: 9rem 0 3rem;
+        margin: 8rem 0 3rem;
     }
 
     > h1 {

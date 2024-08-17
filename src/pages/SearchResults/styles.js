@@ -28,19 +28,24 @@ export const Main = styled.main`
     }
 
     @media (max-width: ${DEVICE_BREAKPOINTS.LG}) {
-        margin: 9rem 0 3rem;
+        margin: 0 0 3rem;
     }
 
     > h1 {
-        margin-top: 8rem;
+        margin-bottom: 2rem;
         font-size: 1.7rem;
         ${({ theme }) => theme.FONTS.POPPINS_MEDIUM};
         color: ${({ theme }) => theme.COLORS.LIGHT_500};
         text-align: center;
     }
 
+    #results {
+        margin-top: 8rem;
+    }
+
     .found-dishes {
         width: 100%;
+        margin-bottom: 2rem;
 
         display: grid;          
         grid-auto-rows: 6.5rem;      

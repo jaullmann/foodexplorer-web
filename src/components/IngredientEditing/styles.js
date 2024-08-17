@@ -12,7 +12,7 @@ export const Container = styled.div`
     gap: .5rem;
 
     opacity: 0;
-    animation: grow .2s ease-out forwards;
+    animation: grow .3s ease-out forwards;
         
     > p {
         ${({ theme }) => theme.FONTS.ROBOTO_REGULAR};

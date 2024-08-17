@@ -53,7 +53,7 @@ export function SearchResults() {
         <Main>
           {
             searchResult.length > 0 &&
-            <h1>{`Resultados para "${inputValue}"`}</h1>
+            <h1 id="results">{`Resultados para "${inputValue}"`}</h1>
           }
           {
             dishes.length > 0 &&
@@ -132,7 +132,7 @@ export function SearchResults() {
           }
           {
             searchResult.length === 0 &&
-            <h1>Nenhum resultado encontrado</h1>
+            <h1 id="no-results">Nenhum resultado encontrado</h1>
           }
         </Main>
 
