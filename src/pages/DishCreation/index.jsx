@@ -129,7 +129,6 @@ export function DishCreation() {
             const dishId = await response.data.dish_id;
             
             imageFile && uploadProductImage(dishId);
-            // window.location.reload();
             clearForm()
             return true;
 
@@ -148,9 +147,11 @@ export function DishCreation() {
         if (!isFormValidated()) {
             return false;
         }
-        try {
-
-            !imageFile && !prevImageFile && deleteProductImage();                      
+        try { 
+            
+            if ((!imageFile && !prevImageFile) || (imageFile && deletedImageFile)) {
+                deleteProductImage();
+            }
 
             await api.put(`dishes/${dishId}`, {
                 title: title,
