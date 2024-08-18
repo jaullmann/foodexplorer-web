@@ -8,8 +8,6 @@ import { CustomerRoutes } from "./customer.routes";
 import { useEffect } from "react";
 import { api } from "../services/api";
 
-import { LoadingSpinner } from "../components/LoadingSpinner"; 
-
 export function Routes() {
   const { user, signOut } = useAuth();  
 
@@ -39,8 +37,7 @@ export function Routes() {
   }
 
   return (
-    <BrowserRouter>  
-      <LoadingSpinner />    
+    <BrowserRouter>        
       {user ? <AccessRoute /> : <AuthRoutes />}
     </BrowserRouter>
   );

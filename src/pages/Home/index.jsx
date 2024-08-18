@@ -1,7 +1,6 @@
 import { api } from "../../services/api";
 import { useEffect, useState } from "react";
 import { useFavorites } from "../../hooks/favorites";
-import { useLoading } from "../../hooks/loading";
 import { Container } from "./styles";
 import { Header } from "../../components/Header";
 import { CardsSection } from "../../components/CardsSection";
@@ -10,12 +9,12 @@ import homeBanner from "../../assets/images/home_banner.png";
 
 export function Home() {    
 
-  const [data, setData] = useState(null);
+  const [data, setData] = useState(null);  
+  const [isLoading, setIsLoading] = useState(false);
   const { userFavorites, fetchFavorites } = useFavorites();
-  const { showLoading, hideLoading } = useLoading();
 
   async function fetchProducts() {
-    showLoading;
+    setIsLoading(true);
     try {
       const response = await api.get("dishes", { withCredentials: true });
       setData(response.data);
@@ -26,20 +25,20 @@ export function Home() {
           alert("Erro ao obter dados dos produtos.");
       }
     } finally {
-      hideLoading;
+      setIsLoading(false);
     }
   }
 
   useEffect(() => {
     fetchProducts();
     fetchFavorites();
-  }, [showLoading, hideLoading]);
+  }, []);
 
   return(
     
     <Container>
 
-      <Header />
+      <Header isLoading={isLoading}/>      
 
       <div id="banner-section">
         <div id="banner-slogan">

@@ -4,7 +4,6 @@ import { api } from "../../services/api";
 import { useAuth } from '../../hooks/auth';
 import { useCart } from "../../hooks/cart";
 import { useFavorites } from "../../hooks/favorites";
-import { useLoading } from "../../hooks/loading";
 import { Container, Main } from "./styles";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
@@ -22,12 +21,12 @@ export function DishDetails() {
   
   const [data, setData] = useState(null);
   const [favorite, setFavorite] = useState(false);  
+  const [isLoading, setIsLoading] = useState(false);
   const [amount, setAmount] = useState(1);  
   const { dishId } = useParams();  
   const { user } = useAuth();
   const { addToCart } = useCart();  
-  const { isUserFavorite, addFavorite, deleteFavorite } = useFavorites();
-  const { showLoading, hideLoading } = useLoading();
+  const { isUserFavorite, addFavorite, deleteFavorite } = useFavorites();  
   const navigate = useNavigate();    
   
   const admin = user.role === "admin"; 
@@ -47,7 +46,7 @@ export function DishDetails() {
 
   useEffect(() => {
     async function fetchProduct() {
-      showLoading();
+      setIsLoading(true);
       try {        
         const response = await api.get(`/dishes/${dishId}`, { withCredentials: true });        
         setData(response.data);
@@ -56,7 +55,7 @@ export function DishDetails() {
         alert("Erro ao obter informações do produto")     
         return navigate("/notfound");                
       } finally {
-        hideLoading();
+        setIsLoading(false);
       }
     }   
         
@@ -73,7 +72,7 @@ export function DishDetails() {
   return (
     <Container>
 
-      <Header />
+      <Header isLoading={isLoading}/>  
 
       {
         data && 

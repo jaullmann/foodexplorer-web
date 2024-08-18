@@ -2,7 +2,6 @@ import { PiCaretDownBold } from "react-icons/pi";
 import { api } from "../../services/api";
 import { useSearch } from "../../hooks/search";
 import { useAuth } from "../../hooks/auth";
-import { useLoading } from "../../hooks/loading";
 import { useState, useEffect } from "react";
 import { Container, Main } from "./styles";
 import { Header } from "../../components/Header";
@@ -14,10 +13,10 @@ import { useNavigate } from "react-router-dom";
 export function Orders() {
     const [data, setData] = useState(null);
     const [orderStatuses, setOrderStatuses] = useState({});
+    const [isLoading, setIsLoading] = useState(false);
     const { handleInputValue } = useSearch();
     const navigate = useNavigate();
-    const { user } = useAuth();
-    const { showLoading, hideLoading } = useLoading();
+    const { user } = useAuth();   
     const admin = user.role === "admin";
 
     function handleOrderDetails(orderId) {
@@ -25,7 +24,7 @@ export function Orders() {
     }
 
     async function updateOrderStatus(orderId, status) {
-        showLoading();
+        setIsLoading(true);
         try {
             await api.patch(`orders/${orderId}`, { status }, { withCredentials: true });
             setOrderStatuses(prevStatuses => ({
@@ -35,12 +34,12 @@ export function Orders() {
         } catch (e) {
             alert("Não foi possível atualizar o status do pedido, tente mais tarde.");
         } finally {
-            hideLoading();
+            setIsLoading(false);
         }
     }
 
     async function fetchOrders() {
-        showLoading();
+        setIsLoading(true);
         try {
             const response = await api.get(`/orders`, { withCredentials: true });
             setData(response.data);            
@@ -51,7 +50,7 @@ export function Orders() {
         } catch (e) {
             navigate("/notfound");
         } finally {
-            hideLoading();
+            setIsLoading(false);
         }
     }
 
@@ -62,7 +61,7 @@ export function Orders() {
 
     return (
         <Container>
-            <Header orderStatuses={orderStatuses} />
+            <Header orderStatuses={orderStatuses} isLoading={isLoading} />
             {data && (
                 <Main>
                     {data.length > 0 && <SectionLabel title={"Histórico de pedidos"} />}

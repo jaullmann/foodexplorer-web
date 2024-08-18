@@ -1,12 +1,9 @@
-import { useLoading } from "../../hooks/loading";
 import { Container, Spinner } from "./styles";
 
-export function LoadingSpinner() {
-
-  const { loading } = useLoading();
+export function LoadingSpinner({ isLoading }) {
 
   return (
-    <Container $isVisible={loading}>
+    <Container $isVisible={isLoading}>
       <Spinner />
     </Container>
   );

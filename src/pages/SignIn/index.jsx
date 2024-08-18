@@ -1,9 +1,9 @@
 import { useState } from "react";
-import { useLoading } from "../../hooks/loading";
 import { LabeledInput } from "../../components/LabeledInput"
 import { SectionLabel } from "../../components/SectionLabel"
 import { MainLogo } from "../../components/MainLogo";
 import { Button } from "../../components/Button"
+import { LoadingSpinner } from "../../components/LoadingSpinner";
 import { Container, Form } from "./styles"
 import { Link } from 'react-router-dom';
 
@@ -14,14 +14,14 @@ export function SignIn() {
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const { showLoading, hideLoading } = useLoading();
+  const [isLoading, setIsLoading] = useState(false);
 
   const { signIn } = useAuth();  
 
   function handleSignIn() {
-    showLoading();
+    setIsLoading(true);
     signIn({ email, password });
-    hideLoading();
+    setIsLoading(false);
   }
 
   function handleKeyDown(event) {
@@ -34,6 +34,8 @@ export function SignIn() {
   return (
     <Container>
 
+      <LoadingSpinner isLoading={isLoading} />
+      
       <MainLogo />
       <Form>
         <SectionLabel          

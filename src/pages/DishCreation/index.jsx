@@ -4,7 +4,6 @@ import { PiCameraSlash } from "react-icons/pi";
 import { FiPlus } from "react-icons/fi";
 import { PiTrash } from "react-icons/pi";
 import { useEffect, useState } from "react";
-import { useLoading } from "../../hooks/loading";
 import { useParams, useNavigate, useLocation } from "react-router-dom";
 import { Container, Main } from "./styles";
 import { Header } from "../../components/Header";
@@ -31,13 +30,13 @@ export function DishCreation() {
     const [prevDishes, setPrevDishes] = useState([]);
     const [newDish, setNewDish] = useState(true);
     const [formFilled, setFormFilled] = useState(false);
-    const { showLoading, hideLoading } = useLoading();
+    const [isLoading, setIsLoading] = useState(false);
     const { dishId } = useParams();
     const navigate = useNavigate();
     const location = useLocation();
 
     async function fetchProducts() {
-        showLoading();
+        setIsLoading(true);
         try {
             const response = await api.get("dishes", { withCredentials: true });
             const ProductNames = response.data.map((product) => product.title.toLowerCase())
@@ -49,12 +48,12 @@ export function DishCreation() {
                 alert("Erro ao obter dados de produtos já cadastrados.");
             }
         } finally {
-            hideLoading();
+            setIsLoading(false);
         }
     }
 
     async function fetchEditingProduct() {
-        showLoading();
+        setIsLoading(true);
         try {
             const response = await api.get(`dishes/${dishId}`, { withCredentials: true });
             setTitle(response.data.title);
@@ -70,7 +69,7 @@ export function DishCreation() {
                 alert("Erro ao obter dados do produto.");
             }
         } finally {
-            hideLoading();
+            setIsLoading(false);
         }
     }
 
@@ -79,7 +78,7 @@ export function DishCreation() {
             const fileUploadForm = new FormData();
             fileUploadForm.append("image", imageFile);
 
-            showLoading();            
+            setIsLoading(true);           
             try {
                 await api.patch(`pictures/${dishId}`,
                     fileUploadForm,
@@ -97,13 +96,13 @@ export function DishCreation() {
                     alert("Não foi possível gravar a imagem do novo produto.");
                 }
             } finally {
-                hideLoading();
+                setIsLoading(false);
             }
         }
     }
 
     async function deleteProductImage() {
-        showLoading();
+        setIsLoading(true);
         try {
             await api.delete("pictures", {
                 data: {
@@ -118,7 +117,7 @@ export function DishCreation() {
                 alert("Erro ao excluir imagem da base de dados");
             }
         } finally {
-            hideLoading();
+            setIsLoading(false);
         }
     }
 
@@ -128,7 +127,7 @@ export function DishCreation() {
             return false;
         }
 
-        showLoading();
+        setIsLoading(true);
         try {
             const response = await api.post("dishes",
                 {
@@ -156,7 +155,7 @@ export function DishCreation() {
             }
             return false;
         } finally {
-            hideLoading();
+            setIsLoading(false);
         }
     }
 
@@ -169,7 +168,7 @@ export function DishCreation() {
             if ((!imageFile && !prevImageFile) || (imageFile && deletedImageFile)) {
                 deleteProductImage();
             }
-            showLoading();
+            setIsLoading(true);
             await api.put(`dishes/${dishId}`, {
                 title: title,
                 category: category,
@@ -190,7 +189,7 @@ export function DishCreation() {
             }
             return false;
         } finally {
-            hideLoading();
+            setIsLoading(false);
         }
     }
 
@@ -205,7 +204,7 @@ export function DishCreation() {
             return;
         }
         
-        showLoading();
+        setIsLoading(true);
         try {
             await api.delete(`dishes/${dishId}`, { withCredentials: true });
             prevImageFile && deleteProductImage();
@@ -218,7 +217,7 @@ export function DishCreation() {
                 return alert("Não foi possível fazer a exclusão do produto.");
             }
         } finally {
-            hideLoading();
+            setIsLoading(false);
         }
     };
 
@@ -351,7 +350,7 @@ export function DishCreation() {
     return (
         <Container>
 
-            <Header />
+            <Header isLoading={isLoading}/>
 
             <Main>
                 <BackButton id="back-button" />

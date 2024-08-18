@@ -3,7 +3,6 @@ import ReactDOM from 'react-dom/client';
 import { AuthProvider } from './hooks/auth';
 import { Routes } from './routes';
 import { ThemeProvider } from './hooks/theme';
-import { LoadingProvider } from './hooks/loading';
 import { register } from 'swiper/element/bundle';
 import GlobalStyles from './styles/global';
 import 'swiper/css';
@@ -18,10 +17,8 @@ ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <ThemeProvider>      
       <GlobalStyles />  
-        <AuthProvider>
-          <LoadingProvider>
-            <Routes /> 
-          </LoadingProvider> 
+        <AuthProvider>          
+          <Routes />           
         </AuthProvider>       
     </ThemeProvider>
   </React.StrictMode>,

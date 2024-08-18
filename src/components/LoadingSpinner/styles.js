@@ -5,18 +5,20 @@ export const Container = styled.div`
   justify-content: center;
   align-items: center;
   position: fixed;
+  
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(255, 255, 255, 0.5);
+
+  background-color: rgba(255, 255, 255, 0.3);
   opacity: ${({ $isVisible }) => (
     $isVisible ? 1 : 0
   )};
   visibility: ${({ $isVisible }) => (
     $isVisible ? 'visible' : 'hidden'
   )};
-  transition: opacity .4s ease, visibility .3s ease;
+  transition: opacity .3s ease, visibility .3s ease;
   z-index: 999;
 `;
 
@@ -26,7 +28,7 @@ export const Spinner = styled.div`
   border-radius: 50%;
   width: 8rem;
   height: 8rem;  
-  animation: spin 1.2s linear infinite;
+  animation: spin 1s linear infinite;
 
   @keyframes spin {
     0% { 

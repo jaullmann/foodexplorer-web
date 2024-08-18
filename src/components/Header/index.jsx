@@ -11,11 +11,12 @@ import { CartButtonMobile } from "../CartButtonMobile";
 import { CartButton } from "../CartButton";
 import { ThemeButton } from "../ThemeButton";
 import { SideMenu } from "../SideMenu";
+import { LoadingSpinner } from "../LoadingSpinner";
 import { FiMenu } from "react-icons/fi";
 import { PiSignOut } from "react-icons/pi";
 import { useEffect, useState } from "react";
 
-export function Header(orderStatuses = {}) {
+export function Header({ orderStatuses = {}, isLoading = false }) {
   const { handleInputValue } = useSearch();
   const { user, signOut } = useAuth();
   const { cartAmount } = useCart();
@@ -66,6 +67,7 @@ export function Header(orderStatuses = {}) {
 
   return (
     <Section>
+      <LoadingSpinner isLoading={isLoading}/>
       <div className="desktop">
         <MainLogo userRole={admin ? "admin" : "customer"} />
         <SearchInput 

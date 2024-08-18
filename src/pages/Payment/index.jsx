@@ -2,7 +2,6 @@ import { api } from "../../services/api";
 import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { useAuth } from '../../hooks/auth';
-import { useLoading } from "../../hooks/loading";
 import { Container, Main } from "./styles";
 import { Header } from "../../components/Header";
 import { Footer } from "../../components/Footer";
@@ -20,15 +19,15 @@ export function Payment() {
     const [paidOrder, setPaidOrder] = useState(false);
     const [proceedPayment, setProceedPayment] = useState(false);
     const [newOrderId, setNewOrderId] = useState("");
+    const [isLoading, setIsLoading] = useState(false);
     const { orderId } = useParams();
-    const { showLoading, hideLoading } = useLoading();
     const { user } = useAuth();
     const navigate = useNavigate();   
 
     const admin = user.role === "admin";      
 
     async function fetchOrder() {
-        showLoading();
+        setIsLoading(true);
         try {
             const response = await api.get(
                 `/orders/${newOrderId || orderId}`, 
@@ -40,12 +39,12 @@ export function Payment() {
         } catch (e) {
             return navigate("/notfound");
         } finally {
-            hideLoading();
+            setIsLoading(false);
         }
     } 
 
     async function fetchUserCart() {
-        showLoading();
+        setIsLoading(true);
         try {
             const response = await api.get('/cart', { withCredentials: true });
             setData(response.data);
@@ -53,7 +52,7 @@ export function Payment() {
         } catch (e) {            
             return navigate("/notfound");
         } finally {
-            hideLoading();
+            setIsLoading(false);
         }        
     }
 
@@ -80,7 +79,7 @@ export function Payment() {
     return(
         <Container>
 
-            <Header />
+            <Header isLoading={isLoading}/>
 
             {
                 data &&
