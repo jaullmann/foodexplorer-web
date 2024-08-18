@@ -2,6 +2,7 @@ import { PiCaretDownBold } from "react-icons/pi";
 import { api } from "../../services/api";
 import { useSearch } from "../../hooks/search";
 import { useAuth } from "../../hooks/auth";
+import { useLoading } from "../../hooks/loading";
 import { useState, useEffect } from "react";
 import { Container, Main } from "./styles";
 import { Header } from "../../components/Header";
@@ -16,6 +17,7 @@ export function Orders() {
     const { handleInputValue } = useSearch();
     const navigate = useNavigate();
     const { user } = useAuth();
+    const { showLoading, hideLoading } = useLoading();
     const admin = user.role === "admin";
 
     function handleOrderDetails(orderId) {
@@ -23,6 +25,7 @@ export function Orders() {
     }
 
     async function updateOrderStatus(orderId, status) {
+        showLoading();
         try {
             await api.patch(`orders/${orderId}`, { status }, { withCredentials: true });
             setOrderStatuses(prevStatuses => ({
@@ -31,10 +34,13 @@ export function Orders() {
             }));
         } catch (e) {
             alert("Não foi possível atualizar o status do pedido, tente mais tarde.");
+        } finally {
+            hideLoading();
         }
     }
 
     async function fetchOrders() {
+        showLoading();
         try {
             const response = await api.get(`/orders`, { withCredentials: true });
             setData(response.data);            
@@ -44,13 +50,15 @@ export function Orders() {
             });                   
         } catch (e) {
             navigate("/notfound");
+        } finally {
+            hideLoading();
         }
     }
 
     useEffect(() => {
         fetchOrders();
         handleInputValue("");        
-    }, [orderStatuses, navigate])
+    }, [orderStatuses])
 
     return (
         <Container>

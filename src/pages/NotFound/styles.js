@@ -46,7 +46,7 @@ export const Main = styled.main`
         button {
             font-size: 1.5rem;
             ${({ theme }) => theme.FONTS.POPPINS_REGULAR};
-            color: ${({ theme }) => theme.COLORS.LIGHT_100};
+            color: ${({ theme }) => theme.COLORS.LIGHT_200};
         }
     }
     

@@ -4,6 +4,7 @@ import { api } from "../../services/api";
 import { useAuth } from '../../hooks/auth';
 import { useCart } from "../../hooks/cart";
 import { useFavorites } from "../../hooks/favorites";
+import { useLoading } from "../../hooks/loading";
 import { Container, Main } from "./styles";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
@@ -25,7 +26,8 @@ export function DishDetails() {
   const { dishId } = useParams();  
   const { user } = useAuth();
   const { addToCart } = useCart();  
-  const { isUserFavorite, addFavorite, deleteFavorite } = useFavorites();  
+  const { isUserFavorite, addFavorite, deleteFavorite } = useFavorites();
+  const { showLoading, hideLoading } = useLoading();
   const navigate = useNavigate();    
   
   const admin = user.role === "admin"; 
@@ -44,7 +46,8 @@ export function DishDetails() {
   }
 
   useEffect(() => {
-    async function fetchProduct() {      
+    async function fetchProduct() {
+      showLoading();
       try {        
         const response = await api.get(`/dishes/${dishId}`, { withCredentials: true });        
         setData(response.data);
@@ -52,18 +55,19 @@ export function DishDetails() {
       } catch (e) {   
         alert("Erro ao obter informações do produto")     
         return navigate("/notfound");                
+      } finally {
+        hideLoading();
       }
-    }        
-    fetchProduct();         
-
-  }, []);
-
-  useEffect(() => {
+    }   
+        
     async function setPreviousFavStatus() {
       const isFavorite = await isUserFavorite(Number(dishId));
       setFavorite(isFavorite);
     }
-    setPreviousFavStatus();
+
+    fetchProduct(); 
+    setPreviousFavStatus();        
+
   }, []);
 
   return (

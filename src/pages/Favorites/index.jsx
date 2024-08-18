@@ -1,20 +1,21 @@
 import { api } from "../../services/api";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { useLoading } from "../../hooks/loading";
 import { Container, Main } from "./styles";
 import { Header } from "../../components/Header";
 import { Footer } from "../../components/Footer";
 import { SectionLabel } from "../../components/SectionLabel";
 import { FavoriteCard } from "../../components/FavoriteCard";
-import { LoadingSpinner } from "../../components/LoadingSpinner";
 
 export function Favorites() {    
 
-    const [isLoading, setIsLoading] = useState(true);
+    const { showLoading, hideLoading } = useLoading();
     const [data, setData] = useState();
     const navigate = useNavigate();
 
     async function fetchFavorites() {
+        showLoading();
         try {
             const response = await api.get('favorites', { withCredentials: true });
             setData(response.data);        
@@ -22,7 +23,7 @@ export function Favorites() {
             navigate("/notfound");              
             return alert("Erro ao consultar os favoritos do usuário");
         } finally {
-            setIsLoading(false);
+            hideLoading();
         }
 
       }
@@ -35,9 +36,7 @@ export function Favorites() {
         
         <Container>            
 
-            <Header />  
-
-            <LoadingSpinner isVisible={ isLoading }/>
+            <Header />              
 
             {
                 data &&                 

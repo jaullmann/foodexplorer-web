@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useLoading } from "../../hooks/loading";
 import { LabeledInput } from "../../components/LabeledInput"
 import { SectionLabel } from "../../components/SectionLabel"
 import { MainLogo } from "../../components/MainLogo";
@@ -13,15 +14,19 @@ export function SignIn() {
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const { showLoading, hideLoading } = useLoading();
 
   const { signIn } = useAuth();  
 
   function handleSignIn() {
+    showLoading();
     signIn({ email, password });
+    hideLoading();
   }
 
   function handleKeyDown(event) {
     if (event.key === 'Enter') {
+
       handleSignIn();
     }
   }

@@ -1,6 +1,7 @@
 import { api } from "../../services/api";
 import { useEffect, useState } from "react";
 import { useFavorites } from "../../hooks/favorites";
+import { useLoading } from "../../hooks/loading";
 import { Container } from "./styles";
 import { Header } from "../../components/Header";
 import { CardsSection } from "../../components/CardsSection";
@@ -11,8 +12,10 @@ export function Home() {
 
   const [data, setData] = useState(null);
   const { userFavorites, fetchFavorites } = useFavorites();
+  const { showLoading, hideLoading } = useLoading();
 
   async function fetchProducts() {
+    showLoading;
     try {
       const response = await api.get("dishes", { withCredentials: true });
       setData(response.data);
@@ -22,13 +25,15 @@ export function Home() {
       } else {
           alert("Erro ao obter dados dos produtos.");
       }
+    } finally {
+      hideLoading;
     }
   }
 
   useEffect(() => {
     fetchProducts();
     fetchFavorites();
-  }, []);
+  }, [showLoading, hideLoading]);
 
   return(
     

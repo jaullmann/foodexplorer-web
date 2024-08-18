@@ -1,6 +1,7 @@
 import { api } from "../../services/api";
 import { useState } from "react";
 import { useAuth } from "../../hooks/auth";
+import { useLoading } from "../../hooks/loading";
 import { LabeledInput } from "../../components/LabeledInput"
 import { SectionLabel } from "../../components/SectionLabel"
 import { MainLogo } from "../../components/MainLogo";
@@ -14,6 +15,7 @@ export function SignUp() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const { showLoading, hideLoading } = useLoading();
 
   const { signIn } = useAuth();
   const navigate = useNavigate();
@@ -36,6 +38,7 @@ export function SignUp() {
     }
   
     try {
+      showLoading()
       await api.post("/users", { name, email, password });
       signIn({ email, password });
       alert("Cadastrado efetuado com sucesso!");
@@ -46,6 +49,8 @@ export function SignUp() {
       } else {
         alert("Não foi possível fazer o cadastro, tente mais tarde.");
       }
+    } finally {
+      hideLoading();
     }
   }
 

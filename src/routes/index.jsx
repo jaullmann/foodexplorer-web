@@ -8,18 +8,20 @@ import { CustomerRoutes } from "./customer.routes";
 import { useEffect } from "react";
 import { api } from "../services/api";
 
+import { LoadingSpinner } from "../components/LoadingSpinner"; 
+
 export function Routes() {
-  const { user, signOut } = useAuth();
+  const { user, signOut } = useAuth();  
 
   useEffect(() => {
-    const fetchValidatedUser = async () => {
+    async function fetchValidatedUser() {      
       try {
         await api.get('/users/validated');
       } catch (error) {
         if (error.response?.status === 401) {
           signOut();
         }
-      }
+      } 
     };
   
     fetchValidatedUser();
@@ -37,7 +39,8 @@ export function Routes() {
   }
 
   return (
-    <BrowserRouter>      
+    <BrowserRouter>  
+      <LoadingSpinner />    
       {user ? <AccessRoute /> : <AuthRoutes />}
     </BrowserRouter>
   );

@@ -2,6 +2,7 @@ import { api } from "../../services/api";
 import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { useAuth } from '../../hooks/auth';
+import { useLoading } from "../../hooks/loading";
 import { Container, Main } from "./styles";
 import { Header } from "../../components/Header";
 import { Footer } from "../../components/Footer";
@@ -20,12 +21,14 @@ export function Payment() {
     const [proceedPayment, setProceedPayment] = useState(false);
     const [newOrderId, setNewOrderId] = useState("");
     const { orderId } = useParams();
+    const { showLoading, hideLoading } = useLoading();
     const { user } = useAuth();
     const navigate = useNavigate();   
 
     const admin = user.role === "admin";      
 
     async function fetchOrder() {
+        showLoading();
         try {
             const response = await api.get(
                 `/orders/${newOrderId || orderId}`, 
@@ -36,17 +39,22 @@ export function Payment() {
             setPaidOrder(true);                   
         } catch (e) {
             return navigate("/notfound");
+        } finally {
+            hideLoading();
         }
     } 
 
     async function fetchUserCart() {
+        showLoading();
         try {
             const response = await api.get('/cart', { withCredentials: true });
             setData(response.data);
             setPaidOrder(false);                                         
         } catch (e) {            
             return navigate("/notfound");
-        }                
+        } finally {
+            hideLoading();
+        }        
     }
 
     function placeNewOrder(orderId) {

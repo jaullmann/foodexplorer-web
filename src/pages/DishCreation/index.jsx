@@ -4,6 +4,7 @@ import { PiCameraSlash } from "react-icons/pi";
 import { FiPlus } from "react-icons/fi";
 import { PiTrash } from "react-icons/pi";
 import { useEffect, useState } from "react";
+import { useLoading } from "../../hooks/loading";
 import { useParams, useNavigate, useLocation } from "react-router-dom";
 import { Container, Main } from "./styles";
 import { Header } from "../../components/Header";
@@ -30,11 +31,13 @@ export function DishCreation() {
     const [prevDishes, setPrevDishes] = useState([]);
     const [newDish, setNewDish] = useState(true);
     const [formFilled, setFormFilled] = useState(false);
+    const { showLoading, hideLoading } = useLoading();
     const { dishId } = useParams();
     const navigate = useNavigate();
     const location = useLocation();
 
     async function fetchProducts() {
+        showLoading();
         try {
             const response = await api.get("dishes", { withCredentials: true });
             const ProductNames = response.data.map((product) => product.title.toLowerCase())
@@ -45,10 +48,13 @@ export function DishCreation() {
             } else {
                 alert("Erro ao obter dados de produtos já cadastrados.");
             }
+        } finally {
+            hideLoading();
         }
     }
 
     async function fetchEditingProduct() {
+        showLoading();
         try {
             const response = await api.get(`dishes/${dishId}`, { withCredentials: true });
             setTitle(response.data.title);
@@ -63,6 +69,8 @@ export function DishCreation() {
             } else {
                 alert("Erro ao obter dados do produto.");
             }
+        } finally {
+            hideLoading();
         }
     }
 
@@ -71,6 +79,7 @@ export function DishCreation() {
             const fileUploadForm = new FormData();
             fileUploadForm.append("image", imageFile);
 
+            showLoading();            
             try {
                 await api.patch(`pictures/${dishId}`,
                     fileUploadForm,
@@ -87,11 +96,14 @@ export function DishCreation() {
                 } else {
                     alert("Não foi possível gravar a imagem do novo produto.");
                 }
+            } finally {
+                hideLoading();
             }
         }
     }
 
     async function deleteProductImage() {
+        showLoading();
         try {
             await api.delete("pictures", {
                 data: {
@@ -105,6 +117,8 @@ export function DishCreation() {
             } else {
                 alert("Erro ao excluir imagem da base de dados");
             }
+        } finally {
+            hideLoading();
         }
     }
 
@@ -113,6 +127,8 @@ export function DishCreation() {
         if (!isFormValidated()) {
             return false;
         }
+
+        showLoading();
         try {
             const response = await api.post("dishes",
                 {
@@ -139,6 +155,8 @@ export function DishCreation() {
                 alert("Não foi possível registrar o novo produto.");
             }
             return false;
+        } finally {
+            hideLoading();
         }
     }
 
@@ -147,12 +165,11 @@ export function DishCreation() {
         if (!isFormValidated()) {
             return false;
         }
-        try { 
-            
+        try {             
             if ((!imageFile && !prevImageFile) || (imageFile && deletedImageFile)) {
                 deleteProductImage();
             }
-
+            showLoading();
             await api.put(`dishes/${dishId}`, {
                 title: title,
                 category: category,
@@ -163,11 +180,8 @@ export function DishCreation() {
             },
                 { withCredentials: true }
             );
-
-            uploadProductImage(dishId);  
-            
+            uploadProductImage(dishId);              
             return true;
-
         } catch (e) {
             if (e.response) {
                 alert(e.response.data.message);
@@ -175,6 +189,8 @@ export function DishCreation() {
                 alert("Não foi possível atualizar os dados do produto.");
             }
             return false;
+        } finally {
+            hideLoading();
         }
     }
 
@@ -188,6 +204,8 @@ export function DishCreation() {
         if (!isConfirmed) {
             return;
         }
+        
+        showLoading();
         try {
             await api.delete(`dishes/${dishId}`, { withCredentials: true });
             prevImageFile && deleteProductImage();
@@ -199,6 +217,8 @@ export function DishCreation() {
             } else {
                 return alert("Não foi possível fazer a exclusão do produto.");
             }
+        } finally {
+            hideLoading();
         }
     };
 
@@ -233,11 +253,11 @@ export function DishCreation() {
     }
 
     function handleAddIngredient(event) {
-        if (event.key !== 'Enter') {
+        if (event.key && event.key !== 'Enter' && event.button !== 0) {
             return
         }
         if (ingredients.length < 15) {
-            if (newIngredient.length < 3 || newIngredient.length > 20) {
+            if (newIngredient.length < 3 || newIngredient.length > 24) {
                 alert("Ingrediente deve possuir entre 3 e 20 caracteres.")
                 setNewIngredient("");
             } else if ((ingredients.map(
