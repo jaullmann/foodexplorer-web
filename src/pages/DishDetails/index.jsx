@@ -150,6 +150,7 @@ export function DishDetails() {
         </Main>       
 
       }
+      <span />
 
       <Footer />
 
