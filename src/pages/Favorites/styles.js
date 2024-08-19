@@ -65,5 +65,10 @@ export const Main = styled.main`
         opacity: 0;
         animation: right-left .2s ease-out forwards;    
     }  
+
+    .removing {        
+        /* opacity: 1; */
+        animation: fade-out 1s ease-out forwards;    
+    }  
     
 `

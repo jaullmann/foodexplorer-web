@@ -1,5 +1,6 @@
 import { api } from "../../services/api";
 import { useState, useEffect } from "react";
+import { useFavorites } from "../../hooks/favorites";
 import { useNavigate } from "react-router-dom";
 import { Container, Main } from "./styles";
 import { Header } from "../../components/Header";
@@ -11,25 +12,23 @@ export function Favorites() {
 
     const [data, setData] = useState();
     const [isLoading, setIsLoading] = useState(false);
-    const navigate = useNavigate();
+    const { fetchFavorites, favoritesData, userFavorites } = useFavorites();    
 
-    async function fetchFavorites() {
+    async function fetchUserFavorites() {
         setIsLoading(true);
-        try {
-            const response = await api.get('favorites', { withCredentials: true });
-            setData(response.data);        
-        } catch(e) {
-            navigate("/notfound");              
-            return alert("Erro ao consultar os favoritos do usuário");
-        } finally {
-            setIsLoading(false);
-        }
-
+        await fetchFavorites();
+        setData(favoritesData)
+        setIsLoading(false);
       }
 
     useEffect(() => {
-        fetchFavorites();
+        fetchUserFavorites();
     }, []);
+
+    useEffect(() => {    
+        fetchFavorites();
+        setData(favoritesData)    
+    }, [userFavorites]);
 
     return(
         

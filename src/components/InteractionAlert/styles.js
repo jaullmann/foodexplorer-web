@@ -17,7 +17,7 @@ export const Container = styled.div`
   visibility: ${({ $isActive }) => (
     $isActive ? 'visible' : 'hidden'
   )};
-  transition: opacity .3s ease, visibility .3s ease;
+  transition: opacity 1s ease, visibility 1s ease;
 
   z-index: 1000;
   pointer-events: none;  
@@ -56,7 +56,7 @@ export const Alert = styled.div`
     : `0 0 .5rem .3rem ${theme.COLORS.DARK_1000}`
   };
 
-  animation: left-right 2s 2s ease-in-out forwards;
+  animation: fade-in 2s 2s ease-in-out forwards;
 
   > img {
     width: 3.5rem;

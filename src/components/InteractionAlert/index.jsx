@@ -18,7 +18,7 @@ export function InteractionAlert() {
     lastProductInteracted.title && setShowAlert(true);    
     setTimeout(() => {
       setShowAlert(false);
-    }, 2000);
+    }, 1500);
   }  
 
   function setFavoriteAlertMessage(text) {
@@ -26,7 +26,7 @@ export function InteractionAlert() {
     setShowAlert(true);    
     setTimeout(() => {
       setShowAlert(false);
-    }, 2000);
+    }, 1500);
   }  
 
   function handleFavoritesUpdate() {
