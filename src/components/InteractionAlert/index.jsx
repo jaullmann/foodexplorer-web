@@ -29,11 +29,11 @@ export function InteractionAlert() {
     }, 1500);
   }  
 
-  function handleFavoritesUpdate() {
-    if (userFavorites.length > favoritesState && lastFavoriteInteracted.image) {
+  function handleFavoritesUpdate() {        
+    if (userFavorites.length > favoritesState && lastFavoriteInteracted.title) {
       setAlertImage(lastFavoriteInteracted.image);
       setFavoriteAlertMessage(`${lastFavoriteInteracted.title} adicionado aos favoritos`);      
-    } else if (userFavorites.length < favoritesState && lastFavoriteInteracted.image) {
+    } else if (userFavorites.length < favoritesState && lastFavoriteInteracted.title) {
       setAlertImage(lastFavoriteInteracted.image);
       setFavoriteAlertMessage(`${lastFavoriteInteracted.title} removido dos favoritos`);      
     } else {
@@ -79,9 +79,13 @@ export function InteractionAlert() {
     <Container $isActive={showAlert}>
       <div id="alert-container">
         <Alert>
-          <img 
-            src={alertImage} 
-            alt="Foto do produto"  />
+          {
+            alertImage &&
+            <img 
+              src={alertImage} 
+              alt="Foto do produto"  
+            />
+          }          
           <h1>
             {message}
           </h1>
