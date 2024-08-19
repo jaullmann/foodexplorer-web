@@ -13,6 +13,11 @@ export const Section = styled.footer`
 
   background-color: ${({ theme }) => theme.COLORS.DARK_700};
 
+  box-shadow: ${({ theme }) => theme.NAME === "lightTheme"
+    ? `-0.125rem -0.125rem 0.3rem 0.125rem ${theme.COLORS.DARK_600}`
+    : `-0.125rem -0.125rem 1rem .5rem ${theme.COLORS.DARK_900}`
+  };
+
   @media (max-width: 93.5rem) {
       padding: 0 4rem;
   }

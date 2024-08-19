@@ -6,6 +6,7 @@ import { SectionLabel } from "../../components/SectionLabel"
 import { MainLogo } from "../../components/MainLogo";
 import { Button } from "../../components/Button"
 import { Container, Form } from "./styles"
+import { LoadingSpinner } from "../../components/LoadingSpinner";
 import { Link, useNavigate } from 'react-router-dom';
 
 
@@ -13,7 +14,7 @@ export function SignUp() {
 
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [password, setPassword] = useState("");  
   const [isLoading, setIsLoading] = useState(false);
 
   const { signIn } = useAuth();
@@ -24,22 +25,22 @@ export function SignUp() {
       return alert("Todos os campos devem ser preenchidos!");
     }
 
-    if (name.length < 3) {
-      return alert("Nome deve conter ao menos 3 caracteres.");
+    if (name.length < 5) {
+      return alert("Nome deve conter ao menos 5 caracteres.");
     }
 
-    if (!email.includes("@")) {
+    if (!(email.includes("@") && email.includes("."))) {
       return alert("Email inválido!");
     }
 
-    if (password.length < 3) {
-      return alert("Senha deve conter ao menos 3 caracteres.");
+    if (password.length < 6) {
+      return alert("Senha deve conter ao menos 6 caracteres.");
     }
   
     try {
       setIsLoading(true);
       await api.post("/users", { name, email, password });
-      signIn({ email, password });
+      await signIn({ email, password });
       alert("Cadastrado efetuado com sucesso!");
       navigate("/");
     } catch (error) {

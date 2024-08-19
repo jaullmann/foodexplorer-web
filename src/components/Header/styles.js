@@ -10,6 +10,11 @@ export const Section = styled.div`
     top: 0;
     background-color: ${({ theme }) => theme.COLORS.DARK_700};    
     z-index: 10;
+
+    box-shadow: ${({ theme }) => theme.NAME === "lightTheme"
+      ? `0.125rem 0.125rem 0.3rem 0.125rem ${theme.COLORS.DARK_600}`
+      : `0.125rem 0.125rem 1rem .5rem ${theme.COLORS.DARK_900}`
+    };
     
     > .desktop {
         margin: auto;
@@ -23,11 +28,22 @@ export const Section = styled.div`
 
         padding: 0; 
 
-        > a {
-            width: min-content;
-            font-size: clamp(.6rem, .4rem + .6vw, 1rem);
-            ${({ theme }) => theme.FONTS.ROBOTO_MEDIUM};
-            color: ${({ theme }) => theme.COLORS.LIGHT_200};
+        > .header-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: .8rem;            
+            svg {
+                font-size: 1.75rem;
+                color: ${({ theme }) => theme.COLORS.LIGHT_200};
+            }
+            
+            h2 {
+                width: min-content;
+                font-size: clamp(.5rem, .4rem + .7vw, 1rem);
+                ${({ theme }) => theme.FONTS.ROBOTO_MEDIUM};
+                color: ${({ theme }) => theme.COLORS.LIGHT_200};
+            }            
         }
                 
         #theme-btn, #sign-out {
@@ -42,8 +58,13 @@ export const Section = styled.div`
                 color: ${({ theme }) => theme.COLORS.LIGHT_200};  
             }            
         }       
-        
-    }
+     
+        @media (max-width: ${DEVICE_BREAKPOINTS.XL}) {
+            .link-text {
+                display: none;
+            }
+        }
+    }    
         
     > .mobile {
         height: 6.6rem;
@@ -73,7 +94,7 @@ export const Section = styled.div`
 
         > .mobile {
             display: flex;
-        }         
+        }        
     }
 
     #main-logo {

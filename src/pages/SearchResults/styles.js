@@ -39,7 +39,7 @@ export const Main = styled.main`
         text-align: center;
     }
 
-    #results {
+    #results, #no-results {
         margin-top: 8rem;
     }
 

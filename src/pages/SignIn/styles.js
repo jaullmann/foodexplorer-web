@@ -29,6 +29,10 @@ export const Container = styled.div`
     animation: fade-in .5s ease-out forwards;
   } 
 
+  #main-logo {
+    cursor: default;
+  }
+
 `
 
 export const Form = styled.form`

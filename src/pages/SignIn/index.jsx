@@ -20,13 +20,11 @@ export function SignIn() {
 
   function handleSignIn() {
     setIsLoading(true);
-    signIn({ email, password });
-    setIsLoading(false);
+    signIn({ email, password });    
   }
 
   function handleKeyDown(event) {
     if (event.key === 'Enter') {
-
       handleSignIn();
     }
   }

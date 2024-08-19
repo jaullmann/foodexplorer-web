@@ -38,7 +38,7 @@ export function Home() {
     
     <Container>
 
-      <Header isLoading={isLoading}/>      
+      <Header isLoading={isLoading}/> 
 
       <div id="banner-section">
         <div id="banner-slogan">

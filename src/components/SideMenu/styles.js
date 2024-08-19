@@ -1,25 +1,37 @@
 import styled from "styled-components";
 import { DEVICE_BREAKPOINTS } from "../../styles/deviceBreakpoints";
 
-export const Container = styled.aside`
+export const Container = styled.aside`  
+
   @media (max-width: ${DEVICE_BREAKPOINTS.LG}) {
     position: fixed;
-    top: 0;
+    top: 1svh;
     left: 0;
+
+    width: 70%;
+    height: 98svh;
+    z-index: 999;
+
     display: flex;
     flex-direction: column;
-    align-items: center;
-    width: 100%;
-    height: 100svh;
-    z-index: 999;
-    background-color: ${({ theme }) => theme.COLORS.DARK_500};
-    transform: translateX(-100%);
-    transition: transform 0.5s ease-in-out;
+    align-items: center;    
+    
+    border-top-right-radius: .5rem;
+    border-bottom-right-radius: .5rem;
+    
+    background-color: ${({ theme }) => theme.COLORS.DARK_700};
+    transform: translateX(-102%);
+    transition: transform 0.4s ease-in-out;
 
     &[data-menu-is-open="true"] {
       transform: translateX(0);
-      transition: transform 0.5s ease-in-out;
+      transition: transform 0.4s ease-in-out;
     }
+
+    box-shadow: ${({ theme }) => theme.NAME === "lightTheme"
+      ? `0.125rem 0.125rem 0.3rem 0.125rem ${theme.COLORS.DARK_400}`
+      : `0.125rem 0.125rem 0.3rem 0.125rem ${theme.COLORS.DARK_1000}`
+    };
 
     #side-menu-top-bar {
       width: 100%;
@@ -27,8 +39,8 @@ export const Container = styled.aside`
       display: flex;
       align-items: center;
       justify-content: space-between;      
-      background-color: ${({ theme }) => theme.COLORS.DARK_700};
-
+      background-color: ${({ theme }) => theme.COLORS.DARK_900};
+      border-top-right-radius: .5rem;
       > div {
         display: flex;
         align-items: center;
@@ -46,10 +58,16 @@ export const Container = styled.aside`
           ${({ theme }) => theme.FONTS.ROBOTO_REGULAR};
           color: ${({ theme }) => theme.COLORS.LIGHT_200};
         }
-      }
-
-      
+      }      
     }
+  }
+
+  @media (max-width: ${DEVICE_BREAKPOINTS.MD}) {
+    width: 100%;
+    height: 100svh;
+    top: 0;
+    left: 0;   
+    border-radius: 0;
   }
 `;
 
@@ -88,10 +106,9 @@ export const Nav = styled.nav`
       margin-top: -2rem;
       padding-bottom: 3rem;
       width: 100%;
-      text-align: center;
-      font-size: 1.3rem;
-      /* text-decoration: underline; */
-      color: ${({ theme }) => theme.COLORS.LIGHT_100};
+      text-align: left;
+      font-size: 1.3rem;      
+      color: ${({ theme }) => theme.COLORS.LIGHT_400};
       ${({ theme }) => theme.FONTS.POPPINS_BOLD};
     }
 

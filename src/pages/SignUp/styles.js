@@ -23,6 +23,10 @@ export const Container = styled.div`
     animation: fade-in-light 80ms ease-out forwards;
   } 
 
+  #main-logo {
+    cursor: default;
+  }
+
 `
 
 export const Form = styled.form`

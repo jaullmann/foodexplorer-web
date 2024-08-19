@@ -17,7 +17,10 @@ export function SearchInput({ isSideMenuOpen }) {
 
   function handleSearch() {    
     if (inputValue.length > 2) {
-      navigate("/search");
+      const timer = setTimeout(() => {
+        navigate("/search");
+      }, 2000); 
+      return () => clearTimeout(timer);
     } else {
       alert("Palavra-chave deve conter ao menos 3 caracteres");
     }

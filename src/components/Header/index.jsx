@@ -12,8 +12,12 @@ import { CartButton } from "../CartButton";
 import { ThemeButton } from "../ThemeButton";
 import { SideMenu } from "../SideMenu";
 import { LoadingSpinner } from "../LoadingSpinner";
+import { InteractionAlert } from "../InteractionAlert";
 import { FiMenu } from "react-icons/fi";
 import { PiSignOut } from "react-icons/pi";
+import { FiHeart } from "react-icons/fi";
+import { RxCounterClockwiseClock } from "react-icons/rx";
+import { PiNotePencil } from "react-icons/pi";
 import { useEffect, useState } from "react";
 
 export function Header({ orderStatuses = {}, isLoading = false }) {
@@ -67,16 +71,34 @@ export function Header({ orderStatuses = {}, isLoading = false }) {
 
   return (
     <Section>
-      <LoadingSpinner isLoading={isLoading}/>
+
+      <LoadingSpinner isLoading={isLoading}/>   
+      <InteractionAlert />   
+
       <div className="desktop">
         <MainLogo userRole={admin ? "admin" : "customer"} />
         <SearchInput 
           id="search-input" 
           isSideMenuOpen={false}
         />
-        <Link to={"/favorites"} id="favorites">Meus favoritos</Link>
-        {!admin && <Link to={"/orders"} id="orders">Meus pedidos</Link>}
-        {admin && <Link to={"/new"} id="orders">Novo Prato</Link>}
+        <Link to={"/favorites"} className="header-link"> 
+          <FiHeart />
+          <h2 className="link-text">Meus favoritos</h2>
+        </Link>            
+        {
+          !admin && 
+          <Link to={"/orders"} className="header-link"> 
+            <RxCounterClockwiseClock />
+            <h2 className="link-text">Meus pedidos</h2>
+          </Link>
+        }        
+        {
+          admin && 
+          <Link to={"/new"} className="header-link"> 
+            <PiNotePencil />
+            <h2 className="link-text">Novo Prato</h2>
+          </Link>
+        }
         {!admin && <CartButton amount={cartAmount} onClick={handlePayment} />}
         {admin && <CartButton amount={ordersAmount} onClick={() => navigate("/orders")} />}
         <button id="theme-btn">

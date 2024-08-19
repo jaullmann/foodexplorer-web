@@ -34,8 +34,8 @@ export function SearchResults() {
   
   useEffect(() => {
     splitResultsByCategory();
-    handleEmptySearch()   
-  }, [inputValue]);
+    handleEmptySearch()  
+  }, [inputValue, searchResult]);
 
   return (
     <Container> 
@@ -126,7 +126,7 @@ export function SearchResults() {
           }
           {
             searchResult.length === 0 &&
-            <h1 id="no-results">Sem resultados para a pesquisa</h1>
+            <h1 id="no-results">{`Sem resultados para "${inputValue}"`}</h1>
           }
         </Main>
 

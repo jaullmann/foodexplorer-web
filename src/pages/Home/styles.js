@@ -8,7 +8,7 @@ export const Container = styled.main`
   align-items: center;
   justify-content: space-between;  
   width: 100%;  
-  min-height: 100svh;
+  min-height: 100svh;  
   
   #banner-section {
     margin: min(17rem, 8vw + 9rem) auto 3rem;
@@ -48,20 +48,21 @@ export const Container = styled.main`
     justify-content: center;
     gap: .5rem;    
 
-    background: ${({ theme }) => theme.COLORS.GRADIENTS_100};
+    background: ${({ theme }) => theme.COLORS.GRADIENTS_100};    
     
     position: relative;       
 
     h1 {      
       width: max-content;        
       ${({ theme }) => theme.FONTS.POPPINS_MEDIUM};
-      font-size: clamp(1.5rem, 1.4rem + 1.4vw, 3.5rem);
+      font-size: clamp(1.3rem, 1.2rem + 1.5vw, 3.5rem);
       line-height: 140%;
       color: ${({ theme }) => theme.COLORS.LIGHT_100}; 
       z-index:2;       
     }
 
     h3 {          
+      text-align: center;
       ${({ theme }) => theme.FONTS.ROBOTO_REGULAR}
       font-size: clamp(.5rem, .5rem + .6vw, 2rem);
       color: ${({ theme }) => theme.COLORS.LIGHT_100};
