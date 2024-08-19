@@ -6,6 +6,7 @@ const FavoritesContext = createContext({});
 
 function FavoritesProvider({ children }) {
 
+  const [favoritesData, setFavoritesData] = useState([]);
   const [userFavorites, setUserFavorites] = useState([]);
   const [actionState, setActionState] = useState(false);
   const [lastFavoriteInteracted, setLastFavoriteInteracted] = useState({});
@@ -19,7 +20,8 @@ function FavoritesProvider({ children }) {
           favorite.dish_id
         )
       });
-      setUserFavorites(favorites)      
+      setFavoritesData(response.data);
+      setUserFavorites(favorites);    
     } catch (e) {
       if (e.response) {
         return alert(e.response.data.message);
@@ -84,6 +86,7 @@ function FavoritesProvider({ children }) {
 
   return (
     <FavoritesContext.Provider value={{
+      favoritesData,
       userFavorites,
       lastFavoriteInteracted,
       actionState,
