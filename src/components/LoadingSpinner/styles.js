@@ -23,8 +23,8 @@ export const Container = styled.div`
 `;
 
 export const Spinner = styled.div`
-  border: 1rem solid ${({ theme }) => theme.COLORS.TINTS_CAKE_300};
-  border-top: 1rem solid ${({ theme }) => theme.COLORS.DARK_500};  
+  border: 1rem solid ${({ theme }) => theme.COLORS.TINTS_CAKE_200};
+  border-top: 1rem solid transparent;  
   border-radius: 50%;
   width: 8rem;
   height: 8rem;  

@@ -30,10 +30,10 @@ export function InteractionAlert() {
   }  
 
   function handleFavoritesUpdate() {
-    if (userFavorites.length > favoritesState) {
+    if (userFavorites.length > favoritesState && lastFavoriteInteracted.image) {
       setAlertImage(lastFavoriteInteracted.image);
       setFavoriteAlertMessage(`${lastFavoriteInteracted.title} adicionado aos favoritos`);      
-    } else if (userFavorites.length < favoritesState) {
+    } else if (userFavorites.length < favoritesState && lastFavoriteInteracted.image) {
       setAlertImage(lastFavoriteInteracted.image);
       setFavoriteAlertMessage(`${lastFavoriteInteracted.title} removido dos favoritos`);      
     } else {
@@ -43,14 +43,14 @@ export function InteractionAlert() {
   }
 
   function handleCartUpdate() {
-    if (cartAmount > cartState) {
+    if (cartAmount > cartState  && lastProductInteracted) {
       setAlertImage(lastProductInteracted.image);
       setCartAlertMessage(`
         ${lastProductInteracted.amount} X 
         ${lastProductInteracted.title} 
         ${lastProductInteracted.amount === 1 ? `adicionado` : `adicionados`} ao pedido
       `);       
-    } else if (cartAmount < cartState) {
+    } else if (cartAmount < cartState && lastProductInteracted) {
       setAlertImage(lastProductInteracted.image);
       setCartAlertMessage(`
         ${lastProductInteracted.amount} X 
