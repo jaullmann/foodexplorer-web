@@ -36,13 +36,13 @@ export function DishDetails() {
       await deleteFavorite({
         dishId, 
         dishTitle: data.title,
-        dishImage: `${api.defaults.baseURL}/files/${data.image_file}`
+        dishImage: data.image_file ? `${api.defaults.baseURL}/files/${data.image_file}` : null
       });      
     } else {
       await addFavorite({
         dishId, 
         dishTitle: data.title,
-        dishImage: `${api.defaults.baseURL}/files/${data.image_file}`
+        dishImage: data.image_file ? `${api.defaults.baseURL}/files/${data.image_file}` : null
       });
     }
     setFavorite(!favorite);
@@ -133,8 +133,10 @@ export function DishDetails() {
                           dishId: dishId, 
                           dishAmount: amount,
                           dishTitle: data.title,
-                          dishImage: `${api.defaults.baseURL}/files/${data.image_file}`
-                        })                     
+                          dishImage: data.image_file  ? 
+                            `${api.defaults.baseURL}/files/${data.image_file}` 
+                            : null
+                        });                     
                       }}
                     />
                   </>
