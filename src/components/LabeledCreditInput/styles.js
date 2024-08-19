@@ -36,7 +36,7 @@ export const Input = styled.input`
   font-size: 1rem;  
 
   &::placeholder {
-    color: ${({ theme }) => theme.COLORS.LIGHT_500};
+    color: ${({ theme }) => theme.COLORS.LIGHT_800};
   }
 
   &:focus {

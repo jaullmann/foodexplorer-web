@@ -33,9 +33,17 @@ export function DishDetails() {
   
   async function toggleUserFavorite() {    
     if (favorite) {
-      await deleteFavorite(dishId);      
+      await deleteFavorite({
+        dishId, 
+        dishTitle: data.title,
+        dishImage: `${api.defaults.baseURL}/files/${data.image_file}`
+      });      
     } else {
-      await addFavorite(dishId);
+      await addFavorite({
+        dishId, 
+        dishTitle: data.title,
+        dishImage: `${api.defaults.baseURL}/files/${data.image_file}`
+      });
     }
     setFavorite(!favorite);
   } 
@@ -125,7 +133,12 @@ export function DishDetails() {
                     <Button 
                       title={"incluir ∙ " + formatCurrency(data.price * amount)} 
                       onClick={() => {                      
-                        addToCart({ dishId: dishId, dishAmount: amount})                     
+                        addToCart({ 
+                          dishId: dishId, 
+                          dishAmount: amount,
+                          dishTitle: data.title,
+                          dishImage: `${api.defaults.baseURL}/files/${data.image_file}`
+                        })                     
                       }}
                     />
                   </>

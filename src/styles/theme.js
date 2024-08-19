@@ -62,6 +62,7 @@ export const darkTheme = {
 
     COLORS: {
       LIGHT_100: "#FFFFFF",
+      LIGHT_800: "#919191",
       LIGHT_700: "#000204",
       LIGHT_600: "#000C12",
       LIGHT_500: "#001119",

@@ -39,7 +39,7 @@ function FavoritesProvider({ children }) {
       } else {
         return alert('Erro ao salvar favorito do cliente');
       }
-    }    
+    } 
   }
 
   async function deleteFavorite(dishId) {
@@ -57,7 +57,7 @@ function FavoritesProvider({ children }) {
       } else {
         return alert('Erro ao excluir favorito do cliente');
       }
-    }  
+    }
   }  
 
   async function isUserFavorite(dishId) {

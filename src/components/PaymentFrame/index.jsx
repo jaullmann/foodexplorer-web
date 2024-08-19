@@ -4,7 +4,6 @@ import { MdOutlinePix } from "react-icons/md";
 import { PiCreditCard } from "react-icons/pi";
 import { useCart } from "../../hooks/cart";
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
 import { Container } from "./styles";
 import { LabeledCreditInput } from "../LabeledCreditInput";  
 import { PaymentButton } from "../PaymentButton";
@@ -18,8 +17,7 @@ export function PaymentFrame({ paidOrder=false, orderStatus="preparando", cartDa
     const [cardDate, setCardDate] = useState("");
     const [cardCvv, setCardCvv] = useState("");    
 
-    const { deleteCart } = useCart();
-    const navigate = useNavigate();    
+    const { deleteCart } = useCart();        
 
     async function placeOrder() {   
         if (!isValidCardNumber() || !isValidCvv() || !isValidDate()) {

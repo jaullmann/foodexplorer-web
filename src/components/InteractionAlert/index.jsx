@@ -5,12 +5,13 @@ import { useCart } from "../../hooks/cart";
 
 export function InteractionAlert() {
 
-  const { userFavorites } = useFavorites();
-  const { cartAmount } = useCart();  
+  const { userFavorites, lastFavoriteInteracted } = useFavorites();
+  const { cartAmount, lastProductInteracted } = useCart();  
   const [favoritesState, setFavoritesState] = useState(0);
   const [cartState, setCartState] = useState(0);
   const [showAlert, setShowAlert]  = useState(false);
   const [message, setMessage] = useState("");
+  const [productImage, setProductImage] = useState(null);
 
   function setAlertMessage(text) {
     setMessage(text);    
@@ -21,23 +22,31 @@ export function InteractionAlert() {
   }  
 
   function handleFavoritesUpdate() {
-    if (userFavorites.length > favoritesState) {
-      setAlertMessage("Favorito adicionado com sucesso!");
+    if (userFavorites.length > favoritesState && lastFavoriteInteracted) {
+      setAlertMessage(`${lastFavoriteInteracted.title} adicionado aos favoritos`);
       setFavoritesState(userFavorites.length);
     }
-    if (userFavorites.length < favoritesState) {
-      setAlertMessage("Favorito removido com sucesso!");
+    if (userFavorites.length < favoritesState && lastFavoriteInteracted) {
+      setAlertMessage(`${lastFavoriteInteracted.title} removido dos favoritos`);
       setFavoritesState(userFavorites.length);
     }      
   }
 
   function handleCartUpdate() {
-    if (cartAmount > cartState) {
-      setAlertMessage("Produto(s) adicionado(s) ao pedido!");
+    if (cartAmount > cartState & lastProductInteracted) {
+      setAlertMessage(`
+        ${lastProductInteracted.amount} X 
+        ${lastProductInteracted.title} 
+        ${lastProductInteracted.amount === 1 ? `adicionado` : `adicionados`} ao pedido
+      `);
       setCartState(cartAmount);
     }
     if (cartAmount < cartState) {
-      setAlertMessage("Produto(s) removido(s) do pedido!");
+      setAlertMessage(`
+        ${lastProductInteracted.amount} X 
+        ${lastProductInteracted.title} 
+        ${lastProductInteracted.amount === 1 ? `removido` : `removidos`} do pedido
+      `);
       setCartState(cartAmount);
     }      
   }
@@ -58,6 +67,9 @@ export function InteractionAlert() {
     <Container $isActive={showAlert}>
       <div id="alert-container">
         <Alert>
+          <img 
+            src={lastProductInteracted.image} 
+            alt="Foto do produto"  />
           <h1>
             {message}
           </h1>

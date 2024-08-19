@@ -116,7 +116,12 @@ export function DishCard({ dishId, title, imageFile, description, price, favorit
                 title={"incluir"}
                 loading={loading}    
                 onClick={() => {                      
-                  addToCart({ dishId: dishId, dishAmount: amount})                     
+                  addToCart({ 
+                    dishId: dishId, 
+                    dishAmount: amount,
+                    dishTitle: title,
+                    dishImage: imageFile
+                  })                        
                 }}         
               />
             </div>     

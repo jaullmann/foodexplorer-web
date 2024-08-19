@@ -31,7 +31,7 @@ export const Container = styled.div`
     background-color: ${({ theme }) => theme.COLORS.DARK_900};
   }
 
-  .card-info {
+  .card-info {    
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -40,22 +40,25 @@ export const Container = styled.div`
   }
   
   .dish-details {
+    width: 100%;
     display: flex;
     align-items: center;
     justify-content: flex-start;
-    gap: 1rem;
+    gap: 1rem;    
 
     cursor: pointer;
 
     > h2 {    
+      width: 100%;     
       font-size: 1.25rem;
       ${({ theme }) => theme.FONTS.POPPINS_MEDIUM};
-      color: ${({ theme }) => theme.COLORS.LIGHT_300};
+      color: ${({ theme }) => theme.COLORS.LIGHT_300};      
     }
 
-    > h3 {
-      white-space: nowrap;
-      font-size: .75rem;
+    > p {
+      text-align: right;
+      white-space: nowrap;      
+      font-size: .85rem;
       ${({ theme }) => theme.FONTS.ROBOTO_REGULAR};
       color: ${({ theme }) => theme.COLORS.LIGHT_400};
     }

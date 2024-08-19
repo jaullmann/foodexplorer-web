@@ -24,7 +24,7 @@ export const Container = styled.div`
 
   #alert-container {    
     width: 100%;
-    height: 12%;
+    height: 20%;
     max-width: 88.5rem; 
     margin-top: 6.5rem;
 
@@ -39,14 +39,14 @@ export const Container = styled.div`
 `
 
 export const Alert = styled.div`
-  /* width: 24rem; */
-  height: 3.5rem;
+  /* width: 24rem; */  
   margin-right: 7%;
-  padding: 1.8rem;
+  padding: 1rem;
 
   display: flex;
   justify-content: flex-start;
   align-items: center;
+  gap: 1rem;
 
   border-radius: .5rem;
   background-color: ${({ theme }) => theme.COLORS.DARK_700};  
@@ -58,8 +58,14 @@ export const Alert = styled.div`
 
   animation: left-right 2s 2s ease-in-out forwards;
 
+  > img {
+    width: 3.5rem;
+    height: 3.5rem;
+    border-radius: 50%;
+  }
+
   h1 {
-    font-size: 1.3rem;
+    font-size: 1.2rem;
     ${({ theme }) => theme.FONTS.POPPINS_REGULAR};
     color: ${({ theme }) => theme.COLORS.LIGHT_200};
   }

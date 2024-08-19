@@ -5,29 +5,21 @@ import { useCart } from "../../hooks/cart";
 import { Container } from "./styles";
 import { formatCurrency } from "../../functions";
 
-export function OrderCardDetail({ dishId, title, imageFile, amount, price, paidOrder, onDeleteCartDish, ...rest }){
+export function OrderCardDetail({ dishId, title, imageFile, amount, price, 
+  paidOrder, onDeleteCartDish, ...rest }){
 
   const navigate = useNavigate();
-  const { fetchCart } = useCart();
+  const { fetchCart, deleteFromCart } = useCart();
 
-  async function deleteCartDish(dishId) {
-    if (!confirm("Deseja realmente retirar esse produto do seu pedido?")) {
-      return
-    }
-    try {
-      await api.delete("cart", {
-        data: {                            
-            dish_id: dishId
-        },
-        withCredentials: true
-      });
-      fetchCart();
-      onDeleteCartDish();
-      alert("Produto(s) removido(s) do pedido!")
-    } catch(e) {
-      console.log(e);  
-      return alert("Erro ao excluir produto do pedido");
-    }
+  async function removeDish(dishId) {   
+    await deleteFromCart({
+      dishId,
+      dishAmount: amount,
+      dishTitle: title,
+      dishImage: imageFile
+    }) 
+    await fetchCart();
+    onDeleteCartDish();      
   }
 
   function handleDishDetails(dishId) { 
@@ -57,10 +49,11 @@ export function OrderCardDetail({ dishId, title, imageFile, amount, price, paidO
           onClick={() => handleDishDetails(dishId)}
         >        
           <h2>{amount} x {title} </h2>
-          <h3>{formatCurrency(amount * price)}</h3>
+          <p>{formatCurrency(amount * price)}</p>
         </div>
         {!paidOrder && 
-          <button onClick={() => deleteCartDish(dishId)}>
+          <button 
+            onClick={() => removeDish(dishId)}>
             Excluir
           </button>}        
       </div>      

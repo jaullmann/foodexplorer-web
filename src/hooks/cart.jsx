@@ -7,6 +7,7 @@ function CartProvider({ children }) {
 
     const [cartAmount, setCartAmount] = useState(0);
     const [cartData, setCartData] = useState({});
+    const [lastProductInteracted, setLastProductInteracted] = useState({});
 
     async function fetchCart() {
         try {
@@ -33,7 +34,7 @@ function CartProvider({ children }) {
         }
     }
 
-    async function addToCart({dishId, dishAmount}) {  
+    async function addToCart({ dishId, dishAmount, dishTitle, dishImage }) {  
         try {
             await api.post(
                 "cart",                
@@ -44,7 +45,11 @@ function CartProvider({ children }) {
                 { withCredentials: true }
             )
             fetchCart();
-            alert(dishAmount > 1 ? "Produtos adicionados ao pedido!" : "Produto adicionado ao pedido!")
+            setLastProductInteracted({ 
+                title: dishTitle, 
+                amount: dishAmount, 
+                image: dishImage 
+            });
         } catch (e) {  
             if (e.response) {
                 alert(e.response.data.message);
@@ -54,18 +59,39 @@ function CartProvider({ children }) {
         }
     }
 
-    async function deleteCart() {
+    async function deleteFromCart({ dishId, dishAmount, dishTitle, dishImage }) {    
         try {
-            await api.delete("cart", { withCredentials: true });            
-        } catch (e) {
-            if (e.response) {
-                alert(e.response.data.message);
-            } else {
-                alert("Erro ao excluir itens do carrinho de compras.");
-            }
+            await api.delete("cart", {
+                data: {                            
+                    dish_id: dishId
+                },
+                withCredentials: true
+            });
+            fetchCart(); 
+            setLastProductInteracted({ 
+                    title: dishTitle, 
+                    amount: dishAmount, 
+                    image: dishImage 
+                });         
+        } catch(e) {
+          console.log(e);  
+          return alert("Erro ao excluir produto do pedido");
         }
-        fetchCart();        
     }
+
+    
+    // async function deleteCart() {
+    //     try {
+    //         await api.delete("cart", { withCredentials: true });            
+    //     } catch (e) {
+    //         if (e.response) {
+    //             alert(e.response.data.message);
+    //         } else {
+    //             alert("Erro ao excluir itens do pedido.");
+    //         }
+    //     }
+    //     fetchCart();        
+    // }
 
     useEffect(() => {
         fetchCart();
@@ -75,10 +101,11 @@ function CartProvider({ children }) {
         <CartContext.Provider value={{ 
             cartData,
             cartAmount, 
+            lastProductInteracted,
             setCartAmount, 
             fetchCart,
             addToCart,
-            deleteCart
+            deleteFromCart
         }}>
             { children }
         </CartContext.Provider>
