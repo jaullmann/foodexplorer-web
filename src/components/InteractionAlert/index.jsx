@@ -5,15 +5,23 @@ import { useCart } from "../../hooks/cart";
 
 export function InteractionAlert() {
 
-  const { userFavorites, lastFavoriteInteracted } = useFavorites();
+  const { userFavorites, lastFavoriteInteracted, actionState } = useFavorites();
   const { cartAmount, lastProductInteracted } = useCart();  
   const [favoritesState, setFavoritesState] = useState(0);
   const [cartState, setCartState] = useState(0);
   const [showAlert, setShowAlert]  = useState(false);
   const [message, setMessage] = useState("");
-  const [productImage, setProductImage] = useState(null);
+  const [alertImage, setAlertImage] = useState("");
 
-  function setAlertMessage(text) {
+  function setCartAlertMessage(text) {
+    setMessage(text);    
+    lastProductInteracted.title && setShowAlert(true);    
+    setTimeout(() => {
+      setShowAlert(false);
+    }, 2000);
+  }  
+
+  function setFavoriteAlertMessage(text) {
     setMessage(text);    
     setShowAlert(true);    
     setTimeout(() => {
@@ -22,39 +30,43 @@ export function InteractionAlert() {
   }  
 
   function handleFavoritesUpdate() {
-    if (userFavorites.length > favoritesState && lastFavoriteInteracted) {
-      setAlertMessage(`${lastFavoriteInteracted.title} adicionado aos favoritos`);
-      setFavoritesState(userFavorites.length);
-    }
-    if (userFavorites.length < favoritesState && lastFavoriteInteracted) {
-      setAlertMessage(`${lastFavoriteInteracted.title} removido dos favoritos`);
-      setFavoritesState(userFavorites.length);
-    }      
+    if (userFavorites.length > favoritesState) {
+      setAlertImage(lastFavoriteInteracted.image);
+      setFavoriteAlertMessage(`${lastFavoriteInteracted.title} adicionado aos favoritos`);      
+    } else if (userFavorites.length < favoritesState) {
+      setAlertImage(lastFavoriteInteracted.image);
+      setFavoriteAlertMessage(`${lastFavoriteInteracted.title} removido dos favoritos`);      
+    } else {
+      return
+    } 
+    setFavoritesState(userFavorites.length);    
   }
 
   function handleCartUpdate() {
-    if (cartAmount > cartState & lastProductInteracted) {
-      setAlertMessage(`
+    if (cartAmount > cartState) {
+      setAlertImage(lastProductInteracted.image);
+      setCartAlertMessage(`
         ${lastProductInteracted.amount} X 
         ${lastProductInteracted.title} 
         ${lastProductInteracted.amount === 1 ? `adicionado` : `adicionados`} ao pedido
-      `);
-      setCartState(cartAmount);
-    }
-    if (cartAmount < cartState) {
-      setAlertMessage(`
+      `);       
+    } else if (cartAmount < cartState) {
+      setAlertImage(lastProductInteracted.image);
+      setCartAlertMessage(`
         ${lastProductInteracted.amount} X 
         ${lastProductInteracted.title} 
         ${lastProductInteracted.amount === 1 ? `removido` : `removidos`} do pedido
-      `);
-      setCartState(cartAmount);
-    }      
+      `);      
+    } else {
+      return
+    }   
+    setCartState(cartAmount);    
   }
 
   useEffect(() => {
     handleFavoritesUpdate();
     handleCartUpdate();
-  }, [userFavorites, cartAmount]);
+  }, [actionState, userFavorites, cartAmount]);
 
   useEffect(() => {
     setShowAlert(false);
@@ -68,7 +80,7 @@ export function InteractionAlert() {
       <div id="alert-container">
         <Alert>
           <img 
-            src={lastProductInteracted.image} 
+            src={alertImage} 
             alt="Foto do produto"  />
           <h1>
             {message}

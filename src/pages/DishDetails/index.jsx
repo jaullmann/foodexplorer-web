@@ -26,7 +26,7 @@ export function DishDetails() {
   const { dishId } = useParams();  
   const { user } = useAuth();
   const { addToCart } = useCart();  
-  const { isUserFavorite, addFavorite, deleteFavorite } = useFavorites();  
+  const { isUserFavorite, addFavorite, deleteFavorite, userFavorites } = useFavorites();  
   const navigate = useNavigate();    
   
   const admin = user.role === "admin"; 
@@ -58,6 +58,8 @@ export function DishDetails() {
       try {        
         const response = await api.get(`/dishes/${dishId}`, { withCredentials: true });        
         setData(response.data);
+        const isFavorite = await isUserFavorite(dishId);
+        setFavorite(isFavorite);
         !response.data && navigate("/notfound");
       } catch (e) {   
         alert("Erro ao obter informações do produto")     
@@ -65,17 +67,11 @@ export function DishDetails() {
       } finally {
         setIsLoading(false);
       }
-    }   
-        
-    async function setPreviousFavStatus() {
-      const isFavorite = await isUserFavorite(Number(dishId));
-      setFavorite(isFavorite);
-    }
+    }              
 
-    fetchProduct(); 
-    setPreviousFavStatus();        
+    fetchProduct();           
 
-  }, []);
+  }, [userFavorites]);
 
   return (
     <Container>

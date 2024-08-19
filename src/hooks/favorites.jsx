@@ -7,6 +7,8 @@ const FavoritesContext = createContext({});
 function FavoritesProvider({ children }) {
 
   const [userFavorites, setUserFavorites] = useState([]);
+  const [actionState, setActionState] = useState(false);
+  const [lastFavoriteInteracted, setLastFavoriteInteracted] = useState({});
   const { user } = useAuth();
 
   async function fetchFavorites() {
@@ -27,12 +29,18 @@ function FavoritesProvider({ children }) {
     }
   }
 
-  async function addFavorite(dishId) {
+  async function addFavorite({ dishId, dishTitle, dishImage }) {
     try {
       await api.post("/favorites", {
             dish_id: dishId
         }, 
         { withCredentials: true }); 
+      setLastFavoriteInteracted({ 
+        title: dishTitle,           
+        image: dishImage 
+      });      
+      await fetchFavorites();
+      setActionState(!actionState);
     } catch (e) {
       if (e.response) {
         return alert(e.response.data.message);
@@ -42,7 +50,7 @@ function FavoritesProvider({ children }) {
     } 
   }
 
-  async function deleteFavorite(dishId) {
+  async function deleteFavorite({ dishId, dishTitle, dishImage }) {
     try {
       await api.delete("favorites", {
           data: {                
@@ -50,7 +58,13 @@ function FavoritesProvider({ children }) {
                 dish_id: dishId
           },
           withCredentials: true
-      });                         
+      });
+      setLastFavoriteInteracted({ 
+        title: dishTitle,           
+        image: dishImage 
+      }); 
+      await fetchFavorites();
+      setActionState(!actionState);                         
     } catch (e) {
       if (e.response) {
         return alert(e.response.data.message);
@@ -60,18 +74,19 @@ function FavoritesProvider({ children }) {
     }
   }  
 
-  async function isUserFavorite(dishId) {
-    await fetchFavorites();
-    return userFavorites.includes(dishId);
+  async function isUserFavorite(dishId) {    
+    return userFavorites.includes(Number(dishId));
   }
 
   useEffect(() => {  
-    fetchFavorites();
+    fetchFavorites();    
   }, []);
 
   return (
     <FavoritesContext.Provider value={{
       userFavorites,
+      lastFavoriteInteracted,
+      actionState,
       fetchFavorites,
       addFavorite,
       deleteFavorite,

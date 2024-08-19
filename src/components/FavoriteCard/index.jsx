@@ -8,12 +8,16 @@ export function FavoriteCard({ dishId, title, imageFile, onDeleteFavorite, ...re
     const navigate = useNavigate();
     const { deleteFavorite } = useFavorites();
 
-    async function deleteFavoriteCard(dishKey) {   
-        await deleteFavorite(dishKey);
+    async function deleteFavoriteCard() {   
+        await deleteFavorite({
+            dishId, 
+            dishTitle: title,
+            dishImage: imageFile
+        });
         onDeleteFavorite();            
     }
 
-    function handleDishDetails(dishId) {
+    function handleDishDetails() {
         navigate(`/description/${dishId}`);
     }
 
@@ -24,22 +28,22 @@ export function FavoriteCard({ dishId, title, imageFile, onDeleteFavorite, ...re
                 <img 
                     src={imageFile}                
                     alt={"Foto do produto"}
-                    onClick={() => handleDishDetails(dishId)}
+                    onClick={() => handleDishDetails()}
                 />
             }
             {
                 !imageFile &&
                 <div className="default-image">
                     <PiCameraSlash 
-                        onClick={() => handleDishDetails(dishId)}
+                        onClick={() => handleDishDetails()}
                     />
                 </div>                
             }
             <div>
-                <h2 onClick={() => handleDishDetails(dishId)}>
+                <h2 onClick={() => handleDishDetails()}>
                     {title}
                 </h2>
-                <button onClick={() => deleteFavoriteCard(dishId)}>
+                <button onClick={() => deleteFavoriteCard()}>
                     Remover dos favoritos
                 </button>
             </div>

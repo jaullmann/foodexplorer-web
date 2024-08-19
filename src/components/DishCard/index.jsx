@@ -4,6 +4,7 @@ import { PiPencilSimple } from "react-icons/pi";
 import { api } from '../../services/api';
 import { useAuth } from '../../hooks/auth';
 import { useCart } from "../../hooks/cart";
+import { useFavorites } from "../../hooks/favorites";
 import { useNavigate } from "react-router-dom";
 import { Container } from "./styles";
 import { DishCounter } from "../DishCounter";
@@ -19,34 +20,24 @@ export function DishCard({ dishId, title, imageFile, description, price, favorit
     const [amount, setAmount] = useState(1);  
     const { user } = useAuth();  
     const { addToCart } = useCart();
+    const { addFavorite, deleteFavorite } = useFavorites();
     const navigate = useNavigate();  
     const admin = user.role === "admin"; 
 
-    async function toggleFavoriteDish(dishKey) {             
+    async function toggleFavoriteDish() {             
       setFavDish(!favDish);
       if (!favDish) {
-        try {
-          await api.post("/favorites", {
-              dish_id: dishKey
-          }, 
-          { withCredentials: true });   
-        } catch(e) {    
-            console.log(e);  
-            return alert("Erro ao salvar favorito do usuário");
-        }     
+        await addFavorite({
+          dishId, 
+          dishTitle: title,
+          dishImage: imageFile
+        })
       } else {
-        try {
-          await api.delete("favorites", {
-              data: {                
-                  user_id: user.user_id,
-                  dish_id: dishKey
-              },
-              withCredentials: true
-          });                              
-        } catch (e) {    
-            console.log(e);  
-            return alert("Erro ao excluir favorito do usuário");
-        }   
+        await deleteFavorite({
+          dishId, 
+          dishTitle: title,
+          dishImage: imageFile
+        })
       }       
     } 
 
@@ -71,13 +62,12 @@ export function DishCard({ dishId, title, imageFile, description, price, favorit
           {admin ? (
               <PiPencilSimple 
                 id={`edit-button-dish-${dishId}`}
-                onClick={() => handleUpdate(dishId)}
-                className={favDish ? "favorite-dish" : ""}
+                onClick={() => handleUpdate()}                
               />
             ) : (
               <FiHeart
                 id={`fav-button-dish-${dishId}`}
-                onClick={() => toggleFavoriteDish(dishId)}
+                onClick={() => toggleFavoriteDish()}
                 className={favDish ? "favorite-dish" : ""}
               />
             )
@@ -87,14 +77,14 @@ export function DishCard({ dishId, title, imageFile, description, price, favorit
             <img 
               src={imageFile} 
               alt="Foto do produto" 
-              onClick={() => handleDetails(dishId)}
+              onClick={() => handleDetails()}
             />
           }
           { 
             !imageFile &&  
             <PiCameraSlash
               className="defaultImage"            
-              onClick={() => handleDetails(dishId)}
+              onClick={() => handleDetails()}
             />
           }
           <div className="dish-title">
