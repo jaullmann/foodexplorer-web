@@ -15,12 +15,12 @@ export function SignIn() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-
+  
   const { signIn } = useAuth();  
 
   function handleSignIn() {
     setIsLoading(true);
-    signIn({ email, password });    
+    signIn({ email, password });     
   }
 
   function handleKeyDown(event) {
@@ -60,6 +60,7 @@ export function SignIn() {
         <Button
           title="Entrar"
           onClick={handleSignIn}
+          disabled={!(email && password)}
         />
         <Link to="/register">
           Criar uma conta

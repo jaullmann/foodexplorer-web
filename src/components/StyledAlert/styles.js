@@ -18,7 +18,7 @@ export const Container = styled.div`
     $isActive ? 'visible' : 'hidden'
   )};
   
-  transition: opacity .3s ease-out, visibility .3s ease-out;
+  transition: opacity .2s ease-out, visibility .2s ease-out;
 
   z-index: 1000;  
 
@@ -38,7 +38,7 @@ export const Container = styled.div`
 `
 
 export const Alert = styled.div`
-  width: 30rem;  
+  width: 32rem;  
   
   padding: 1.5rem;
 
@@ -49,18 +49,20 @@ export const Alert = styled.div`
   gap: 1.5rem;
 
   border-radius: .5rem;
-  background-color: ${({ theme }) => theme.COLORS.DARK_900};  
+  background-color: ${({ theme }) => theme.COLORS.DARK_1000};  
 
   box-shadow: ${({ theme }) => theme.NAME === "lightTheme"
     ? `0.1rem 0.1rem .6rem .4rem ${theme.COLORS.DARK_200}`
-    : `0.1rem 0.1rem .6rem .5rem ${theme.COLORS.DARK_1000}`
+    : `0rem 0rem .7rem .2rem ${theme.COLORS.LIGHT_700}`
   };
   
   & div:nth-child(1){
+    width: 100%;
+
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-start;
     align-items: center;
-    gap: 1.5rem;
+    gap: 1rem;
 
     & h1 {
       width: fit-content;

@@ -1,6 +1,7 @@
 import { api } from "../../services/api";
 import { useState } from "react";
 import { useAuth } from "../../hooks/auth";
+import { useAlerts } from "../../hooks/alerts";
 import { LabeledInput } from "../../components/LabeledInput"
 import { SectionLabel } from "../../components/SectionLabel"
 import { MainLogo } from "../../components/MainLogo";
@@ -17,37 +18,38 @@ export function SignUp() {
   const [password, setPassword] = useState("");  
   const [isLoading, setIsLoading] = useState(false);
 
+  const { showAlert } = useAlerts();
   const { signIn } = useAuth();
   const navigate = useNavigate();
 
   async function handleSignUp() {
     if (!name || !email || !password) {
-      return alert("Todos os campos devem ser preenchidos!");
+      return showAlert({message: "Todos os campos devem ser preenchidos!"});
     }
 
     if (name.length < 5) {
-      return alert("Nome deve conter ao menos 5 caracteres.");
+      return showAlert({message: "Nome deve conter ao menos 5 caracteres."});
     }
 
     if (!(email.includes("@") && email.includes("."))) {
-      return alert("Email inválido!");
+      return showAlert({message: "Email inválido!"});
     }
 
     if (password.length < 6) {
-      return alert("Senha deve conter ao menos 6 caracteres.");
+      return showAlert({message: "Senha deve conter ao menos 6 caracteres."});
     }
   
     try {
       setIsLoading(true);
       await api.post("/users", { name, email, password });
       await signIn({ email, password });
-      alert("Cadastrado efetuado com sucesso!");
+      showAlert({message: "Cadastrado efetuado com sucesso!", type: "info", buttonText: "Entrar"});
       navigate("/");
     } catch (error) {
       if (error.response) {
-        alert(error.response.data.message);
+        showAlert({message: error.response.data.message});
       } else {
-        alert("Não foi possível fazer o cadastro, tente mais tarde.");
+        showAlert({message: "Não foi possível fazer o cadastro, tente mais tarde."});
       }
     } finally {
       setIsLoading(false);

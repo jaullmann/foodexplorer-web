@@ -3,7 +3,9 @@ import ReactDOM from 'react-dom/client';
 import { AuthProvider } from './hooks/auth';
 import { Routes } from './routes';
 import { ThemeProvider } from './hooks/theme';
+import { AlertsProvider } from './hooks/alerts';
 import { register } from 'swiper/element/bundle';
+import { StyledAlert } from './components/StyledAlert';
 import GlobalStyles from './styles/global';
 import 'swiper/css';
 import 'swiper/css/navigation';
@@ -15,11 +17,15 @@ register();
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <ThemeProvider>      
-      <GlobalStyles />  
-        <AuthProvider>          
-          <Routes />           
+    <AlertsProvider>
+      <ThemeProvider>      
+        <GlobalStyles />  
+        <AuthProvider>
+          <StyledAlert />          
+          <Routes />                 
         </AuthProvider>       
-    </ThemeProvider>
+      </ThemeProvider>
+    </AlertsProvider>
+    
   </React.StrictMode>,
 )

@@ -1,46 +1,42 @@
 import { Container, Alert } from "./styles";
 import { Button } from "../Button";
-import { useState, useEffect } from "react";
+import { useAlerts } from "../../hooks/alerts";
 import { HiOutlineExclamationCircle } from "react-icons/hi";
-import { FiCheckCircle } from "react-icons/fi";
+import { PiCheckCircle } from "react-icons/pi";
 import { FiXCircle } from "react-icons/fi";
 
-export function StyledAlert({ isVisible = false, alertType = "info", message, buttonText = "Fechar" }) { 
-
-  const [showAlert, setShowAlert] = useState(isVisible);
-
-  useEffect(() => {
-    setShowAlert(isVisible);
-  }, [isVisible]);
+export function StyledAlert() { 
+  
+  const { alertData, isVisible, hideAlert } = useAlerts();
   
   return (
     <Container 
-      $isActive={showAlert}      
+      $isActive={isVisible}      
     >
       <div id="alert-container">
         <Alert>
           <div id="icon-message">
             {
-              alertType === 'info' &&
-              <FiCheckCircle className="info" />
+              alertData.type === 'info' &&
+              <PiCheckCircle className="info" />
             }
             { 
-              alertType === 'warning' &&
+              alertData.type === 'warning' &&
               <HiOutlineExclamationCircle className="warning" />
             }
             {
-              alertType === 'error' &&
+              alertData.type === 'error' &&
               <FiXCircle className="error" />
             }
             <h1>
-              {message}
+              {alertData.message}
             </h1>            
           </div>              
           
           <Button
-            title={buttonText}
-            color={alertType === 'error' || alertType === 'warning' ? "tomato_200" : "mint_200" }
-            onClick={() => setShowAlert(false)}
+            title={alertData.buttonText}
+            color={alertData.type === 'error' || alertData.type === 'warning' ? "tomato_200" : "mint_200" }
+            onClick={hideAlert}
           >            
           </Button>
         </Alert>

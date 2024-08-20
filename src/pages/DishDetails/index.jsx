@@ -3,6 +3,7 @@ import { PiCameraSlash } from "react-icons/pi";
 import { api } from "../../services/api";
 import { useAuth } from '../../hooks/auth';
 import { useCart } from "../../hooks/cart";
+import { useAlerts } from "../../hooks/alerts";
 import { useFavorites } from "../../hooks/favorites";
 import { Container, Main } from "./styles";
 import { useState, useEffect } from "react";
@@ -25,7 +26,8 @@ export function DishDetails() {
   const [amount, setAmount] = useState(1);  
   const { dishId } = useParams();  
   const { user } = useAuth();
-  const { addToCart } = useCart();  
+  const { addToCart } = useCart();
+  const { showAlert } = useAlerts();
   const { isUserFavorite, addFavorite, deleteFavorite, userFavorites } = useFavorites();  
   const navigate = useNavigate();    
   
@@ -62,7 +64,7 @@ export function DishDetails() {
         setFavorite(isFavorite);
         !response.data && navigate("/notfound");
       } catch (e) {   
-        alert("Erro ao obter informações do produto")     
+        showAlert({message: "Erro ao obter informações do produto"});
         return navigate("/notfound");                
       } finally {
         setIsLoading(false);

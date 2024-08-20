@@ -1,11 +1,13 @@
 import { api } from "../services/api";
 import { createContext, useContext, useState, useEffect } from "react";
+import { useAlerts } from "./alerts";
 
 const AuthContext = createContext({});
 
 function AuthProvider({ children }) {
     
     const [data, setData] = useState({});        
+    const { showAlert } =  useAlerts();
   
     async function signIn({ email, password }) {
   
@@ -15,24 +17,21 @@ function AuthProvider({ children }) {
           { email, password },
           { withCredentials: true },
         );
-        const { user } = response.data;        
-                
-        localStorage.setItem("@foodexplorer:user", JSON.stringify(user));        
-                  
+        const { user } = response.data;                        
+        localStorage.setItem("@foodexplorer:user", JSON.stringify(user));                          
         setData({ user });    
-                
+                        
       } catch (error) {
         if (error.response) {
-          alert(error.response.data.message);
+          showAlert({message: error.response.data.message});
         } else {
-          alert("Não foi possível efetuar o login.");
+          showAlert({message: "Não foi possível efetuar o login."});
         }
       }
     } 
       
     function signOut() {
       localStorage.removeItem("@foodexplorer:user"); 
-
       setData({});
     }    
       

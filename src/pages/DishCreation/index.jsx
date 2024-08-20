@@ -5,6 +5,7 @@ import { FiPlus } from "react-icons/fi";
 import { PiTrash } from "react-icons/pi";
 import { useEffect, useState } from "react";
 import { useParams, useNavigate, useLocation } from "react-router-dom";
+import { useAlerts } from "../../hooks/alerts";
 import { Container, Main } from "./styles";
 import { Header } from "../../components/Header";
 import { Footer } from "../../components/Footer";
@@ -32,6 +33,7 @@ export function DishCreation() {
     const [formFilled, setFormFilled] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
     const { dishId } = useParams();
+    const { showAlert } = useAlerts();
     const navigate = useNavigate();
     const location = useLocation();
 
@@ -43,9 +45,9 @@ export function DishCreation() {
             setPrevDishes(ProductNames)
         } catch (e) {
             if (e.response) {
-                alert(e.response.data.message);
+                showAlert({message: e.response.data.message});
             } else {
-                alert("Erro ao obter dados de produtos já cadastrados.");
+                showAlert({message: "Erro ao obter dados de produtos já cadastrados."});
             }
         } finally {
             setIsLoading(false);
@@ -64,9 +66,9 @@ export function DishCreation() {
             setPrevImageFile(response.data.image_file);            
         } catch (e) {
             if (e.response) {
-                alert(e.response.data.message);
+                showAlert({message: e.response.data.message});
             } else {
-                alert("Erro ao obter dados do produto.");
+                showAlert({message: "Erro ao obter dados do produto."});
             }
         } finally {
             setIsLoading(false);
@@ -91,9 +93,9 @@ export function DishCreation() {
                 );
             } catch (e) {
                 if (e.response) {
-                    alert(e.response.data.message);
+                    showAlert({message: e.response.data.message});
                 } else {
-                    alert("Não foi possível gravar a imagem do novo produto.");
+                    showAlert({message: "Não foi possível gravar a imagem do novo produto."});
                 }
             } finally {
                 setIsLoading(false);
@@ -112,16 +114,16 @@ export function DishCreation() {
             });
         } catch (e) {
             if (e.response) {
-                alert(e.response.data.message);
+                showAlert({message: e.response.data.message});
             } else {
-                alert("Erro ao excluir imagem da base de dados");
+                showAlert({message: "Erro ao excluir imagem da base de dados"});
             }
         } finally {
             setIsLoading(false);
         }
     }
 
-    async function createProduct() {
+    async function createProduct() {       
         await fetchProducts()
         if (!isFormValidated()) {
             return false;
@@ -149,9 +151,9 @@ export function DishCreation() {
 
         } catch (e) {
             if (e.response) {
-                alert(e.response.data.message);
+                showAlert({message: e.response.data.message});
             } else {
-                alert("Não foi possível registrar o novo produto.");
+                showAlert({message: "Não foi possível registrar o novo produto."});
             }
             return false;
         } finally {
@@ -183,9 +185,9 @@ export function DishCreation() {
             return true;
         } catch (e) {
             if (e.response) {
-                alert(e.response.data.message);
+                showAlert({message: e.response.data.message});
             } else {
-                alert("Não foi possível atualizar os dados do produto.");
+                showAlert({message: "Não foi possível atualizar os dados do produto."});
             }
             return false;
         } finally {
@@ -208,13 +210,13 @@ export function DishCreation() {
         try {
             await api.delete(`dishes/${dishId}`, { withCredentials: true });
             prevImageFile && deleteProductImage();
-            alert("Produto excluído com sucesso!");
+            showAlert({message: "Produto excluído com sucesso!"});
             return navigate("/");
         } catch (e) {
             if (e.response) {
-                return alert(e.response.data.message);
+                return showAlert({message: e.response.data.message});
             } else {
-                return alert("Não foi possível fazer a exclusão do produto.");
+                return showAlert({message: "Não foi possível fazer a exclusão do produto."});
             }
         } finally {
             setIsLoading(false);
@@ -225,11 +227,11 @@ export function DishCreation() {
         event.preventDefault();
         if (newDish) {
             const productCreated = await createProduct();
-            productCreated && alert("Produto criado com sucesso!");
+            productCreated && showAlert({message: "Produto criado com sucesso!", type: "info", buttonMessage: "OK"});
         } else {
             const productUpdated = await updateProduct();
             if (productUpdated) {
-                alert("Produto atualizado com êxito!");
+                showAlert({message: "Produto atualizado com êxito!", type: "info", buttonMessage: "OK"});
                 navigate(-1);
             }
         }
@@ -257,20 +259,20 @@ export function DishCreation() {
         }
         if (ingredients.length < 15) {
             if (newIngredient.length < 3 || newIngredient.length > 24) {
-                alert("Ingrediente deve possuir entre 3 e 20 caracteres.")
+                showAlert({message: "Ingrediente deve possuir entre 3 e 20 caracteres.", type: "warning"})
                 setNewIngredient("");
             } else if ((ingredients.map(
                 ingredient => ingredient.toLowerCase()))
                 .includes(newIngredient.toLowerCase())
             ) {
-                alert("Já existe um ingrediente com este nome associado ao produto.")
+                showAlert({message: "Já existe um ingrediente com este nome associado ao produto.", type: "warning"})
                 setNewIngredient("");
             } else {
                 setIngredients(prevState => [...prevState, newIngredient.toLowerCase()]);
                 setNewIngredient("");
             }
         } else {
-            alert("Atenção: são permitidos até 14 ingredientes por produto!");
+            showAlert({message: "Atenção: são permitidos até 14 ingredientes por produto!", type: "warning"});
         }
     }
 
@@ -282,28 +284,30 @@ export function DishCreation() {
 
     function isFormValidated() {
         if (!title?.trim() || title.trim().length < 3) {
-            alert("O produto precisa ter um nome válido com pelo menos três caracteres.");
+            showAlert({message: "O produto precisa ter um nome válido com pelo menos três caracteres.", type: "warning"});
             return false;
         }
         if (prevDishes.includes(title.toLowerCase()) && newDish) {
-            alert("Já existe outro produto cadastrado com este nome.");
+            showAlert({message: "Já existe outro produto cadastrado com este nome.", type: "warning"});
             return false;
         }
         if (ingredients.length === 0) {
-            alert("Necessário cadastrar ao menos um ingrediente para o produto.");
+            showAlert({message: "Necessário cadastrar ao menos um ingrediente para o produto.", type: "warning"});
             return false;
         }
         if (!price || price / 100 < 1 || price / 100 > 100) {
-            alert("Necessário informar um valor entre 1,00 e 99,99.");
+            showAlert({message: "Necessário informar um valor entre 1,00 e 99,99.", type: "warning"});
             return false;
         }
         if (!description || description.trim().length < 8 || description.length > 500) {
-            alert("Descrição do produto deve possuir entre 8 e 500 caracteres.");
+            showAlert({message: "Descrição do produto deve possuir entre 8 e 500 caracteres.", type: "warning"});
             return false;
         }
         if (!imageFile && !prevImageFile) {
-            const noImage = confirm("Você não selecionou nenhuma imagem para o produto." +
-                "\nDeseja salvar assim mesmo?")
+            const noImage = confirm(
+                "Você não selecionou nenhuma imagem para o produto." +
+                "\nDeseja salvar assim mesmo?"
+            )
             if (!noImage) {
                 return false;
             }
@@ -344,7 +348,7 @@ export function DishCreation() {
 
     useEffect(() => {
         checkFormFilled();
-    }, [, title, price, description])
+    }, [title, price, description])
 
 
     return (

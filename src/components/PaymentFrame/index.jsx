@@ -3,11 +3,11 @@ import { PiClock, PiCheckCircle, PiClockUser, PiForkKnife, PiWarning } from "rea
 import { MdOutlinePix } from "react-icons/md";
 import { PiCreditCard } from "react-icons/pi";
 import { useCart } from "../../hooks/cart";
-import { useState, useEffect } from "react";
+import { useState } from "react";
+import { useAlerts } from "../../hooks/alerts";
 import { Container } from "./styles";
 import { LabeledCreditInput } from "../LabeledCreditInput";  
 import { PaymentButton } from "../PaymentButton";
-import { StyledAlert } from "../../components/StyledAlert";
 import { LoadingSpinner } from "../LoadingSpinner";
 import QrCode from "../../assets/samples/qr_code.svg";
 
@@ -17,11 +17,10 @@ export function PaymentFrame({ paidOrder=false, orderStatus="preparando", cartDa
     const [paymentOption, setPaymentOption] = useState("pix");
     const [cardNumber, setCardNumber] = useState("");
     const [cardDate, setCardDate] = useState("");
-    const [cardCvv, setCardCvv] = useState("");
-    const [alertData, setAlertData] = useState({}); 
+    const [cardCvv, setCardCvv] = useState("");    
     const [isLoading, setIsLoading] = useState(false);  
-
-    const { deleteCart } = useCart();        
+    const { deleteCart } = useCart();
+    const { showAlert } = useAlerts();        
 
     async function placeOrder() {   
         if (!isValidCardNumber() || !isValidCvv() || !isValidDate()) {
@@ -45,22 +44,22 @@ export function PaymentFrame({ paidOrder=false, orderStatus="preparando", cartDa
             orderId = response.data.order_id;            
         } catch (e) {
             if (e.response) {
-                alert(e.response.data.message);
+                showAlert({message: e.response.data.message});
             } else {
-                alert("Não foi possível finalizar o pedido.");
+                showAlert({message: "Não foi possível finalizar o pedido. Tente mais tarde."});
             }
         }        
         await deleteCart();
         await placeNewOrder(orderId);
         setIsLoading(false);        
-        styledAlert({ message: `Pedido efetuado com sucesso!\nNúmero do pedido: ${orderId}`})        
+        showAlert({message: `Pedido efetuado com sucesso!\nNúmero do pedido: ${orderId}`, type: "info"})        
     };
     
     function isValidCardNumber() {             
         if (cardNumber.length === 19) {
             return true;
         }
-        alert("Erro - número do cartão deve ter 16 dígitos!");
+        showAlert({message: "Erro - número do cartão deve ter 16 dígitos!", type: "warning"});
         return false;
     };
 
@@ -68,7 +67,7 @@ export function PaymentFrame({ paidOrder=false, orderStatus="preparando", cartDa
         if (cardDate.length === 5) {
             return true;
         }
-        alert("Erro - data de vencimento incompleta!");
+        showAlert({message: "Erro - data de vencimento incompleta!", type: "warning"});
         return false;
     }
     
@@ -76,33 +75,18 @@ export function PaymentFrame({ paidOrder=false, orderStatus="preparando", cartDa
         if (String(cardCvv).length === 3) {
             return true;
         }
-        alert("Erro - código de segurança deve ter 3 dígitos!");
+        showAlert({message: "Erro - código de segurança deve ter 3 dígitos!", type: "warning"});
         return false;
     };
 
     function isValidCardData() {
         return cardNumber.length === 19 && cardDate.length === 5 && String(cardCvv).length === 3
-    }     
-    
-    function styledAlert({ alertType, message, buttonText }) {
-        setAlertData({
-            isVisible: true,
-            alertType: alertType,
-            message: message,
-            buttonText: buttonText
-        })
-    }
+    }    
 
     return (
         <Container $paymentChoice={paymentOption}>
 
-            <LoadingSpinner isLoading={isLoading}/>
-            <StyledAlert 
-                isVisible={alertData.isVisible}
-                alertType={alertData.alertType} 
-                message={alertData.message}
-                buttonText={alertData.buttonText}
-            />
+            <LoadingSpinner isLoading={isLoading}/>            
 
             {
                 !paidOrder &&

@@ -1,6 +1,7 @@
 import { api } from "../../services/api";
 import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
+import { useAlerts } from "../../hooks/alerts";
 import { useAuth } from '../../hooks/auth';
 import { Container, Main } from "./styles";
 import { Header } from "../../components/Header";
@@ -22,6 +23,7 @@ export function Payment() {
     const [isLoading, setIsLoading] = useState(false);
     const { orderId } = useParams();
     const { user } = useAuth();
+    const { showAlert } = useAlerts();
     const navigate = useNavigate();   
 
     const admin = user.role === "admin";      
@@ -37,7 +39,8 @@ export function Payment() {
             setOrderStatus(response.data.status);                
             setPaidOrder(true);                   
         } catch (e) {
-            return navigate("/notfound");
+            showAlert({message: "Erro ao obter o histórico de pedidos. Tente mais tarde."});
+            setData(null);
         } finally {
             setIsLoading(false);
         }
@@ -46,10 +49,11 @@ export function Payment() {
     async function fetchUserCart() {
         setIsLoading(true);
         try {
-            const response = await api.get('/cart', { withCredentials: true });
+            const response = await api.get('cart', { withCredentials: true });
             setData(response.data);
             setPaidOrder(false);                                         
-        } catch (e) {            
+        } catch (e) {   
+            showAlert({message: "Erro ao obter as informações do pedido. Tente mais tarde"});
             return navigate("/notfound");
         } finally {
             setIsLoading(false);

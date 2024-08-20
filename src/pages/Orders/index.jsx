@@ -2,6 +2,7 @@ import { PiCaretDownBold } from "react-icons/pi";
 import { api } from "../../services/api";
 import { useSearch } from "../../hooks/search";
 import { useAuth } from "../../hooks/auth";
+import { useAlerts } from "../../hooks/alerts";
 import { useState, useEffect } from "react";
 import { Container, Main } from "./styles";
 import { Header } from "../../components/Header";
@@ -16,7 +17,8 @@ export function Orders() {
     const [isLoading, setIsLoading] = useState(false);
     const { handleInputValue } = useSearch();
     const navigate = useNavigate();
-    const { user } = useAuth();   
+    const { user } = useAuth();  
+    const { showAlert } = useAlerts(); 
     const admin = user.role === "admin";
 
     function handleOrderDetails(orderId) {
@@ -32,7 +34,7 @@ export function Orders() {
                 [orderId]: status,
             }));
         } catch (e) {
-            alert("Não foi possível atualizar o status do pedido, tente mais tarde.");
+            showAlert({message: "Não foi possível atualizar o status do pedido, tente mais tarde."});
         } finally {
             setIsLoading(false);
         }

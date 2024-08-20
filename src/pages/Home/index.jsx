@@ -1,6 +1,7 @@
 import { api } from "../../services/api";
 import { useEffect, useState } from "react";
 import { useFavorites } from "../../hooks/favorites";
+import { useAlerts } from "../../hooks/alerts";
 import { Container } from "./styles";
 import { Header } from "../../components/Header";
 import { CardsSection } from "../../components/CardsSection";
@@ -12,6 +13,7 @@ export function Home() {
   const [data, setData] = useState(null);  
   const [isLoading, setIsLoading] = useState(false);
   const { userFavorites, fetchFavorites } = useFavorites();
+  const { showAlert } = useAlerts();
 
   async function fetchProducts() {
     setIsLoading(true);
@@ -20,9 +22,9 @@ export function Home() {
       setData(response.data);
     } catch (e) {
       if (e.response) {
-          alert(e.response.data.message);
+          showAlert({message: e.response.data.message});
       } else {
-          alert("Erro ao obter dados dos produtos.");
+          showAlert({message: "Erro ao obter dados dos produtos."});
       }
     } finally {
       setIsLoading(false);
