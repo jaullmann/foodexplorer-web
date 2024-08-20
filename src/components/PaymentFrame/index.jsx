@@ -3,10 +3,12 @@ import { PiClock, PiCheckCircle, PiClockUser, PiForkKnife, PiWarning } from "rea
 import { MdOutlinePix } from "react-icons/md";
 import { PiCreditCard } from "react-icons/pi";
 import { useCart } from "../../hooks/cart";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Container } from "./styles";
 import { LabeledCreditInput } from "../LabeledCreditInput";  
 import { PaymentButton } from "../PaymentButton";
+import { StyledAlert } from "../../components/StyledAlert";
+import { LoadingSpinner } from "../LoadingSpinner";
 import QrCode from "../../assets/samples/qr_code.svg";
 
 
@@ -15,7 +17,9 @@ export function PaymentFrame({ paidOrder=false, orderStatus="preparando", cartDa
     const [paymentOption, setPaymentOption] = useState("pix");
     const [cardNumber, setCardNumber] = useState("");
     const [cardDate, setCardDate] = useState("");
-    const [cardCvv, setCardCvv] = useState("");    
+    const [cardCvv, setCardCvv] = useState("");
+    const [alertData, setAlertData] = useState({}); 
+    const [isLoading, setIsLoading] = useState(false);  
 
     const { deleteCart } = useCart();        
 
@@ -35,6 +39,7 @@ export function PaymentFrame({ paidOrder=false, orderStatus="preparando", cartDa
         }
         
         let orderId;
+        setIsLoading(true);
         try {
             const response = await api.post("orders", orderData, { withCredentials: true });
             orderId = response.data.order_id;            
@@ -45,9 +50,10 @@ export function PaymentFrame({ paidOrder=false, orderStatus="preparando", cartDa
                 alert("Não foi possível finalizar o pedido.");
             }
         }        
-        deleteCart();
-        placeNewOrder(orderId);
-        alert(`Pedido efetuado com sucesso!\nNúmero do pedido: ${orderId}`)        
+        await deleteCart();
+        await placeNewOrder(orderId);
+        setIsLoading(false);        
+        styledAlert({ message: `Pedido efetuado com sucesso!\nNúmero do pedido: ${orderId}`})        
     };
     
     function isValidCardNumber() {             
@@ -76,10 +82,27 @@ export function PaymentFrame({ paidOrder=false, orderStatus="preparando", cartDa
 
     function isValidCardData() {
         return cardNumber.length === 19 && cardDate.length === 5 && String(cardCvv).length === 3
-    }       
+    }     
+    
+    function styledAlert({ alertType, message, buttonText }) {
+        setAlertData({
+            isVisible: true,
+            alertType: alertType,
+            message: message,
+            buttonText: buttonText
+        })
+    }
 
     return (
         <Container $paymentChoice={paymentOption}>
+
+            <LoadingSpinner isLoading={isLoading}/>
+            <StyledAlert 
+                isVisible={alertData.isVisible}
+                alertType={alertData.alertType} 
+                message={alertData.message}
+                buttonText={alertData.buttonText}
+            />
 
             {
                 !paidOrder &&

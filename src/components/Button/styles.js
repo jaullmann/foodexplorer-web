@@ -24,9 +24,14 @@ export const Container = styled.button`
     background-color: ${({ theme }) => theme.COLORS.TINTS_TOMATO_400};
   }
 
+  &.mint_200 {
+    background-color: ${({ theme }) => theme.COLORS.TINTS_MINT_200};
+  }
+
   &.light_700 {
     background-color: ${({ theme }) => theme.COLORS.LIGHT_700};
   }
+  
     
   height: 3rem;
   border: 0;  

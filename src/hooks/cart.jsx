@@ -78,20 +78,19 @@ function CartProvider({ children }) {
           return alert("Erro ao excluir produto do pedido");
         }
     }
-
     
-    // async function deleteCart() {
-    //     try {
-    //         await api.delete("cart", { withCredentials: true });            
-    //     } catch (e) {
-    //         if (e.response) {
-    //             alert(e.response.data.message);
-    //         } else {
-    //             alert("Erro ao excluir itens do pedido.");
-    //         }
-    //     }
-    //     fetchCart();        
-    // }
+    async function deleteCart() {
+        try {
+            await api.delete("cart", { withCredentials: true });            
+        } catch (e) {
+            if (e.response) {
+                alert(e.response.data.message);
+            } else {
+                alert("Erro ao excluir itens do pedido.");
+            }
+        }
+        fetchCart();        
+    }
 
     useEffect(() => {
         fetchCart();
@@ -105,7 +104,8 @@ function CartProvider({ children }) {
             setCartAmount, 
             fetchCart,
             addToCart,
-            deleteFromCart
+            deleteFromCart,
+            deleteCart
         }}>
             { children }
         </CartContext.Provider>

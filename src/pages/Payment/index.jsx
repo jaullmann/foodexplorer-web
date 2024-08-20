@@ -54,7 +54,7 @@ export function Payment() {
         } finally {
             setIsLoading(false);
         }        
-    }
+    }    
 
     function placeNewOrder(orderId) {
         setNewOrderId(orderId);
@@ -79,7 +79,7 @@ export function Payment() {
     return(
         <Container>
 
-            <Header isLoading={isLoading}/>
+            <Header isLoading={isLoading}/>            
 
             {
                 data &&

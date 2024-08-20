@@ -1,7 +1,6 @@
 import { api } from "../../services/api";
 import { useState, useEffect } from "react";
 import { useFavorites } from "../../hooks/favorites";
-import { useNavigate } from "react-router-dom";
 import { Container, Main } from "./styles";
 import { Header } from "../../components/Header";
 import { Footer } from "../../components/Footer";
