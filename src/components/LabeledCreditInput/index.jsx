@@ -1,8 +1,10 @@
 import { useState } from "react";
+import { useAlerts } from "../../hooks/alerts"
 import { Container, Input } from "./styles";
 
 export function LabeledCreditInput({ label, placeholder, altStyle, value, inputType, onChange, ...rest }) {
   const [innerValue, setInnerValue] = useState("");  
+  const { showAlert } = useAlerts();
   
   function handleInputChange(e) {
     const inputValue = e.target.value;

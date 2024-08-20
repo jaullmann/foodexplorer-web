@@ -4,6 +4,7 @@ import { MdOutlinePix } from "react-icons/md";
 import { PiCreditCard } from "react-icons/pi";
 import { useCart } from "../../hooks/cart";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { useAlerts } from "../../hooks/alerts";
 import { Container } from "./styles";
 import { LabeledCreditInput } from "../LabeledCreditInput";  
@@ -18,9 +19,10 @@ export function PaymentFrame({ paidOrder=false, orderStatus="preparando", cartDa
     const [cardNumber, setCardNumber] = useState("");
     const [cardDate, setCardDate] = useState("");
     const [cardCvv, setCardCvv] = useState("");    
-    const [isLoading, setIsLoading] = useState(false);  
+    const [isLoading, setIsLoading] = useState(false);      
     const { deleteCart } = useCart();
     const { showAlert } = useAlerts();        
+    const navigate = useNavigate();
 
     async function placeOrder() {   
         if (!isValidCardNumber() || !isValidCvv() || !isValidDate()) {
@@ -51,8 +53,9 @@ export function PaymentFrame({ paidOrder=false, orderStatus="preparando", cartDa
         }        
         await deleteCart();
         await placeNewOrder(orderId);
-        setIsLoading(false);        
-        showAlert({message: `Pedido efetuado com sucesso!\nNúmero do pedido: ${orderId}`, type: "info"})        
+        setIsLoading(false);                      
+        showAlert({message: `Pedido efetuado com sucesso!\nNúmero do pedido: ${orderId}`, type: "info"});                   
+        navigate(`/orders/${orderId}`);  
     };
     
     function isValidCardNumber() {             

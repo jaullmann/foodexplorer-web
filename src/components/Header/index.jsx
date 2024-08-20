@@ -13,6 +13,7 @@ import { ThemeButton } from "../ThemeButton";
 import { SideMenu } from "../SideMenu";
 import { LoadingSpinner } from "../LoadingSpinner";
 import { InteractionAlert } from "../InteractionAlert";
+import { StyledAlert } from "../StyledAlert";
 import { FiMenu } from "react-icons/fi";
 import { PiSignOut } from "react-icons/pi";
 import { FiHeart } from "react-icons/fi";
@@ -73,7 +74,8 @@ export function Header({ orderStatuses = {}, isLoading = false }) {
     <Section>
 
       <LoadingSpinner isLoading={isLoading}/>   
-      <InteractionAlert />   
+      <InteractionAlert />
+      <StyledAlert />  
 
       <div className="desktop">
         <MainLogo userRole={admin ? "admin" : "customer"} />
