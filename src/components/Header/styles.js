@@ -15,6 +15,14 @@ export const Section = styled.div`
       ? `0.125rem 0.125rem 0.3rem 0.125rem ${theme.COLORS.DARK_600}`
       : `0.125rem 0.125rem 1rem .5rem ${theme.COLORS.DARK_900}`
     };
+
+    @media(max-width: ${DEVICE_BREAKPOINTS.LG}) {
+        height: 7.125rem;
+    }
+
+    @media(max-width: ${DEVICE_BREAKPOINTS.MD}) {
+        padding: 0 1.75rem;
+    }
     
     > .desktop {
         margin: auto;
@@ -67,15 +75,19 @@ export const Section = styled.div`
     }    
         
     > .mobile {
-        height: 6.6rem;
+        height: 100%;        
 
         display: none; 
         align-items: center;    
-        justify-content: space-between;            
-        padding: 0;
+        justify-content: space-between; 
+        
+        @media (max-width: ${DEVICE_BREAKPOINTS.MD}) {
+            padding-bottom: 1rem;
+            align-items: flex-end; 
+        }        
         
         #side-menu-btn {
-            font-size: 2.7rem;           
+            font-size: 3rem;           
             color: ${({ theme }) => theme.COLORS.LIGHT_300};
             cursor: pointer;
         }

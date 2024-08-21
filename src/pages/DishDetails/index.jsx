@@ -59,9 +59,7 @@ export function DishDetails() {
       setIsLoading(true);
       try {        
         const response = await api.get(`/dishes/${dishId}`, { withCredentials: true });        
-        setData(response.data);
-        const isFavorite = await isUserFavorite(dishId);
-        setFavorite(isFavorite);
+        setData(response.data);        
         !response.data && navigate("/notfound");
       } catch (e) {   
         showAlert({message: "Erro ao obter informações do produto"});
@@ -69,11 +67,19 @@ export function DishDetails() {
       } finally {
         setIsLoading(false);
       }
-    }              
+    }  
+    fetchProduct();         
 
-    fetchProduct();           
+  }, []);
 
-  }, [userFavorites]);
+  useEffect(() => {
+    async function setFavoriteStatus() {
+      const isFavorite = await isUserFavorite(dishId);        
+      setFavorite(isFavorite);
+    }
+    setFavoriteStatus();
+
+  }, [userFavorites])
 
   return (
     <Container>

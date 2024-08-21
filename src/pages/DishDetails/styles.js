@@ -24,6 +24,11 @@ export const Main = styled.main`
         margin-bottom: 2.625rem;
     }
 
+    @media (max-width: ${DEVICE_BREAKPOINTS.MD}) {
+        padding-left: 1.75rem;
+        padding-right: 1.75rem;
+    }
+
     #dish-presentation {
         min-width: 50vw;        
         max-width: 85.5rem; 
@@ -105,7 +110,7 @@ export const Main = styled.main`
 
     h1 {
         ${({ theme }) => theme.FONTS.POPPINS_MEDIUM};
-        font-size: clamp(1.81rem, 1rem + 1.6vw, 2.5rem);
+        font-size: clamp(1.9rem, 1rem + 1.6vw, 2.5rem);
         line-height: 140%;
         color: ${({ theme }) => theme.COLORS.LIGHT_300};
     }
@@ -113,12 +118,12 @@ export const Main = styled.main`
     p {       
         text-align: justify;
         ${({ theme }) => theme.FONTS.POPPINS_REGULAR};
-        font-size: clamp(1rem, .6rem + .8vw, 1.5rem);
+        font-size: clamp(1.1rem, .6rem + .8vw, 1.5rem);
         line-height: 140%;
         color: ${({ theme }) => theme.COLORS.LIGHT_300};
 
-        @media (max-width: ${DEVICE_BREAKPOINTS.LG}) {
-            text-align: center;
+        @media (max-width: ${DEVICE_BREAKPOINTS.MD}) {
+            padding: 0 1.75rem 2.1rem;
         }
     }
 

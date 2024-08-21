@@ -26,6 +26,8 @@ export const Container = styled.main`
     }
 
     @media (max-width: ${DEVICE_BREAKPOINTS.MD}) {
+      padding-left: 1.75rem;
+      padding-right: 1.75rem;      
       margin: 11rem auto 3.875rem;
       height: 7.5rem;
     }
@@ -99,6 +101,11 @@ export const Container = styled.main`
     animation: fade-in 3s linear;
     animation-timeline: view();
     animation-range: entry 10% cover 20%;
+
+    @media (max-width: ${DEVICE_BREAKPOINTS.MD}) {
+        padding-left: 1.75rem;
+        padding-right: 1.75rem;
+    }
   }
 
 `;

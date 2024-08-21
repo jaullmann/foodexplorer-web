@@ -95,7 +95,7 @@ export const Main = styled.main`
         align-items: flex-start;
         justify-content: flex-end;        
     }
-    
+        
 
     @media (max-width: ${ DEVICE_BREAKPOINTS.LG }) {
 
@@ -138,6 +138,11 @@ export const Main = styled.main`
             min-width: 26rem; 
             width: 60vw;
         }                
+    }
+
+    @media (max-width: ${DEVICE_BREAKPOINTS.MD}) {
+        padding-left: 1.75rem;
+        padding-right: 1.75rem;
     }
 
     // animation effects

@@ -28,7 +28,12 @@ export const Main = styled.main`
     }
 
     @media (max-width: ${DEVICE_BREAKPOINTS.LG}) {
-        margin: 0 0 3rem;
+        margin: 0 0 2rem;
+    }
+
+    @media (max-width: ${DEVICE_BREAKPOINTS.MD}) {
+        padding-left: 1.75rem;
+        padding-right: 1.75rem;
     }
 
     > h1 {
@@ -50,12 +55,10 @@ export const Main = styled.main`
         display: grid;          
         grid-auto-rows: 6.5rem;      
         grid-row-gap: .5rem;  
-        grid-template-columns: repeat(5, 19.5%);        
+        grid-template-columns: repeat(4, 24%);        
         justify-content: space-between;
 
-        @media(max-width: ${DEVICE_BREAKPOINTS.UL}) {
-            grid-template-columns: repeat(4, 24%);   
-        }
+        
         @media(max-width: ${DEVICE_BREAKPOINTS.XL}) {
             grid-template-columns: repeat(3, 31%);    
         }
@@ -65,7 +68,7 @@ export const Main = styled.main`
         @media(max-width: ${DEVICE_BREAKPOINTS.MD}) {
             grid-template-columns: repeat(1, 100%);         
         } 
-    }   
+    } 
     
     //animation effects    
     

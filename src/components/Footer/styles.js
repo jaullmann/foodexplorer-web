@@ -19,7 +19,12 @@ export const Section = styled.footer`
   };
 
   @media (max-width: 93.5rem) {
-      padding: 0 4rem;
+    padding: 0 4rem;
+  }
+
+  @media (max-width: ${DEVICE_BREAKPOINTS.MD}) {
+    padding-left: 1.75rem;
+    padding-right: 1.75rem;
   }
 
   > div {

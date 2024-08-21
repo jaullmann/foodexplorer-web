@@ -44,7 +44,7 @@ export const Container = styled.div`
         > h2 {
             width: fit-content;
             ${({ theme }) => theme.FONTS.POPPINS_MEDIUM}; 
-            font-size: 1.25rem;
+            font-size: clamp(1.2rem, .5rem + .9vw, 1.5rem);
             color: ${({ theme }) => theme.COLORS.LIGHT_300};            
             line-height: 160%; 
 

@@ -44,7 +44,7 @@ export const Container = styled.div`
         > h2 {
             width: fit-content;
             ${({ theme }) => theme.FONTS.POPPINS_MEDIUM}; 
-            font-size: clamp(1rem, .5rem + .6vw, 1.25rem);
+            font-size: clamp(1.3rem, .5rem + 1vw, 1.5rem);
             color: ${({ theme }) => theme.COLORS.LIGHT_300};            
             line-height: 160%; 
 
@@ -53,7 +53,11 @@ export const Container = styled.div`
             -webkit-line-clamp: 2;
             -webkit-box-orient: vertical;
                     
-            cursor: pointer;          
+            cursor: pointer; 
+            
+            @media (max-width: ${DEVICE_BREAKPOINTS.MD}) {
+                font-size: 1.5rem;
+            }
         }
 
         > button {

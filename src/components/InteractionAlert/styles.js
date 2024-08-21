@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { DEVICE_BREAKPOINTS } from "../../styles/deviceBreakpoints";
 
 export const Container = styled.div`
   display: flex;
@@ -34,7 +35,14 @@ export const Container = styled.div`
 
     /* background-color: blue;
     opacity: .5;     */
+
+    @media (max-width: ${DEVICE_BREAKPOINTS.LG}) {
+      margin-top: 5.5rem;
+      justify-content: center;
+    }
   }
+
+  
 
 `
 
@@ -49,14 +57,18 @@ export const Alert = styled.div`
   gap: 1rem;
 
   border-radius: .5rem;
-  background-color: ${({ theme }) => theme.COLORS.DARK_700};  
+  background-color: ${({ theme }) => theme.COLORS.DARK_900};  
+
+  @media (max-width: ${DEVICE_BREAKPOINTS.LG}) {
+    margin-right: 0;
+  }
 
   box-shadow: ${({ theme }) => theme.NAME === "lightTheme"
     ? `0 0 .5rem .2rem ${theme.COLORS.DARK_200}`
-    : `0 0 .5rem .3rem ${theme.COLORS.DARK_1000}`
+    : `0 0 .5rem .4rem ${theme.COLORS.DARK_1000}`
   };
 
-  animation: fade-in 2s 2s ease-in-out forwards;
+  animation: fade-in .4s .5s ease-in-out forwards;
 
   > img {
     width: 3.5rem;

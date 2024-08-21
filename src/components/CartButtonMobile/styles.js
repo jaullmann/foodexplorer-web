@@ -5,7 +5,7 @@ export const Container = styled.button`
   position: relative;
 
   > svg {
-    font-size: 3.2rem;
+    font-size: 3rem;
     fill: ${({ theme }) => theme.COLORS.LIGHT_200}; 
   }
 

@@ -28,6 +28,11 @@ export const Main = styled.main`
         margin: 8rem 0 3rem;
     }
 
+    @media (max-width: ${DEVICE_BREAKPOINTS.MD}) {
+        padding-left: 1.75rem;
+        padding-right: 1.75rem;
+    }
+
     > h1 {
         margin-top: 8rem;
         font-size: 1.7rem;
@@ -41,12 +46,9 @@ export const Main = styled.main`
 
         display: grid;          
         grid-auto-rows: 7rem;        
-        grid-template-columns: repeat(5, 19.5%);        
+        grid-template-columns: repeat(4, 24%);           
         justify-content: space-between;
-
-        @media(max-width: ${DEVICE_BREAKPOINTS.UL}) {
-            grid-template-columns: repeat(4, 24%);   
-        }
+        
         @media(max-width: ${DEVICE_BREAKPOINTS.XL}) {
             grid-template-columns: repeat(3, 31%);    
         }

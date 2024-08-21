@@ -25,6 +25,10 @@ export const Main = styled.main`
     @media (max-width: ${DEVICE_BREAKPOINTS.LG}) {
         margin: 9rem 0 3rem;
     }
+
+    @media (max-width: ${DEVICE_BREAKPOINTS.MD}) {
+        padding: 0 1.75rem 2.1rem;
+    }
     
     a {
         width: 100%;

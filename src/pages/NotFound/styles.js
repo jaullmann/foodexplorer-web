@@ -24,6 +24,11 @@ export const Main = styled.main`
     align-items: center;
     justify-content: center;
     gap: 2.1875rem;
+
+    @media (max-width: ${DEVICE_BREAKPOINTS.MD}) {
+        padding-left: 1.75rem;
+        padding-right: 1.75rem;
+    }
          
     > div {
         display: flex;

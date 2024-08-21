@@ -29,6 +29,11 @@ export const Main = styled.main`
         margin: 9rem 0 1rem;
     }
 
+    @media (max-width: ${DEVICE_BREAKPOINTS.MD}) {
+        padding-left: 1.75rem;
+        padding-right: 1.75rem;
+    }
+
     > h1 {
         margin-top: 8rem;
         font-size: 1.7rem;
