@@ -4,6 +4,7 @@ import { AuthProvider } from './hooks/auth';
 import { Routes } from './routes';
 import { ThemeProvider } from './hooks/theme';
 import { AlertsProvider } from './hooks/alerts';
+import { StyledAlert } from './components/StyledAlert';
 import { register } from 'swiper/element/bundle';
 import GlobalStyles from './styles/global';
 import 'swiper/css';
@@ -19,7 +20,8 @@ ReactDOM.createRoot(document.getElementById('root')).render(
     <AlertsProvider>
       <ThemeProvider>      
         <GlobalStyles />  
-        <AuthProvider>          
+        <AuthProvider>
+          <StyledAlert />         
           <Routes />                 
         </AuthProvider>       
       </ThemeProvider>

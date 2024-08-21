@@ -18,15 +18,22 @@ export function SignIn() {
   
   const { signIn } = useAuth();  
 
-  function handleSignIn() {
+  async function handleSignIn() {
     setIsLoading(true);
-    signIn({ email, password });     
+    const validated = await signIn({ email, password });
+    !validated && clearForm();
+    setIsLoading(false);
   }
 
   function handleKeyDown(event) {
     if (event.key === 'Enter') {
       handleSignIn();
     }
+  }
+
+  function clearForm() {
+    setEmail("");
+    setPassword("");
   }
 
   return (
@@ -43,6 +50,7 @@ export function SignIn() {
           className="labeled-input"
           label="E-mail"
           type="text"
+          value={email}
           altStyle
           placeholder="Exemplo: nome@exemplo.com.br"
           onChange={e => setEmail(e.target.value)}
@@ -52,6 +60,7 @@ export function SignIn() {
           className="labeled-input"
           label="Senha"
           type="password"
+          value={password}
           altStyle
           placeholder="No mínimo 6 caracteres"
           onChange={e => setPassword(e.target.value)}
