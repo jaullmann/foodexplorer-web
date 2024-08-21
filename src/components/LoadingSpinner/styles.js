@@ -19,18 +19,39 @@ export const Container = styled.div`
     $isVisible ? 'visible' : 'hidden'
   )};
   transition: opacity .3s ease, visibility .3s ease;
-  z-index: 999;
+  z-index: 999;  
+
+  svg {    
+    position: absolute;
+
+    width: 7.5rem;
+    height: 7.5rem;  
+    fill: ${({ theme }) => theme.COLORS.TINTS_CAKE_200};
+    rotate: 90deg;
+    animation: spin 2.5s linear infinite;
+    opacity: .8;
+
+    @keyframes spin {
+      0% { 
+        transform: rotate(0deg); 
+      }
+      100% { 
+        transform: rotate(360deg); 
+      }
+    }
+  }
 `;
 
 export const Spinner = styled.div`
-  border: 1rem solid ${({ theme }) => theme.COLORS.TINTS_CAKE_200};
-  border-top: 1rem solid transparent;  
+  border: .6rem solid ${({ theme }) => theme.COLORS.DARK_600};
+  border-top: .6rem solid transparent;    
   border-radius: 50%;
-  width: 8rem;
-  height: 8rem;  
-  animation: spin 1s linear infinite;
+  width: 10rem;
+  height: 10rem;  
+  animation: counter-spin 1.5s linear infinite;
+  position: relative;   
 
-  @keyframes spin {
+  @keyframes counter-spin {
     0% { 
       transform: rotate(0deg); 
     }
@@ -38,4 +59,6 @@ export const Spinner = styled.div`
       transform: rotate(360deg); 
     }
   }
+
+
 `;
