@@ -23,20 +23,21 @@ export function SignUp() {
   const navigate = useNavigate();
 
   async function handleSignUp() {
-    if (!name || !email || !password) {
-      return showAlert({message: "Todos os campos devem ser preenchidos!"});
-    }
+    if (password.length < 6) {
+      clearPassword();
+      return showAlert({message: "Senha deve conter ao menos 6 caracteres."});
+    }   
 
     if (name.length < 5) {
       return showAlert({message: "Nome deve conter ao menos 5 caracteres."});
     }
 
-    if (!(email.includes("@") && email.includes("."))) {
+    if (!(email.includes("@") && email.includes(".") && email.length > 5)) {
       return showAlert({message: "Email inválido!"});
-    }
+    }   
 
-    if (password.length < 6) {
-      return showAlert({message: "Senha deve conter ao menos 6 caracteres."});
+    if (!name || !email || !password) {
+      return showAlert({message: "Todos os campos devem ser preenchidos!"});
     }
   
     try {
@@ -60,6 +61,10 @@ export function SignUp() {
     if (event.key === 'Enter') {
       handleSignUp();
     }
+  }
+
+  function clearPassword(){
+    setPassword("");
   }
 
   return (
@@ -93,6 +98,7 @@ export function SignUp() {
         <LabeledInput 
           className="labeled-input"
           label={"Senha"}
+          value={password}
           type="password"
           placeholder={"No mínimo 6 caracteres"}
           onChange={e => setPassword(e.target.value)}
@@ -102,6 +108,7 @@ export function SignUp() {
         <Button
           title={"Criar conta"}
           onClick={handleSignUp}
+          disabled={!(name && email && password)}
         />
         <Link to="/">
           Já tenho uma conta
