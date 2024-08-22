@@ -101,6 +101,7 @@ export function PaymentFrame({ paidOrder=false, orderStatus="preparando", cartDa
                     >
                         <MdOutlinePix />
                         <h3>PIX</h3>
+                        <span className="sr-only">Botão para selecionar pagamento por Pix</span>
                     </div>
                     <div 
                         id="credit-btn"
@@ -108,6 +109,7 @@ export function PaymentFrame({ paidOrder=false, orderStatus="preparando", cartDa
                     >
                         <PiCreditCard />
                         <h3>Crédito</h3>
+                        <span className="sr-only">Botão para selecionar pagamento por cartão de crédito</span>
                     </div>
                 </div>
 
@@ -120,6 +122,7 @@ export function PaymentFrame({ paidOrder=false, orderStatus="preparando", cartDa
                         src={QrCode} 
                         alt="QrCode para pagamento via PIX" 
                     />
+                    <span className="sr-only">QRCode gerado para pagamento via Pix</span>
                 </div>
             }
 

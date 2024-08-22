@@ -72,7 +72,14 @@ export function DishCard({ dishId, title, imageFile, description, price, favorit
                 onClick={() => toggleFavoriteDish()}
                 className={favDish ? "favorite-dish" : ""} 
               >
-                <span className="sr-only">{`Botão para adicionar/remover ${title} dos favoritos`}</span>
+                {
+                  favDish &&
+                  <span className="sr-only">{`Botão para remover ${title} dos favoritos`}</span>
+                }
+                {
+                  !favDish &&
+                  <span className="sr-only">{`Botão para adicionar ${title} aos favoritos`}</span>
+                }                
               </FiHeart>
             )
           } 

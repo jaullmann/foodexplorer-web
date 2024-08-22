@@ -34,6 +34,7 @@ export function SearchInput({ isSideMenuOpen }) {
 
   return (
     <Container id="search">
+      <span className="sr-only">Campo de formulário para pesquisar produtos disponíveis</span>
       <Input
         ref={inputRef}
         value={inputValue}

@@ -10,7 +10,8 @@ export function MainLogoGray() {
       />
       <div>
         <h1>food explorer</h1>
-      </div>      
+      </div> 
+      <span className="sr-only">Logotipo de rodapé de página da marca Food Explorer</span>     
     </Container>
   )
 }

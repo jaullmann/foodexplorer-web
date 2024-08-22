@@ -30,17 +30,23 @@ export function OrderCardDetail({ dishId, title, imageFile, amount, price,
     <Container {...rest}> 
       {
         imageFile &&
-        <img 
-          src={imageFile} 
-          alt={"Miniatura do prato "+ title}
-          onClick={() => handleDishDetails(dishId)}
-        />
+        <>
+          <img 
+            src={imageFile} 
+            alt={"Miniatura do prato "+ title}
+            onClick={() => handleDishDetails(dishId)}
+          />
+          <span className="sr-only">{`Acessar página de detalhes de ${title}`}</span>
+        </>        
       }
       {
         !imageFile &&
-        <PiCameraSlash           
-          onClick={() => handleDishDetails(dishId)}
-        />
+        <>
+          <PiCameraSlash           
+            onClick={() => handleDishDetails(dishId)}
+          />
+          <span className="sr-only">{`Acessar página de detalhes de ${title}`}</span>
+        </>        
       }
       
       <div className="card-info">
@@ -50,11 +56,13 @@ export function OrderCardDetail({ dishId, title, imageFile, amount, price,
         >        
           <h2>{amount} x {title} </h2>
           <p>{formatCurrency(amount * price)}</p>
+          <span className="sr-only">{`Acessar página de detalhes de ${title}`}</span>
         </div>
         {!paidOrder && 
           <button 
             onClick={() => removeDish(dishId)}>
             Excluir
+            <span className="sr-only">{`Botão para excluir ${title} do pedido atual`}</span>
           </button>}        
       </div>      
     </Container>

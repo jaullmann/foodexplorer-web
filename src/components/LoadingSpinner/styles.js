@@ -57,7 +57,7 @@ export const Container = styled.div`
     width: 28rem;
     height: 28rem; 
     rotate: 90deg; 
-    animation: explode 1.4s -.3s ease-out infinite;
+    animation: explode 1.4s .35s ease-out infinite;
     position: relative;  
     
     opacity: 0;

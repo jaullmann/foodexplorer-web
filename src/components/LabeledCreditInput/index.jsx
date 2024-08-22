@@ -62,6 +62,13 @@ export function LabeledCreditInput({ label, placeholder, altStyle, value, inputT
         placeholder={placeholder}
         maxLength={inputType === 'creditCard' ? 19 : inputType === 'expiryDate' ? 5 : 3}
       />
+      <span className="sr-only">{inputType === 'creditCard' ?
+        "campo de formulário para digitar número do cartão de crédito, com 16 dígitos numéricos" 
+        : inputType === 'expiryDate' ?
+        "campo de formulário para digitar o mês e ano do vencimento do cartão, com 4 dígitos numéricos" 
+        :
+        "campo de formulário para digitar o código de segurança CVV (ou CVC) do cartão"
+      }</span>
     </Container>
   );
 };

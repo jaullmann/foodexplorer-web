@@ -17,11 +17,11 @@ export function CartButton({ amount, loading = false, onClick }){
       <h3>Pedidos ({ amount })</h3>
       {
         admin &&
-        <span className="sr-only">Botão para acessar tela de gestão de pedidos</span>
+        <span className="sr-only">Acessar tela de gestão de pedidos</span>
       }
       {
         !admin &&
-        <span className="sr-only">Botão para acessar tela de pagamento dos produtos selecionados</span>
+        <span className="sr-only">Acessar tela de pagamento dos produtos selecionados</span>
       }      
     </Container>
   )

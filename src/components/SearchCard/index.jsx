@@ -4,12 +4,10 @@ import { useNavigate } from "react-router-dom";
 import { Container } from "./styles";
 
 export function SearchCard({ dishId, title, imageFile, ...rest }){
-
-    const { handleInputValue } = useSearch();
+    
     const navigate = useNavigate();    
 
-    function handleDishDetails(dishId) { 
-        // handleInputValue("");
+    function handleDishDetails(dishId) {         
         navigate(`/description/${dishId}`);
     }
 
@@ -38,6 +36,7 @@ export function SearchCard({ dishId, title, imageFile, ...rest }){
                     {title}
                 </h2>
             </div>
+            <span className="sr-only">{`Acessar página de detalhes de ${title}`}</span>
         </Container>
     )
 }

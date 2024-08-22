@@ -25,7 +25,8 @@ export function MainLogo({ userRole="customer" }) {
       <div>
         <h1>food explorer</h1>
         <h3 className={ userRole }>admin</h3>     
-      </div>      
+      </div>
+      <span className="sr-only">Logotipo da marca Food Explorer</span>     
     </Container>
   )
 }

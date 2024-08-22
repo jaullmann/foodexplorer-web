@@ -1,3 +1,5 @@
+// botão criado para a primeira versão do programa, sem o extra mile.
+
 import { Container } from "./styles";
 import Receipt from "../../assets/app_icons/receipt.svg"
 

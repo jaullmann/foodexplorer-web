@@ -10,6 +10,7 @@ export function LabeledInput({ label, placeholder, altStyle = false, ...rest }) 
         placeholder={placeholder}        
         {...rest}
       />
+      <span className="sr-only">{`Campo de formulário para digitar ${label}`}</span>
     </Container>
   );
 }

@@ -35,6 +35,7 @@ export function LabeledCurrencyInput({ label, placeholder, altStyle = false, val
         onChange={handleInputChange}
         {...rest}
       />
+      <span className="sr-only">Campo de formulário para digitação de preço; aceita somente números</span>
     </Container>
   );
 }
