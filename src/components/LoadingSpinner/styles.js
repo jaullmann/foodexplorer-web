@@ -31,7 +31,7 @@ export const Container = styled.div`
       : theme.COLORS.TINTS_CAKE_100
     };    
     rotate: 90deg;
-    animation: spin 1.6s ease-in-out infinite;    
+    animation: spin 1.4s ease-in-out infinite;    
     
     z-index: 10000;
 
@@ -39,7 +39,7 @@ export const Container = styled.div`
       0% { 
         transform: rotate(0deg); 
       }
-      70% { 
+      80% { 
         transform: rotate(120deg); 
       }
       100% { 
@@ -57,7 +57,7 @@ export const Container = styled.div`
     width: 28rem;
     height: 28rem; 
     rotate: 90deg; 
-    animation: explode 1.6s -.35s ease-out infinite;
+    animation: explode 1.4s -.3s ease-out infinite;
     position: relative;  
     
     opacity: 0;

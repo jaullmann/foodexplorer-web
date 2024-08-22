@@ -86,12 +86,14 @@ export function Header({ orderStatuses = {}, isLoading = false }) {
         <Link to={"/favorites"} className="header-link"> 
           <FiHeart />
           <h2 className="link-text">Meus favoritos</h2>
+          <span className="sr-only">Acessar os favoritos do usuário</span>
         </Link>            
         {
           !admin && 
           <Link to={"/orders"} className="header-link"> 
             <RxCounterClockwiseClock />
             <h2 className="link-text">Meus pedidos</h2>
+            <span className="sr-only">Acessar histórico de pedidos do usuário</span>
           </Link>
         }        
         {
@@ -99,28 +101,41 @@ export function Header({ orderStatuses = {}, isLoading = false }) {
           <Link to={"/new"} className="header-link"> 
             <PiNotePencil />
             <h2 className="link-text">Novo Prato</h2>
+            <span className="sr-only">Criar um novo produto</span>
           </Link>
         }
-        {!admin && <CartButton amount={cartAmount} onClick={handlePayment} />}
-        {admin && <CartButton amount={ordersAmount} onClick={() => navigate("/orders")} />}
+        {
+          !admin && 
+          <CartButton amount={cartAmount} onClick={handlePayment} />
+        }
+        {
+          admin && 
+          <CartButton amount={ordersAmount} onClick={() => navigate("/orders")} />
+        }
         <button id="theme-btn">
-          <ThemeButton           
+          <ThemeButton
             currentTheme={theme.NAME} 
-            onClick={toggleTheme} 
-          />
+            onClick={toggleTheme}
+          > 
+            <span className="sr-only">Alterar entre o tema visual claro e escuro</span>           
+          </ThemeButton>                    
         </button>
         <button id="sign-out">
           <PiSignOut
-            onClick={handleSignOut} 
-          />  
+            onClick={handleSignOut}
+          >
+            <span className="sr-only">Sair da conta</span>    
+          </PiSignOut>            
         </button>                  
       </div>
       
       <div className="mobile">
-        <FiMenu 
+        <FiMenu
           id="side-menu-btn" 
           onClick={openSideMenu}
-        />
+        >
+          <span className="sr-only">Abrir menu de navegação lateral</span>
+        </FiMenu>         
         <SideMenu
           admin={admin}                   
           closeSideMenu={closeSideMenu}

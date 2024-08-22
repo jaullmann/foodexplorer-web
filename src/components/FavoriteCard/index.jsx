@@ -25,11 +25,14 @@ export function FavoriteCard({ dishId, title, imageFile, onDeleteFavorite, ...re
         <Container {...rest}>            
             {
                 imageFile && 
-                <img 
-                    src={imageFile}                
-                    alt={"Foto do produto"}
-                    onClick={() => handleDishDetails()}
-                />
+                <>
+                    <img 
+                        src={imageFile}                
+                        alt={"Foto do produto"}
+                        onClick={() => handleDishDetails()}
+                    />
+                    <span className="sr-only">{`Acessar página de detalhes de ${title}`}</span>
+                </>                
             }
             {
                 !imageFile &&
@@ -37,16 +40,19 @@ export function FavoriteCard({ dishId, title, imageFile, onDeleteFavorite, ...re
                     <PiCameraSlash 
                         onClick={() => handleDishDetails()}
                     />
+                    <span className="sr-only">{`Acessar página de detalhes de ${title}`}</span>                    
                 </div>                
             }
             <div>
                 <h2 onClick={() => handleDishDetails()}>
                     {title}
+                    <span className="sr-only">{`Acessar página de detalhes de ${title}`}</span>
                 </h2>
                 <button onClick={() => deleteFavoriteCard()}>
                     Remover dos favoritos
+                    <span className="sr-only">{`Remover ${title} dos favoritos`}</span>
                 </button>
-            </div>
+            </div>            
         </Container>
     )
 }

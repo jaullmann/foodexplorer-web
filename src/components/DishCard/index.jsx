@@ -63,22 +63,29 @@ export function DishCard({ dishId, title, imageFile, description, price, favorit
               <PiPencilSimple 
                 id={`edit-button-dish-${dishId}`}
                 onClick={() => handleUpdate()}                
-              />
+              >
+                <span className="sr-only">{`Botão para editar ${title}`}</span>
+              </PiPencilSimple>
             ) : (
               <FiHeart
                 id={`fav-button-dish-${dishId}`}
                 onClick={() => toggleFavoriteDish()}
-                className={favDish ? "favorite-dish" : ""}
-              />
+                className={favDish ? "favorite-dish" : ""} 
+              >
+                <span className="sr-only">{`Botão para adicionar/remover ${title} dos favoritos`}</span>
+              </FiHeart>
             )
           } 
           { 
             imageFile &&  
-            <img 
-              src={imageFile} 
-              alt="Foto do produto" 
-              onClick={() => handleDetails()}
-            />
+            <>
+              <img
+                src={imageFile} 
+                alt="Foto do produto" 
+                onClick={() => handleDetails()}
+              />
+              <span className="sr-only">{`Acessar página de detalhes de ${title}`}</span>
+            </>            
           }
           { 
             !imageFile &&  
@@ -92,6 +99,7 @@ export function DishCard({ dishId, title, imageFile, description, price, favorit
               onClick={() => handleDetails(dishId)}>
               {loading ? "Carregando" : title + "\u00A0" + ">"}
             </h1>
+            <span className="sr-only">{`Acessar página de detalhes de ${title}`}</span>
           </div>           
           <h3 
             id="dish-description"

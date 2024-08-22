@@ -1,7 +1,11 @@
+import { useAuth } from "../../hooks/auth";
 import { Container } from "./styles";
 import { PiReceipt } from "react-icons/pi";
 
 export function CartButton({ amount, loading = false, onClick }){
+
+  const { user } = useAuth();
+  const admin = user?.role === "admin";
 
   return (
     <Container
@@ -11,7 +15,14 @@ export function CartButton({ amount, loading = false, onClick }){
     >
       <PiReceipt />
       <h3>Pedidos ({ amount })</h3>
-
+      {
+        admin &&
+        <span className="sr-only">Botão para acessar tela de gestão de pedidos</span>
+      }
+      {
+        !admin &&
+        <span className="sr-only">Botão para acessar tela de pagamento dos produtos selecionados</span>
+      }      
     </Container>
   )
 }

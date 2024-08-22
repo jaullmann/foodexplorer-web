@@ -26,11 +26,7 @@ export const Button = styled.a`
   > div {    
     ${({ theme }) => theme.FONTS.POPPINS_BOLD}
     color: ${({ theme }) => theme.COLORS.LIGHT_300};
-    font-size: 24px;
-
-    @media (max-width: ${DEVICE_BREAKPOINTS.MD}) {
-      font-size: 1.125rem;
-    }
+    font-size: 1.5rem;
   }
   
   cursor: pointer;

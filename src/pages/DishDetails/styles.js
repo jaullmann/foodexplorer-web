@@ -118,17 +118,18 @@ export const Main = styled.main`
     p {       
         text-align: justify;
         ${({ theme }) => theme.FONTS.POPPINS_REGULAR};
-        font-size: clamp(1.1rem, .6rem + .8vw, 1.5rem);
+        font-size: clamp(1.2rem, .6rem + .8vw, 1.5rem);
         line-height: 140%;
         color: ${({ theme }) => theme.COLORS.LIGHT_300};
 
-        @media (max-width: ${DEVICE_BREAKPOINTS.MD}) {
+        @media (max-width: ${DEVICE_BREAKPOINTS.LG}) {
             padding: 0 1.75rem 2.1rem;
+            text-align: center;
         }
     }
 
     @media (max-width: ${DEVICE_BREAKPOINTS.LG}) {
-        margin-top: 9rem;
+        margin-top: 8rem;
 
         h1, p, #ingredients {
             max-width: 26.75rem; 
@@ -142,7 +143,7 @@ export const Main = styled.main`
         display: flex; 
         align-items: flex-start;
         flex-wrap: wrap;
-        gap: .75rem;
+        gap: 1.2rem;
 
         @media (max-width: ${DEVICE_BREAKPOINTS.LG}) {
             justify-content: center;

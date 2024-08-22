@@ -1,6 +1,7 @@
 import { Container } from "./styles";
 
-export function Button({ title, loading = false, onClick, color = 'tomato_100', ...rest }) {  
+export function Button({ title, loading = false, onClick, color = 'tomato_100', 
+  srDescription = "botão", ...rest }) {  
   return (
     <Container
       type="button"
@@ -10,6 +11,7 @@ export function Button({ title, loading = false, onClick, color = 'tomato_100', 
       {...rest}
     >
       { loading? 'Carregando...' : title }
+      <span className="sr-only">{srDescription}</span>
     </Container>
   );
 }

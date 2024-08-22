@@ -7,7 +7,7 @@ export default createGlobalStyle`
         padding: 0;
         box-sizing: border-box;
         
-        /* div, h1, h2, h3, h4 {
+        div, h1, h2, h3, h4 {
             border: .1px dotted cyan;
         }
         a {
@@ -27,7 +27,7 @@ export default createGlobalStyle`
         }
         svg {
             border: .1px dotted orange;
-        } */
+        }
 
         transition: .2s;
     }
@@ -94,6 +94,17 @@ export default createGlobalStyle`
 
     button:hover, a:hover {
         filter: brightness(0.8);
+    }
+
+    .sr-only {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        white-space: nowrap;
     }
 
     @keyframes fade-in {

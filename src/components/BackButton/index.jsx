@@ -16,6 +16,7 @@ export function BackButton() {
     >
       <PiCaretLeft />
       <div>voltar</div>
+      <span className="sr-only">Voltar para a página anterior</span>
     </Button> 
   )
 }

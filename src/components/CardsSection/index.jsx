@@ -78,9 +78,14 @@ export function CardsSection({ dishesData, sectionName, category, favorites }) {
                 )
                 )}
               <div id='gradient-layer'>
-                <PiCaretLeft />
-                <PiCaretRight />
+                <PiCaretLeft>
+                  <span className="sr-only">{`Botão para deslizar carrossel de ${sectionName} para esquerda` }</span>
+                </PiCaretLeft>
+                <PiCaretRight>
+                  <span className="sr-only">{`Botão para deslizar carrossel de ${sectionName} para direita` }</span>
+                </PiCaretRight>
               </div>
+              <span className="sr-only">{`Carrossel com cartões de ${sectionName}`}</span>
             </Swiper>
 
           </div>

@@ -12,6 +12,7 @@ export function CartButtonMobile({ amount, loading = false, onClick }) {
     >
       <PiReceipt />
       <div>{amount}</div>
+      <span className="sr-only">Botão para pagamento dos produtos selecionados</span>
     </Container>
   );
 }
