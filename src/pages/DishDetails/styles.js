@@ -18,7 +18,7 @@ export const Main = styled.main`
     /* width: 100%; */
     max-width: 93.5rem; 
     margin-top: 6.5rem;
-    margin-bottom: auto;
+    margin-bottom: 2.5rem;
    
     > a {
         margin-bottom: 2.625rem;
@@ -66,7 +66,7 @@ export const Main = styled.main`
 
         @media (max-width: ${DEVICE_BREAKPOINTS.LG}) {
             flex-direction: column;  
-            gap: 1.5rem;
+            gap: 2.5rem;
 
             > img {
                 width: max(22rem, 43vw);

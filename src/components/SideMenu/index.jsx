@@ -4,17 +4,25 @@ import { FiHeart } from "react-icons/fi";
 import { RxCounterClockwiseClock } from "react-icons/rx";
 import { PiNotePencil } from "react-icons/pi";
 import { PiSignOut } from "react-icons/pi";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Container, Nav } from "./styles";
 import { ThemeButton } from "../ThemeButton";
 import { SearchInput } from "../SearchInput";
+import { useAuth } from "../../hooks/auth";
 import { useEffect } from "react";
 
 
-export function SideMenu({ admin, handleSignOut, closeSideMenu, sideMenuOpen, 
+export function SideMenu({ admin, closeSideMenu, sideMenuOpen, 
   currentTheme, toggleTheme }) {
 
   const { searchResult, inputValue } = useSearch();
+  const { signOut } = useAuth();
+  const navigate = useNavigate();
+
+  function handleSignOut() {    
+    navigate("/");
+    signOut();
+  }
 
   useEffect(() => {    
   }, [inputValue])

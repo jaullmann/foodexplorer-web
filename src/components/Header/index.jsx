@@ -122,8 +122,7 @@ export function Header({ orderStatuses = {}, isLoading = false }) {
           onClick={openSideMenu}
         />
         <SideMenu
-          admin={admin}         
-          handleSignOut={handleSignOut}
+          admin={admin}                   
           closeSideMenu={closeSideMenu}
           sideMenuOpen={isSideMenuOpen}
           currentTheme={theme.NAME}

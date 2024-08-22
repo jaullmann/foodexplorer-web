@@ -11,7 +11,7 @@ export const Container = styled.div`
   width: 100%;
   height: 100%;
 
-  background-color: rgba(255, 255, 255, 0.5);  
+  background-color: rgba(255, 255, 255, 0.4);  
   opacity: ${({ $isVisible }) => (
     $isVisible ? 1 : 0
   )};
@@ -21,44 +21,58 @@ export const Container = styled.div`
   transition: opacity .3s ease, visibility .3s ease;
   z-index: 999;  
 
-  svg {    
+  #inner-hexagon {    
     position: absolute;
 
-    width: 7.5rem;
-    height: 7.5rem;  
-    fill: ${({ theme }) => theme.COLORS.TINTS_CAKE_200};
+    width: 12rem;
+    height: 12rem;  
+    fill: ${({ theme }) => theme.NAME === "lightTheme"
+      ? theme.COLORS.TINTS_CAKE_200
+      : theme.COLORS.TINTS_CAKE_100
+    };    
     rotate: 90deg;
-    animation: spin 2.5s linear infinite;
-    opacity: .8;
+    animation: spin 1.6s ease-in-out infinite;    
+    
+    z-index: 10000;
 
     @keyframes spin {
       0% { 
         transform: rotate(0deg); 
       }
+      70% { 
+        transform: rotate(120deg); 
+      }
       100% { 
-        transform: rotate(360deg); 
+        transform: rotate(120deg); 
       }
     }
   }
-`;
 
-export const Spinner = styled.div`
-  border: .6rem solid ${({ theme }) => theme.COLORS.DARK_600};
-  border-top: .6rem solid transparent;    
-  border-radius: 50%;
-  width: 10rem;
-  height: 10rem;  
-  animation: counter-spin 1.5s linear infinite;
-  position: relative;   
+  #outer-hexagon {
+    fill: ${({ theme }) => theme.NAME === "lightTheme"
+      ? theme.COLORS.TINTS_CAKE_100
+      : theme.COLORS.TINTS_CAKE_200
+    };       
+    
+    width: 28rem;
+    height: 28rem; 
+    rotate: 90deg; 
+    animation: explode 1.6s -.35s ease-out infinite;
+    position: relative;  
+    
+    opacity: 0;
 
-  @keyframes counter-spin {
-    0% { 
-      transform: rotate(0deg); 
-    }
-    100% { 
-      transform: rotate(360deg); 
+    @keyframes explode {
+      0% { 
+        scale: 0;
+        opacity: 1; 
+      }
+      100% { 
+        scale: 1; 
+        opacity: 0;
+      }
     }
   }
 
-
 `;
+

@@ -1,12 +1,12 @@
-import { Container, Spinner } from "./styles";
+import { Container } from "./styles";
 import { MdHexagon } from "react-icons/md";
 
 export function LoadingSpinner({ isLoading }) {
 
   return (
     <Container $isVisible={isLoading}>      
-      <MdHexagon />
-      <Spinner />      
+      <MdHexagon id='inner-hexagon'/>
+      <MdHexagon id='outer-hexagon'/>      
     </Container>
   );
 };

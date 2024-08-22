@@ -18,7 +18,7 @@ export const Container = styled.div`
   visibility: ${({ $isActive }) => (
     $isActive ? 'visible' : 'hidden'
   )};
-  transition: opacity 1s ease, visibility 1s ease;
+  transition: opacity 1.1s ease, visibility 1.1s ease;
 
   z-index: 1000;
   pointer-events: none;  
@@ -40,6 +40,11 @@ export const Container = styled.div`
       margin-top: 5.5rem;
       justify-content: center;
     }
+
+    @media (max-width: ${DEVICE_BREAKPOINTS.MD}) {
+      width: 100%;      
+      max-width: 85vw; 
+    }
   }
 
   
@@ -57,11 +62,7 @@ export const Alert = styled.div`
   gap: 1rem;
 
   border-radius: .5rem;
-  background-color: ${({ theme }) => theme.COLORS.DARK_900};  
-
-  @media (max-width: ${DEVICE_BREAKPOINTS.LG}) {
-    margin-right: 0;
-  }
+  background-color: ${({ theme }) => theme.COLORS.DARK_900};    
 
   box-shadow: ${({ theme }) => theme.NAME === "lightTheme"
     ? `0 0 .5rem .2rem ${theme.COLORS.DARK_200}`
@@ -80,5 +81,21 @@ export const Alert = styled.div`
     font-size: 1.2rem;
     ${({ theme }) => theme.FONTS.POPPINS_REGULAR};
     color: ${({ theme }) => theme.COLORS.LIGHT_200};
+  }
+
+  @media (max-width: ${DEVICE_BREAKPOINTS.LG}) {
+    margin-right: 0;
+  }
+
+  @media (max-width: ${DEVICE_BREAKPOINTS.MD}) {
+    h1 {
+      font-size: 1.1rem;    
+    }
+
+    > img {
+      width: 2.4rem;
+      height: 2.4rem;
+      border-radius: 50%;
+    }
   }
 `;
