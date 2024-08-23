@@ -370,15 +370,20 @@ export function DishCreation() {
                                         src={imageUrl ? imageUrl : `${api.defaults.baseURL}/files/${prevImageFile}`}
                                         alt="Foto do prato"
                                     />
-                                    <PiTrash 
+                                    <PiTrash
                                         id="delete-img-btn"
                                         onClick={deleteCurrentPicture} 
-                                    />
+                                    >
+                                        <span className="sr-only">Excluir a imagem do prato</span>
+                                    </PiTrash>
                                 </>                                
                             }
                             {
                                 (!imageUrl && !prevImageFile) &&
-                                <PiCameraSlash id="placeholder" />                                
+                                <PiCameraSlash 
+                                    id="placeholder" 
+                                    alt="Imagem do prato ausente" 
+                                />                                
                             }                            
                         </div>
 
@@ -404,9 +409,10 @@ export function DishCreation() {
                                     >
                                         <option value="refeicao">Refeição</option>
                                         <option value="sobremesa">Sobremesa</option>
-                                        <option value="bebida">Bebida</option>
-                                    </select>
+                                        <option value="bebida">Bebida</option>                                        
+                                    </select>                                    
                                     <PiCaretDownBold />
+                                    <span className="sr-only">Selecionar categoria do produto - prato, sobremesa ou bebida</span>
                                 </div>
                             </div>
 
@@ -433,8 +439,12 @@ export function DishCreation() {
                                             />
                                             <FiPlus
                                                 onClick={handleAddIngredient}
-                                            />
+                                            >
+                                                <span className="sr-only">Adicionar o ingrediente digitado</span>
+                                            </FiPlus>
+                                            <span className="sr-only">Campo de formulário para digitar o novo ingrediente</span>
                                         </div>
+                                        <span className="sr-only">Caixa com os ingredientes já registrados para o produto</span>
                                     </div>
                                 </div>
                                 <LabeledCurrencyInput
@@ -454,7 +464,9 @@ export function DishCreation() {
                             value={description}
                             placeholder="Registre aqui uma descrição para o seu produto"
                             onChange={e => setDescription(e.target.value)}
-                        />
+                        >
+                            <span className="sr-only">Campo de texto para digitar descrição do produto com até 500 caracteres</span>
+                        </textarea>
                     </div>
 
                     {newDish &&

@@ -56,7 +56,7 @@ export const Alert = styled.div`
     : `0rem 0rem .7rem .2rem ${theme.COLORS.LIGHT_700}`
   };
   
-  & div:nth-child(1){
+  & div:nth-child(2){
     width: 100%;
 
     display: flex;

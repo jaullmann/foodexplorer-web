@@ -1,7 +1,7 @@
 import { Container } from "./styles";
 
 export function Button({ title, loading = false, onClick, color = 'tomato_100', 
-  srDescription = "botão", ...rest }) {  
+  srDescription = title, ...rest }) {  
   return (
     <Container
       type="button"
@@ -11,7 +11,7 @@ export function Button({ title, loading = false, onClick, color = 'tomato_100',
       {...rest}
     >
       { loading? 'Carregando...' : title }
-      <span className="sr-only">{srDescription}</span>
+      <span className="sr-only">{`Botão para ${srDescription}`}</span>
     </Container>
   );
 }

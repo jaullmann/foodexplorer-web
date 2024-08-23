@@ -16,7 +16,7 @@ export const Container = styled.div`
         
     > p {
         ${({ theme }) => theme.FONTS.ROBOTO_REGULAR};
-        font-size: clamp(.6rem, .4rem + .5vw, 1rem);  
+        font-size: .9rem; 
         width: max-content;
     }
 

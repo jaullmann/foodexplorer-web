@@ -15,13 +15,18 @@ import { useEffect } from "react";
 export function SideMenu({ admin, closeSideMenu, sideMenuOpen, 
   currentTheme, toggleTheme }) {
 
-  const { searchResult, inputValue } = useSearch();
+  const { searchResult, inputValue, handleInputValue } = useSearch();
   const { signOut } = useAuth();
   const navigate = useNavigate();
 
   function handleSignOut() {    
     navigate("/");
     signOut();
+  }
+
+  function closeMenuAndClearSearch() {    
+    closeSideMenu();   
+    handleInputValue(""); 
   }
 
   useEffect(() => {    
@@ -59,6 +64,17 @@ export function SideMenu({ admin, closeSideMenu, sideMenuOpen,
             >
               {`${searchResult.length} resultado(s) para "${inputValue}"`}
               <span className="sr-only">Acessar os resultatos da pesquisa realizada</span>
+            </Link>
+          }
+          { 
+            (searchResult.length === 0 && inputValue.length > 2)
+            && 
+            <Link               
+              id="search-results"
+              onClick={closeMenuAndClearSearch}
+            >
+              {`Sem resultados para "${inputValue}"`}
+              <span className="sr-only">{`Nenhum resultado encontrado para "${inputValue}"`}</span>
             </Link>
           }
           <Link to={"/favorites"} id="side-menu-favorites">

@@ -365,7 +365,7 @@ export const Main = styled.main`
         border: none;   
         width: 5rem;    
         ${({ theme }) => theme.FONTS.ROBOTO_REGULAR};  
-        font-size: clamp(.6rem, .4rem + .5vw, .9rem);      
+        font-size: .9rem;      
         background-color: transparent;
         color: ${({ theme }) => theme.COLORS.LIGHT_200};       
       }
