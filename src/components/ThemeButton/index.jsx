@@ -14,6 +14,7 @@ export function ThemeButton({ currentTheme, onClick }){
         :
         <PiMoon id={"dark-theme-icon"} />      
       }
+      <span className="sr-only">Botão para alterar entre o tema visual claro e escuro</span>
     </Button>
   )
 }

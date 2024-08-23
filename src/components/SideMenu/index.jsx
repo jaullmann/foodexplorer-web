@@ -31,13 +31,17 @@ export function SideMenu({ admin, closeSideMenu, sideMenuOpen,
     <Container data-menu-is-open={sideMenuOpen}>
       <div id="side-menu-top-bar">
         <div>
-          <PiX onClick={closeSideMenu} />
+          <PiX
+            onClick={closeSideMenu}
+          >
+            <span className="sr-only">Fechar menu de navegação lateral</span>
+          </PiX> 
           <h1>Menu</h1>
         </div>        
-        <ThemeButton 
+        <ThemeButton
           currentTheme={currentTheme}
           onClick={toggleTheme}
-        />
+        />       
       </div>      
       <Nav>
         <SearchInput 
@@ -54,17 +58,20 @@ export function SideMenu({ admin, closeSideMenu, sideMenuOpen,
               onClick={closeSideMenu}
             >
               {`${searchResult.length} resultado(s) para "${inputValue}"`}
+              <span className="sr-only">Acessar os resultatos da pesquisa realizada</span>
             </Link>
           }
           <Link to={"/favorites"} id="side-menu-favorites">
             <FiHeart />
             <p>Favoritos</p>
+            <span className="sr-only">Acessar os favoritos do usuário</span>
           </Link>
           {
             !admin && 
             <Link to={"/orders"} id="side-menu-orders">
               <RxCounterClockwiseClock />
               <p>Meus pedidos</p>
+              <span className="sr-only">Acessar histórico de pedidos do usuário</span>
             </Link>
           }
           {
@@ -72,11 +79,13 @@ export function SideMenu({ admin, closeSideMenu, sideMenuOpen,
             <Link to={"/new"} id="side-menu-new">
               <PiNotePencil />
               <p>Novo Prato</p>
+              <span className="sr-only">Criar um novo produto</span>
             </Link>
           }
           <Link id="side-menu-signout">
             <PiSignOut onClick={handleSignOut}/>
             <p onClick={handleSignOut}>Sair</p>
+            <span className="sr-only">Sair da conta</span>
           </Link>          
         </div>
       </Nav>

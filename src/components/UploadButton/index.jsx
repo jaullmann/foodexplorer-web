@@ -15,6 +15,7 @@ export function UploadButton({ newDish, onChange }) {
         />
         {newDish && <p>Escolher imagem</p>}
         {!newDish && <p>Alterar imagem</p>}
+        <span className="sr-only">Botão para fazer o upload da imagem em formato jpg ou png do produto</span>
       </Label>
     </Container>
   )

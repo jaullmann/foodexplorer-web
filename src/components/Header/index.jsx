@@ -116,9 +116,7 @@ export function Header({ orderStatuses = {}, isLoading = false }) {
           <ThemeButton
             currentTheme={theme.NAME} 
             onClick={toggleTheme}
-          > 
-            <span className="sr-only">Alterar entre o tema visual claro e escuro</span>           
-          </ThemeButton>                    
+          />                    
         </button>
         <button id="sign-out">
           <PiSignOut

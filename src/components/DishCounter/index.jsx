@@ -27,14 +27,14 @@ export function DishCounter({ onAmountChange }) {
           alt="Retirar" 
           onClick={removeDish}
         >
-          <span className="sr-only">Botão de cartão de produto para subtrair um item</span>
+          <span className="sr-only">Botão de cartão de produto para retirar um item a ser comprado</span>
         </PiMinusBold>                   
         <h3>{String(amount).padStart(2, '0')}</h3>          
         <PiPlusBold
            alt="Adicionar" 
            onClick={addDish}
         >
-          <span className="sr-only">Botão de cartão de produto para adicionar um item</span>
+          <span className="sr-only">Botão de cartão de produto para adicionar um item a ser comprado</span>
         </PiPlusBold>                 
       </Container>
   )

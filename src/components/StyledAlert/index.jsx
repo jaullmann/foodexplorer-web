@@ -15,6 +15,7 @@ export function StyledAlert() {
     >
       <div id="alert-container">
         <Alert>
+          <span className="sr-only">{`Pop-up de alerta ao usuário: ${alertData.message}`}</span>
           <div id="icon-message">
             {
               alertData.type === 'info' &&
@@ -37,7 +38,8 @@ export function StyledAlert() {
             title={alertData.buttonText}
             color={alertData.type === 'error' || alertData.type === 'warning' ? "tomato_200" : "mint_200" }
             onClick={hideAlert}
-          >            
+          >
+            <span className="sr-only">Botão para fechar mensagem pop-up</span>             
           </Button>
         </Alert>
       </div>      
