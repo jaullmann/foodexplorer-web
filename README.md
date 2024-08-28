@@ -30,4 +30,4 @@
   <li>Alteração de tema visual da aplicação com opções de temas claro e escuro;</li>
 </ul>
 
-<p>Além das funcionalidades acima, a aplicação ainda recebeu algumas features extras além daquelas exigidas pela lista de recursos solicitados pela Rocketseat, tais como notificações estilizadas para ações de compras, exclusões de produtos, adição e remoção de favoritos, e ainda, mensagens de alerta estlizadas com cores e fontes próprias do contexto Food Explorer.</p>
+<p>Além das funcionalidades acima, a aplicação ainda recebeu algumas features extras além daquelas exigidas pela lista de recursos solicitados pela Rocketseat, tais como notificações estilizadas para ações de compras, exclusões de produtos, adição e remoção de favoritos, animação de loading para interações com a base de dados e transições de páginas, e ainda, mensagens de alerta de usuário estlizadas com cores e fontes próprias do contexto Food Explorer.</p>
