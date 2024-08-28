@@ -27,7 +27,7 @@
 <ul>
   <li>Pesquisa de produtos com atualização de resultados mediante digitação em tempo real, separados por categorias;</li>
   <li>Criação e gestão de lista de produtos favoritos para compra/edição e consulta;</li>
-  <li>ALteração de tema visual da aplicação com opções de temas claro e escuro;</li>
+  <li>Alteração de tema visual da aplicação com opções de temas claro e escuro;</li>
 </ul>
 
 <p>Além das funcionalidades acima, a aplicação ainda recebeu algumas features extras além daquelas exigidas pela lista de recursos solicitados pela Rocketseat, tais como notificações estilizadas para ações de compras, exclusões de produtos, adição e remoção de favoritos, e ainda, mensagens de alerta estlizadas com cores e fontes próprias do contexto Food Explorer.</p>
