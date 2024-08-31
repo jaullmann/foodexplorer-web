@@ -6,7 +6,7 @@
 
 <p>A aplicação foi desenvolvida com layout responsivo e adaptável aos principais formatos de tela, para uso em dispositivos móveis, tablets, e desktops. Além disso, o site também foi adaptado aos padrões atuais de acessibilidade com uso da classe "sr-only".</p>
 
-<p>O Food Explorer disponibiliza diversas funcionalidades aos usuários, sejam eles clientes ou administradores da aplicação, as quais estão elencadas a seguir:</p>
+<p>O Food Explorer disponibiliza diversas funcionalidades aos usuários, sejam eles clientes ou administradores da aplicação, das quais podem ser destacados:</p>
 
 <h2>Administradores</h2>
 <ul>
