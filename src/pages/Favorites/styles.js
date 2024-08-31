@@ -41,7 +41,7 @@ export const Main = styled.main`
         text-align: center;
     }
 
-    #fav-dishes {
+    .fav-dishes {
         width: 100%;
 
         display: grid;          
@@ -59,7 +59,11 @@ export const Main = styled.main`
             grid-template-columns: repeat(1, 100%);         
         } 
              
-    }     
+    }  
+    
+    .fav-dishes:nth-child(7) {
+        margin-bottom: 1.5rem;
+    }
     
     //animation effects
 

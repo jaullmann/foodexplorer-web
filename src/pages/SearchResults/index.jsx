@@ -34,7 +34,7 @@ export function SearchResults() {
   
   useEffect(() => {
     splitResultsByCategory();
-    handleEmptySearch()  
+    handleEmptySearch();  
   }, [inputValue, searchResult]);
 
   return (
@@ -45,10 +45,12 @@ export function SearchResults() {
       {
         searchResult &&
         <Main>
+          
           {
             searchResult.length > 0 &&
             <h1 id="results">{`Resultados para "${inputValue}"`}</h1>
           }
+
           {
             dishes.length > 0 &&
             <>
@@ -74,6 +76,7 @@ export function SearchResults() {
               </div>
             </>            
           }
+
           {
             desserts.length > 0 &&
             <>
@@ -99,6 +102,7 @@ export function SearchResults() {
               </div>
             </>            
           }
+
           {
             drinks.length > 0 &&
             <>
@@ -124,10 +128,12 @@ export function SearchResults() {
               </div>
             </>            
           }
+
           {
             searchResult.length === 0 &&
             <h1 id="no-results">{`Sem resultados para "${inputValue}"`}</h1>
           }
+
         </Main>
 
       }

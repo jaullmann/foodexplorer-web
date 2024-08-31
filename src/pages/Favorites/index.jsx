@@ -9,25 +9,45 @@ import { FavoriteCard } from "../../components/FavoriteCard";
 
 export function Favorites() {    
 
-    const [data, setData] = useState();
+    const [data, setData] = useState([]);
+    const [dishes, setDishes] = useState([]);
+    const [desserts, setDesserts] = useState([]);
+    const [drinks, setDrinks] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
-    const { fetchFavorites, favoritesData, userFavorites } = useFavorites();    
+    const { fetchFavorites, favoritesData, userFavorites } = useFavorites();   
+    
+    function splitFavoritesByCategory() {
+        if (!data) return; 
+        const filteredDishes = data.filter(r => r.category === "refeicao");
+        const filteredDesserts = data.filter(r => r.category === "sobremesa");
+        const filteredDrinks = data.filter(r => r.category === "bebida");
+        setDishes(filteredDishes);
+        setDesserts(filteredDesserts);
+        setDrinks(filteredDrinks);
+    }
 
     async function fetchUserFavorites() {
         setIsLoading(true);
         await fetchFavorites();
-        setData(favoritesData)
+        setData(favoritesData);        
         setIsLoading(false);
-      }
+    }
 
     useEffect(() => {
         fetchUserFavorites();
     }, []);
 
     useEffect(() => {    
-        fetchFavorites();
-        setData(favoritesData)    
-    }, [userFavorites]);
+        if (favoritesData) {
+            setData(favoritesData);
+        }
+    }, [favoritesData]);
+
+    useEffect(() => {
+        if (data) {
+            splitFavoritesByCategory();
+        }
+    }, [data]);
 
     return(
         
@@ -45,27 +65,84 @@ export function Favorites() {
                     }                  
 
                     {
-                        data.length > 0 &&
-                        <div id="fav-dishes">
-                            {
-                                data.map(( favorite, index ) => (
-                                    <FavoriteCard 
-                                        className="favorite-card"
-                                        key={"fav-dish-" + favorite.dish_id}
-                                        dishId={favorite.dish_id}
-                                        title={favorite.title}
-                                        imageFile={
-                                            favorite.image_file ? 
-                                                `${api.defaults.baseURL}/files/${favorite.image_file}` 
-                                                : 
-                                                null
-                                        }   
-                                        onDeleteFavorite={fetchFavorites}
-                                        style={{ animationDelay: `${index * 0.1}s` }}                                  
-                                    />
-                                ))
-                            }                    
-                        </div>
+                        dishes.length > 0 &&
+                        <>
+                            <SectionLabel title={"Refeições"}/>
+                            <div class="fav-dishes">
+                                {
+                                    dishes.map(( favorite, index ) => (
+                                        <FavoriteCard 
+                                            className="favorite-card"
+                                            key={"fav-dish-" + favorite.dish_id}
+                                            dishId={favorite.dish_id}
+                                            title={favorite.title}
+                                            imageFile={
+                                                favorite.image_file ? 
+                                                    `${api.defaults.baseURL}/files/${favorite.image_file}` 
+                                                    : 
+                                                    null
+                                            }   
+                                            onDeleteFavorite={fetchFavorites}
+                                            style={{ animationDelay: `${index * 0.1}s` }}                                  
+                                        />
+                                    ))
+                                }                    
+                            </div>
+                        </>                        
+                    }
+
+                    {
+                        desserts.length > 0 &&
+                        <>
+                            <SectionLabel title={"Sobremesas"}/>
+                            <div class="fav-dishes">
+                                {
+                                    desserts.map(( favorite, index ) => (
+                                        <FavoriteCard 
+                                            className="favorite-card"
+                                            key={"fav-dish-" + favorite.dish_id}
+                                            dishId={favorite.dish_id}
+                                            title={favorite.title}
+                                            imageFile={
+                                                favorite.image_file ? 
+                                                    `${api.defaults.baseURL}/files/${favorite.image_file}` 
+                                                    : 
+                                                    null
+                                            }   
+                                            onDeleteFavorite={fetchFavorites}
+                                            style={{ animationDelay: `${index * 0.1}s` }}                                  
+                                        />
+                                    ))
+                                }                    
+                            </div>
+                        </>                        
+                    }
+
+                    {
+                        drinks.length > 0 &&
+                        <>
+                            <SectionLabel title={"Bebidas"}/>
+                            <div class="fav-dishes">
+                                {
+                                    drinks.map(( favorite, index ) => (
+                                        <FavoriteCard 
+                                            className="favorite-card"
+                                            key={"fav-dish-" + favorite.dish_id}
+                                            dishId={favorite.dish_id}
+                                            title={favorite.title}
+                                            imageFile={
+                                                favorite.image_file ? 
+                                                    `${api.defaults.baseURL}/files/${favorite.image_file}` 
+                                                    : 
+                                                    null
+                                            }   
+                                            onDeleteFavorite={fetchFavorites}
+                                            style={{ animationDelay: `${index * 0.1}s` }}                                  
+                                        />
+                                    ))
+                                }                    
+                            </div>
+                        </>                        
                     }
 
                     {
