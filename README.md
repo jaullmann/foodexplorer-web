@@ -11,7 +11,7 @@
 <h2>Administradores</h2>
 <ul>
   <li>Criação de conta de usuário com nome, e-mail e senha;</li>
-  <li>Criação e edição de produtos com dados e foto atribuída, em arquivo jpg ou png;</li>
+  <li>Criação, exclusão e edição de produtos com dados e imagem atribuída, em arquivo formato jpg ou png;</li>
   <li>Gestão e controle de pedidos de usuários com alteração de status de pedidos e recebimento de novos pedidos em tempo real;</li>  
 </ul>
 
