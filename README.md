@@ -25,7 +25,7 @@
 <ul>
   <li>Criação de conta de usuário com nome, e-mail e senha;</li>
   <li>Pesquisa de produtos com atualização de resultados mediante digitação em tempo real, separados por categorias;</li>
-  <li>Criação e gestão de lista de produtos favoritos para compra/edição e consulta;</li>
+  <li>Criação e gestão de lista de produtos favoritos para compra/edição e consulta, separados por categorias;</li>
   <li>Alteração de tema visual da aplicação com opções de temas claro e escuro;</li>
 </ul>
 
@@ -33,5 +33,6 @@
 
 <h2>Guia de utilização</h2>
 <ol>
-  <li>Na raiz do diretório, executar o comando "npm i" no terminal;</li>
+  <li>Abrir o arquivo src\services\api.js, e colocar no parâmetro "baseURL" o endereço online onde será executada a aplicação API (backend);</li>
+  <li>Na raiz do diretório, executar o comando "npm i" no terminal, para instalação dos pacotes necessários;</li>
 </ol>
