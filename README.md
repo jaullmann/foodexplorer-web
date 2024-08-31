@@ -29,6 +29,9 @@
   <li>Alteração de tema visual da aplicação com opções de temas claro e escuro;</li>
 </ul>
 
-<p>Somado às funcionalidades acima, a aplicação ainda recebeu algumas features extras além daquelas exigidas e sugeridas pela Rocketseat, tais como notificações pop-up estilizadas para ações de compras, exclusões de produtos, adição e remoção de favoritos, animação de loading para interações com a base de dados e transições de páginas, e ainda, mensagens de alerta de usuário estlizadas com cores e fontes próprias do contexto Food Explorer.</p>
+<p>Somado às funcionalidades acima, a aplicação ainda recebeu algumas features extras além daquelas exigidas e sugeridas pela Rocketseat, tais como notificações pop-up estilizadas para ações de compras, exclusões de produtos, adição e remoção de favoritos, animação de loading para interações com a base de dados e transições de páginas, e ainda, mensagens de alerta de usuário estlizadas com cores e fontes próprias do contexto da aplicação.</p>
 
 <h2>Guia de utilização</h2>
+<ol>
+  <li>Na raiz do diretório, executar o comando "npm i" no terminal;</li>
+</ol>
