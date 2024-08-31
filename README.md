@@ -2,7 +2,7 @@
 
 <h1>Food Explorer - Aplicação Web (Front-end)</h1>
 
-<p>Projeto completo de site de e-commerce, desenvolvido para conclusão do curso Explorer da Rocketseat, com uso de React e Vite.</p>
+<p>Projeto de site de e-commerce, desenvolvido para conclusão do curso Explorer da Rocketseat, com uso de React e Vite.</p>
 
 <p>A aplicação foi desenvolvida com layout responsivo e adaptável aos principais formatos de tela, para uso em dispositivos móveis, tablets, e desktops. Além disso, o site também foi adaptado aos padrões atuais de acessibilidade com uso da classe "sr-only".</p>
 
