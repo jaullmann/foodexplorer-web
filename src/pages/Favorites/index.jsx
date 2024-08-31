@@ -67,7 +67,7 @@ export function Favorites() {
                     {
                         dishes.length > 0 &&
                         <>
-                            <SectionLabel title={"Refeições"}/>
+                            <SectionLabel title={"Refeições"} className="sub-label"/>
                             <div className="fav-dishes">
                                 {
                                     dishes.map(( favorite, index ) => (
@@ -94,7 +94,7 @@ export function Favorites() {
                     {
                         desserts.length > 0 &&
                         <>
-                            <SectionLabel title={"Sobremesas"}/>
+                            <SectionLabel title={"Sobremesas"} className="sub-label"/>
                             <div className="fav-dishes">
                                 {
                                     desserts.map(( favorite, index ) => (
@@ -121,7 +121,7 @@ export function Favorites() {
                     {
                         drinks.length > 0 &&
                         <>
-                            <SectionLabel title={"Bebidas"}/>
+                            <SectionLabel title={"Bebidas"} className="sub-label"/>
                             <div className="fav-dishes">
                                 {
                                     drinks.map(( favorite, index ) => (

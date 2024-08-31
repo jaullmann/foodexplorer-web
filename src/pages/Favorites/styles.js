@@ -37,8 +37,15 @@ export const Main = styled.main`
         margin-top: 8rem;
         font-size: 1.7rem;
         ${({ theme }) => theme.FONTS.POPPINS_MEDIUM};
-        color: ${({ theme }) => theme.COLORS.LIGHT_500};
+        color: ${({ theme }) => theme.COLORS.LIGHT_300};
         text-align: center;
+    }
+
+    label:nth-child(2), 
+    label:nth-child(4), 
+    label:nth-child(6) {
+        font-size: 1.8rem;
+        color: ${({ theme }) => theme.COLORS.LIGHT_500}; 
     }
 
     .fav-dishes {
