@@ -95,6 +95,7 @@ export const Container = styled.div`
 
     .placed-order {
         height: 24.5rem;
+        padding: 0 1.5rem;
 
         border: 2px solid ${({ theme }) => theme.COLORS.LIGHT_600};    
         border-radius: .5rem;        
@@ -113,6 +114,7 @@ export const Container = styled.div`
 
         > h3 {
             font-size: 1.5rem;
+            text-align: center;
             ${({ theme }) => theme.FONTS.ROBOTO_BOLD};
             color: ${({ theme }) => theme.COLORS.LIGHT_400};
         }

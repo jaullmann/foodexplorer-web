@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { DEVICE_BREAKPOINTS } from "../../styles/deviceBreakpoints";
 
 export const Container = styled.div`
   display: flex;
@@ -46,7 +47,7 @@ export const Alert = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: flex-end;
-  gap: 1.5rem;
+  gap: 2rem;
 
   border-radius: .5rem;
   background-color: ${({ theme }) => theme.COLORS.DARK_1000};  
@@ -55,6 +56,10 @@ export const Alert = styled.div`
     ? `0.1rem 0.1rem .6rem .4rem ${theme.COLORS.DARK_200}`
     : `0rem 0rem .7rem .2rem ${theme.COLORS.LIGHT_700}`
   };
+
+  @media (max-width: ${DEVICE_BREAKPOINTS.MD}) {
+    width: 82svw;  
+  }
   
   & div:nth-child(2){
     width: 100%;
@@ -64,12 +69,20 @@ export const Alert = styled.div`
     align-items: center;
     gap: 1rem;
 
+    @media (max-width: ${DEVICE_BREAKPOINTS.MD}) {
+      gap: 1.3rem;
+    }
+
     & h1 {
       width: fit-content;
       text-align: left;
       font-size: 1.3rem;
       ${({ theme }) => theme.FONTS.POPPINS_REGULAR};
       color: ${({ theme }) => theme.COLORS.LIGHT_200};
+
+      @media (max-width: ${DEVICE_BREAKPOINTS.XL}) {
+        font-size: 1.2rem;
+      }
     }
 
     & svg {
@@ -84,7 +97,11 @@ export const Alert = styled.div`
 
     .info {
       color: ${({ theme }) => theme.COLORS.TINTS_MINT_200};
-    }
-  }   
+    }   
+  }  
+
+  #alert-btn {
+    padding: 0 2.5rem;
+  }
   
 `;

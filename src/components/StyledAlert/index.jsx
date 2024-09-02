@@ -35,6 +35,7 @@ export function StyledAlert() {
           </div>              
           
           <Button
+            id="alert-btn"
             title={alertData.buttonText}
             color={alertData.type === 'error' || alertData.type === 'warning' ? "tomato_200" : "mint_200" }
             onClick={hideAlert}

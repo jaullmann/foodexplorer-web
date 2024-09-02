@@ -211,7 +211,7 @@ export const Container = styled.div`
     }
 
     .add-product {      
-      height: 2rem;
+      height: 2.3rem;
     }
 
   }
