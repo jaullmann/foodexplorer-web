@@ -8,7 +8,7 @@ export const Container = styled.main`
   align-items: center;
   justify-content: space-between;  
   width: 100%;  
-  min-height: 100svh;  
+  min-height: 100dvh;  
   
   #banner-section {
     margin: min(17rem, 8vw + 9rem) auto 3rem;
