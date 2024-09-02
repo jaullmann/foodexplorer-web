@@ -33,6 +33,13 @@
 
 <h2>Guia de utilização</h2>
 <ol>
-  <li>Abrir o arquivo src\services\api.js, e colocar no parâmetro "baseURL" o endereço online onde será executada a aplicação API (backend);</li>
+  <li>Abrir o arquivo src\services\api.js, e colocar no parâmetro "baseURL" o endereço online da API (backend);</li>
   <li>Na raiz do diretório, executar o comando "npm i" no terminal, para instalação dos pacotes necessários;</li>
+  <li>Realizar o deploy da aplicação a partir de uma branch salva no Github.</li>
 </ol>
+
+<p>Link da aplicação online: <b>https://foodexplorer2024.netlify.app/</b></p>
+<p>Usuário de teste: <b>user@email.com</b> - usuário admin: <b>admin@email.com <br>Senha: 1234 (ambos os casos)</p>
+<p>Obs.: a aplicação poderá sofrer um atraso na inicialização ao primeiro acesso, devido ao tipo de plano utilizado para hospedagem do serviço ser gratuito.</p>
+
+<p>Autor: Jorge Alencar Ullmann - jaullmann@gmail.com</p>
