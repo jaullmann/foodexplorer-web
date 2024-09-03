@@ -29,7 +29,7 @@ export default createGlobalStyle`
             border: .1px dotted orange;
         } */
 
-        transition: .2s;
+        /* transition: .2s; */
     }
 
     :root {        
