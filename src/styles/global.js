@@ -7,7 +7,7 @@ export default createGlobalStyle`
         padding: 0;
         box-sizing: border-box;
         
-        /* div, h1, h2, h3, h4 {
+        div, h1, h2, h3, h4 {
             border: .1px dotted cyan;
         }
         a {
@@ -27,7 +27,7 @@ export default createGlobalStyle`
         }
         svg {
             border: .1px dotted orange;
-        } */
+        }
 
         transition: .2s;
     }

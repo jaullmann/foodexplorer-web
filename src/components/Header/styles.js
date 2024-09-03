@@ -82,8 +82,8 @@ export const Section = styled.div`
         justify-content: space-between; 
         
         @media (max-width: ${DEVICE_BREAKPOINTS.MD}) {
-            padding-bottom: 1rem;
-            align-items: flex-end; 
+            padding-top: 1.5rem;
+            align-items: center; 
         }        
         
         #side-menu-btn {
@@ -117,12 +117,12 @@ export const Section = styled.div`
         gap: 0.625rem;
 
         img {            
-            width: 1.875rem
+            width: 2.1rem;
         }
         
         h1 {
-            font-size: 1.5rem;
-            width: 9.5rem;
+            font-size: 1.9rem;
+            /* width: 9.5rem; */
         }
     }    
 `;

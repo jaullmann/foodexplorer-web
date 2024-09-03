@@ -9,7 +9,7 @@ export const Container = styled.aside`
     left: 0;
 
     width: 70%;
-    height: 98svh;
+    height: 98dvh;
     z-index: 999;
 
     display: flex;
@@ -64,7 +64,7 @@ export const Container = styled.aside`
 
   @media (max-width: ${DEVICE_BREAKPOINTS.MD}) {
     width: 100%;
-    height: 100svh;
+    height: 100dvh;
     top: 0;
     left: 0;   
     border-radius: 0;
