@@ -64,7 +64,7 @@ export const Container = styled.div`
     }
 
     @media (max-width: ${ DEVICE_BREAKPOINTS.LG }) {    
-      width: 52svw;
+      width: 50svw;
     }
   }
 
@@ -75,7 +75,7 @@ export const Container = styled.div`
   }
 
   @media (max-width: ${ DEVICE_BREAKPOINTS.LG }) {    
-    width: 75svw;
+    width: 80svw;
     max-width: 100%;
     overflow-x: hidden;
   }
