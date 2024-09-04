@@ -11,7 +11,7 @@ export const Container = styled.div`
   display: flex;
   align-items: center;
   justify-content: flex-start;
-  gap: .8125rem;
+  gap: 1.5rem;
 
   img {
     width: 6.25rem;
@@ -62,6 +62,10 @@ export const Container = styled.div`
       ${({ theme }) => theme.FONTS.ROBOTO_REGULAR};
       color: ${({ theme }) => theme.COLORS.LIGHT_400};
     }
+
+    @media (max-width: ${ DEVICE_BREAKPOINTS.LG }) {    
+      width: 52svw;
+    }
   }
 
   button {
@@ -71,7 +75,8 @@ export const Container = styled.div`
   }
 
   @media (max-width: ${ DEVICE_BREAKPOINTS.LG }) {    
-    max-width: 100%;
+    width: 80svw;
+    max-width: 90svw;
   }
 
   .card-info {
