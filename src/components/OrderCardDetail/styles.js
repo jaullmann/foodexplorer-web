@@ -11,7 +11,7 @@ export const Container = styled.div`
   display: flex;
   align-items: center;
   justify-content: flex-start;
-  gap: 1.5rem;
+  gap: 1.25rem;
 
   img {
     width: 6.25rem;
@@ -75,8 +75,9 @@ export const Container = styled.div`
   }
 
   @media (max-width: ${ DEVICE_BREAKPOINTS.LG }) {    
-    width: 80svw;
-    max-width: 90svw;
+    width: 75svw;
+    max-width: 80svw;
+    overflow-x: hidden;
   }
 
   .card-info {
