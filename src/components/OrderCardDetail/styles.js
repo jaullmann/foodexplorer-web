@@ -76,7 +76,7 @@ export const Container = styled.div`
 
   @media (max-width: ${ DEVICE_BREAKPOINTS.LG }) {    
     width: 75svw;
-    max-width: 80svw;
+    max-width: 100%;
     overflow-x: hidden;
   }
 
