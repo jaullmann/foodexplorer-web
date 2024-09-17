@@ -42,4 +42,6 @@
 <p>Usuário de teste: <b>user@email.com</b> - usuário admin: <b>admin@email.com <br>Senha: 1234 (ambos os casos)</p>
 <p>Obs.: a aplicação poderá sofrer um atraso na inicialização ao primeiro acesso, devido ao tipo de plano utilizado para hospedagem do serviço ser gratuito.</p>
 
+<a to="https://github.com/jaullmann/foodexplorer-api">Página da aplicação back-end (API)</a>
+
 <p>Autor: Jorge Alencar Ullmann - jaullmann@gmail.com</p>
