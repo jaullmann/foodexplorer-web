@@ -14,7 +14,7 @@ export function Favorites() {
     const [desserts, setDesserts] = useState([]);
     const [drinks, setDrinks] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
-    const { fetchFavorites, favoritesData, userFavorites } = useFavorites();   
+    const { fetchFavorites, favoritesData } = useFavorites();   
     
     function splitFavoritesByCategory() {
         if (!data) return; 

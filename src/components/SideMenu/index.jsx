@@ -55,7 +55,7 @@ export function SideMenu({ admin, closeSideMenu, sideMenuOpen,
         />
         <div id="side-menu-links">
           { 
-            searchResult.length > 0 
+            searchResult?.length > 0 
             && 
             <Link 
               to={"/search"}
@@ -67,7 +67,7 @@ export function SideMenu({ admin, closeSideMenu, sideMenuOpen,
             </Link>
           }
           { 
-            (searchResult.length === 0 && inputValue.length > 2)
+            (searchResult?.length === 0 && inputValue.length > 2)
             && 
             <Link               
               id="search-results"

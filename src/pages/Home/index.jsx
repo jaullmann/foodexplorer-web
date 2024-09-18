@@ -1,6 +1,7 @@
 import { api } from "../../services/api";
 import { useEffect, useState } from "react";
 import { useFavorites } from "../../hooks/favorites";
+import { useAuth } from "../../hooks/auth";
 import { useAlerts } from "../../hooks/alerts";
 import { Container } from "./styles";
 import { Header } from "../../components/Header";
@@ -14,6 +15,7 @@ export function Home() {
   const [isLoading, setIsLoading] = useState(false);
   const { userFavorites, fetchFavorites } = useFavorites();
   const { showAlert } = useAlerts();
+  const { user } = useAuth();
 
   async function fetchProducts() {
     setIsLoading(true);
@@ -33,7 +35,7 @@ export function Home() {
 
   useEffect(() => {
     fetchProducts();
-    fetchFavorites();
+    user && fetchFavorites();
   }, []);
 
   return(

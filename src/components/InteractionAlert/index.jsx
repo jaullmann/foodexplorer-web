@@ -30,10 +30,10 @@ export function InteractionAlert() {
   }  
 
   function handleFavoritesUpdate() {        
-    if (userFavorites.length > favoritesState && lastFavoriteInteracted.title) {
+    if (userFavorites?.length > favoritesState && lastFavoriteInteracted.title) {
       setAlertImage(lastFavoriteInteracted.image);
       setFavoriteAlertMessage(`${lastFavoriteInteracted.title} adicionado aos favoritos`);      
-    } else if (userFavorites.length < favoritesState && lastFavoriteInteracted.title) {
+    } else if (userFavorites?.length < favoritesState && lastFavoriteInteracted.title) {
       setAlertImage(lastFavoriteInteracted.image);
       setFavoriteAlertMessage(`${lastFavoriteInteracted.title} removido dos favoritos`);      
     } else {
@@ -71,7 +71,7 @@ export function InteractionAlert() {
   useEffect(() => {
     setShowAlert(false);
     setMessage("");    
-    setFavoritesState(userFavorites.length);
+    userFavorites?.length > 0 && setFavoritesState(userFavorites.length);
     setCartState(cartAmount);
   }, []); 
 

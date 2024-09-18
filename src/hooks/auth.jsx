@@ -31,8 +31,11 @@ function AuthProvider({ children }) {
     } 
       
     function signOut() {
-      localStorage.removeItem("@foodexplorer:user"); 
-      setData({});
+      if (data.user) {
+        localStorage.removeItem("@foodexplorer:user"); 
+        setData({});
+        // window.location.reload();
+      }      
     }    
       
     useEffect(() => {          

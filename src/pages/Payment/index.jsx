@@ -52,9 +52,13 @@ export function Payment() {
             const response = await api.get('cart', { withCredentials: true });
             setData(response.data);
             setPaidOrder(false);                                         
-        } catch (e) {   
-            showAlert({message: "Erro ao obter as informações do pedido. Tente mais tarde"});
-            return navigate("/notfound");
+        } catch (e) {  
+            if (e.response?.status === 401) {
+                signOut();
+            } else {
+                showAlert({message: "Erro ao obter as informações do pedido. Tente mais tarde"});
+                return navigate("/notfound");
+            }            
         } finally {
             setIsLoading(false);
         }        

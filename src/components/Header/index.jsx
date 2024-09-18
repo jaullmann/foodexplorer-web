@@ -4,6 +4,7 @@ import { useAuth } from "../../hooks/auth";
 import { useCart } from "../../hooks/cart";
 import { useSearch } from "../../hooks/search";
 import { useTheme } from '../../hooks/theme';
+import { useAlerts } from "../../hooks/alerts";
 import { Section } from "./styles";
 import { MainLogo } from "../MainLogo";
 import { SearchInput } from "../SearchInput";
@@ -28,6 +29,7 @@ export function Header({ orderStatuses = {}, isLoading = false }) {
   const { toggleTheme, theme } = useTheme();
   const [ordersAmount, setOrdersAmount] = useState(0);
   const [isSideMenuOpen, setIsSideMenuOpen] = useState(false);
+  const { showAlert } = useAlerts(); 
   const navigate = useNavigate();
   const admin = user?.role === "admin";
 
@@ -40,12 +42,7 @@ export function Header({ orderStatuses = {}, isLoading = false }) {
     handleInputValue("");
     navigate("/payment");
   }
-
-  function handleCreate() {
-    handleInputValue("");
-    navigate("/new", { state: { newDish: true } });
-  }
-
+  
   function openSideMenu() {
     setIsSideMenuOpen(true);
   }
@@ -62,12 +59,18 @@ export function Header({ orderStatuses = {}, isLoading = false }) {
           const openOrders = response.data.filter(ord => ord.status !== 'cancelado' && ord.status !== 'entregue')    
           setOrdersAmount(openOrders.length);
         } catch(e) {
-          return alert("Erro ao obter dados de pedidos em aberto.")
+          if (e.response?.status === 401) {
+            signOut();
+        } else {
+            showAlert({message: "Erro ao obter dados de pedidos em aberto, tente mais tarde."});
+        }   
         }
       } 
       
-      admin && fetchOrders();       
-    }        
+      admin && user && fetchOrders();       
+    } else {
+      setOrdersAmount(0);
+    }       
   }, [navigate, orderStatuses])
 
   return (

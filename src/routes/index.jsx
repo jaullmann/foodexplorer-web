@@ -1,4 +1,4 @@
-import { BrowserRouter } from "react-router-dom";
+import { BrowserRouter, useLocation } from "react-router-dom";
 import { useAuth } from "../hooks/auth";
 import { USER_ROLE } from "../utils/roles";
 
@@ -9,21 +9,7 @@ import { useEffect } from "react";
 import { api } from "../services/api";
 
 export function Routes() {
-  const { user, signOut } = useAuth();  
-
-  useEffect(() => {
-    async function fetchValidatedUser() {      
-      try {
-        await api.get('/users/validated');
-      } catch (error) {
-        if (error.response?.status === 401) {
-          signOut();
-        }
-      } 
-    };
-  
-    fetchValidatedUser();
-  }, []);
+  const { user, signOut } = useAuth();
 
   function AccessRoute() {
     switch (user.role) {
@@ -36,9 +22,29 @@ export function Routes() {
     }
   }
 
+  function RouteValidation() {
+    const location = useLocation();
+
+    useEffect(() => {
+      async function fetchValidatedUser() {
+        try {
+          await api.get("/users/validated");
+        } catch (e) {
+          if (e.response?.status === 401) {
+            signOut();
+          }
+        }
+      }
+
+      fetchValidatedUser(); 
+    }, [location]); 
+
+    return user ? <AccessRoute /> : <AuthRoutes />;
+  }
+
   return (
-    <BrowserRouter>        
-      {user ? <AccessRoute /> : <AuthRoutes />}
+    <BrowserRouter>
+      <RouteValidation />
     </BrowserRouter>
   );
 }

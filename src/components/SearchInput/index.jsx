@@ -16,7 +16,7 @@ export function SearchInput({ isSideMenuOpen }) {
   };
 
   function handleSearch() {    
-    if (inputValue.length > 2) {
+    if (inputValue?.length > 2) {
       const timer = setTimeout(() => {
         navigate("/search");
       }, 2000); 
@@ -27,7 +27,7 @@ export function SearchInput({ isSideMenuOpen }) {
   }
 
   useEffect(() => {
-    if (inputValue.length > 2) {
+    if (inputValue?.length > 2) {
       inputRef.current.focus();
     }
   }, [inputValue]);

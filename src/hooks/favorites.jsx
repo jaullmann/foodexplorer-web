@@ -10,25 +10,25 @@ function FavoritesProvider({ children }) {
   const [userFavorites, setUserFavorites] = useState([]);
   const [actionState, setActionState] = useState(false);
   const [lastFavoriteInteracted, setLastFavoriteInteracted] = useState({});
-  const { user } = useAuth();
+  const { user, signOut } = useAuth();
 
   async function fetchFavorites() {
-    try {
-      const response = await api.get('favorites', { withCredentials: true });
-      const favorites = response.data.map((favorite) => {
-        return (
-          favorite.dish_id
-        )
-      });
-      setFavoritesData(response.data);
-      setUserFavorites(favorites);    
-    } catch (e) {
-      if (e.response) {
-        return alert(e.response.data.message);
-      } else {
-        return alert('Erro ao consultar os favoritos do cliente');
+    if (user) {
+      try {
+        const response = await api.get('favorites', { withCredentials: true });
+        const favorites = response.data.map((favorite) => {
+          return (
+            favorite.dish_id
+          )
+        });
+        setFavoritesData(response.data);
+        setUserFavorites(favorites);    
+      } catch (e) {
+        if (e.response?.status !== 401) {
+          return alert(e.response.data.message);
+        } 
       }
-    }
+    } 
   }
 
   async function addFavorite({ dishId, dishTitle, dishImage }) {
@@ -44,10 +44,10 @@ function FavoritesProvider({ children }) {
       await fetchFavorites();
       setActionState(!actionState);
     } catch (e) {
-      if (e.response) {
-        return alert(e.response.data.message);
+      if (e.response?.status === 401) {
+        signOut();
       } else {
-        return alert('Erro ao salvar favorito do cliente');
+        return alert(e.response.data.message);
       }
     } 
   }
@@ -68,12 +68,12 @@ function FavoritesProvider({ children }) {
       await fetchFavorites();
       setActionState(!actionState);                         
     } catch (e) {
-      if (e.response) {
-        return alert(e.response.data.message);
+      if (e.response?.status === 401) {
+        signOut();
       } else {
-        return alert('Erro ao excluir favorito do cliente');
+        return alert(e.response.data.message);
       }
-    }
+    } 
   }  
 
   async function isUserFavorite(dishId) {    
@@ -81,7 +81,7 @@ function FavoritesProvider({ children }) {
   }
 
   useEffect(() => {  
-    fetchFavorites();    
+    user && fetchFavorites();    
   }, []);
 
   return (

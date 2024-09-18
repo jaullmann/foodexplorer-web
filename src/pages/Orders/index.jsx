@@ -34,7 +34,11 @@ export function Orders() {
                 [orderId]: status,
             }));
         } catch (e) {
-            showAlert({message: "Não foi possível atualizar o status do pedido, tente mais tarde."});
+            if (e.response?.status === 401) {
+                signOut();
+            } else {
+                showAlert({message: "Não foi possível atualizar o status do pedido, tente mais tarde."});
+            }            
         } finally {
             setIsLoading(false);
         }
