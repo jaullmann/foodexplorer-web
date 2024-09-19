@@ -75,6 +75,10 @@ export const Main = styled.main`
             border-radius: 10px;
         }
 
+        @media (max-width: ${DEVICE_BREAKPOINTS.LG}) {
+            max-height: none;
+        }
+
     }
 
     > div > h2 {
@@ -126,7 +130,7 @@ export const Main = styled.main`
         #next-btn, #back-btn {   
             display: block;         
             margin-top: 2.9375rem;
-            margin-bottom: 3.625rem;
+            margin-bottom: 1rem;
             align-self: flex-end;
             
             width: 100%;

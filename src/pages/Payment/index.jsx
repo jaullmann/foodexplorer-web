@@ -22,7 +22,7 @@ export function Payment() {
     const [newOrderId, setNewOrderId] = useState("");
     const [isLoading, setIsLoading] = useState(false);
     const { orderId } = useParams();
-    const { user } = useAuth();
+    const { user, signOut } = useAuth();
     const { showAlert } = useAlerts();
     const navigate = useNavigate();   
 
