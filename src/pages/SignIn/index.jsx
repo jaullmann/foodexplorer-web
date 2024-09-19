@@ -67,6 +67,7 @@ export function SignIn() {
           onKeyDown={handleKeyDown}
         />
         <Button
+          id="sign-in"
           title="Entrar"
           onClick={handleSignIn}
           disabled={!(email && password)}

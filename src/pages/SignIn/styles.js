@@ -62,9 +62,10 @@ export const Form = styled.form`
       width: 21.75rem;      
   }
 
-  button {
-      width: 100%;      
-    }
+  button {  
+      width: 100%;
+      margin-top: 1.7rem;      
+  }
 
   @media (max-width: ${DEVICE_BREAKPOINTS.LG}) {   
     padding: 0;
