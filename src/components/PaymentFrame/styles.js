@@ -91,6 +91,10 @@ export const Container = styled.div`
             gap: 1.0625rem;
         }
 
+        button {
+            margin: 1rem 0;
+        }
+
     }
 
     .placed-order {
