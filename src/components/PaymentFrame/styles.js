@@ -5,7 +5,8 @@ export const Container = styled.div`
     width: 34vw;   
     max-width: 33.125rem;     
     min-width: 26rem;       
-    border-radius: .5rem;   
+    border-radius: .5rem;
+    margin-bottom: 2rem;   
 
     display: flex;
     flex-direction: column;    
@@ -127,6 +128,7 @@ export const Container = styled.div`
     @media (max-width: ${ DEVICE_BREAKPOINTS.LG }) {
         width: 100%;
         max-width: 60vw;
+        margin-bottom: 0;
 
         #frame-pix > img {
             width: 26vw;       
